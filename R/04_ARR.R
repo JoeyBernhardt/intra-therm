@@ -9,10 +9,27 @@ rohr <- read_csv("data-processed/rohr_amphib_multi_pop.csv")
 comte <- read_csv("data-processed/comte_fish_multi_pop.csv") %>% 
 	clean_names()
 
+rohr3 <- rohr %>% 
+	mutate(lat_long = paste(latitude, longitude, sep = "_")) 
 
-rohr %>% 
-	group_by(genus_species) %>% 
-do(tidy(lm(raw_ctm1 ~ acclim_temp, data = .), conf.int = TRUE)) %>% View
+arr_amphib <- rohr %>% 
+	mutate(lat_long = paste(latitude, longitude, sep = "_")) %>% 
+	group_by(genus_species, lat_long) %>% 
+do(tidy(lm(raw_ctm1 ~ acclim_temp, data = .), conf.int = TRUE)) %>% 
+	filter(term == "acclim_temp") %>% 
+	rename(arr = estimate) %>% 
+	ungroup()
+
+arr_am2 <- left_join(arr_amphib, rohr3, by = c("genus_species", "lat_long")) %>% 
+	ungroup()
+
+
+arr_am2 %>% 
+	ungroup() %>% 
+	dplyr::select(latitude, arr) %>% 
+	ggplot(aes(x = latitude, y = arr)) + geom_point() +
+	ylab("ARR") + xlab("Latitude")
+ggsave("figures/amphib_ARR_lat.pdf", width = 6, height = 5)
 
 
 comte2 <- comte %>% 
