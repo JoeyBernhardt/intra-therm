@@ -49,3 +49,5 @@ comte_clean %>%
 c2 <- comte_multi_pop %>% 
 	clean_names() %>% 
 	mutate(abs_lat = abs(latitude))
+
+
