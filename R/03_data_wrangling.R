@@ -13,18 +13,21 @@ SO <- read_csv("data-raw/Globtherm2_within_species_SO.csv")
 FL2 <- FL %>% 
 	select(1:9) %>% 
 	select(-sample_size) %>% 
-	mutate(person == "FL")
+	mutate(person = "FL")
 
-AB2 <- FL %>% 
+AB2 <- AB %>% 
 	select(1:9) %>% 
-	select(-sample_size)
+	select(-sample_size) %>% 
+	mutate(person = "AB")
 
 SO2 <- SO %>% 
 	select(1:9)%>% 
-	select(-sample_size)
+	select(-sample_size) %>% 
+	mutate(person = "SO")
 FV2 <- FV %>% 
 	select(1:9)%>% 
-	select(-sample_size)
+	select(-sample_size) %>% 
+	mutate(person = "FV")
 
 all <- bind_rows(AB2, FL2, SO2, FV2)
 
