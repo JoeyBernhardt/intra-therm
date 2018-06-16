@@ -21,7 +21,8 @@ comte2 <- comte %>%
 		   genus_species = species,
 		   acclim_temp = temperature_of_acclimation_c,
 		   heating_rate = heating_rate_c_min) %>% 
-	mutate(lat_long = paste(latitude, longitude, sep = "_"))
+	mutate(lat_long = paste(latitude, longitude, sep = "_")) %>% 
+	filter(!is.na(latitude))
 	
 	
 rohr2 <- rohr %>% 
@@ -41,9 +42,33 @@ arr <- comte2 %>%
 	do(tidy(lm(ctmax ~ acclim_temp, data = .), conf.int = TRUE)) %>% 
 	filter(term == "acclim_temp") %>% 
 	rename(arr = estimate)
+
+prr <- comte2 %>% 
+	group_by(genus_species) %>%
+	mutate(abs_lat = abs(latitude)) %>% 
+	filter(!is.na(abs_lat)) %>% 
+	do(tidy(lm(ctmax ~ abs_lat, data = .), conf.int = TRUE)) %>% 
+	filter(term != "(Intercept)") %>%
+	rename(prr = estimate)
+
 	
 arr %>% 
 	filter(arr > 0) %>% 
 	ggplot(aes(x = latitude, y = arr)) + geom_point() +
 	ylab("ARR") + xlab("Latitude")
 ggsave("figures/ARR_comte_lat.pdf", width = 5, height = 5)
+
+prr %>% 
+	filter(prr > -10, prr < 20) %>% 
+	ggplot(aes(x = prr)) + geom_histogram() +
+	ylab("Count") + xlab("PRR")
+ggsave("figures/PRR_comte_lat.pdf", width = 5, height = 5)
+
+
+comte2 %>% 
+	ggplot(aes(x = latitude, y = ctmax)) + geom_point() +
+	ylab("CTmax") + xlab("Latitude")
+ggsave("figures/CTmax_latitude_comte.pdf", width = 6, height = 5)
+
+
+write_csv(comte2, "data-processed/comte_lats.csv")
