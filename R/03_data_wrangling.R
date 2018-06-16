@@ -12,7 +12,8 @@ SO <- read_csv("data-raw/Globtherm2_within_species_SO.csv")
 
 FL2 <- FL %>% 
 	select(1:9) %>% 
-	select(-sample_size)
+	select(-sample_size) %>% 
+	mutate(person == "FL")
 
 AB2 <- FL %>% 
 	select(1:9) %>% 
