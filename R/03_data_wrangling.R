@@ -36,3 +36,28 @@ str(AB)
 
 write_csv(all, "data-processed/intra-therm-mini.csv")
 
+library(stringr)
+FV_lat <- FV %>% 
+	mutate(hemisphere = ifelse(grepl("N", lat_of_collection), "northern", "southern")) %>% 
+	select(hemisphere, everything()) %>% 
+	mutate(lat_of_collection = str_replace(lat_of_collection, "N", "")) %>% 
+	mutate(lat_of_collection = str_replace(lat_of_collection, "S", "")) %>% 
+	separate(lat_of_collection, into = c("degrees", "minutes"), sep = "°") %>% 
+	select(degrees, minutes, everything()) %>% 
+	mutate(minutes = str_replace(minutes, "'", "")) 
+
+write_csv(FV_lat, "data-processed/FV_lat.csv")
+
+
+FV_lat <- read_csv("data-processed/FV_lat.csv")
+
+
+
+
+FV_lat %>% 
+	mutate(minutes = ifelse(is.na(minutes), 0, minutes)) %>% 
+	mutate(minutes = as.numeric(minutes)) %>%
+	mutate(degrees = as.numeric(degrees)) %>% 
+	mutate(dec_degree = degrees + (minutes)/60) %>% 
+	select(dec_degree, everything()) %>% View
+
