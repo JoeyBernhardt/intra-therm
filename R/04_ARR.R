@@ -31,6 +31,38 @@ arr_am2 %>%
 	ylab("ARR") + xlab("Latitude")
 ggsave("figures/amphib_ARR_lat.pdf", width = 6, height = 5)
 
+rohr3 %>% 
+	ggplot(aes(x = bioclim5, y = raw_ctm1, color = genus_species)) + geom_point() +
+	theme(legend.position = "none") + geom_smooth(method = "lm", se = FALSE) +
+	ylab("CTmax") + xlab("Habitat temperature")
+
+rohr3 %>% 
+	ggplot(aes(x = latitude, y = raw_ctm1, color = genus_species)) + geom_point() +
+	theme(legend.position = "none") + geom_smooth(method = "lm", se = FALSE) +
+	ylab("CTmax") + xlab("Latitude")
+
+rohr3 %>% 
+	group_by(genus_species) %>% 
+	do(tidy(lm(raw_ctm1 ~ bioclim5, data = .), conf.int = TRUE)) %>% 
+	filter(term == "bioclim5") %>% 
+	ggplot(aes(x = genus_species, y = estimate)) + geom_point() +
+	geom_errorbar(aes(ymin = estimate - std.error, ymax = estimate + std.error), width = 0.2) +
+	# geom_hline(intercept = 0) +
+	coord_flip() 
+ggsave("figures/coefs.pdf", width = 10, height = 8)
+
+rohr3 %>% 
+	group_by(genus_species) %>% 
+	do(tidy(lm(raw_ctm1 ~ bioclim5, data = .), conf.int = TRUE)) %>% 
+	filter(term == "bioclim5") %>% 
+	ggplot(aes(x = estimate)) + geom_histogram()
+
+arr_am2 %>% 
+	ungroup() %>% 
+	dplyr::select(bioclim5, arr, genus_species, latitude) %>% 
+	ggplot(aes(x = bioclim5, y = arr, color = genus_species)) + geom_point() +
+	ylab("ARR") + xlab("habitat temp") +
+	theme(legend.position = "none") + geom_smooth(method = "lm")
 
 comte2 <- comte %>% 
 	rename(ctmax = thermal_limit_c,
