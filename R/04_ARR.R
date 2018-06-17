@@ -42,7 +42,7 @@ rohr3 %>%
 	ylab("CTmax") + xlab("Latitude")
 
 rohr3 %>% 
-	group_by(genus_species) %>% 
+	group_by(genus_species, acclim_temp) %>% 
 	do(tidy(lm(raw_ctm1 ~ bioclim5, data = .), conf.int = TRUE)) %>% 
 	filter(term == "bioclim5") %>% 
 	ggplot(aes(x = genus_species, y = estimate)) + geom_point() +
@@ -55,7 +55,22 @@ rohr3 %>%
 	group_by(genus_species) %>% 
 	do(tidy(lm(raw_ctm1 ~ bioclim5, data = .), conf.int = TRUE)) %>% 
 	filter(term == "bioclim5") %>% 
-	ggplot(aes(x = estimate)) + geom_histogram()
+	ggplot(aes(x = estimate)) + geom_histogram() + 
+	# facet_wrap( ~ acclim_temp) +
+	geom_vline(xintercept = 0) +
+	geom_vline(xintercept = 0.00880) +
+	geom_vline(xintercept = 0.00880 +0.162) +
+	geom_vline(xintercept = 0.00880-0.162) +
+	geom_vline( xintercept = 0.0779, color = "red")
+	
+library(plotrix)
+
+rohr3 %>% 
+	group_by(genus_species) %>% 
+	do(tidy(lm(raw_ctm1 ~ bioclim5, data = .), conf.int = TRUE)) %>% 
+	filter(term == "bioclim5") %>% 
+	ungroup() %>% 
+	summarise_each(funs(mean, std.error, median), estimate)
 
 arr_am2 %>% 
 	ungroup() %>% 
