@@ -99,7 +99,8 @@ dataProcess %>%
 	mutate(lat_of_collection = str_replace(lat_of_collection, "N", "")) %>% 
 	mutate(lat_of_collection = str_replace(lat_of_collection, "S", "")) %>% 
 	mutate(lat_of_collection = str_replace(lat_of_collection, "s", "")) %>% 
-	separate(lat_of_collection, into = c("degrees", "minutes"), sep = "°|d", remove = FALSE) %>% View
+	mutate(lat_of_collection = str_replace(lat_of_collection, "[^0-9]", "_")) %>% View
+	separate(lat_of_collection, into = c("degrees", "minutes", "seconds"), sep = "[^0-9]", remove = FALSE) %>% View
 	filter(grepl('°', lat_of_collection)) %>% View 
 	select(degrees, minutes, everything()) %>% 
 	mutate(minutes = str_replace(minutes, "'", "")) %>% View
