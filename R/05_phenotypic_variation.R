@@ -26,6 +26,11 @@ rcv %>%
 ggsave("figures/cv_amphibian.pdf", width = 6, height = 5)
 
 rcv %>% 
+	ggplot(aes(x = abs(latitude), y = cv)) + geom_point() +
+	ylab("Coefficient of variation") + xlab("Absolute latitude")
+ggsave("figures/cv_amphibian.pdf", width = 6, height = 5)
+
+rcv %>% 
 	ggplot(aes(x = latitude, y = raw_ctm1_var)) + geom_point() +
 	ylab("Variance") + xlab("Latitude")
 ggsave("figures/variance_amphibian.pdf", width = 6, height = 5)
