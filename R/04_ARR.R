@@ -5,6 +5,7 @@ library(broom)
 library(janitor)
 library(cowplot)
 
+#read in the data
 rohr <- read_csv("data-processed/rohr_amphib_multi_pop.csv")
 comte <- read_csv("data-processed/comte_fish_multi_pop.csv") %>% 
 	clean_names()
