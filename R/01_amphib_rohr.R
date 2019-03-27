@@ -29,6 +29,8 @@ amphib_multi_pop <- am2 %>%
 write_csv(amphib_multi_pop, "data-processed/rohr_amphib_multi_pop.csv")
 
 
+amphib_multi_pop <- read_csv("data-processed/rohr_amphib_multi_pop.csv")
+
 amphib_multi_pop %>% 
 	ggplot(aes(x = abs_lat, y = raw_ctm1)) + geom_point() +
 	geom_smooth(method = "lm", color = "black") +
