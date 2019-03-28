@@ -57,7 +57,18 @@ all_mult2 <- all_mult %>%
 	rename(acclim_temp = pretreatment_temp) %>% 
 	rename(acclim_time = pretreatment_duration) %>% 
 	mutate(acclim_temp = as.numeric(acclim_temp)) %>% 
-	mutate(ramping_rate = as.numeric(ramping_rate))
+	mutate(ramping_rate = as.numeric(ramping_rate)) %>% 
+	mutate(n_cat = NA) %>% 
+	mutate(n_cat = ifelse(grepl(">", sample_size), sample_size, n_cat)) %>%
+	mutate(n_cat = ifelse(grepl("<", sample_size), sample_size, n_cat)) %>%
+	mutate(n_cat = ifelse(grepl("-", sample_size), sample_size, n_cat)) %>% 
+	mutate(sample_size = ifelse(!grepl("[^0-9]", sample_size), sample_size, NA)) %>% 
+	mutate(sample_size = as.numeric(sample_size))
+
+unique(all_mult2$n_cat)
+
+all_mult2 %>% 
+	filter(sample_size == "15-Oct") %>% View
 
 
 all_mult2 %>% 
@@ -78,7 +89,9 @@ rohr2 <- rohr %>%
 		   ramping_rate = heating_rate) %>% 
 	mutate(original_compilation = "Rohr") %>% 
 	mutate(acclim_time = as.character(acclim_time)) %>% 
-	rename(life_stage = stage)
+	rename(life_stage = stage) %>% 
+	rename(sample_size = n_numb) %>% 
+	rename(realm_general = habitat)
 
 
 mult_species <- all_mult2 %>% 
@@ -109,7 +122,10 @@ comte <- read_csv("data-processed/comte_fish_multi_pop.csv") %>%
 	mutate(original_compilation = "Comte") %>% 
 	mutate(acclim_time = as.character(acclim_time)) %>% 
 	mutate(reference = as.character(reference)) %>% 
-	rename(realm_general = realm_affinity)
+	rename(realm_general = realm_affinity) %>% 
+	rename(sample_size = nindividuals) %>% 
+	mutate(error_type = "SD") %>% 
+	rename(error_estimate = sd_thermal_limit)
 	
 
 all_species <- bind_rows(mult_species, rohr_species, comte_species) %>% 
@@ -128,7 +144,17 @@ all_mult2 %>%
 
 
 combined_tmax <- bind_rows(all_mult2, rohr2, comte) %>% 
-	filter(!is.na(parameter_value))
+	filter(!is.na(parameter_value)) %>% 
+	mutate(realm_general2 = case_when(realm_general == "aquatic" ~ "Aquatic",
+									  realm_general == "marine" ~ "Marine",
+									  realm_general == "marine littoral" ~ "Marine",
+									  realm_general == "terrestrial" ~ "Terrestrial",
+									  realm_general == "Arboreal" ~ "Terrestrial",
+									  realm_general == "freshwater" ~ "Freshwater",
+									  realm_general == "freshwater native" ~ "Freshwater",
+									  TRUE ~ realm_general)) %>% 
+	mutate(realm_general3 = case_when(realm_general2 %in% c("Aquatic", "Aquatic & terrestrial", "Freshwater", 'Marine') ~ "Aquatic",
+									  realm_general2 == "Terrestrial" ~ "Terrestrial"))
 
 write_csv(combined_tmax, "data-processed/combined-tmax.csv")
 
@@ -136,13 +162,16 @@ write_csv(combined_tmax, "data-processed/combined-tmax.csv")
 names(combined_tmax)
 
 combined_tmax %>% 
-	filter(is.na(parameter_tmax_or_tmin)) %>% View
+	filter(is.na(realm_general3)) %>% View
 
 
 combined_tmax %>% 
-	ggplot(aes(x = latitude, y = parameter_value, color = parameter_tmax_or_tmin)) + geom_point() +
-	ylab("Thermal limit (°C)") + xlab("Latitude")
+	ggplot(aes(x = latitude, y = parameter_value, color = realm_general3)) + geom_point() +
+	ylab("Thermal limit (°C)") + xlab("Latitude") + facet_grid(realm_general3 ~ parameter_tmax_or_tmin)
 
+
+combined_tmax %>% 
+	filter(is.na(realm_general)) %>% View
 
 unique(combined_tmax$phylum)
 
