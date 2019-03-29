@@ -166,9 +166,12 @@ combined_tmax <- bind_rows(all_mult2, rohr2, comte) %>%
 									  realm_general == "freshwater native" ~ "Freshwater",
 									  TRUE ~ realm_general)) %>% 
 	mutate(realm_general3 = case_when(realm_general2 %in% c("Aquatic", "Aquatic & terrestrial", "Freshwater", 'Marine') ~ "Aquatic",
-									  realm_general2 == "Terrestrial" ~ "Terrestrial"))
+									  realm_general2 == "Terrestrial" ~ "Terrestrial")) %>% 
+	mutate(genus_species = ifelse(is.na(genus_species), paste(genus, species, sep = " "), genus_species))
 
 write_csv(combined_tmax, "data-processed/combined-thermal-limits.csv")
+
+
 
 
 
@@ -186,18 +189,14 @@ combined_tmax %>%
 	ggplot(aes(x = latitude, y = parameter_value, color = realm_general3)) + geom_point() +
 	ylab("Thermal limit (°C)") + xlab("Latitude") + facet_grid(realm_general3 ~ parameter_tmax_or_tmin)
 
-
-combined2 <- combined_tmax %>% 
-	mutate(genus_species = ifelse(is.na(genus_species), paste(genus, species, sep = " "), genus_species))
-
-mult_pop_comb <- combined2 %>% 
+mult_pop_comb <- combined_tmax %>% 
 	distinct(genus_species, latitude, longitude, acclim_temp, elevation) %>% 
 	group_by(genus_species) %>% 
 	tally() %>%
 	filter(n > 1) %>% 
 	select(genus_species)
 
-combined2 %>% 
+combined_tmax %>% 
 	filter(parameter_tmax_or_tmin == "tmax") %>% 
 	filter(genus_species %in% c(mult_pop_comb$genus_species)) %>% 
 	ggplot(aes(x = latitude, y = parameter_value)) + geom_point() +
@@ -205,7 +204,7 @@ combined2 %>%
 ggsave("figures/all_lims.png", width = 49, height = 30, limitsize = FALSE)
 
 
-combined3 <- combined2 %>% 
+combined3 <- combined_tmax %>% 
 	filter(genus_species %in% c(mult_pop_comb$genus_species))
 
 write_csv(combined3, "data-processed/intratherm-multi-pop.csv")
