@@ -171,10 +171,9 @@ combined_tmax <- bind_rows(all_mult2, rohr2, comte) %>%
 
 write_csv(combined_tmax, "data-processed/combined-thermal-limits.csv")
 
-
-
-
-
+locations <- combined_tmax %>% 
+	select(genus_species, latitude, longitude) %>% 
+	distinct(genus_species, latitude, longitude)
 
 # clean up combined dataset -----------------------------------------------
 
