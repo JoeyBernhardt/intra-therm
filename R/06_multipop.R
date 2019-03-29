@@ -91,8 +91,14 @@ rohr2 <- rohr %>%
 	mutate(acclim_time = as.character(acclim_time)) %>% 
 	rename(life_stage = stage) %>% 
 	rename(sample_size = n_numb) %>% 
-	rename(realm_general = habitat)
+	rename(realm_general = habitat) %>% 
+	separate(record_species, into = c("record_number", "genus_species"), sep = "_") %>% 
+	rename(metric_description = ep1_descrip) %>% 
+	rename(ref = reference)
 
+
+rohr2 %>% 
+	filter(genus_species == "Litoria rothii") %>% View
 
 mult_species <- all_mult2 %>% 
 	distinct(genus, species)
@@ -125,7 +131,9 @@ comte <- read_csv("data-processed/comte_fish_multi_pop.csv") %>%
 	rename(realm_general = realm_affinity) %>% 
 	rename(sample_size = nindividuals) %>% 
 	mutate(error_type = "SD") %>% 
-	rename(error_estimate = sd_thermal_limit)
+	rename(error_estimate = sd_thermal_limit) %>% 
+	rename(metric_description = endpoint) %>% 
+	rename(ref = source)
 	
 
 all_species <- bind_rows(mult_species, rohr_species, comte_species) %>% 
@@ -159,10 +167,15 @@ combined_tmax <- bind_rows(all_mult2, rohr2, comte) %>%
 write_csv(combined_tmax, "data-processed/combined-tmax.csv")
 
 
-names(combined_tmax)
+
+
+# clean up combined dataset -----------------------------------------------
+
 
 combined_tmax %>% 
-	filter(is.na(realm_general3)) %>% View
+	group_by(genus, species, metric_type, original_compilation, latitude, longitude, parameter_tmax_or_tmin) %>% 
+	tally() %>% 
+	filter(n >1) %>% View
 
 
 combined_tmax %>% 
@@ -170,10 +183,43 @@ combined_tmax %>%
 	ylab("Thermal limit (°C)") + xlab("Latitude") + facet_grid(realm_general3 ~ parameter_tmax_or_tmin)
 
 
-combined_tmax %>% 
-	filter(is.na(realm_general)) %>% View
+combined2 <- combined_tmax %>% 
+	mutate(genus_species = ifelse(is.na(genus_species), paste(genus, species, sep = " "), genus_species))
 
-unique(combined_tmax$phylum)
+mult_pop_comb <- combined2 %>% 
+	distinct(genus_species, latitude, longitude, acclim_temp, elevation) %>% 
+	group_by(genus_species) %>% 
+	tally() %>%
+	filter(n > 1) %>% 
+	select(genus_species)
+
+combined2 %>% 
+	filter(parameter_tmax_or_tmin == "tmax") %>% 
+	filter(genus_species %in% c(mult_pop_comb$genus_species)) %>% 
+	ggplot(aes(x = latitude, y = parameter_value)) + geom_point() +
+	ylab("Thermal limit (°C)") + xlab("Latitude") + facet_wrap( ~ genus_species, scales = "free")
+ggsave("figures/all_lims.png", width = 49, height = 30, limitsize = FALSE)
+
+
+combined3 <- combined2 %>% 
+	filter(genus_species %in% c(mult_pop_comb$genus_species))
+
+write_csv(combined3, "data-processed/intratherm-multi-pop.csv")
+
+combined3 %>% 
+	filter(parameter_tmax_or_tmin == "tmax") %>% 
+	ggplot(aes(x = latitude, y = parameter_value, color = realm_general3)) + geom_point() +
+	ylab("Thermal limit (°C)") + xlab("Latitude")
+
+
+combined3 %>% 
+	ggplot(aes(x = acclim_temp, y = parameter_value, color = genus_species)) + geom_point() +
+	ylab("Thermal limit (°C)") + xlab("Acclimation temperature") + facet_wrap( ~ parameter_tmax_or_tmin, scales = "free") +
+	geom_smooth(method = "lm", se = FALSE) + theme(legend.position = "none")
+	ggsave("figures/ARR-all.png", width = 20, height = 15)
+
+
+
 
 ### ARR is the slope of the relationship between CTmax and acclimation temp, PRR is the slope of the 
 ### relationship between temperature at collection site and CTmax
