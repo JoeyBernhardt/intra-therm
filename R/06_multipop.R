@@ -179,6 +179,10 @@ locations <- combined_tmax %>%
 
 write_csv(locations, "data-processed/intratherm-locations.csv")
 
+
+combined_tmax %>% 
+	filter(is.na(latitude)) %>% View
+
 # clean up combined dataset -----------------------------------------------
 
 
