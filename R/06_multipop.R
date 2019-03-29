@@ -167,13 +167,17 @@ combined_tmax <- bind_rows(all_mult2, rohr2, comte) %>%
 									  TRUE ~ realm_general)) %>% 
 	mutate(realm_general3 = case_when(realm_general2 %in% c("Aquatic", "Aquatic & terrestrial", "Freshwater", 'Marine') ~ "Aquatic",
 									  realm_general2 == "Terrestrial" ~ "Terrestrial")) %>% 
-	mutate(genus_species = ifelse(is.na(genus_species), paste(genus, species, sep = " "), genus_species))
+	mutate(genus_species = ifelse(is.na(genus_species), paste(genus, species, sep = " "), genus_species)) %>% 
+	mutate(genus_species = str_replace(genus_species, "_", " "))
 
 write_csv(combined_tmax, "data-processed/combined-thermal-limits.csv")
 
 locations <- combined_tmax %>% 
 	select(genus_species, latitude, longitude) %>% 
-	distinct(genus_species, latitude, longitude)
+	distinct(genus_species, latitude, longitude) %>% 
+	filter(!is.na(latitude))
+
+write_csv(locations, "data-processed/intratherm-locations.csv")
 
 # clean up combined dataset -----------------------------------------------
 
