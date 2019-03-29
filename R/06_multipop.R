@@ -136,6 +136,10 @@ comte <- read_csv("data-processed/comte_fish_multi_pop.csv") %>%
 	rename(ref = source)
 	
 
+comte %>% 
+	filter(is.na(latitude)) %>% View
+
+
 all_species <- bind_rows(mult_species, rohr_species, comte_species) %>% 
 	distinct(genus, species)
 
@@ -164,7 +168,7 @@ combined_tmax <- bind_rows(all_mult2, rohr2, comte) %>%
 	mutate(realm_general3 = case_when(realm_general2 %in% c("Aquatic", "Aquatic & terrestrial", "Freshwater", 'Marine') ~ "Aquatic",
 									  realm_general2 == "Terrestrial" ~ "Terrestrial"))
 
-write_csv(combined_tmax, "data-processed/combined-tmax.csv")
+write_csv(combined_tmax, "data-processed/combined-thermal-limits.csv")
 
 
 
@@ -219,6 +223,9 @@ combined3 %>%
 	ggsave("figures/ARR-all.png", width = 20, height = 15)
 
 
+	
+	combined3 %>% 
+		filter(is.na(latitude)) %>% View
 
 
 ### ARR is the slope of the relationship between CTmax and acclimation temp, PRR is the slope of the 
