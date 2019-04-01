@@ -167,10 +167,42 @@ combined_tmax <- bind_rows(all_mult2, rohr2, comte) %>%
 									  TRUE ~ realm_general)) %>% 
 	mutate(realm_general3 = case_when(realm_general2 %in% c("Aquatic", "Aquatic & terrestrial", "Freshwater", 'Marine') ~ "Aquatic",
 									  realm_general2 == "Terrestrial" ~ "Terrestrial")) %>% 
+	mutate(species = ifelse(species == "sylvatica", "sylvaticus", species)) %>% 
 	mutate(genus_species = ifelse(is.na(genus_species), paste(genus, species, sep = " "), genus_species)) %>% 
-	mutate(genus_species = str_replace(genus_species, "_", " "))
+	mutate(genus_species = str_replace(genus_species, "_", " ")) %>% 
+	mutate(genus_species = str_replace(genus_species, "sylvatica", "sylvaticus"))
 
-write_csv(combined_tmax, "data-processed/combined-thermal-limits.csv")
+unique(combined_tmax$acclim_time)
+
+comb_tmax2 <- combined_tmax %>% 
+	mutate(acclim_time_units = case_when(grepl("d", acclim_time) ~ "days",
+										 grepl("w", acclim_time) ~ "weeks",
+										 grepl("m", acclim_time) ~ "minutes",
+										 grepl("h", acclim_time) ~ "hours",
+										 TRUE ~ "days")) %>%
+	mutate(acclim_time = str_replace(acclim_time, "overnight", "0.5")) %>% 
+	mutate(acclim_time = str_replace(acclim_time, "15-17d", "15")) %>% 
+	mutate(acclim_time = str_replace(acclim_time, "7-10d", "7")) %>% 
+	mutate(acclim_time = str_replace(acclim_time, "12-14", "12")) %>% 
+	mutate(acclim_time = str_replace(acclim_time, "10-14", "10")) %>%
+	mutate(acclim_time = str_replace(acclim_time, "8-10w", "8")) %>% 
+	mutate(acclim_time = str_replace(acclim_time, "57-63d", "57")) %>% 
+	mutate(acclim_time = str_replace(acclim_time, "30-51d", "51")) %>% 
+	mutate(acclim_time = str_replace(acclim_time, "58-70d", "57")) %>% 
+	mutate(acclim_time = str_replace(acclim_time, "2-4m", "2")) %>% 
+	mutate(acclim_time = str_replace(acclim_time, "w", "")) %>% 
+	mutate(acclim_time = str_replace(acclim_time, "h", "")) %>%
+	mutate(acclim_time = str_replace(acclim_time, "d", "")) %>%
+	mutate(acclim_time = str_replace(acclim_time, "[A-Za-z]", "")) %>% 
+	mutate(acclim_time = as.numeric(acclim_time)) %>% 
+	mutate(acclim_time = ifelse(acclim_time_units == "weeks", acclim_time*7, acclim_time)) %>% 
+	mutate(acclim_time = ifelse(acclim_time_units == "hours", acclim_time/24, acclim_time)) %>% 
+	mutate(acclim_time = ifelse(acclim_time_units == "minutes", acclim_time/1440, acclim_time))
+	
+
+unique(comb_tmax2$acclim_time)
+
+write_csv(comb_tmax2, "data-processed/combined-thermal-limits.csv")
 
 locations <- combined_tmax %>% 
 	select(genus_species, latitude, longitude) %>% 
@@ -206,6 +238,13 @@ mult_pop_comb <- combined_tmax %>%
 	filter(n > 1) %>% 
 	select(genus_species)
 
+many_pop_comb <- combined_tmax %>% 
+	distinct(genus_species, latitude, longitude, elevation_of_collection, .keep_all = TRUE) %>% 
+	group_by(genus_species) %>% 
+	tally() %>% 
+	filter(n > 2) %>% 
+	select(genus_species)
+
 # 
 # combined_tmax %>% 
 # 	filter(genus_species == "Ambystoma macrodactylum") %>% View
@@ -220,7 +259,9 @@ ggsave("figures/all_lims.png", width = 49, height = 30, limitsize = FALSE)
 
 combined3 <- combined_tmax %>% 
 	filter(genus_species %in% c(mult_pop_comb$genus_species)) %>% 
-	select(genus_species, latitude, longitude, everything())
+	select(genus_species, latitude, longitude, everything()) %>% 
+	mutate(population_id = paste(genus_species, latitude, sep = "_")) %>% 
+	select(genus_species, population_id, acclim_temp, everything())
 
 write_csv(combined3, "data-processed/intratherm-multi-pop.csv")
 
@@ -230,12 +271,28 @@ combined3 %>%
 	ylab("Thermal limit (°C)") + xlab("Latitude")
 
 
-combined3 %>%
-	ggplot(aes(x = acclim_temp, y = parameter_value, color = latitude)) + geom_point() +
+combined3 %>% 
+	group_by(population_id) %>% 
+	ggplot(aes(x = acclim_temp, y = parameter_value, color = population_id)) + geom_point() +
 	ylab("Thermal limit (°C)") + xlab("Acclimation temperature") + facet_wrap( ~ parameter_tmax_or_tmin, scales = "free") +
 	geom_smooth(method = "lm", se = FALSE) +
 	theme(legend.position = "none")
 	ggsave("figures/ARR-all.png", width = 20, height = 15)
+	
+	combined3 %>% 
+		# filter(genus_species == "Lithobates berlandieri") %>% 
+		group_by(population_id) %>% 
+		filter(parameter_tmax_or_tmin == "tmax") %>% 
+		filter(genus_species %in% c(many_pop_comb$genus_species)) %>% 
+		filter(!is.na(acclim_temp)) %>% 
+		# filter(grepl("punctatus", genus_species)) %>% 
+		ggplot(aes(x = acclim_temp, y = parameter_value, color = factor(latitude))) + geom_point(aes(color = factor(latitude))) +
+		ylab("Thermal limit (°C)") + xlab("Acclimation temperature") + facet_wrap( ~ genus_species, scales = "free") +
+		geom_smooth(method = "lm", se = FALSE) +
+		geom_point(aes(color = factor(latitude))) +
+		theme(legend.position = "none") +
+		scale_color_viridis_d(name = "Latitude")
+	ggsave("figures/arr-many-pop.png", width = 24, height = 15)
 
 
 	
