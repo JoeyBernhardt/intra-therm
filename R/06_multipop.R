@@ -197,12 +197,30 @@ comb_tmax2 <- combined_tmax %>%
 	mutate(acclim_time = ifelse(acclim_time_units == "weeks", acclim_time*7, acclim_time)) %>% 
 	mutate(acclim_time = ifelse(acclim_time_units == "hours", acclim_time/24, acclim_time)) %>% 
 	mutate(acclim_time = ifelse(acclim_time_units == "minutes", acclim_time/1440, acclim_time)) %>% 
-	select(genus_species, genus, species, latitude, longitude, acclim_temp, acclim_time, parameter_value, parameter_tmax_or_tmin, everything())
+	select(genus_species, genus, species, latitude, longitude, location_description, realm_general3, acclim_temp, acclim_time, parameter_value, parameter_tmax_or_tmin, everything())
 	
 
 unique(comb_tmax2$acclim_time)
 
 write_csv(comb_tmax2, "data-processed/combined-thermal-limits.csv")
+
+
+mult_pop_comb <- comb_tmax2 %>% 
+	distinct(genus_species, latitude, longitude, elevation_of_collection, .keep_all = TRUE) %>% 
+	group_by(genus_species) %>% 
+	tally() %>% 
+	filter(n > 1) %>% 
+	select(genus_species)
+
+
+combined3 <- comb_tmax2 %>% 
+	filter(genus_species %in% c(mult_pop_comb$genus_species)) %>% 
+	select(genus_species, latitude, longitude, everything()) %>% 
+	mutate(population_id = paste(genus_species, latitude, sep = "_")) %>% 
+	select(genus_species, population_id, acclim_temp, everything())
+
+write_csv(combined3, "data-processed/intratherm-multi-pop.csv")
+
 
 locations <- combined_tmax %>% 
 	select(genus_species, latitude, longitude) %>% 
@@ -231,7 +249,7 @@ combined_tmax %>%
 	ggplot(aes(x = latitude, y = parameter_value, color = realm_general3)) + geom_point() +
 	ylab("Thermal limit (°C)") + xlab("Latitude") + facet_grid(realm_general3 ~ parameter_tmax_or_tmin)
 
-mult_pop_comb <- combined_tmax %>% 
+mult_pop_comb <- comb_tmax2 %>% 
 	distinct(genus_species, latitude, longitude, elevation_of_collection, .keep_all = TRUE) %>% 
 	group_by(genus_species) %>% 
 	tally() %>% 
@@ -257,13 +275,7 @@ combined_tmax %>%
 ggsave("figures/all_lims.png", width = 49, height = 30, limitsize = FALSE)
 
 
-combined3 <- combined_tmax %>% 
-	filter(genus_species %in% c(mult_pop_comb$genus_species)) %>% 
-	select(genus_species, latitude, longitude, everything()) %>% 
-	mutate(population_id = paste(genus_species, latitude, sep = "_")) %>% 
-	select(genus_species, population_id, acclim_temp, everything())
 
-write_csv(combined3, "data-processed/intratherm-multi-pop.csv")
 
 combined3 %>% 
 	filter(parameter_tmax_or_tmin == "tmax") %>% 
