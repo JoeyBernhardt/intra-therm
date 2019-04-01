@@ -221,6 +221,10 @@ combined3 <- comb_tmax2 %>%
 
 write_csv(combined3, "data-processed/intratherm-multi-pop.csv")
 
+combined3 %>% 
+	distinct(genus_species) %>% 
+	tally()
+
 
 locations <- combined_tmax %>% 
 	select(genus_species, latitude, longitude) %>% 
@@ -284,12 +288,13 @@ combined3 %>%
 
 
 combined3 %>% 
+	filter(parameter_tmax_or_tmin == "tmax") %>% 
 	group_by(population_id) %>% 
 	ggplot(aes(x = acclim_temp, y = parameter_value, color = population_id)) + geom_point() +
 	ylab("Thermal limit (°C)") + xlab("Acclimation temperature") + facet_wrap( ~ parameter_tmax_or_tmin, scales = "free") +
 	geom_smooth(method = "lm", se = FALSE) +
 	theme(legend.position = "none")
-	ggsave("figures/ARR-all.png", width = 20, height = 15)
+	ggsave("figures/ARR-all.png", width = 10, height = 8)
 	
 	combined3 %>% 
 		# filter(genus_species == "Lithobates berlandieri") %>% 
@@ -309,10 +314,13 @@ combined3 %>%
 
 	
 	combined3 %>% 
+		filter(!is.na(acclim_temp)) %>%
+		filter(parameter_tmax_or_tmin == "tmax") %>% 
 		ggplot(aes(x = latitude, y = parameter_value, color = acclim_temp)) + geom_point() +
 		ylab("Thermal limit (°C)") + xlab("Latitude") +
 		facet_wrap( ~ parameter_tmax_or_tmin, scales = "free") +
-		scale_color_viridis_c()
+		scale_color_viridis_c(name = "Acclimation temperature (°C)")
+	ggsave("figures/ct-max-latitude.png", width = 10, height = 4)
 	
 	combined3 %>% 
 		filter(is.na(latitude)) %>% View
