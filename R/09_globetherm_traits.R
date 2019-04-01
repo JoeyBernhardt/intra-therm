@@ -46,3 +46,24 @@ classes <- tax_name(query = ispecies, get = "class", db = "itis")
 classes2 <- tax_name(query = ispecies, get = "class", db = "both")
 
 write_csv(classes2, "data-processed/intratherm-classes.csv")
+
+
+### figure out which range data
+
+ranges <- read_csv("data-raw/globtherm_range_list.csv") %>% 
+	clean_names() %>% 
+	mutate(range_status = ifelse(action %in% c("remove", NA), "range data missing", "we have range data"))
+
+
+ranges2 <- ranges %>% 
+	select(species_name_queried_gbif, range_status) %>% 
+	filter(!is.na(species_name_queried_gbif))
+
+
+ranges3 <- left_join(intratherm, ranges2, by = c("genus_species" = "species_name_queried_gbif"))
+
+write_csv(ranges3, "data-processed/range-status-intratherm.csv")
+
+
+ranges3 %>% 
+	group_by(range_status) %>% tally()

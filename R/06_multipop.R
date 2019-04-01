@@ -183,6 +183,9 @@ write_csv(locations, "data-processed/intratherm-locations.csv")
 combined_tmax %>% 
 	filter(is.na(latitude)) %>% View
 
+combined_tmax %>% 
+	filter(grepl("Bates", ref)) %>% View
+
 # clean up combined dataset -----------------------------------------------
 
 
@@ -197,11 +200,15 @@ combined_tmax %>%
 	ylab("Thermal limit (°C)") + xlab("Latitude") + facet_grid(realm_general3 ~ parameter_tmax_or_tmin)
 
 mult_pop_comb <- combined_tmax %>% 
-	distinct(genus_species, latitude, longitude, acclim_temp, elevation) %>% 
+	distinct(genus_species, latitude, longitude, elevation_of_collection, .keep_all = TRUE) %>% 
 	group_by(genus_species) %>% 
-	tally() %>%
+	tally() %>% 
 	filter(n > 1) %>% 
 	select(genus_species)
+
+# 
+# combined_tmax %>% 
+# 	filter(genus_species == "Ambystoma macrodactylum") %>% View
 
 combined_tmax %>% 
 	filter(parameter_tmax_or_tmin == "tmax") %>% 
@@ -212,7 +219,8 @@ ggsave("figures/all_lims.png", width = 49, height = 30, limitsize = FALSE)
 
 
 combined3 <- combined_tmax %>% 
-	filter(genus_species %in% c(mult_pop_comb$genus_species))
+	filter(genus_species %in% c(mult_pop_comb$genus_species)) %>% 
+	select(genus_species, latitude, longitude, everything())
 
 write_csv(combined3, "data-processed/intratherm-multi-pop.csv")
 
@@ -222,17 +230,29 @@ combined3 %>%
 	ylab("Thermal limit (°C)") + xlab("Latitude")
 
 
-combined3 %>% 
-	ggplot(aes(x = acclim_temp, y = parameter_value, color = genus_species)) + geom_point() +
+combined3 %>%
+	ggplot(aes(x = acclim_temp, y = parameter_value, color = latitude)) + geom_point() +
 	ylab("Thermal limit (°C)") + xlab("Acclimation temperature") + facet_wrap( ~ parameter_tmax_or_tmin, scales = "free") +
-	geom_smooth(method = "lm", se = FALSE) + theme(legend.position = "none")
+	geom_smooth(method = "lm", se = FALSE) +
+	theme(legend.position = "none")
 	ggsave("figures/ARR-all.png", width = 20, height = 15)
 
 
 	
 	combined3 %>% 
+		ggplot(aes(x = latitude, y = parameter_value, color = acclim_temp)) + geom_point() +
+		ylab("Thermal limit (°C)") + xlab("Latitude") +
+		facet_wrap( ~ parameter_tmax_or_tmin, scales = "free") +
+		scale_color_viridis_c()
+	
+	combined3 %>% 
 		filter(is.na(latitude)) %>% View
 
+	
+combined3 %>% 
+	# filter(is.na(acclim_temp)) %>% 
+	filter(ref == "Fangue_&_Bennet_2003") %>% 
+	select(extractor, everything()) %>% View
 
 ### ARR is the slope of the relationship between CTmax and acclimation temp, PRR is the slope of the 
 ### relationship between temperature at collection site and CTmax
