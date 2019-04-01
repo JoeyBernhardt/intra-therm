@@ -94,7 +94,8 @@ rohr2 <- rohr %>%
 	rename(realm_general = habitat) %>% 
 	separate(record_species, into = c("record_number", "genus_species"), sep = "_") %>% 
 	rename(metric_description = ep1_descrip) %>% 
-	rename(ref = reference)
+	rename(ref = reference) %>% 
+	rename(location_description = locality)
 
 
 rohr2 %>% 
@@ -133,7 +134,8 @@ comte <- read_csv("data-processed/comte_fish_multi_pop.csv") %>%
 	mutate(error_type = "SD") %>% 
 	rename(error_estimate = sd_thermal_limit) %>% 
 	rename(metric_description = endpoint) %>% 
-	rename(ref = source)
+	rename(ref = source) %>% 
+	rename(location_description = location)
 	
 
 comte %>% 
@@ -149,10 +151,6 @@ write_csv(all_species, "data-processed/intratherm-species-list.csv")
 
 # merge all the datasets --------------------------------------------------
 
-unique(all_mult2$ramping_rate)
-
-all_mult2 %>% 
-	group_by(phylum) %>% tally()
 
 
 combined_tmax <- bind_rows(all_mult2, rohr2, comte) %>% 
@@ -175,6 +173,7 @@ combined_tmax <- bind_rows(all_mult2, rohr2, comte) %>%
 unique(combined_tmax$acclim_time)
 
 comb_tmax2 <- combined_tmax %>% 
+	mutate(acclim_time_original = acclim_time) %>% ## save a version of the acclim time as originally entered
 	mutate(acclim_time_units = case_when(grepl("d", acclim_time) ~ "days",
 										 grepl("w", acclim_time) ~ "weeks",
 										 grepl("m", acclim_time) ~ "minutes",
@@ -197,7 +196,8 @@ comb_tmax2 <- combined_tmax %>%
 	mutate(acclim_time = as.numeric(acclim_time)) %>% 
 	mutate(acclim_time = ifelse(acclim_time_units == "weeks", acclim_time*7, acclim_time)) %>% 
 	mutate(acclim_time = ifelse(acclim_time_units == "hours", acclim_time/24, acclim_time)) %>% 
-	mutate(acclim_time = ifelse(acclim_time_units == "minutes", acclim_time/1440, acclim_time))
+	mutate(acclim_time = ifelse(acclim_time_units == "minutes", acclim_time/1440, acclim_time)) %>% 
+	select(genus_species, genus, species, latitude, longitude, acclim_temp, acclim_time, parameter_value, parameter_tmax_or_tmin, everything())
 	
 
 unique(comb_tmax2$acclim_time)
