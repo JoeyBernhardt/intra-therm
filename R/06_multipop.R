@@ -204,6 +204,7 @@ unique(comb_tmax2$acclim_time)
 
 write_csv(comb_tmax2, "data-processed/combined-thermal-limits.csv")
 
+comb_tmax2 <- read_csv("data-processed/combined-thermal-limits.csv")
 
 mult_pop_comb <- comb_tmax2 %>% 
 	distinct(genus_species, latitude, longitude, elevation_of_collection, .keep_all = TRUE) %>% 
@@ -260,7 +261,7 @@ mult_pop_comb <- comb_tmax2 %>%
 	filter(n > 1) %>% 
 	select(genus_species)
 
-many_pop_comb <- combined_tmax %>% 
+many_pop_comb <- comb_tmax2 %>% 
 	distinct(genus_species, latitude, longitude, elevation_of_collection, .keep_all = TRUE) %>% 
 	group_by(genus_species) %>% 
 	tally() %>% 
@@ -288,9 +289,9 @@ combined3 %>%
 
 
 combined3 %>% 
-	filter(parameter_tmax_or_tmin == "tmax") %>% 
+	# filter(parameter_tmax_or_tmin == "tmax") %>% 
 	group_by(population_id) %>% 
-	ggplot(aes(x = acclim_temp, y = parameter_value, color = population_id)) + geom_point() +
+	ggplot(aes(x = acclim_temp, y = parameter_value, color = latitude)) + geom_point() +
 	ylab("Thermal limit (°C)") + xlab("Acclimation temperature") + facet_wrap( ~ parameter_tmax_or_tmin, scales = "free") +
 	geom_smooth(method = "lm", se = FALSE) +
 	theme(legend.position = "none")
@@ -302,16 +303,29 @@ combined3 %>%
 		filter(parameter_tmax_or_tmin == "tmax") %>% 
 		filter(genus_species %in% c(many_pop_comb$genus_species)) %>% 
 		filter(!is.na(acclim_temp)) %>% 
+		mutate(lat2 = round(abs(latitude), digits = 0)) %>% 
 		# filter(grepl("punctatus", genus_species)) %>% 
-		ggplot(aes(x = acclim_temp, y = parameter_value, color = factor(latitude))) + geom_point(aes(color = factor(latitude))) +
-		ylab("Thermal limit (°C)") + xlab("Acclimation temperature") + facet_wrap( ~ genus_species, scales = "free") +
+		ggplot(aes(x = acclim_temp, y = parameter_value, color = factor(lat2))) + geom_point(aes(color = factor(lat2))) +
+		ylab("Thermal limit (°C)") + xlab("Acclimation temperature") +
+		# facet_wrap( ~ genus_species, scales = "free") +
 		geom_smooth(method = "lm", se = FALSE) +
-		geom_point(aes(color = factor(latitude))) +
-		theme(legend.position = "none") +
-		scale_color_viridis_d(name = "Latitude")
-	ggsave("figures/arr-many-pop.png", width = 24, height = 15)
+		geom_point(aes(color = factor(lat2))) +
+		# theme(legend.position = "none") +
+		scale_color_viridis_d(name = "Absolute latitude", option = "magma", direction = -1, begin = 0.2)
+	ggsave("figures/arr-many-pop-abs-lat-colour.png", width = 12, height = 8)
 
 
+	combined3 %>%
+		filter(parameter_tmax_or_tmin == "tmax") %>% 
+		filter(genus_species %in% c(many_pop_comb$genus_species)) %>% 
+		filter(!is.na(acclim_temp)) %>% 
+		mutate(lat2 = round(abs(latitude), digits = 0)) %>% 
+		group_by(population_id, latitude) %>% 
+		do(tidy(lm(parameter_value ~ acclim_temp, data = .), conf.int = TRUE)) %>% 
+		filter(term == "acclim_temp", estimate > 0) %>% 
+		ggplot(aes(x = abs(latitude), y = estimate)) + geom_point() +
+		ylim(0, 1.5) +ylab("ARR") + xlab("Absolute latitude")
+	ggsave("figures/arr-latitude.png", width = 6, height = 4)
 	
 	combined3 %>% 
 		filter(!is.na(acclim_temp)) %>%
