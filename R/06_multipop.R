@@ -24,6 +24,12 @@ so <- read_excel("data-raw/Globtherm2_within_species_SO.xlsx") %>%
 	mutate_all(funs(as.character)) %>% 
 	mutate(extractor = "SO")
 
+jb <- read_excel("data-raw/Globtherm2_within_species_JB.xlsx") %>% 
+	clean_names() %>% 
+	mutate(genus_species = paste(genus, species, sep = "_")) %>% 
+	mutate_all(funs(as.character)) %>% 
+	mutate(extractor = "JB")
+
 fl <- read_excel("data-raw/Globtherm2_within_species_FL.xlsx") %>% 
 	clean_names() %>% 
 	mutate(genus_species = paste(genus, species, sep = "_")) %>% 
@@ -100,8 +106,6 @@ rohr2 <- rohr %>%
 	rename(location_description = locality)
 
 
-rohr2 %>% 
-	filter(genus_species == "Litoria rothii") %>% View
 
 mult_species <- all_mult2 %>% 
 	distinct(genus, species)
@@ -140,8 +144,6 @@ comte <- read_csv("data-processed/comte_fish_multi_pop.csv") %>%
 	rename(location_description = location)
 	
 
-comte %>% 
-	filter(is.na(latitude)) %>% View
 
 
 all_species <- bind_rows(mult_species, rohr_species, comte_species) %>% 
@@ -226,8 +228,8 @@ cadillac <- data.frame(genus_species = c(intersect(mult_pop_comb$genus_species, 
 cadillac <- cadillac %>% 
 	mutate(genus_species = as.character(genus_species))
 
-extras_no_acclimation <- setdiff(cadillac, unique(combined3$genus_species))
-	
+extras_no_acclimation <- setdiff(combined3$genus_species, cadillac$genus_species)
+extras_no_acclimation <- data.frame(genus_species = c(extras_no_acclimation))	
 
 combined3 <- comb_tmax2 %>% 
 	filter(genus_species %in% c(mult_pop_comb$genus_species)) %>% 
@@ -247,11 +249,8 @@ combined4 <- comb_tmax2 %>%
 
 write_csv(combined4, "data-processed/intratherm-multi-pop-multi-acclim.csv")
 
-combined3 %>% 
-	distinct(genus_species) %>% 
-	tally()
 
-intratherm_species <- combined3 %>% 
+intratherm_species <- combined4 %>% 
 	distinct(genus_species, .keep_all = TRUE) %>% 
 	select(genus_species, phylum, class, order, family, life_stage)
 
@@ -298,19 +297,19 @@ combined_tmax %>%
 	ggplot(aes(x = latitude, y = parameter_value, color = realm_general3)) + geom_point() +
 	ylab("Thermal limit (°C)") + xlab("Latitude") + facet_grid(realm_general3 ~ parameter_tmax_or_tmin)
 
-mult_pop_comb <- comb_tmax2 %>% 
-	distinct(genus_species, latitude, longitude, elevation_of_collection, .keep_all = TRUE) %>% 
-	group_by(genus_species) %>% 
-	tally() %>% 
-	filter(n > 1) %>% 
-	select(genus_species)
-
-many_pop_comb <- comb_tmax2 %>% 
-	distinct(genus_species, latitude, longitude, elevation_of_collection, .keep_all = TRUE) %>% 
-	group_by(genus_species) %>% 
-	tally() %>% 
-	filter(n > 2) %>% 
-	select(genus_species)
+# mult_pop_comb <- comb_tmax2 %>% 
+# 	distinct(genus_species, latitude, longitude, elevation_of_collection, .keep_all = TRUE) %>% 
+# 	group_by(genus_species) %>% 
+# 	tally() %>% 
+# 	filter(n > 1) %>% 
+# 	select(genus_species)
+# 
+# many_pop_comb <- comb_tmax2 %>% 
+# 	distinct(genus_species, latitude, longitude, elevation_of_collection, .keep_all = TRUE) %>% 
+# 	group_by(genus_species) %>% 
+# 	tally() %>% 
+# 	filter(n > 2) %>% 
+# 	select(genus_species)
 
 # 
 # combined_tmax %>% 
