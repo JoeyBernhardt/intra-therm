@@ -15,16 +15,31 @@ globetherm_species <- gtraits %>%
 	filter(!is.na(genus_species))
 
 
-intratherm <- read_csv("data-processed/combined-thermal-limits.csv") %>% 
-	select(genus_species) %>% 
-	distinct() %>% 
-	filter(!is.na(genus_species))
+intratherm_species <- read_csv("data-processed/intratherm-species.csv") 
 
 gspecies <- globetherm_species$genus_species
 ispecies <- intratherm$genus_species
 
 overlapping_species <- intersect(gspecies, ispecies)
 non_overlapping_species <- setdiff(ispecies, gspecies)
+
+
+
+gtraits2 <- gtraits %>% 
+	mutate(genus_species = paste(genus, species, sep = " ")) 
+
+intratherm_traits <- left_join(intratherm_species, gtraits2)
+
+intratherm_traits2 <- left_join(intratherm_traits, ages2) %>% 
+	arrange(class) %>% 
+	select(genus_species, everything()) %>% 
+	select(-genus) %>% 
+	select(-species) %>% 
+	separate(genus_species, into = c("genus", "species")) %>% 
+	select(1:7, female_maturity_days, everything())
+
+write_csv(intratherm_traits, "data-processed/intratherm_traits.csv")
+write_excel_csv(intratherm_traits2, "data-processed/intratherm_traits.csv")
 
 library(fuzzyjoin)
 
@@ -67,3 +82,13 @@ write_csv(ranges3, "data-processed/range-status-intratherm.csv")
 
 ranges3 %>% 
 	group_by(range_status) %>% tally()
+
+
+
+ages <- read_excel("data-raw/sp_age.xlsx")
+
+ages2 <- ages %>% 
+	mutate(species_names = str_replace(species_names, "_", " ")) %>% 
+	rename(genus_species = species_names) %>% 
+	clean_names() %>% 
+	select(genus_species, female_maturity_days)

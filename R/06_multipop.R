@@ -44,6 +44,8 @@ fv <- read_excel("data-raw/Globtherm2_FV_Test.xlsx") %>%
 
 all_mult <- bind_rows(so, ab, fl, intra, fv)
 
+write_csv(all_mult, "data-processed/team-intratherm-extracted.csv")
+
 all_mult2 <- all_mult %>% 
 	mutate(parameter_value = str_replace(parameter_value, "<", "")) %>% 
 	mutate(parameter_value = as.numeric(parameter_value)) %>% 
@@ -213,6 +215,19 @@ mult_pop_comb <- comb_tmax2 %>%
 	filter(n > 1) %>% 
 	select(genus_species)
 
+mult_acclim_comb <- comb_tmax2 %>% 
+	distinct(genus_species, acclim_temp, .keep_all = TRUE) %>% 
+	group_by(genus_species) %>% 
+	tally() %>% 
+	filter(n > 1) %>% 
+	select(genus_species)
+
+cadillac <- data.frame(genus_species = c(intersect(mult_pop_comb$genus_species, mult_acclim_comb$genus_species)))
+cadillac <- cadillac %>% 
+	mutate(genus_species = as.character(genus_species))
+
+extras_no_acclimation <- setdiff(cadillac, unique(combined3$genus_species))
+	
 
 combined3 <- comb_tmax2 %>% 
 	filter(genus_species %in% c(mult_pop_comb$genus_species)) %>% 
@@ -222,16 +237,39 @@ combined3 <- comb_tmax2 %>%
 
 write_csv(combined3, "data-processed/intratherm-multi-pop.csv")
 
+
+### now this has multiple acclimation temps
+combined4 <- comb_tmax2 %>% 
+	filter(genus_species %in% c(cadillac$genus_species)) %>% 
+	select(genus_species, latitude, longitude, everything()) %>% 
+	mutate(population_id = paste(genus_species, latitude, sep = "_")) %>% 
+	select(genus_species, population_id, acclim_temp, everything())
+
+write_csv(combined4, "data-processed/intratherm-multi-pop-multi-acclim.csv")
+
 combined3 %>% 
 	distinct(genus_species) %>% 
 	tally()
 
 intratherm_species <- combined3 %>% 
 	distinct(genus_species, .keep_all = TRUE) %>% 
-	select(genus_species, phylum, class, order, family)
+	select(genus_species, phylum, class, order, family, life_stage)
+
+intratherm_classes <- read_csv("data-processed/intratherm-classes.csv") %>% 
+	filter(!is.na(class)) %>% 
+	distinct(query, class) %>% 
+	rename(genus_species = query)
+
+intratherm_species2 <- left_join(intratherm_species, intratherm_classes)
 
 write_csv(intratherm_species, "data-processed/intratherm-species.csv")
 
+intratherm_species %>% 
+	distinct(phylum) %>% View
+
+
+intratherm_species %>% 
+	filter(phylum == "Streptophyta") %>% View
 
 locations <- combined_tmax %>% 
 	select(genus_species, latitude, longitude) %>% 

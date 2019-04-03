@@ -1,0 +1,289 @@
+Ôªøgenus,species,phylum,class,order,family,life_stage,female_maturity_days,data_gatherer,realm,kingdom,maximum_body_size_svl_hbl_cm,source_for_maximum_body_size,trophic_position,source_logic_for_trophic_position,migratory,source_logic_for_migration_info,dispersal_distance_category,logic_source_for_dispersal_distance,dispersal_type_walking_may_need_to_be_reworded_to_something_that_encaptures_slithering,logic_source_for_dispersal_type,cold_season_dormancy,source_logic_for_cold_season_dormancy,hot_season_dormancy,source_logic_for_hot_season_dormancy,highland_specialist,pelagic_habitat_for_marine_species,source_logic_for_highland_specialist,notes,orig_genus,orig_species,terrestriality_available_for_mammals_only_see_pan_theria_metadata,pantheria05genus,pantheria05species,pantheria93genus,pantheria93species,all_pantheria_synonyms05,pantheria_references,binary_name,try_species_number_for_plants,notes_on_body_size_e_g_type_of_metric
+Gasterosteus,aculeatus,Chordata,Actinopteri,Perciformes,Gasterosteidae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Oncorhynchus,clarkii,Chordata,Actinopteri,Salmoniformes,Salmonidae,adult,1095,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Alosa,pseudoharengus,Chordata,Actinopteri,Clupeiformes,Clupeidae,adult,1642,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Anguilla,dieffenbachii,Chordata,Actinopteri,Anguilliformes,Anguillidae,larvae,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Galaxias,fasciatus,Chordata,Actinopteri,Galaxiiformes,Galaxiidae,juvenile,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Galaxias,maculatus,Chordata,Actinopteri,Galaxiiformes,Galaxiidae,juvenile,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Retropinna,retropinna,Chordata,Actinopteri,Osmeriformes,Retropinnidae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Pogonichthys,macrolepidotus,Chordata,Actinopteri,Cypriniformes,Cyprinidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Zoarces,viviparus,Chordata,Actinopteri,Perciformes,Zoarcidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Agosia,chrysogaster,Chordata,Actinopteri,Cypriniformes,Cyprinidae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Catostomus,clarkii,Chordata,Actinopteri,Cypriniformes,Catostomidae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Cyprinodon,macularius,Chordata,Actinopteri,Cyprinodontiformes,Cyprinodontidae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Gila,robusta,Chordata,Actinopteri,Cypriniformes,Cyprinidae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Meda,fulgida,Chordata,Actinopteri,Cypriniformes,Cyprinidae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Rhinichthys,cobitis,Chordata,Actinopteri,Cypriniformes,Cyprinidae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Anguilla,australis,Chordata,Actinopteri,Anguilliforme,Anguillidae,elvers,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Gillichthys,mirabilis,Chordata,Actinopterygii,Gobiiformes,Oxudercidae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Plethodon,glutinosus,Chordata,Amphibia,Caudata,Plethodontidae,NA,910,Micky,Terrestrial,Animalia,6.5,"Powders, V.N. 1973. Cannibalism by the slimy salamander,åÊPlethodon glutinosusåÊin eastern Tennessee. Journal of Herpetology 7:139‰ÛÒ140.",omnivore,"Oliver, G.V. 1967. Food habits of the white-throated slimy salamander in central Texas. Transactions of the Oklahoma Junior Academy of Science 1967:500‰ÛÒ503.",Y,"Petranka, J. W. (1998). Salamanders of the United States and Canada. Smithsonian Institution Press, Washington and London.",0-1,"Wells, K. D. and Wells, R. A. 1976. Patterns of movement in a population of the slimy salamander, Plethodon glutinosus, with observations on aggregations.  / Herpetologica 32: 156 -162.",walking,"Petranka, J. W. (1998). Salamanders of the United States and Canada. Smithsonian Institution Press, Washington and London.",NA,NA,NA,NA,highland specialist,NA,"Petranka, J. W. (1998). Salamanders of the United States and Canada. Smithsonian Institution Press, Washington and London.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ambystoma,macrodactylum,Chordata,Amphibia,Caudata,Ambystomatidae,adult,730,Micky,Terrestrial,Animalia,5.5,"Russell, A.P. and G.L. Powell and D.R. Hall. 1996. Growth and age of Alberta long-toed salamanders (Ambystoma macrodactylum krausei): a comparison of two methods of estimation. Canadian Journal of Zoology 74:397‰ÛÒ412.",NA,NA,NA,NA,1--10,"Funk, W. C. and Dunlap, W. W. 1999. Colonization of high-elevation lakes by long-toed salamanders (Ambystoma macrodactylum ) after the extinction of introduced trout populations.   Can. J. Zool. 77: 1759 -1767",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,gracilenta,Chordata,Amphibia,Anura,Hylidae,NA,"NA",Micky,Terrestrial,Animalia,5,"Vanderduys, E. (2013). Field Guide of Frogs from Queensland. CSIRO Publishing, Clayton.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Desmognathus,fuscus,Chordata,Amphibia,Caudata,Plethodontidae,NA,"NA",Micky,Terrestrial,Animalia,4,"Jones, R.L. 1986. Reproductive biology of Desmognathus fuscus and Desmognathus santeetlah in the Unicoi Mountains. Herpetologica 42:323-334.",NA,NA,NA,NA,0-1,"Barthlamus, G. T. and Bellis, E. D. 1972. Home range, homing and homing mechanism of the salamander, Desmognathus fuscus.  Copeia 1972: 632 -642.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Eurycea,bislineata,Chordata,Amphibia,Caudata,Plethodontidae,NA,"NA",Micky,Terrestrial,Animalia,9.7,"Petranka, J. W. (1998). Salamanders of the United States and Canada. Smithsonian Institution Press, Washington and London.",NA,NA,NA,NA,0-1,"Johnson, J. E. and Goldberg, A. S. 1975. Movement of  larval two lined salamanders (Eurycea bislineata ) in the Mill River, Massachusetts.  Copeia 1975: 588 -589.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lithobates,sylvaticus,Chordata,Amphibia,Anura,Ranidae,adult,NA,Micky,Terrestrial,Animalia,6,"Prairie Research Institute. Lithobates sylvaticus. Illinois Natural History Survey, available at : [http://wwx.inhs.illinois.edu/collections/herps/data/ilspecies/ra_sylvati/]\",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Pseudacris,triseriata,Chordata,Amphibia,Anura,Hylidae,adult,"NA",Micky,Terrestrial,Animalia,4,"Moen, D. S., S. A. Smith, and J. J. Wiens. 2009. Community assembly through evolutionary diversification and dispersal in Middle American treefrogs. Evolution 63:3228-3247",NA,NA,NA,NA,0-1,"Kramer, D. C. 1973. Movements of western chorus frogs (Pseudacris triseriata triseriata ) tagged with Co60  - J. Herpetol. 7: 231  -235.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Eurycea,longicauda,Chordata,Amphibia,Caudata,Plethodontidae,NA,"NA",Micky,Terrestrial,Animalia,4.6,"Ireland, P.H. 1974. Reproduction and larval development of the dark-sided salamander,åÊEurycea longicauda melanopleura. Herpetologica 30:338‰ÛÒ343.",insectivore,"Anderson, J.D. and P.J. Martino. 1966. The life history of Eurycea l. longicauda associated with ponds. American Midland Naturalist 75:257-279.",Y,"Mohr, C.E. 1944. A remarkable salamander migration. Proceedings of the Pennsylvania Academy of Science 18:51-54.",0-1,"Mohr, C.E. 1944. A remarkable salamander migration. Proceedings of the Pennsylvania Academy of Science 18:51-54.",walking,"Mohr, C.E. 1944. A remarkable salamander migration. Proceedings of the Pennsylvania Academy of Science 18:51-54.",Y,"Mohr, C.E. 1944. A remarkable salamander migration. Proceedings of the Pennsylvania Academy of Science 18:51-54.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Eurycea,lucifuga,Chordata,Amphibia,Caudata,Plethodontidae,NA,1095,Micky,Terrestrial,Animalia,20,"Petranka, J. W. (1998). Salamanders of the United States and Canada. Smithsonian Institution Press, Washington and London.",omnivore,"Peck, S.B. 1974. The food of the salamanders Eurycea lucifuga and Plethodon glutinosus in caves. National Speleological Society Bulletin 36:7-10.",Y,"Hutchison, V.H. 1958. The distribution and ecology of the cave salamander, Eurycea lucifuga. Ecological Monographs 28:1-20.",0-1,"Hutchison, V.H. 1958. The distribution and ecology of the cave salamander, Eurycea lucifuga. Ecological Monographs 28:1-20.",walking,"Hutchison, V.H. 1958. The distribution and ecology of the cave salamander, Eurycea lucifuga. Ecological Monographs 28:1-20.",N,"Hutchison, V.H. 1958. The distribution and ecology of the cave salamander, Eurycea lucifuga. Ecological Monographs 28:1-20.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ambystoma,maculatum,Chordata,Amphibia,Caudata,Ambystomatidae,NA,1095,Micky,Terrestrial,Animalia,25,"Petranka, J. W. (1998). Salamanders of the United States and Canada. Smithsonian Institution Press, Washington and London.",NA,NA,NA,NA,0-1,"Madison, D. M. 1997. The emigration of radio-implanted spotted salamanders, Ambystoma maculatum .  J. Herpetol. 31: 542 -551.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Paa,spinosa,Chordata,Amphibia,Anura,Dicroglossidae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Bufo,boreas,Chordata,Amphibia,Anura,Bufonidae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Rana,pipiens,Chordata,Amphibia,Anura,Ranidae,adult,"NA",Micky,Terrestrial,Animalia,12.7,"Hillis, D.M. 1988. Systematics of theåÊRana pipiensåÊcomplex: puzzle and paradigm. Annual Review of Ecology and Systematics 19:39‰ÛÒ63.",NA,NA,NA,NA,1--10,"Seburn, C. N. L. et al. 1997. Northern leopard frog (Rana pipiens ) dispersal in relation to habitat.  In: Green, D. M. (ed.), Amphibians in decline: Canadian studies of a global problem. Society for the study of amphibians and reptiles, pp. 72 -64.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Spea,hammondii,Chordata,Amphibia,Anura,Pelobatidae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Eleutherodactylus,coqui,Chordata,Amphibia,Anura,Eleutherodactylidae,adult,"NA",Micky,Terrestrial,Animalia,5.8,"Schwartz, A. and R.W. Henderson. 1991. Amphibians and Reptiles of the West Indies Descriptions, Distributions, and Natural History. University of Florida Press, Gainesville, Florida.",insectivore,"Douglas P. Reagan and Robert B. Waide, ed. (1996). The Food Web of a Tropical Rain Forest. University Of Chicago Press.",Y,"Jarrod H. Fogarty and Francisco J. Vilella (2002). ""Population dynamic of Eleutherodactylus coqui in Cordillera Forest reserves of Puerto Rico"". Journal of Herpetology 36 (2): 193-201.",0-1,"Hobel, G. 1999. Notes on the natural history and habitat use of Eleutherodactylus •ÂÅtzingeri (Anura: Leptodactylidae).   Amphib.-Reptilia 20: 65 -72.",walking,"Jarrod H. Fogarty and Francisco J. Vilella (2002). ""Population dynamic of Eleutherodactylus coqui in Cordillera Forest reserves of Puerto Rico"". Journal of Herpetology 36 (2): 193-201.",NA,NA,NA,NA,non-highland specialist,NA,"Hedges, B., Joglar, R., Thomas, R., Powell, R. & Rios-LÌ_pez, N. (2009) Eleutherodactylus coqui. In: IUCN 2012. IUCN Red List of Threatened Species. Version 2012.2.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hyla,chloris,Chordata,Amphibia,Anura,Hylidae,adult,"NA",Micky,Terrestrial,Animalia,6.8,"Mclean et al 2012, Assessing the information content of calls of Litoria chloris: quality signalling versus individual recognition. Australian Journal of Zoology, 60: 120-126",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hyla,gracilenta,Chordata,Amphibia,Anura,Hylidae,NA,"NA",Micky,Terrestrial,Animalia,5,"Vanderduys, E. (2013). Field Guide of Frogs from Queensland. CSIRO Publishing, Clayton.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hyla,lesueuri,Chordata,Amphibia,Anura,Hylidae,NA,"NA",Micky,Terrestrial,Animalia,5.5,Amphibian Research Centre. The Frogs of Australia. available at :[http://frogs.org.au],NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hyla,glauerti,Chordata,Amphibia,Anura,Hylidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hyla,rubella,Chordata,Amphibia,Anura,Hylidae,NA,"NA",Micky,Terrestrial,Animalia,3.24,"Moen, D. S., S. A. Smith, and J. J. Wiens. 2009. Community assembly through evolutionary diversification and dispersal in Middle American treefrogs. Evolution 63:3228-3247",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hyla,rothi,Chordata,Amphibia,Anura,Hylidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Limnodynastes,peroni,Chordata,Amphibia,Anura,Hylidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hyla,caerulea,Chordata,Amphibia,Anura,Hylidae,adult,"NA",Micky,Terrestrial,Animalia,10,"Moen, D. S., S. A. Smith, and J. J. Wiens. 2009. Community assembly through evolutionary diversification and dispersal in Middle American treefrogs. Evolution 63:3228-3247",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Cyclorana,brevipes,Chordata,Amphibia,Anura,Hylidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Crinia,signifera,Chordata,Amphibia,Anura,Myobatrachidae,adult,"NA",Micky,Terrestrial,Animalia,3,"Barker, J., Grigg, G. C., and Tyler, M. J. (1995).åÊA Field Guide to Australian Frogs.åÊSurrey Beatty and Sons, New South Wales.åÊåÊ",insectivore,"Cogger, H.G. 1979. Reptiles & Amphibians of Australia. A. H. & A. W. REED PTY LTD ISBN 0-589-50108-9",Y,"Lemckert, Francis. ""Population structure, individual growth and survival of an Australian frog Crinia signifera at a pond."" Acta Zoologica Sinica 51 (2005): 393-400.",NA,NA,walking,"Lemckert, Francis. ""Population structure, individual growth and survival of an Australian frog Crinia signifera at a pond."" Acta Zoologica Sinica 51 (2005): 393-400.",NA,NA,NA,NA,non-highland specialist,NA,"Barker, J., Grigg, G. C., and Tyler, M. J. (1995). A Field Guide to Australian Frogs. Surrey Beatty and Sons, New South Wales.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hyla,ewingi,Chordata,Amphibia,Anura,Hylidae,adult,"NA",Micky,Terrestrial,Animalia,3.8,"Barwick, R.E. 1961. Illustrations of the New Zealand Frog Fauna. Tuatara, 8: 96-98",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hyla,peroni,Chordata,Amphibia,Anura,Hylidae,NA,"NA",Micky,Terrestrial,Animalia,5.12,"Moen, D. S., S. A. Smith, and J. J. Wiens. 2009. Community assembly through evolutionary diversification and dispersal in Middle American treefrogs. Evolution 63:3228-3247",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Limnodynastes,dorsalis,Chordata,Amphibia,Anura,Hylidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Pseudophryne,bibroni,Chordata,Amphibia,Anura,Hylidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Limnodynastes,tasmaniensis,Chordata,Amphibia,Anura,Hylidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Crinia,parainsignifera,Chordata,Amphibia,Anura,Myobatrachidae,adult,"NA",Micky,Terrestrial,Animalia,2,"Barker, J., Grigg, G. C., and Tyler, M. J. (1995).åÊA Field Guide to Australian Frogs.åÊSurrey Beatty and Sons, New South Wales.åÊåÊ",insectivore,"Barker, J., Grigg, G. C., and Tyler, M. J. (1995). A Field Guide to Australian Frogs. Surrey Beatty and Sons, New South Wales.",Y,"Barker, J., Grigg, G. C., and Tyler, M. J. (1995). A Field Guide to Australian Frogs. Surrey Beatty and Sons, New South Wales.",NA,NA,walking,"Barker, J., Grigg, G. C., and Tyler, M. J. (1995). A Field Guide to Australian Frogs. Surrey Beatty and Sons, New South Wales.",Y,"Barker, J., Grigg, G. C., and Tyler, M. J. (1995). A Field Guide to Australian Frogs. Surrey Beatty and Sons, New South Wales.",NA,NA,non-highland specialist,NA,"Barker, J., Grigg, G. C., and Tyler, M. J. (1995). A Field Guide to Australian Frogs. Surrey Beatty and Sons, New South Wales.",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hyla,aurea,Chordata,Amphibia,Anura,Hylidae,adult,"NA",Micky,Terrestrial,Animalia,8.5,"Moen, D. S., S. A. Smith, and J. J. Wiens. 2009. Community assembly through evolutionary diversification and dispersal in Middle American treefrogs. Evolution 63:3228-3247",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hyla,phyllochroa,Chordata,Amphibia,Anura,Hylidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Crinia,victoriana,Chordata,Amphibia,Anura,Myobatrachidae,adult,"NA",Micky,Terrestrial,Animalia,3.5,Amphibian Research Centre. The Frogs of Australia. available at :[http://frogs.org.au],NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hyla,alpina,Chordata,Amphibia,Anura,Hylidae,adult,"NA",Micky,Terrestrial,Animalia,4,Amphibian Research Centre. The Frogs of Australia. available at :[http://frogs.org.au],NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lagopus,lagopus,Chordata,Aves,Galliformes,Phasianidae,adult,365,Brad,Terrestrial,Animalia,43,HBW Alive,herbivore,various websites,Mixed,HBW Alive,10+ km,NA,flight,NA,N,NA,N,NA,N,NA,HBW Alive,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Gigartina,teedii,Rhodophyta,Florideophyceae,Gigartinales,Gigartinaceae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Myrmecocystus,depilis,Arthropoda,Insecta,Hymenoptera,Formicidae,adult,"NA",Piero,Terrestrial,Animalia,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Glossina,pallidipes,Arthropoda,Insecta,Diptera,Glossinidae,adult,"NA",Susana,Terrestrial,Animalia,NA,NA,carnivore,"Leak, S. G. (1999).åÊTsetse biology and ecology: their role in the epidemiology and control of trypanosomosis.åÊNew York: CABI publishing.",Non-migratory,NA,1-10km,Brightwell et al. 1992 Bull Entom Research 82:167-182: estimate is based on average root mean square displacement of 175m per day; Williams et al (1992) Journal of Applied Ecology 29: 163-179: dispersal refers to advancement of population front in one year (Williams et al 1992 );,Flying,NA,NA,NA,NA,NA,No,NA,Terblanche et al (2006) The American Journal of Tropical Medicine and Hygeine 74: 786-794,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Palirhoeus,eatoni,Arthropoda,Insecta,Coleoptera,Brachyceridae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Calathus,melanocephalus,Arthropoda,Insecta,Coleoptera,Carabidae,adults,243,Piero,Terrestrial,Animalia,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Canthon,humectus,Arthropoda,Insecta,Coleoptera,Scarabaeidae,adults,"NA",Piero,Terrestrial,Animalia,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lacerta,agilis,Chordata,Lepidosauria,Squamata,Lacertidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Dipsosaurus,dorsalis,Chordata,Lepidosauria,Squamata,Iguanidae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Cophosaurus,texanus,Chordata,Lepidosauria,Squamata,Iguanidae,adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Zootoca,vivipara,Chordata,Lepidosauria,Squamata,Lacertidae,subadults_adults_males_and_nongravid_females,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Anolis,cybotes,Chordata,Lepidosauria,Squamata,Iguanidae,adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Anolis,krugi,Chordata,Lepidosauria,Squamata,Iguanidae,males_adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Anolis,pulchellus,Chordata,Lepidosauria,Squamata,Iguanidae,males_adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Anolis,semilineatus,Chordata,Lepidosauria,Squamata,Iguanidae,adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Anolis,roquet,Chordata,Lepidosauria,Squamata,Iguanidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Laudakia,stellio,Chordata,Lepidosauria,Squamata,Agamidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Takydromus,hsuehshaner,Chordata,Lepidosauria,Squamata,Lacertidae,males_adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Sceloporus,grammicus,Chordata,Lepidosauria,Squamata,Iguanidae,adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Sceloporus,occidentalis,Chordata,Lepidosauria,Squamata,Iguanidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Podarcis,tilliguerta,Chordata,Lepidosauria,Squamata,Lacertidae,males_adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Takydromus,septentrionalis,Chordata,Lepidosauria,Squamata,Lacertidae,female_adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Rattus,fuscipes,Chordata,Mammalia,Rodentia,Muridae,adult,107,Alex,Terrestrial,Animalia,15.925,pantheria05 doi: 10.1890/08-1494.1,omnivore,pantheria05 doi: 10.1890/08-1494.1,non-migratory,"not mentioned - walking, small",NA,NA,walking,non-flying terrestrial mammal,N,"McNab, 2008",N,"McNab, 2008",non-highland specialist,NA,"McNab, 2008",NA,Rattus,fuscipes,1,NA,NA,NA,NA,Raftus fuscipes; Rattus assimilis; Rattus assimilis =Rattus fuscipes   ; Rattus brazenori; Rattus coracius; Rattus fuscipes; Rattus glauerti; Rattus greyii; Rattus manicatus; Rattus mondraineus; Rattus murrayi; Rattus peccatus; Rattus pelori; Rattus ravus,"45,673,012,971,822,200,000,000,000,000,000,000,000",Rattus fuscipes,NA,NA
+Desmarestia,viridis,Phaeophyceae,Phaeophyceae,Desmarestiales,Desmarestiaceae,gametophyte,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Dumontia,contorta,Phaeophyceae,Phaeophyceae,Ectocarpales,Chordariaceae,microthalli,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Sphaerotrichia,divaricata,Phaeophyceae,Phaeophyceae,Ectocarpales,Chordariaceae,gametophyte,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Desmarestia,aculeata,Phaeophyceae,Phaeophyceae,Desmarestiales,Desmarestiaceae,gametophyte,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Dictyosiphon,foeniculaceus,Phaeophyceae,Phaeophyceae,Ectocarpales,Chordariaceae,gametophyte,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Haplogloia,andersonii,Phaeophyceae,Phaeophyceae,Ectocarpales,Chordariaceae,gametophyte,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Desmarestia,herbacea,Phaeophyceae,Phaeophyceae,Desmarestiales,Desmarestiaceae,gametophyte,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Desmarestia,willii,Phaeophyceae,Phaeophyceae,Desmarestiales,Desmarestiaceae,gametophyte,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Tinocladia,falklandica,Phaeophyceae,Phaeophyceae,Ectocarpales,Chordariaceae,microthalli,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Dictyosiphon,hirsutus,Phaeophyceae,Phaeophyceae,Ectocarpales,Chordariaceae,gametophyte,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Trachynema,groenlandicum,Phaeophyceae,Phaeophyceae,Ectocarpales,Chordariaceae,microthalli,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Laminaria,longicruris,Phaeophyceae,Phaeophyceae,Laminariales,Laminariaceae,gametophyte,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Celmisia,haastii,Streptophyta,Spermatophyta,Asterales,Asteraceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Anisotome,imbricata,Streptophyta,Spermatophyta,Apiales,Apiaceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Dracophyllum,muscoides,Streptophyta,Spermatophyta,Ericales,Ericaceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Celmisia,viscosa,Streptophyta,Spermatophyta,Asterales,Asteraceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hectorella,caespitosa,Streptophyta,Spermatophyta,Caryophyllales,Montiaceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Poa,colensoi,Streptophyta,Spermatophyta,Poales,Poaceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Silene,acaulis,Streptophyta,Spermatophyta,Caryophyllales,Caryophyllaceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Eriogonum,latifolium,Streptophyta,Spermatophyta,Caryophyllales,Polygonaceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Eriogonum,fasciculatum,Streptophyta,Spermatophyta,Caryophyllales,Polygonaceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Atriplex,hymenelytra,Streptophyta,Spermatophyta,Caryophyllales,Amaranthaceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Atriplex,leucophylla,Streptophyta,Spermatophyta,Caryophyllales,Amaranthaceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Encella,farinosa,Streptophyta,Spermatophyta,Asterales,Asteraceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Salvia,leucophylla,Streptophyta,Spermatophyta,Lamiales,Lamiaceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Salvia,mohavensis,Streptophyta,Spermatophyta,Lamiales,Lamiaceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Bromus,tectorum,Streptophyta,Spermatophyta,Poales,Poaceae,young,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Bromus,rubens,Streptophyta,Spermatophyta,Poales,Poaceae,young,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Artemisia,californica,Streptophyta,Spermatophyta,Asterales,Asteraceae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Gayralia,sp,Chlorophyta,Ulvophyceae,Ulvales,Monostromataceae,thallus,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Rana,clamitans,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ambystoma,tigrinum,NA,NA,Caudata,NA,larva,1460,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lithobates,catesbeiana,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lithobates,pipiens,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Rhinella,marina,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Melanophryniscus,rubriventris,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Anaxyrus,americanus,NA,NA,Anura,NA,larva,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Anaxyrus,woodhousii,NA,NA,Anura,NA,larva,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Pseudacris,regilla,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hyla,versicolor,NA,NA,Anura,NA,larva,730,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Rhinella,granulosa,NA,NA,Anura,NA,larva,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Acris,crepitans,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Desmognathus,quadramaculatus,NA,NA,Caudata,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Notophthalmus,viridescens,NA,NA,Caudata,NA,Adult,2000,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ambystoma,jeffersonianum,NA,NA,Caudata,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ascaphus,truei,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Buergeria,japonica,NA,NA,Anura,NA,larva,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Eleutherodactylus,portoricensis,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Limnodynastes,peronii,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Limnodynastes,salmini,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lithobates,berlandieri,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,aurea,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,australis,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,caerulea,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,fallax,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,freycineti,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,lesueuri,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,nasuta,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,peronii,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,rubella,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Mixophyes,fasciolatus,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Neobatrachus,pictus,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Pseudacris,crucifer,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Pseudophryne,bibronii,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Quasipaa,spinosa,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Necturus,maculosus,NA,NA,Caudata,NA,Adult,2190,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Anaxyrus,boreas,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Anaxyrus,cognatus,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Crinia,parinsignifera,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Desmognathus,ochrophaeus,NA,NA,Caudata,NA,Adult,1280,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Geocrinia,victoriana,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,bicolor,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,chloris,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,ewingii,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,phyllochroa,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,rothii,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Litoria,verreauxii,NA,NA,Anura,NA,Adult,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Odontophrynus,occidentalis,NA,NA,Anura,NA,larva,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Desmognathus,monticola,NA,NA,Caudata,NA,Adult,1642,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Plethodon,cinereus,NA,NA,Caudata,NA,Adult,730,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Plethodon,jordani,NA,NA,Caudata,NA,Adult,1825,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ambystoma,triseriata,NA,NA,Anura,NA,Juvenile,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hyperolius,viridiflavus,NA,NA,Anura,NA,Adult,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Acipenser,brevirostrum,NA,NA,NA,Acipenseridae,NA,5657,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ambassis,ambassis,NA,NA,NA,Ambassidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Apogon,dovii,NA,NA,NA,Apogonidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Apogon,pacificus,NA,NA,NA,Apogonidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lipophrys,pholis,NA,NA,NA,Blenniidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lipophrys,trigloides,NA,NA,NA,Blenniidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Carpiodes,cyprinus,NA,NA,NA,Catostomidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Catostomus,commersonii,NA,NA,NA,Catostomidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hypentelium,nigricans,NA,NA,NA,Catostomidae,NA,1000,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ambloplites,rupestris,NA,NA,NA,Centrarchidae,sub-adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lepomis,cyanellus,NA,NA,NA,Centrarchidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lepomis,gibbosus,NA,NA,NA,Centrarchidae,juveniles,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lepomis,macrochirus,NA,NA,NA,Centrarchidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lepomis,megalotis,NA,NA,NA,Centrarchidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Micropterus,dolomieu,NA,NA,NA,Centrarchidae,sub-adults,2007,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Micropterus,punctulatus,NA,NA,NA,Centrarchidae,sub-adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Micropterus,salmoides,NA,NA,NA,Centrarchidae,NA,1642,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Pomoxis,annularis,NA,NA,NA,Centrarchidae,adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Pomoxis,nigromaculatus,NA,NA,NA,Centrarchidae,adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lates,calcarifer,NA,NA,NA,Centropomidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Chaenocephalus,aceratus,NA,NA,NA,Channichthyidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Chionodraco,rastrospinosus,NA,NA,NA,Channichthyidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Gymnocharacinus,bergii,NA,NA,NA,Characidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Etroplus,suratensis,NA,NA,NA,Cichlidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Oreochromis,mossambicus,NA,NA,NA,Cichlidae,juveniles,171,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Cirrhitichthys,oxycephalus,NA,NA,NA,Cirrhitidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Dorosoma,cepedianum,NA,NA,NA,Clupeidae,NA,730,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Sardinops,sagax,NA,NA,NA,Clupeidae,NA,821,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Cottus,bairdii,NA,NA,NA,Cottidae,NA,730,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Cottus,carolinae,NA,NA,NA,Cottidae,NA,730,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Cottus,gobio,NA,NA,NA,Cottidae,adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Campostoma,anomalum,NA,NA,NA,Cyprinidae,sub-adults,1095,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Carassius,auratus,NA,NA,NA,Cyprinidae,NA,225,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Carassius,carassius,NA,NA,NA,Cyprinidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Chrosomus,erythrogaster,NA,NA,NA,Cyprinidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Couesius,plumbeus,NA,NA,NA,Cyprinidae,NA,1095,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ctenopharyngodon,idella,NA,NA,NA,Cyprinidae,sub-adults,1520,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Cyprinella,lutrensis,NA,NA,NA,Cyprinidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Cyprinella,spiloptera,NA,NA,NA,Cyprinidae,sub-adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Cyprinus,carpio,NA,NA,NA,Cyprinidae,juveniles,1095,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Danio,rerio,NA,NA,NA,Cyprinidae,adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Gobio,gobio,NA,NA,NA,Cyprinidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hybognathus,placitus,NA,NA,NA,Cyprinidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hypophthalmichthys,nobilis,NA,NA,NA,Cyprinidae,sub-adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Labeo,rohita,NA,NA,NA,Cyprinidae,juveniles,1073,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Leuciscus,idus,NA,NA,NA,Cyprinidae,NA,2007,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Luxilus,chrysocephalus,NA,NA,NA,Cyprinidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Luxilus,cornutus,NA,NA,NA,Cyprinidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Notemigonus,crysoleucas,NA,NA,NA,Cyprinidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Notropis,atherinoides,NA,NA,NA,Cyprinidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Notropis,hudsonius,NA,NA,NA,Cyprinidae,adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Notropis,rubellus,NA,NA,NA,Cyprinidae,sub-adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Notropis,stramineus,NA,NA,NA,Cyprinidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Pimephales,notatus,NA,NA,NA,Cyprinidae,sub-adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Pimephales,promelas,NA,NA,NA,Cyprinidae,NA,60,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Rhinichthys,atratulus,NA,NA,NA,Cyprinidae,NA,365,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Rhinichthys,osculus,NA,NA,NA,Cyprinidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Rutilus,rutilus,NA,NA,NA,Cyprinidae,juveniles,1095,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Scardinius,erythrophthalmus,NA,NA,NA,Cyprinidae,NA,1460,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Semotilus,atromaculatus,NA,NA,NA,Cyprinidae,NA,1095,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Siphateles,bicolor,NA,NA,NA,Cyprinidae,juveniles,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Squalius,cephalus,NA,NA,NA,Cyprinidae,juveniles,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Cyprinodon,bovinus,NA,NA,NA,Cyprinodontidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Cyprinodon,dearborni,NA,NA,NA,Cyprinodontidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Cyprinodon,nevadensis,NA,NA,NA,Cyprinodontidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Gobiomorphus,basalis,NA,NA,NA,Eleotridae,juveniles adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Gobiomorphus,cotidianus,NA,NA,NA,Eleotridae,juveniles adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Esox,lucius,NA,NA,NA,Esocidae,juveniles,1116,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Esox,masquinongy,NA,NA,NA,Esocidae,NA,1825,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Fundulus,diaphanus,NA,NA,NA,Fundulidae,adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Fundulus,heteroclitus,NA,NA,NA,Fundulidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Fundulus,notatus,NA,NA,NA,Fundulidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Culaea,inconstans,NA,NA,NA,Gasterosteidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Gobiesox,strumosus,NA,NA,NA,Gobiesocidae,adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Bathygobius,fuscus,NA,NA,NA,Gobiidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Bathygobius,ramosus,NA,NA,NA,Gobiidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Bathygobius,soporator,NA,NA,NA,Gobiidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Coryphopterus,urospilus,NA,NA,NA,Gobiidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Gobiosoma,chiquita,NA,NA,NA,Gobiidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Gobius,paganellus,NA,NA,NA,Gobiidae,NA,912,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Haemulon,flavolineatum,NA,NA,NA,Haemulidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ameiurus,catus,NA,NA,NA,Ictaluridae,juveniles,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ameiurus,melas,NA,NA,NA,Ictaluridae,NA,730,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ameiurus,natalis,NA,NA,NA,Ictaluridae,NA,730,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ameiurus,nebulosus,NA,NA,NA,Ictaluridae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Ictalurus,punctatus,NA,NA,NA,Ictaluridae,juveniles,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Kuhlia,sandvicensis,NA,NA,NA,Kuhliidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Halichoeres,dispilus,NA,NA,NA,Labridae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Thalassoma,lucasanum,NA,NA,NA,Labridae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lutjanus,guttatus,NA,NA,NA,Lutjanidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Dicentrarchus,labrax,NA,NA,NA,Moronidae,juveniles,1460,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Morone,chrysops,NA,NA,NA,Moronidae,juveniles,1095,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Morone,saxatilis,NA,NA,NA,Moronidae,juveniles,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Chelon,subviridis,NA,NA,NA,Mugilidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Mugil,cephalus,NA,NA,NA,Mugilidae,NA,730,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Gobionotothen,gibberifrons,NA,NA,NA,Nototheniidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Lepidonotothen,squamifrons,NA,NA,NA,Nototheniidae,NA,2920,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Notothenia,coriiceps,NA,NA,NA,Nototheniidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Pagothenia,borchgrevinki,NA,NA,NA,Nototheniidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Trematomus,bernacchii,NA,NA,NA,Nototheniidae,NA,2007,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Trematomus,hansoni,NA,NA,NA,Nototheniidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hypomesus,transpacificus,NA,NA,NA,Osmeridae,adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Osmerus,mordax,NA,NA,NA,Osmeridae,adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Etheostoma,blennioides,NA,NA,NA,Percidae,NA,365,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Etheostoma,caeruleum,NA,NA,NA,Percidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Etheostoma,flabellare,NA,NA,NA,Percidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Etheostoma,nigrum,NA,NA,NA,Percidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Etheostoma,spectabile,NA,NA,NA,Percidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Gymnocephalus,cernua,NA,NA,NA,Percidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Perca,flavescens,NA,NA,NA,Percidae,sub-adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Perca,fluviatilis,NA,NA,NA,Percidae,juveniles,1368,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Sander,vitreus,NA,NA,NA,Percidae,juveniles,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Gambusia,affinis,NA,NA,NA,Poeciliidae,NA,90,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Heterandria,formosa,NA,NA,NA,Poeciliidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Poecilia,mexicana,NA,NA,NA,Poeciliidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Abudefduf,saxatilis,NA,NA,NA,Pomacentridae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Coregonus,artedi,NA,NA,NA,Salmonidae,larvae,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Coregonus,clupeaformis,NA,NA,NA,Salmonidae,juveniles,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Oncorhynchus,kisutch,NA,NA,NA,Salmonidae,NA,1095,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Oncorhynchus,mykiss,NA,NA,NA,Salmonidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Salmo,trutta,NA,NA,NA,Salmonidae,sub-adults,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Salvelinus,alpinus,NA,NA,NA,Salmonidae,juveniles,3285,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Salvelinus,fontinalis,NA,NA,NA,Salmonidae,sub-adults,730,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Salvelinus,namaycush,NA,NA,NA,Salmonidae,NA,4927,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Thymallus,arcticus,NA,NA,NA,Salmonidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Scatophagus,argus,NA,NA,NA,Scatophagidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Aplodinotus,grunniens,NA,NA,NA,Sciaenidae,juveniles,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Diplodus,vulgaris,NA,NA,NA,Sparidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Terapon,jarbua,NA,NA,NA,Terapontidae,NA,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Sphoeroides,annulatus,NA,NA,NA,Tetraodontidae,juveniles,"NA",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA

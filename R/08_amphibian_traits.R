@@ -15,8 +15,7 @@ amphib <- read_csv("data-raw/AmphiBIO_v1/AmphiBIO_v1.csv") %>%
 	clean_names()
 
 
-species_list <- read_csv("data-processed/intratherm-species-list.csv") %>% 
-	unite(genus_species, genus, species, remove = FALSE, sep = " ")
+species_list <- read_csv("data-processed/intratherm-species.csv") 
 
 amphibian_traits <- amphib %>% 
 	filter(species %in% c(species_list$genus_species)) %>% 
