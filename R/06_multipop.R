@@ -226,6 +226,12 @@ combined3 %>%
 	distinct(genus_species) %>% 
 	tally()
 
+intratherm_species <- combined3 %>% 
+	distinct(genus_species, .keep_all = TRUE) %>% 
+	select(genus_species, phylum, class, order, family)
+
+write_csv(intratherm_species, "data-processed/intratherm-species.csv")
+
 
 locations <- combined_tmax %>% 
 	select(genus_species, latitude, longitude) %>% 
@@ -326,6 +332,9 @@ combined3 %>%
 		ggplot(aes(x = abs(latitude), y = estimate)) + geom_point() +
 		ylim(0, 1.5) +ylab("ARR") + xlab("Absolute latitude")
 	ggsave("figures/arr-latitude.png", width = 6, height = 4)
+	
+	
+	
 	
 	combined3 %>% 
 		filter(!is.na(acclim_temp)) %>%
