@@ -158,15 +158,10 @@ all_models <- left_join(models, newdata) %>%
 all_models2 <- left_join(all_models, intratherm)
 
 
-
-
 data_frame <- intratherm %>%
 	filter(parameter_tmax_or_tmin=="tmax") %>% 
 	filter(!is.na(acclim_temp)) %>%
 	group_by(population_id) 
-
-
-
 
 
 
