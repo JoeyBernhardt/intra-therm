@@ -9,6 +9,19 @@ library(broom)
 intratherm<-read_csv("data-processed/intratherm-cadillac-limits-traits.csv") %>%
 	mutate(population_id = paste(genus_species, latitude, sep = "_"))
 
+str_replace(column1, " ", "")
+
+missing_location <- intratherm %>% 
+	filter(is.na(longitude)) %>% 
+	select(ref, genus_species, latitude, longitude) 
+
+write_csv(missing_location, "data-processed/missing-locations-intratherm.csv")
+
+intratherm %>% 
+	filter(is.na(latitude)) %>% 
+	distinct(genus_species) %>% tally()
+	
+
 intratherm %>%
 	filter(parameter_tmax_or_tmin=="tmax") %>%
 	group_by(population_id) %>%
@@ -151,13 +164,26 @@ models <- intratherm %>%
 all_models <- left_join(models, newdata) %>% 
 	select(genus_species, population_id, term, estimate, median_acc) %>% 
 	spread(key = term, value = estimate) %>% 
-	filter(!is.na(acclim_temp)) %>% 
+	filter(!is.na(acclim_temp)) %>%
 	clean_names() %>% 
-	mutate(ctmax_at_medianT = median_acc*acclim_temp + intercept)
+	mutate(ctmax_at_medianT = median_acc*acclim_temp + intercept) %>% 
+	rename(slope = acclim_temp)
 
-all_models2 <- left_join(all_models, intratherm)
+all_models2 <- left_join(all_models, intratherm, by = c("population_id", "genus_species"))
 
+all_models3 <- all_models2 %>% 
+	group_by(genus_species) %>% 
+	mutate(max_diff_ctmax = max(ctmax_at_medianT) - min(ctmax_at_medianT))
 
+library(plotrix)
+
+all_models3 %>% 
+	group_by(realm_general3) %>% 
+	summarise_each(funs(mean, std.error), max_diff_ctmax) %>% 
+	ggplot(aes(x = realm_general3, y = mean)) + geom_point() + 
+	geom_errorbar(aes(ymin = mean - std.error, ymax = mean + std.error), width = 0.1, color = "purple") +
+	geom_jitter(aes(x = realm_general3, y = max_diff_ctmax), alpha = 0.1, data = all_models3, width = 0.1) +
+	geom_point(color = "purple") + ylab("Max difference in CTmax") + xlab("Realm")
 
 
 data_frame <- intratherm %>%
