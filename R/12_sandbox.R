@@ -30,7 +30,7 @@ intratherm %>%
 	facet_grid(~genus_species) +
 	ylab("CTmax") + xlab("Acclimation")
 
-model<-intratherm %>%
+model <- intratherm %>%
 	filter(parameter_tmax_or_tmin=="tmax") %>% 
 	filter(!is.na(acclim_temp)) %>%
 	group_by(population_id) %>% 
@@ -177,7 +177,6 @@ all_models3 <- all_models2 %>%
 
 library(plotrix)
 
-<<<<<<< HEAD
 all_models3 %>% 
 	group_by(realm_general3) %>% 
 	summarise_each(funs(mean, std.error), max_diff_ctmax) %>% 
@@ -187,8 +186,7 @@ all_models3 %>%
 	geom_point(color = "purple") + ylab("Max difference in CTmax") + xlab("Realm")
 
 
-=======
->>>>>>> 3ad7641250636fded33884780904ee0b8146a817
+
 data_frame <- intratherm %>%
 	filter(parameter_tmax_or_tmin=="tmax") %>% 
 	filter(!is.na(acclim_temp)) %>%
