@@ -6,7 +6,7 @@ library(tidyverse)
 library(cowplot)
 library(broom)
 
-intratherm<-read_csv("data-processed/intratherm-cadillac-limits-traits.csv") %>%
+intratherm <- read_csv("data-processed/intratherm-cadillac-limits-traits.csv") %>%
 	mutate(population_id = paste(genus_species, latitude, sep = "_"))
 
 str_replace(column1, " ", "")
