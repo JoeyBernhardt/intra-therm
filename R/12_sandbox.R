@@ -6,7 +6,7 @@ library(tidyverse)
 library(cowplot)
 library(broom)
 
-intratherm <- read_csv("data-processed/intratherm-cadillac-limits-traits.csv") %>%
+intratherm <- read_csv("data-processed/intratherm-cadillac-limits-traits-location-updated.csv") %>%
 	mutate(population_id = paste(genus_species, latitude, sep = "_"))
 
 str_replace(column1, " ", "")
@@ -51,7 +51,7 @@ temp_long <- temperatures %>%
 intratherm_temps <- left_join(intratherm, temp_long, by = c("latitude", "longitude"))
 
 #now ask how the slope (acclimation) is predicted by variation of temperature:
-intratherm_acclimation<-model %>% filter(term=="acclim_temp") %>%
+intratherm_acclimation <- model %>% filter(term=="acclim_temp") %>%
 	left_join(.,  intratherm_temps, by = "population_id") %>% 
 	rename(acclimation_slope=estimate, acclimation.sd=std.error)
 
@@ -97,13 +97,19 @@ intratherm_acclimation %>%
 	# filter(!is.na(ramping_rate)) %>% 
 	mutate(ramping_category = case_when(ramping_rate >= 1 ~ "fast",
 										ramping_rate < 1 ~ "slow")) %>% 
+	group_by(realm_general3) %>% 
 	ggplot(aes(x = sd_temperature, y = acclimation_slope, color = abs(latitude))) + 
 	geom_point() + 
 	geom_errorbar(aes(ymax=acclimation_slope+acclimation.sd, ymin=acclimation_slope-acclimation.sd)) +
-	geom_smooth(method=lm) + facet_grid (ramping_category ~ realm_general3) + ylim(0, 1)
+	geom_smooth(method=lm, color = "black") + 
+	# facet_grid (ramping_category ~ realm_general3) +
+	ylim(0, 1) +
+	ylab("Plasticity (ARR slope)") + xlab("SD of temperature") +
+	scale_color_viridis_c()
+ggsave("figures/plasticity-sd-temp.png", width = 8, height = 6)
 
 
-intratherm_acclimation %>% View
+intratherm_acclimation %>% 
 group_by(genus_species) %>%
 	filter(acclimation_slope<25) %>%
 	filter(acclimation_slope<1,
@@ -136,7 +142,7 @@ intratherm_acclimation %>%
 #Now ask how differentiated the populations are 
 #by asking how different the heights of the curve are at some mediam acclimation temperature
 #(i.e. differences in intercepts but not at zero)
-intratherm_acclimation<-model %>% 
+intratherm_acclimation <- model %>% 
 	filter(term=="acclim_temp") %>%
 	left_join(.,  intratherm_temps, by = "population_id") %>% 
 	rename(acclimation_slope=estimate, acclimation.sd=std.error)
