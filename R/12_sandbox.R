@@ -5,6 +5,7 @@
 library(tidyverse)
 library(cowplot)
 library(broom)
+theme_set(theme_cowplot())
 
 intratherm <- read_csv("data-processed/intratherm-cadillac-limits-traits-location-updated.csv") %>%
 	mutate(population_id = paste(genus_species, latitude, sep = "_"))

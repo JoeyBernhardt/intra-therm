@@ -1,0 +1,657 @@
+assessmentId,internalTaxonId,scientificName,kingdomName,phylumName,orderName,className,familyName,genusName,speciesName,infraType,infraName,infraAuthority,authority,redlistCategory,redlistCriteria,criteriaVersion,populationTrend,scopes
+739164,156003,Physella gyrina,ANIMALIA,MOLLUSCA,HYGROPHILA,GASTROPODA,PHYSIDAE,Physella,gyrina,,,,"(Say, 1821)",Least Concern,,3.1,Stable,Global
+1110472,166083,Carassius auratus,ANIMALIA,CHORDATA,CYPRINIFORMES,ACTINOPTERYGII,CYPRINIDAE,Carassius,auratus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Unknown,Global
+1420606,175246,Schoenoplectus tabernaemontani,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,CYPERACEAE,Schoenoplectus,tabernaemontani,,,,(C.C. Gmel.) Palla ,Least Concern,,3.1,Stable,Global
+1545697,178902,Gibbonsia montereyensis,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,CLINIDAE,Gibbonsia,montereyensis,,,,"Hubbs, 1927",Least Concern,,3.1,Unknown,Global
+1547499,178917,Gibbonsia metzi,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,CLINIDAE,Gibbonsia,metzi,,,,"Hubbs, 1927",Least Concern,,3.1,Unknown,Global
+1559519,179015,Heterostichus rostratus,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,CLINIDAE,Heterostichus,rostratus,,,,"Girard, 1854",Least Concern,,3.1,Unknown,Global
+1616281,180331,Mesothuria murrayi,ANIMALIA,ECHINODERMATA,ASPIDOCHIROTIDA,HOLOTHUROIDEA,SYNALLACTIDAE,Mesothuria,murrayi,,,,"(Théel,1886)",Least Concern,,3.1,Unknown,Global
+1623312,180381,Pseudostichopus mollis,ANIMALIA,ECHINODERMATA,ASPIDOCHIROTIDA,HOLOTHUROIDEA,SYNALLACTIDAE,Pseudostichopus,mollis,,,,"Théel, 1882",Data Deficient,,3.1,Unknown,Global
+1630411,180436,Parastichopus californicus,ANIMALIA,ECHINODERMATA,ASPIDOCHIROTIDA,HOLOTHUROIDEA,STICHOPODIDAE,Parastichopus,californicus,,,,"(Stimpson, 1857)",Least Concern,,3.1,Stable,Global
+1631754,180446,Holothuria stocki,ANIMALIA,ECHINODERMATA,ASPIDOCHIROTIDA,HOLOTHUROIDEA,HOLOTHURIIDAE,Holothuria,stocki,,,,"Cherbonnier, 1964",Data Deficient,,3.1,Unknown,Global
+1948674,190350,Avocettina infans,ANIMALIA,CHORDATA,ANGUILLIFORMES,ACTINOPTERYGII,NEMICHTHYIDAE,Avocettina,infans,,,,"(Günther, 1878)",Least Concern,,3.1,Unknown,Global
+2003290,191792,Xiphophorus variatus,ANIMALIA,CHORDATA,CYPRINODONTIFORMES,ACTINOPTERYGII,POECILIIDAE,Xiphophorus,variatus,,,,"(Meek, 1904)",Least Concern,,3.1,Stable,Global
+2242484,193533,Acer circinatum,PLANTAE,TRACHEOPHYTA,SAPINDALES,MAGNOLIOPSIDA,SAPINDACEAE,Acer,circinatum,,,,Pursh,Least Concern,,3.1,Stable,Global
+2284337,193830,Acer macrophyllum,PLANTAE,TRACHEOPHYTA,SAPINDALES,MAGNOLIOPSIDA,SAPINDACEAE,Acer,macrophyllum,,,,Pursh,Least Concern,,3.1,Unknown,Global
+2382480,195488,Squalus suckleyi,ANIMALIA,CHORDATA,SQUALIFORMES,CHONDRICHTHYES,SQUALIDAE,Squalus,suckleyi,,,,"(Girard, 1854)",Least Concern,,3.1,Stable,Global
+2553915,199052,Bathycongrus varidens,ANIMALIA,CHORDATA,ANGUILLIFORMES,ACTINOPTERYGII,CONGRIDAE,Bathycongrus,varidens,,,,"(Garman, 1899)",Least Concern,,3.1,Unknown,Global
+2592235,199408,Xenomystax atrarius,ANIMALIA,CHORDATA,ANGUILLIFORMES,ACTINOPTERYGII,CONGRIDAE,Xenomystax,atrarius,,,,"Gilbert, 1891",Least Concern,,3.1,Unknown,Global
+2878674,3855,Carcharodon carcharias,ANIMALIA,CHORDATA,LAMNIFORMES,CHONDRICHTHYES,LAMNIDAE,Carcharodon,carcharias,,,,"(Linnaeus, 1758)",Vulnerable,A2bd,3.1,Decreasing,Global
+2900765,39339,Alopias vulpinus,ANIMALIA,CHORDATA,LAMNIFORMES,CHONDRICHTHYES,ALOPIIDAE,Alopias,vulpinus,,,,"(Bonnaterre, 1788)",Vulnerable,A2bd,3.1,Decreasing,Global
+2903170,39341,Isurus oxyrinchus,ANIMALIA,CHORDATA,LAMNIFORMES,CHONDRICHTHYES,LAMNIDAE,Isurus,oxyrinchus,,,,"Rafinesque, 1810",Endangered,A2bd,3.1,Decreasing,Global
+2915850,39381,Prionace glauca,ANIMALIA,CHORDATA,CARCHARHINIFORMES,CHONDRICHTHYES,CARCHARHINIDAE,Prionace,glauca,,,,"(Linnaeus, 1758)",Near Threatened,A2bd,3.1,Decreasing,Global
+2988471,4292,Cetorhinus maximus,ANIMALIA,CHORDATA,LAMNIFORMES,CHONDRICHTHYES,CETORHINIDAE,Cetorhinus,maximus,,,,"(Gunnerus, 1765)",Endangered,A2bd,3.1,Decreasing,Global
+3109321,62192,Catostomus catostomus,ANIMALIA,CHORDATA,CYPRINIFORMES,ACTINOPTERYGII,CATOSTOMIDAE,Catostomus,catostomus,,,,"(Forster, 1773)",Least Concern,,3.1,Stable,Global
+3155348,10030,Hexanchus griseus,ANIMALIA,CHORDATA,HEXANCHIFORMES,CHONDRICHTHYES,HEXANCHIDAE,Hexanchus,griseus,,,,"(Bonnaterre, 1788)",Near Threatened,,3.1,Unknown,Global
+3292503,11534,Lepidochelys olivacea,ANIMALIA,CHORDATA,TESTUDINES,REPTILIA,CHELONIIDAE,Lepidochelys,olivacea,,,,"(Eschscholtz, 1829)",Vulnerable,A2bd,3.1,Decreasing,Global
+3324223,12130,Lithasia jayana,ANIMALIA,MOLLUSCA,SORBEOCONCHA,GASTROPODA,PLEUROCERIDAE,Lithasia,jayana,,,,"I. Lea, 1841",Data Deficient,,3.1,Decreasing,Global
+3425482,13243,Mesoplodon carlhubbsi,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,ZIPHIIDAE,Mesoplodon,carlhubbsi,,,,"Moore, 1963",Data Deficient,,3.1,Unknown,Global
+3431272,13252,Mesoplodon stejnegeri,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,ZIPHIIDAE,Mesoplodon,stejnegeri,,,,"True, 1885",Data Deficient,,3.1,Unknown,Global
+4071001,135301,Oncorhynchus nerka,ANIMALIA,CHORDATA,SALMONIFORMES,ACTINOPTERYGII,SALMONIDAE,Oncorhynchus,nerka,,,,"(Walbaum, 1792)",Least Concern,,3.1,Stable,Global
+4516675,153538,Zostera marina,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,ZOSTERACEAE,Zostera,marina,,,,L.,Least Concern,,3.1,Decreasing,Global
+4523609,153634,Cherax cainii,ANIMALIA,ARTHROPODA,DECAPODA,MALACOSTRACA,PARASTACIDAE,Cherax,cainii,,,,"Austin and Ryan, 2002",Least Concern,,3.1,Unknown,Global
+4526314,153648,Pacifastacus leniusculus,ANIMALIA,ARTHROPODA,DECAPODA,MALACOSTRACA,ASTACIDAE,Pacifastacus,leniusculus,,,,"(Dana, 1852)",Least Concern,,3.1,Unknown,Global
+4538132,153735,Pacifastacus gambelii,ANIMALIA,ARTHROPODA,DECAPODA,MALACOSTRACA,ASTACIDAE,Pacifastacus,gambelii,,,,"(Girard, 1852)",Least Concern,,3.1,Unknown,Global
+4641606,154820,Alepisaurus ferox,ANIMALIA,CHORDATA,AULOPIFORMES,ACTINOPTERYGII,ALEPISAURIDAE,Alepisaurus,ferox,,,,"Lowe, 1833",Least Concern,,3.1,Unknown,Global
+4701018,155094,Clinocottus globiceps,ANIMALIA,CHORDATA,SCORPAENIFORMES,ACTINOPTERYGII,COTTIDAE,Clinocottus,globiceps,,,,"(Girard, 1858)",Least Concern,,3.1,Unknown,Global
+5416294,161403,Somniosus pacificus,ANIMALIA,CHORDATA,SQUALIFORMES,CHONDRICHTHYES,SOMNIOSIDAE,Somniosus,pacificus,,,,"Bigelow &amp; Schroeder, 1944",Data Deficient,,3.1,Unknown,Global
+5505853,161864,Marsilea quadrifolia,PLANTAE,TRACHEOPHYTA,SALVINIALES,POLYPODIOPSIDA,MARSILEACEAE,Marsilea,quadrifolia,,,,L.,Least Concern,,3.1,Unknown,Global
+5681486,163984,Juncus articulatus,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,JUNCACEAE,Juncus,articulatus,,,,L.,Least Concern,,3.1,Stable,Global
+5772487,164199,Typha angustifolia,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,TYPHACEAE,Typha,angustifolia,,,,L.,Least Concern,,3.1,Unknown,Global
+6261849,166694,Pila globosa,ANIMALIA,MOLLUSCA,ARCHITAENIOGLOSSA,GASTROPODA,AMPULLARIIDAE,Pila,globosa,,,,"(Swainson, 1822)",Least Concern,,3.1,Unknown,Global
+6407237,167890,Nymphaea tetragona,PLANTAE,TRACHEOPHYTA,NYMPHAEALES,MAGNOLIOPSIDA,NYMPHAEACEAE,Nymphaea,tetragona,,,,Georgi,Least Concern,,3.1,Unknown,Global
+6411823,167905,Potamogeton obtusifolius,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,POTAMOGETONACEAE,Potamogeton,obtusifolius,,,,Mert. &amp; W.D.J.Koch,Least Concern,,3.1,Stable,Global
+6417775,167926,Sparganium emersum,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,TYPHACEAE,Sparganium,emersum,,,,Rehmann,Least Concern,,3.1,Stable,Global
+6527440,168695,Lemna perpusilla,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,ARACEAE,Lemna,perpusilla,,,,Torr.,Least Concern,,3.1,Unknown,Global
+6545066,168882,Hygrophila pinnatifida,PLANTAE,TRACHEOPHYTA,SCROPHULARIALES,MAGNOLIOPSIDA,ACANTHACEAE,Hygrophila,pinnatifida,,,,(Dalzell) Sreem.,Least Concern,,3.1,Unknown,Global
+6559440,168991,Landoltia punctata,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,ARACEAE,Landoltia,punctata,,,,(G.Mey.) Les &amp; D.J.Crawford,Least Concern,,3.1,Unknown,Global
+6566565,169039,Nechamandra alternifolia,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,HYDROCHARITACEAE,Nechamandra,alternifolia,,,,(Roxb. ex Wight) Thwaites,Least Concern,,3.1,Unknown,Global
+6734992,17027,Phocoena phocoena,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,PHOCOENIDAE,Phocoena,phocoena,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Unknown,Global
+6737373,170306,Scomber japonicus,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,SCOMBRIDAE,Scomber,japonicus,,,,"Houttuyn, 1782",Least Concern,,3.1,Stable,Global
+6739812,170310,Katsuwonus pelamis,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,SCOMBRIDAE,Katsuwonus,pelamis,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+6763952,170352,Sarda chiliensis,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,SCOMBRIDAE,Sarda,chiliensis,,,,"(Cuvier, 1832)",Least Concern,,3.1,Decreasing,Global
+6990381,173320,Phyllospadix torreyi,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,ZOSTERACEAE,Phyllospadix,torreyi,,,,S.Watson,Least Concern,,3.1,Stable,Global
+6996472,173348,Zostera japonica,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,ZOSTERACEAE,Zostera,japonica,,,,Asch. &amp; Graebn.,Least Concern,,3.1,Increasing,Global
+7000590,173366,Phyllospadix serrulatus,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,ZOSTERACEAE,Phyllospadix,serrulatus,,,,Rupr. ex Asch.,Least Concern,,3.1,Stable,Global
+7000726,173367,Phyllospadix scouleri,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,ZOSTERACEAE,Phyllospadix,scouleri,,,,Hook.,Least Concern,,3.1,Stable,Global
+7002177,173373,Zostera pacifica,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,ZOSTERACEAE,Zostera,pacifica,,,,S.Watson,Least Concern,,3.1,Unknown,Global
+8074932,183220,Synodus lucioceps,ANIMALIA,CHORDATA,AULOPIFORMES,ACTINOPTERYGII,SYNODONTIDAE,Synodus,lucioceps,,,,"(Ayres, 1855)",Least Concern,,3.1,Unknown,Global
+8096061,183337,Peprilus simillimus,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,STROMATEIDAE,Peprilus,simillimus,,,,"(Ayres, 1860)",Least Concern,,3.1,Unknown,Global
+8145427,183618,Medialuna californiensis,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,KYPHOSIDAE,Medialuna,californiensis,,,,"(Steindachner, 1876)",Least Concern,,3.1,Stable,Global
+8165351,183724,Porichthys notatus,ANIMALIA,CHORDATA,BATRACHOIDIFORMES,ACTINOPTERYGII,BATRACHOIDIDAE,Porichthys,notatus,,,,"Girard, 1854",Least Concern,,3.1,Unknown,Global
+8166054,183729,Trachurus symmetricus,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,CARANGIDAE,Trachurus,symmetricus,,,,"(Ayres, 1855)",Least Concern,,3.1,Unknown,Global
+8187671,183848,Atractoscion nobilis,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,SCIAENIDAE,Atractoscion,nobilis,,,,"(Ayres, 1860)",Least Concern,,3.1,Unknown,Global
+8189272,183856,Engraulis mordax,ANIMALIA,CHORDATA,CLUPEIFORMES,ACTINOPTERYGII,ENGRAULIDAE,Engraulis,mordax,,,,"Girard, 1854",Least Concern,,3.1,Stable,Global
+8206260,183957,Atherinops affinis,ANIMALIA,CHORDATA,ATHERINIFORMES,ACTINOPTERYGII,ATHERINOPSIDAE,Atherinops,affinis,,,,(Ayres 1860),Least Concern,,3.1,Stable,Global
+8212524,183991,Caulolatilus princeps,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,MALACANTHIDAE,Caulolatilus,princeps,,,,"(Jenyns, 1840)",Least Concern,,3.1,Unknown,Global
+8343227,185000,Stereomastis nana,ANIMALIA,ARTHROPODA,DECAPODA,MALACOSTRACA,POLYCHELIDAE,Stereomastis,nana,,,,"(Smith, 1884)",Least Concern,,3.1,Stable,Global
+8669528,188974,Anodonta beringiana,ANIMALIA,MOLLUSCA,UNIONOIDA,BIVALVIA,UNIONIDAE,Anodonta,beringiana,,,,"Middendorf, 1851",Least Concern,,3.1,Stable,Global
+8686887,189119,Ferrissia fragilis,ANIMALIA,MOLLUSCA,HYGROPHILA,GASTROPODA,PLANORBIDAE,Ferrissia,fragilis,,,,"(Tryon, 1863)",Least Concern,,3.1,Increasing,Global
+8692611,189147,Drepanotrema cimex,ANIMALIA,MOLLUSCA,HYGROPHILA,GASTROPODA,PLANORBIDAE,Drepanotrema,cimex,,,,"Moricand, 1839",Least Concern,,3.1,Stable,Global
+8701742,189207,Galba bulimoides,ANIMALIA,MOLLUSCA,HYGROPHILA,GASTROPODA,LYMNAEIDAE,Galba,bulimoides,,,,"(Lea, 1841)",Least Concern,,3.1,Stable,Global
+8717774,189336,Pristinicola hemphilli,ANIMALIA,MOLLUSCA,LITTORINIMORPHA,GASTROPODA,HYDROBIIDAE,Pristinicola,hemphilli,,,,"Pilsbry, 1890",Data Deficient,,3.1,Unknown,Global
+8759367,189646,Valvata humeralis,ANIMALIA,MOLLUSCA,ALLOGASTROPODA,GASTROPODA,VALVATIDAE,Valvata,humeralis,,,,"Say, 1829",Least Concern,,3.1,Unknown,Global
+8760126,189656,Juga acutifilosa,ANIMALIA,MOLLUSCA,SORBEOCONCHA,GASTROPODA,SEMISULCOSPIRIDAE,Juga,acutifilosa,,,,"(Stearns, 1890)",Near Threatened,,3.1,Decreasing,Global
+8761704,189673,Stagnicola traski,ANIMALIA,MOLLUSCA,HYGROPHILA,GASTROPODA,LYMNAEIDAE,Stagnicola,traski,,,,"Tryon, 1863",Least Concern,,3.1,Unknown,Global
+8848383,19179,Rana pretiosa,ANIMALIA,CHORDATA,ANURA,AMPHIBIA,RANIDAE,Rana,pretiosa,,,,"Baird &amp; Girard, 1853",Vulnerable,A2ace,3.1,Decreasing,Global
+8992987,196019,Eptatretus deani,ANIMALIA,CHORDATA,MYXINIFORMES,MYXINI,MYXINIDAE,Eptatretus,deani,,,,"(Evermann &amp; Goldsborough, 1907)",Data Deficient,,3.1,Decreasing,Global
+8997397,196044,Eptatretus stoutii,ANIMALIA,CHORDATA,MYXINIFORMES,MYXINI,MYXINIDAE,Eptatretus,stoutii,,,,"(Lockington, 1878)",Data Deficient,,3.1,Decreasing,Global
+9094983,19875,Salvelinus confluentus,ANIMALIA,CHORDATA,SALMONIFORMES,ACTINOPTERYGII,SALMONIDAE,Salvelinus,confluentus,,,,"(Suckley, 1859)",Vulnerable,A2e,2.3,,Global
+9429826,23211,Ziphius cavirostris,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,ZIPHIIDAE,Ziphius,cavirostris,,,,"G. Cuvier, 1823",Least Concern,,3.1,Unknown,Global
+9478643,2763,Berardius bairdii,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,ZIPHIIDAE,Berardius,bairdii,,,,"Stejneger, 1883",Data Deficient,,3.1,Unknown,Global
+10200310,39324,Notorynchus cepedianus,ANIMALIA,CHORDATA,HEXANCHIFORMES,CHONDRICHTHYES,HEXANCHIDAE,Notorynchus,cepedianus,,,,"(Péron, 1807)",Data Deficient,,3.1,Unknown,Global
+10212764,39352,Galeorhinus galeus,ANIMALIA,CHORDATA,CARCHARHINIFORMES,CHONDRICHTHYES,TRIAKIDAE,Galeorhinus,galeus,,,,"(Linnaeus, 1758)",Vulnerable,A2bd+3d+4bd,3.1,Decreasing,Global
+10727959,42680,Oreamnos americanus,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,BOVIDAE,Oreamnos,americanus,,,,"(de Blainville, 1816)",Least Concern,,3.1,Stable,Global
+11376273,55897,Pseudacris regilla,ANIMALIA,CHORDATA,ANURA,AMPHIBIA,HYLIDAE,Pseudacris,regilla,,,,"(Baird &amp; Girard, 1852)",Least Concern,,3.1,Stable,Global
+12649851,6336,Delphinus delphis,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,DELPHINIDAE,Delphinus,delphis,,,,"Linnaeus, 1758",Least Concern,,3.1,Unknown,Global
+12706801,63701,Elgaria coerulea,ANIMALIA,CHORDATA,SQUAMATA,REPTILIA,ANGUIDAE,Elgaria,coerulea,,,,"(Wiegmann, 1828)",Least Concern,,3.1,Stable,Global
+12726329,63985,Thamnophis ordinoides,ANIMALIA,CHORDATA,SQUAMATA,REPTILIA,NATRICIDAE,Thamnophis,ordinoides,,,,"(Baird &amp; Girard, 1852)",Least Concern,,3.1,Stable,Global
+12732762,63976,Thamnophis elegans,ANIMALIA,CHORDATA,SQUAMATA,REPTILIA,NATRICIDAE,Thamnophis,elegans,,,,"(Baird &amp; Girard, 1853)",Least Concern,,3.1,Stable,Global
+12881238,8005,Eretmochelys imbricata,ANIMALIA,CHORDATA,TESTUDINES,REPTILIA,CHELONIIDAE,Eretmochelys,imbricata,,,,"(Linnaeus, 1766)",Critically Endangered,A2bd,3.1,Decreasing,Global
+13042842,233,Acipenser medirostris,ANIMALIA,CHORDATA,ACIPENSERIFORMES,ACTINOPTERYGII,ACIPENSERIDAE,Acipenser,medirostris,,,,"Ayres, 1854",Near Threatened,,3.1,Stable,Global
+13043189,234,Acipenser transmontanus,ANIMALIA,CHORDATA,ACIPENSERIFORMES,ACTINOPTERYGII,ACIPENSERIDAE,Acipenser,transmontanus,,,,"Richardson, 1836",Least Concern,,3.1,Stable,Global
+15363361,202659,Cottus confusus,ANIMALIA,CHORDATA,SCORPAENIFORMES,ACTINOPTERYGII,COTTIDAE,Cottus,confusus,,,,"Bailey and Bond, 1963",Least Concern,,3.1,Stable,Global
+15363407,202649,Cottus aleuticus,ANIMALIA,CHORDATA,SCORPAENIFORMES,ACTINOPTERYGII,COTTIDAE,Cottus,aleuticus,,,,"Gilbert, 1896",Least Concern,,3.1,Stable,Global
+15364313,202650,Cottus asper,ANIMALIA,CHORDATA,SCORPAENIFORMES,ACTINOPTERYGII,COTTIDAE,Cottus,asper,,,,"Richardson, 1836",Least Concern,,3.1,Stable,Global
+15582753,198615,Electrona risso,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Electrona,risso,,,,"(Cocco, 1829)",Least Concern,,3.1,Unknown,Global
+15603270,13485635,Magnisudis atlantica,ANIMALIA,CHORDATA,AULOPIFORMES,ACTINOPTERYGII,PARALEPIDIDAE,Magnisudis,atlantica,,,,"(Krøyer, 1868)",Least Concern,,3.1,Unknown,Global
+15603595,15522213,Melanonus zugmayeri,ANIMALIA,CHORDATA,GADIFORMES,ACTINOPTERYGII,MELANONIDAE,Melanonus,zugmayeri,,,,"Norman, 1930",Least Concern,,3.1,Unknown,Global
+15603910,15601909,Neoscopelus macrolepidotus,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,NEOSCOPELIDAE,Neoscopelus,macrolepidotus,,,,"Johnson, 1863",Least Concern,,3.1,Unknown,Global
+18229730,202413,Osmerus mordax,ANIMALIA,CHORDATA,OSMERIFORMES,ACTINOPTERYGII,OSMERIDAE,Osmerus,mordax,,,,"(Mitchill, 1814)",Least Concern,,3.1,Unknown,Global
+18230111,202625,Lampetra ayresii,ANIMALIA,CHORDATA,PETROMYZONTIFORMES,CEPHALASPIDOMORPHI,PETROMYZONTIDAE,Lampetra,ayresii,,,,"(Günther, 1870)",Least Concern,,3.1,Unknown,Global
+18231685,202363,Rhinichthys falcatus,ANIMALIA,CHORDATA,CYPRINIFORMES,ACTINOPTERYGII,CYPRINIDAE,Rhinichthys,falcatus,,,,"(Eigenmann & Eigenmann, 1893)",Least Concern,,3.1,Stable,Global
+18233204,202359,Ptychocheilus oregonensis,ANIMALIA,CHORDATA,CYPRINIFORMES,ACTINOPTERYGII,CYPRINIDAE,Ptychocheilus,oregonensis,,,,"(Richardson, 1836)",Least Concern,,3.1,Stable,Global
+18233586,184099,Spirinchus thaleichthys,ANIMALIA,CHORDATA,OSMERIFORMES,ACTINOPTERYGII,OSMERIDAE,Spirinchus,thaleichthys,,,,"(Ayres, 1860)",Least Concern,,3.1,Unknown,Global
+18234362,202261,Mylocheilus caurinus,ANIMALIA,CHORDATA,CYPRINIFORMES,ACTINOPTERYGII,CYPRINIDAE,Mylocheilus,caurinus,,,,"(Richardson, 1836)",Least Concern,,3.1,Stable,Global
+18234383,202368,Richardsonius balteatus,ANIMALIA,CHORDATA,CYPRINIFORMES,ACTINOPTERYGII,CYPRINIDAE,Richardsonius,balteatus,,,,"(Richardson, 1836)",Least Concern,,3.1,Stable,Global
+18236183,202415,Thaleichthys pacificus,ANIMALIA,CHORDATA,OSMERIFORMES,ACTINOPTERYGII,OSMERIDAE,Thaleichthys,pacificus,,,,"(Richardson, 1836)",Least Concern,,3.1,Unknown,Global
+18236331,202630,Lampetra richardsoni,ANIMALIA,CHORDATA,PETROMYZONTIFORMES,CEPHALASPIDOMORPHI,PETROMYZONTIDAE,Lampetra,richardsoni,,,,"Vladykov & Follett, 1965",Least Concern,,3.1,Unknown,Global
+18236602,202603,Pomoxis nigromaculatus,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,CENTRARCHIDAE,Pomoxis,nigromaculatus,,,,"(Lesueur, 1829)",Least Concern,,3.1,Stable,Global
+18236623,202670,Leptocottus armatus,ANIMALIA,CHORDATA,SCORPAENIFORMES,ACTINOPTERYGII,COTTIDAE,Leptocottus,armatus,,,,"Girard, 1854",Least Concern,,3.1,Stable,Global
+18237003,202555,Lepomis gibbosus,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,CENTRARCHIDAE,Lepomis,gibbosus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+18978274,91863316,Charina bottae,ANIMALIA,CHORDATA,SQUAMATA,REPTILIA,BOIDAE,Charina,bottae,,,,"(Blainville, 1835)",Least Concern,,3.1,Stable,Global
+19495876,164479,Potamogeton natans,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,POTAMOGETONACEAE,Potamogeton,natans,,,,L.,Least Concern,,3.1,Stable,Global
+19746847,19711843,Apostichopus leukothele,ANIMALIA,ECHINODERMATA,ASPIDOCHIROTIDA,HOLOTHUROIDEA,STICHOPODIDAE,Apostichopus,leukothele,,,,"(Lambert, 1986)",Least Concern,,3.1,Unknown,Global
+19746900,19717509,Capheira sulcata,ANIMALIA,ECHINODERMATA,ASPIDOCHIROTIDA,HOLOTHUROIDEA,SYNALLACTIDAE,Capheira,sulcata,,,,"Ludwig, 1893",Least Concern,,3.1,Unknown,Global
+20340565,18156550,Taractes asper,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,BRAMIDAE,Taractes,asper,,,,"Lowe, 1843",Least Concern,,3.1,Unknown,Global
+20363502,194997,Arctozenus risso,ANIMALIA,CHORDATA,AULOPIFORMES,ACTINOPTERYGII,PARALEPIDIDAE,Arctozenus,risso,,,,"(Bonaparte, 1840)",Least Concern,,3.1,Unknown,Global
+21909520,21133108,Photonectes margarita,ANIMALIA,CHORDATA,STOMIIFORMES,ACTINOPTERYGII,STOMIIDAE,Photonectes,margarita,,,,"(Goode &amp; Bean, 1896)",Least Concern,,3.1,Unknown,Global
+21910070,18123960,Anoplogaster cornuta,ANIMALIA,CHORDATA,BERYCIFORMES,ACTINOPTERYGII,ANOPLOGASTRIDAE,Anoplogaster,cornuta,,,,"(Valenciennes, 1833)",Least Concern,,3.1,Unknown,Global
+21910080,21110276,Barbourisia rufa,ANIMALIA,CHORDATA,CETOMIMIFORMES,ACTINOPTERYGII,BARBOURISIIDAE,Barbourisia,rufa,,,,"Parr, 1945",Least Concern,,3.1,Unknown,Global
+21910525,21112898,Linophryne pennibarbata,ANIMALIA,CHORDATA,LOPHIIFORMES,ACTINOPTERYGII,LINOPHRYNIDAE,Linophryne,pennibarbata,,,,"Bertelsen, 1980",Least Concern,,3.1,Unknown,Global
+21911475,21112632,Radiicephalus elongatus,ANIMALIA,CHORDATA,LAMPRIFORMES,ACTINOPTERYGII,RADIICEPHALIDAE,Radiicephalus,elongatus,,,,"Osório, 1917",Least Concern,,3.1,Unknown,Global
+21936349,12302,Lontra canadensis,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,MUSTELIDAE,Lontra,canadensis,,,,"(Schreber, 1777)",Least Concern,,3.1,Stable,Global
+21976681,17598,Corynorhinus townsendii,ANIMALIA,CHORDATA,CHIROPTERA,MAMMALIA,VESPERTILIONIDAE,Corynorhinus,townsendii,,,,"Cooper, 1837",Least Concern,,3.1,Stable,Global
+22055579,14171,Myotis keenii,ANIMALIA,CHORDATA,CHIROPTERA,MAMMALIA,VESPERTILIONIDAE,Myotis,keenii,,,,"(Merriam, 1895)",Least Concern,,3.1,Stable,Global
+22056344,14176,Myotis lucifugus,ANIMALIA,CHORDATA,CHIROPTERA,MAMMALIA,VESPERTILIONIDAE,Myotis,lucifugus,,,,"(Le Conte, 1831)",Endangered,A3be,3.1,Decreasing,Global
+22059133,14157,Myotis evotis,ANIMALIA,CHORDATA,CHIROPTERA,MAMMALIA,VESPERTILIONIDAE,Myotis,evotis,,,,"(H. Allen, 1864)",Least Concern,,3.1,Stable,Global
+22061366,14150,Myotis californicus,ANIMALIA,CHORDATA,CHIROPTERA,MAMMALIA,VESPERTILIONIDAE,Myotis,californicus,,,,"(Audubon &amp; Bachman, 1842)",Least Concern,,3.1,Unknown,Global
+22068335,14213,Myotis yumanensis,ANIMALIA,CHORDATA,CHIROPTERA,MAMMALIA,VESPERTILIONIDAE,Myotis,yumanensis,,,,"(H. Allen, 1864)",Least Concern,,3.1,Stable,Global
+22069325,14210,Myotis volans,ANIMALIA,CHORDATA,CHIROPTERA,MAMMALIA,VESPERTILIONIDAE,Myotis,volans,,,,"(H. Allen, 1866)",Least Concern,,3.1,Stable,Global
+22118197,7928,Eptesicus fuscus,ANIMALIA,CHORDATA,CHIROPTERA,MAMMALIA,VESPERTILIONIDAE,Eptesicus,fuscus,,,,"(Beauvois, 1796)",Least Concern,,3.1,Increasing,Global
+22120040,88151055,Lasiurus blossevillii,ANIMALIA,CHORDATA,CHIROPTERA,MAMMALIA,VESPERTILIONIDAE,Lasiurus,blossevillii,,,,"(Lesson &amp; Garnot, 1826)",Least Concern,,3.1,Unknown,Global
+22120305,11345,Lasiurus cinereus,ANIMALIA,CHORDATA,CHIROPTERA,MAMMALIA,VESPERTILIONIDAE,Lasiurus,cinereus,,,,"(Palisot de Beauvois, 1796)",Least Concern,,3.1,Unknown,Global
+22122128,11339,Lasionycteris noctivagans,ANIMALIA,CHORDATA,CHIROPTERA,MAMMALIA,VESPERTILIONIDAE,Lasionycteris,noctivagans,,,,"(La Conte, 1831)",Least Concern,,3.1,Stable,Global
+22162113,42393,Odocoileus hemionus,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,CERVIDAE,Odocoileus,hemionus,,,,"(Rafinesque, 1817)",Least Concern,,3.1,Stable,Global
+22176259,40502,Didelphis virginiana,ANIMALIA,CHORDATA,DIDELPHIMORPHIA,MAMMALIA,DIDELPHIDAE,Didelphis,virginiana,,,,"Kerr, 1792",Least Concern,,3.1,Increasing,Global
+22187946,4003,Castor canadensis,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,CASTORIDAE,Castor,canadensis,,,,"Kuhl, 1820",Least Concern,,3.1,Stable,Global
+22213161,8004,Erethizon dorsatum,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,ERETHIZONTIDAE,Erethizon,dorsatum,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+22256914,39553,Glaucomys sabrinus,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,SCIURIDAE,Glaucomys,sabrinus,,,,"(Shaw, 1801)",Least Concern,,3.1,Stable,Global
+22317740,136282,Sorex rohweri,ANIMALIA,CHORDATA,EULIPOTYPHLA,MAMMALIA,SORICIDAE,Sorex,rohweri,,,,"Rausch, Feagin &amp; Rausch, 2007",Least Concern,,3.1,Unknown,Global
+22322352,41475,Scapanus townsendii,ANIMALIA,CHORDATA,EULIPOTYPHLA,MAMMALIA,TALPIDAE,Scapanus,townsendii,,,,"(Bachman, 1839)",Least Concern,,3.1,Stable,Global
+22344525,15324,Ondatra zibethicus,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,CRICETIDAE,Ondatra,zibethicus,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Stable,Global
+22360898,16672,Peromyscus maniculatus,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,CRICETIDAE,Peromyscus,maniculatus,,,,"(Wagner, 1845)",Least Concern,,3.1,Stable,Global
+22377185,42638,Synaptomys borealis,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,CRICETIDAE,Synaptomys,borealis,,,,"(Richardson, 1828)",Least Concern,,3.1,Unknown,Global
+42331855,164301,Alisma gramineum,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,ALISMATACEAE,Alisma,gramineum,,,,Lej.,Data Deficient,,3.1,Stable,Global
+42428801,155495,Dreissena polymorpha,ANIMALIA,MOLLUSCA,VENERIDA,BIVALVIA,DREISSENIDAE,Dreissena,polymorpha,,,,"Pallas, 1771",Least Concern,,3.1,Increasing,Global
+42429613,155568,Radix auricularia,ANIMALIA,MOLLUSCA,HYGROPHILA,GASTROPODA,LYMNAEIDAE,Radix,auricularia,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+42430200,155571,Pisidium casertanum,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Pisidium,casertanum,,,,"(Poli, 1791)",Least Concern,,3.1,Stable,Global
+42691694,198757,Cyclothone braueri,ANIMALIA,CHORDATA,STOMIIFORMES,ACTINOPTERYGII,GONOSTOMATIDAE,Cyclothone,braueri,,,,"Jespersen &amp; Tåning, 1926",Least Concern,,3.1,Stable,Global
+42691714,18252619,Cyclothone pallida,ANIMALIA,CHORDATA,STOMIIFORMES,ACTINOPTERYGII,GONOSTOMATIDAE,Cyclothone,pallida,,,,"Brauer, 1902",Least Concern,,3.1,Stable,Global
+42691934,198716,Tetragonurus cuvieri,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,TETRAGONURIDAE,Tetragonurus,cuvieri,,,,"Risso, 1810",Least Concern,,3.1,Stable,Global
+42837247,42830251,Chaenophryne ramifera,ANIMALIA,CHORDATA,LOPHIIFORMES,ACTINOPTERYGII,ONEIRODIDAE,Chaenophryne,ramifera,,,,"Regan &amp; Trewavas, 1932",Least Concern,,3.1,Unknown,Global
+42837257,42830260,Dolopichthys allector,ANIMALIA,CHORDATA,LOPHIIFORMES,ACTINOPTERYGII,ONEIRODIDAE,Dolopichthys,allector,,,,"Garman, 1899",Least Concern,,3.1,Unknown,Global
+42837292,42830277,Microlophichthys microlophus,ANIMALIA,CHORDATA,LOPHIIFORMES,ACTINOPTERYGII,ONEIRODIDAE,Microlophichthys,microlophus,,,,"(Regan, 1925)",Least Concern,,3.1,Unknown,Global
+43123412,164446,Najas minor,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,HYDROCHARITACEAE,Najas,minor,,,,All.,Least Concern,,3.1,Unknown,Global
+43526147,6494,Dermochelys coriacea,ANIMALIA,CHORDATA,TESTUDINES,REPTILIA,DERMOCHELYIDAE,Dermochelys,coriacea,,,,"(Vandelli, 1761)",Vulnerable,A2bd,3.1,Decreasing,Global
+45184315,41267,Ochotona princeps,ANIMALIA,CHORDATA,LAGOMORPHA,MAMMALIA,OCHOTONIDAE,Ochotona,princeps,,,,"(Richardson, 1828)",Least Concern,,3.1,Decreasing,Global
+45185466,41273,Lepus americanus,ANIMALIA,CHORDATA,LAGOMORPHA,MAMMALIA,LEPORIDAE,Lepus,americanus,,,,"Erxleben, 1777",Least Concern,,3.1,Stable,Global
+45191626,41299,Sylvilagus floridanus,ANIMALIA,CHORDATA,LAGOMORPHA,MAMMALIA,LEPORIDAE,Sylvilagus,floridanus,,,,"(J.A. Allen, 1890)",Least Concern,,3.1,Unknown,Global
+45198537,9561,Gulo gulo,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,MUSTELIDAE,Gulo,gulo,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+45203335,29674,Mustela erminea,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,MUSTELIDAE,Mustela,erminea,,,,"Linnaeus, 1758",Least Concern,,3.1,Stable,Global
+45211301,41635,Mephitis mephitis,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,MEPHITIDAE,Mephitis,mephitis,,,,"(Schreber, 1776)",Least Concern,,3.1,Stable,Global
+45212861,41648,Martes americana,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,MUSTELIDAE,Martes,americana,,,,"(Turton, 1806)",Least Concern,,3.1,Decreasing,Global
+45213820,41654,Mustela frenata,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,MUSTELIDAE,Mustela,frenata,,,,"Lichtenstein, 1831",Least Concern,,3.1,Stable,Global
+45214988,41661,Neovison vison,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,MUSTELIDAE,Neovison,vison,,,,"(Schreber, 1777)",Least Concern,,3.1,Stable,Global
+45216638,41686,Procyon lotor,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,PROCYONIDAE,Procyon,lotor,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+45221721,136797,Spilogale gracilis,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,MEPHITIDAE,Spilogale,gracilis,,,,"Merriam, 1890",Least Concern,,3.1,Decreasing,Global
+45224953,3590,Callorhinus ursinus,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,OTARIIDAE,Callorhinus,ursinus,,,,"(Linnaeus, 1758)",Vulnerable,A2b,3.1,Decreasing,Global
+45225749,8239,Eumetopias jubatus,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,OTARIIDAE,Eumetopias,jubatus,,,,"(Schreber, 1776)",Near Threatened,,3.1,Increasing,Global
+45227116,13581,Mirounga angustirostris,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,PHOCIDAE,Mirounga,angustirostris,,,,"(Gill, 1866)",Least Concern,,3.1,Increasing,Global
+45229114,17013,Phoca vitulina,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,PHOCIDAE,Phoca,vitulina,,,,"Linnaeus, 1758",Least Concern,,3.1,Unknown,Global
+45230310,41666,Zalophus californianus,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,OTARIIDAE,Zalophus,californianus,,,,"(Lesson, 1828)",Least Concern,,3.1,Increasing,Global
+46190249,23062,Vulpes vulpes,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,CANIDAE,Vulpes,vulpes,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+46440201,44937492,Bombus occidentalis,ANIMALIA,ARTHROPODA,HYMENOPTERA,INSECTA,APIDAE,Bombus,occidentalis,,,,"Greene, 1858",Vulnerable,A2be,3.1,Decreasing,Global
+46440331,44938356,Bombus appositus,ANIMALIA,ARTHROPODA,HYMENOPTERA,INSECTA,APIDAE,Bombus,appositus,,,,"Cresson, 1878",Least Concern,,3.1,Unknown,Global
+46956781,192942,Morone saxatilis,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,MORONIDAE,Morone,saxatilis,,,,"(Walbaum, 1792)",Least Concern,,3.1,Unknown,Global
+50349982,2478,Balaenoptera physalus,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,BALAENOPTERIDAE,Balaenoptera,physalus,,,,"(Linnaeus, 1758)",Vulnerable,A1d,3.1,Increasing,Global
+50353881,8097,Eschrichtius robustus,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,ESCHRICHTIIDAE,Eschrichtius,robustus,,,,"(Lilljeborg, 1861)",Least Concern,,3.1,Stable,Global
+50355227,9249,Globicephala macrorhynchus,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,DELPHINIDAE,Globicephala,macrorhynchus,,,,"Gray, 1846",Least Concern,,3.1,Unknown,Global
+50356660,9461,Grampus griseus,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,DELPHINIDAE,Grampus,griseus,,,,"(G. Cuvier, 1812)",Least Concern,,3.1,Unknown,Global
+50361866,11145,Lagenorhynchus obliquidens,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,DELPHINIDAE,Lagenorhynchus,obliquidens,,,,"Gill, 1865",Least Concern,,3.1,Unknown,Global
+50362794,13006,Megaptera novaeangliae,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,BALAENOPTERIDAE,Megaptera,novaeangliae,,,,"(Borowski, 1781)",Least Concern,,3.1,Increasing,Global
+50368125,15421,Orcinus orca,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,DELPHINIDAE,Orcinus,orca,,,,"(Linnaeus, 1758)",Data Deficient,,3.1,Unknown,Global
+50370912,17032,Phocoenoides dalli,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,PHOCOENIDAE,Phocoenoides,dalli,,,,"(True, 1885)",Least Concern,,3.1,Unknown,Global
+50374282,20731,Stenella coeruleoalba,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,DELPHINIDAE,Stenella,coeruleoalba,,,,"(Meyen, 1833)",Least Concern,,3.1,Unknown,Global
+50632509,50631663,Prunus pensylvanica,PLANTAE,TRACHEOPHYTA,ROSALES,MAGNOLIOPSIDA,ROSACEAE,Prunus,pensylvanica,,,,L.f.,Least Concern,,3.1,Stable,Global
+50655874,12521,Lynx rufus,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,FELIDAE,Lynx,rufus,,,,"(Schreber, 1777)",Least Concern,,3.1,Stable,Global
+50673950,50136459,Prunus emarginata,PLANTAE,TRACHEOPHYTA,ROSALES,MAGNOLIOPSIDA,ROSACEAE,Prunus,emarginata,,,,(Douglas) Eaton,Least Concern,,3.1,Stable,Global
+53947725,3179,Anaxyrus boreas,ANIMALIA,CHORDATA,ANURA,AMPHIBIA,BUFONIDAE,Anaxyrus,boreas,,,,"(Baird &amp; Girard, 1852)",Least Concern,,3.1,Decreasing,Global
+53969770,58565,Lithobates catesbeianus,ANIMALIA,CHORDATA,ANURA,AMPHIBIA,RANIDAE,Lithobates,catesbeianus,,,,"(Shaw, 1802)",Least Concern,,3.1,Increasing,Global
+56458627,59057,Ambystoma gracile,ANIMALIA,CHORDATA,CAUDATA,AMPHIBIA,AMBYSTOMATIDAE,Ambystoma,gracile,,,,"(Baird, 1857)",Least Concern,,3.1,Stable,Global
+56539990,59063,Ambystoma macrodactylum,ANIMALIA,CHORDATA,CAUDATA,AMPHIBIA,AMBYSTOMATIDAE,Ambystoma,macrodactylum,,,,"(Baird, 1850)",Least Concern,,3.1,Stable,Global
+58295405,8951,Gasterosteus aculeatus,ANIMALIA,CHORDATA,GASTEROSTEIFORMES,ACTINOPTERYGII,GASTEROSTEIDAE,Gasterosteus,aculeatus,,,,"Linnaeus, 1758",Least Concern,,3.1,Unknown,Global
+58521192,58521185,Boletopsis grisea,FUNGI,BASIDIOMYCOTA,THELEPHORALES,AGARICOMYCETES,BANKERACEAE,Boletopsis,grisea,,,,(Peck) Bondartsev &amp; Singer,Near Threatened,A2c+3c+4c,3.1,Decreasing,Global
+58620524,189047,Pisidium variabile,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Pisidium,variabile,,,,"Prime, 1852",Least Concern,,3.1,Unknown,Global
+58622724,189214,Pisidium ventricosum,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Pisidium,ventricosum,,,,"Prime, 1851",Least Concern,,3.1,Unknown,Global
+58624937,189364,Pisidium insigne,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Pisidium,insigne,,,,"Gabb, 1868",Least Concern,,3.1,Unknown,Global
+58625885,189450,Pisidium ferrugineum,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Pisidium,ferrugineum,,,,"Prime, 1851",Least Concern,,3.1,Unknown,Global
+58626751,189490,Pisidium idahoense,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Pisidium,idahoense,,,,"Roper, 1890",Least Concern,,3.1,Unknown,Global
+60413587,18123632,Anotopterus pharao,ANIMALIA,CHORDATA,AULOPIFORMES,ACTINOPTERYGII,ANOTOPTERIDAE,Anotopterus,pharao,,,,"Zugmayer, 1911",Least Concern,,3.1,Unknown,Global
+60790215,18252612,Cyclothone acclinidens,ANIMALIA,CHORDATA,STOMIIFORMES,ACTINOPTERYGII,GONOSTOMATIDAE,Cyclothone,acclinidens,,,,"Garman, 1899",Least Concern,,3.1,Stable,Global
+60791529,18125776,Coryphaenoides armatus,ANIMALIA,CHORDATA,GADIFORMES,ACTINOPTERYGII,MACROURIDAE,Coryphaenoides,armatus,,,,"(Hector, 1875)",Least Concern,,3.1,Unknown,Global
+60792368,60477122,Melamphaes longivelis,ANIMALIA,CHORDATA,STEPHANOBERYCIFORMES,ACTINOPTERYGII,MELAMPHAIDAE,Melamphaes,longivelis,,,,"Parr, 1933",Data Deficient,,3.1,Unknown,Global
+60794470,190214,Nemichthys scolopaceus,ANIMALIA,CHORDATA,ANGUILLIFORMES,ACTINOPTERYGII,NEMICHTHYIDAE,Nemichthys,scolopaceus,,,,"Richardson, 1848",Least Concern,,3.1,Unknown,Global
+64412670,58578,Lithobates clamitans,ANIMALIA,CHORDATA,ANURA,AMPHIBIA,RANIDAE,Lithobates,clamitans,,,,"(Latreille, 1801)",Least Concern,,3.1,Stable,Global
+65818523,59971,Pantala flavescens,ANIMALIA,ARTHROPODA,ODONATA,INSECTA,LIBELLULIDAE,Pantala,flavescens,,,,"(Fabricius, 1798)",Least Concern,,3.1,Stable,Global
+65905991,167871,Hydrilla verticillata,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,HYDROCHARITACEAE,Hydrilla,verticillata,,,,(L.f.) Royle,Least Concern,,3.1,Increasing,Global
+65914179,164223,Juncus effusus,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,JUNCACEAE,Juncus,effusus,,,,L.,Least Concern,,3.1,Stable,Global
+66639515,66639255,Musculium partumeium,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Musculium,partumeium,,,,"(Say, 1822)",Least Concern,,3.1,Stable,Global
+66639520,66639265,Musculium securis,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Musculium,securis,,,,"(Prime, 1852)",Least Concern,,3.1,Stable,Global
+66639530,66639293,Pisidium compressum,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Pisidium,compressum,,,,"Prime, 1852",Least Concern,,3.1,Stable,Global
+66639545,66639342,Pisidium fallax,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Pisidium,fallax,,,,"Sterki, 1896",Least Concern,,3.1,Stable,Global
+66639550,66639363,Pisidium rotundatum,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Pisidium,rotundatum,,,,"Prime, 1852",Least Concern,,3.1,Stable,Global
+66639570,66639415,Sphaerium rhomboideum,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Sphaerium,rhomboideum,,,,"(Say, 1822)",Least Concern,,3.1,Stable,Global
+66639575,66639423,Sphaerium simile,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Sphaerium,simile,,,,"(Say, 1817)",Least Concern,,3.1,Stable,Global
+66639580,66639426,Sphaerium striatinum,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Sphaerium,striatinum,,,,"(Lamarck, 1818)",Least Concern,,3.1,Stable,Global
+67621840,65374916,Syngnathus leptorhynchus,ANIMALIA,CHORDATA,SYNGNATHIFORMES,ACTINOPTERYGII,SYNGNATHIDAE,Syngnathus,leptorhynchus,,,,"Girard, 1854",Least Concern,,3.1,Unknown,Global
+67728488,64263415,Alisma triviale,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,ALISMATACEAE,Alisma,triviale,,,,Pursh,Least Concern,,3.1,Unknown,Global
+67728493,64263485,Allium geyeri,PLANTAE,TRACHEOPHYTA,ASPARAGALES,LILIOPSIDA,AMARYLLIDACEAE,Allium,geyeri,,,,S. Wats.,Least Concern,,3.1,Unknown,Global
+67728623,64269065,Caltha leptosepala,PLANTAE,TRACHEOPHYTA,RANUNCULALES,MAGNOLIOPSIDA,RANUNCULACEAE,Caltha,leptosepala,,,,DC.,Least Concern,,3.1,Unknown,Global
+67729421,64311354,Epipactis gigantea,PLANTAE,TRACHEOPHYTA,ASPARAGALES,LILIOPSIDA,ORCHIDACEAE,Epipactis,gigantea,,,,Dougl. ex Hook.,Least Concern,,3.1,Unknown,Global
+67729621,64314090,Glyceria leptostachya,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,POACEAE,Glyceria,leptostachya,,,,Buckl.,Least Concern,,3.1,Unknown,Global
+67729686,64314241,Heteranthera dubia,PLANTAE,TRACHEOPHYTA,COMMELINALES,LILIOPSIDA,PONTEDERIACEAE,Heteranthera,dubia,,,,(Jacq.) MacM.,Least Concern,,3.1,Unknown,Global
+67729791,64315210,Isoetes nuttallii,PLANTAE,TRACHEOPHYTA,ISOETALES,LYCOPODIOPSIDA,ISOETACEAE,Isoetes,nuttallii,,,,A. Braun ex Engelm.,Least Concern,,3.1,Unknown,Global
+67729811,64315327,Jaumea carnosa,PLANTAE,TRACHEOPHYTA,ASTERALES,MAGNOLIOPSIDA,ASTERACEAE,Jaumea,carnosa,,,,(Less.) Gray,Least Concern,,3.1,Unknown,Global
+67729816,64315465,Juncus acuminatus,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,JUNCACEAE,Juncus,acuminatus,,,,Michx.,Least Concern,,3.1,Unknown,Global
+67729837,64315562,Juncus bolanderi,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,JUNCACEAE,Juncus,bolanderi,,,,Engelm.,Least Concern,,3.1,Unknown,Global
+67729872,64315615,Juncus mertensianus,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,JUNCACEAE,Juncus,mertensianus,,,,Bong.,Least Concern,,3.1,Unknown,Global
+67729907,64315805,Juncus supiniformis,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,JUNCACEAE,Juncus,supiniformis,,,,Engelm.,Least Concern,,3.1,Unknown,Global
+67729957,64316981,Lilaeopsis occidentalis,PLANTAE,TRACHEOPHYTA,APIALES,MAGNOLIOPSIDA,APIACEAE,Lilaeopsis,occidentalis,,,,Coult. &amp; Rose,Least Concern,,3.1,Unknown,Global
+67730052,64317583,Lysichiton americanus,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,ARACEAE,Lysichiton,americanus,,,,Hulten &amp; St. John,Least Concern,,3.1,Unknown,Global
+67730097,64318014,Mimulus alsinoides,PLANTAE,TRACHEOPHYTA,SCROPHULARIALES,MAGNOLIOPSIDA,SCROPHULARIACEAE,Mimulus,alsinoides,,,,Dougl. ex Benth.,Least Concern,,3.1,Unknown,Global
+67730102,64318064,Mimulus dentatus,PLANTAE,TRACHEOPHYTA,SCROPHULARIALES,MAGNOLIOPSIDA,SCROPHULARIACEAE,Mimulus,dentatus,,,,Nutt. ex Benth.,Least Concern,,3.1,Unknown,Global
+67730142,64318243,Montia chamissoi,PLANTAE,TRACHEOPHYTA,CARYOPHYLLALES,MAGNOLIOPSIDA,PORTULACACEAE,Montia,chamissoi,,,,(Ledeb. ex Spreng.) Greene,Least Concern,,3.1,Unknown,Global
+67730147,64318249,Montia parvifolia,PLANTAE,TRACHEOPHYTA,CARYOPHYLLALES,MAGNOLIOPSIDA,PORTULACACEAE,Montia,parvifolia,,,,(Moc. ex DC.) Greene,Least Concern,,3.1,Unknown,Global
+67730182,64318349,Myriophyllum hippuroides,PLANTAE,TRACHEOPHYTA,SAXIFRAGALES,MAGNOLIOPSIDA,HALORAGACEAE,Myriophyllum,hippuroides,,,,Nutt. ex Torr. &amp; Gray,Least Concern,,3.1,Unknown,Global
+67730367,64320464,Pilea fontana,PLANTAE,TRACHEOPHYTA,ROSALES,MAGNOLIOPSIDA,URTICACEAE,Pilea,fontana,,,,(Lunell) Rydb.,Least Concern,,3.1,Unknown,Global
+67730372,64320490,Pinguicula macroceras,PLANTAE,TRACHEOPHYTA,SCROPHULARIALES,MAGNOLIOPSIDA,LENTIBULARIACEAE,Pinguicula,macroceras,,,,Link,Least Concern,,3.1,Unknown,Global
+67730417,64320687,Platanthera chorisiana,PLANTAE,TRACHEOPHYTA,ASPARAGALES,LILIOPSIDA,ORCHIDACEAE,Platanthera,chorisiana,,,,(Cham.) Reichenb.,Least Concern,,3.1,Unknown,Global
+67730427,64320706,Platanthera huronensis,PLANTAE,TRACHEOPHYTA,ASPARAGALES,LILIOPSIDA,ORCHIDACEAE,Platanthera,huronensis,,,,Lindl.,Least Concern,,3.1,Unknown,Global
+67730432,64320986,Pleuropogon refractus,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,POACEAE,Pleuropogon,refractus,,,,(Gray) Benth. ex Vasey,Least Concern,,3.1,Unknown,Global
+67730482,64321496,Potamogeton amplifolius,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,POTAMOGETONACEAE,Potamogeton,amplifolius,,,,Tuckerman,Least Concern,,3.1,Unknown,Global
+67730522,64321569,Potamogeton richardsonii,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,POTAMOGETONACEAE,Potamogeton,richardsonii,,,,(Benn.) Rydb.,Least Concern,,3.1,Unknown,Global
+67730527,64321575,Potamogeton robbinsii,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,POTAMOGETONACEAE,Potamogeton,robbinsii,,,,Oakes,Least Concern,,3.1,Unknown,Global
+67730632,64322166,Ranunculus gmelinii,PLANTAE,TRACHEOPHYTA,RANUNCULALES,MAGNOLIOPSIDA,RANUNCULACEAE,Ranunculus,gmelinii,,,,DC.,Least Concern,,3.1,Unknown,Global
+67730647,64322185,Ranunculus lobbii,PLANTAE,TRACHEOPHYTA,RANUNCULALES,MAGNOLIOPSIDA,RANUNCULACEAE,Ranunculus,lobbii,,,,(Hiern) Gray,Least Concern,,3.1,Unknown,Global
+67730652,64322200,Ranunculus macounii,PLANTAE,TRACHEOPHYTA,RANUNCULALES,MAGNOLIOPSIDA,RANUNCULACEAE,Ranunculus,macounii,,,,Britt.,Least Concern,,3.1,Unknown,Global
+67730767,64324216,Sagittaria latifolia,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,ALISMATACEAE,Sagittaria,latifolia,,,,Willd.,Least Concern,,3.1,Unknown,Global
+67730877,64324394,Saururus cernuus,PLANTAE,TRACHEOPHYTA,PIPERALES,MAGNOLIOPSIDA,SAURURACEAE,Saururus,cernuus,,,,L.,Least Concern,,3.1,Unknown,Global
+67731157,64326174,Trollius laxus,PLANTAE,TRACHEOPHYTA,RANUNCULALES,MAGNOLIOPSIDA,RANUNCULACEAE,Trollius,laxus,,,,Salisb.,Least Concern,,3.1,Unknown,Global
+67731252,64326301,Wolffia borealis,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,ARACEAE,Wolffia,borealis,,,,(Engelm. ex Hegelm.) Landolt ex Landolt &amp; Wildi,Least Concern,,3.1,Unknown,Global
+68308267,62240,Thamnophis sirtalis,ANIMALIA,CHORDATA,SQUAMATA,REPTILIA,NATRICIDAE,Thamnophis,sirtalis,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+68608464,63119,Amblyraja hyperborea,ANIMALIA,CHORDATA,RAJIFORMES,CHONDRICHTHYES,RAJIDAE,Amblyraja,hyperborea,,,,(Collett 1879),Least Concern,,3.1,Unknown,Global
+68983638,44937809,Bombus melanopygus,ANIMALIA,ARTHROPODA,HYMENOPTERA,INSECTA,APIDAE,Bombus,melanopygus,,,,"Nylander, 1848",Least Concern,,3.1,Stable,Global
+68999754,44937707,Bombus bifarius,ANIMALIA,ARTHROPODA,HYMENOPTERA,INSECTA,APIDAE,Bombus,bifarius,,,,"Cresson, 1878",Least Concern,,3.1,Stable,Global
+69001290,44937777,Bombus centralis,ANIMALIA,ARTHROPODA,HYMENOPTERA,INSECTA,APIDAE,Bombus,centralis,,,,"Cresson, 1864",Least Concern,,3.1,Stable,Global
+69002715,44937790,Bombus frigidus,ANIMALIA,ARTHROPODA,HYMENOPTERA,INSECTA,APIDAE,Bombus,frigidus,,,,"Smith, 1854",Least Concern,,3.1,Stable,Global
+69003246,44937797,Bombus impatiens,ANIMALIA,ARTHROPODA,HYMENOPTERA,INSECTA,APIDAE,Bombus,impatiens,,,,"Cresson, 1863",Least Concern,,3.1,Stable,Global
+69004061,44937898,Bombus mixtus,ANIMALIA,ARTHROPODA,HYMENOPTERA,INSECTA,APIDAE,Bombus,mixtus,,,,"Cresson, 1878",Least Concern,,3.1,Stable,Global
+69491782,155937,Musculium transversum,ANIMALIA,MOLLUSCA,VENEROIDA,BIVALVIA,SPHAERIIDAE,Musculium,transversum,,,,"(Say, 1829)",Least Concern,,3.1,Unknown,Global
+69633098,69624258,Physella lordi,ANIMALIA,MOLLUSCA,HYGROPHILA,GASTROPODA,PHYSIDAE,Physella,lordi,,,,"(Baird, 1863)",Least Concern,,3.1,Unknown,Global
+69633138,69626187,Ferrissia rivularis,ANIMALIA,MOLLUSCA,HYGROPHILA,GASTROPODA,PLANORBIDAE,Ferrissia,rivularis,,,,"(Say, 1817)",Least Concern,,3.1,Stable,Global
+69633163,69626368,Helisoma anceps,ANIMALIA,MOLLUSCA,HYGROPHILA,GASTROPODA,PLANORBIDAE,Helisoma,anceps,,,,"(Menke, 1830)",Least Concern,,3.1,Stable,Global
+69633193,69626464,Planorbella subcrenata,ANIMALIA,MOLLUSCA,HYGROPHILA,GASTROPODA,PLANORBIDAE,Planorbella,subcrenata,,,,"(Carpenter, 1857)",Least Concern,,3.1,Stable,Global
+70401637,70401627,Hericium erinaceus,FUNGI,BASIDIOMYCOTA,RUSSULALES,AGARICOMYCETES,HERICIACEAE,Hericium,erinaceus,,,,(Bull.) Pers.,Least Concern,,3.1,Decreasing,Global
+75104095,75104087,Fomitopsis officinalis,FUNGI,BASIDIOMYCOTA,POLYPORALES,AGARICOMYCETES,FOMITOPSIDACEAE,Fomitopsis,officinalis,,,,(Vill.) Bondartsev &amp; Singer,Endangered,A2ad,3.1,Decreasing,Global
+75121859,75121617,Rhizopogon alexsmithii,FUNGI,BASIDIOMYCOTA,BOLETALES,AGARICOMYCETES,RHIZOPOGONACEAE,Rhizopogon,alexsmithii,,,,(Trappe) Vizzini &amp; Zotti,Endangered,"B2ab(ii,iv,v); C1+2a(i)",3.1,Decreasing,Global
+76196249,76196246,Cortinarius cupreorufus,FUNGI,BASIDIOMYCOTA,AGARICALES,AGARICOMYCETES,CORTINARIACEAE,Cortinarius,cupreorufus,,,,Brandrud,Near Threatened,,3.1,Decreasing,Global
+78457052,176004,Hammarbya paludosa,PLANTAE,TRACHEOPHYTA,ASPARAGALES,LILIOPSIDA,ORCHIDACEAE,Hammarbya,paludosa,,,,(L.) Kuntze,Least Concern,,3.1,Decreasing,Global
+78457112,175931,Neottia cordata,PLANTAE,TRACHEOPHYTA,ASPARAGALES,LILIOPSIDA,ORCHIDACEAE,Neottia,cordata,,,,(L.) Rich.,Least Concern,,3.1,Unknown,Global
+78457122,175967,Platanthera hyperborea,PLANTAE,TRACHEOPHYTA,ASPARAGALES,LILIOPSIDA,ORCHIDACEAE,Platanthera,hyperborea,,,,(L.) Lindl.,Least Concern,,3.1,Unknown,Global
+78457192,175925,Spiranthes romanzoffiana,PLANTAE,TRACHEOPHYTA,ASPARAGALES,LILIOPSIDA,ORCHIDACEAE,Spiranthes,romanzoffiana,,,,Cham.,Least Concern,,3.1,Unknown,Global
+78905810,54414,Ascaphus truei,ANIMALIA,CHORDATA,ANURA,AMPHIBIA,ASCAPHIDAE,Ascaphus,truei,,,,"Stejneger, 1899",Least Concern,,3.1,Unknown,Global
+78905923,59358,Plethodon vehiculum,ANIMALIA,CHORDATA,CAUDATA,AMPHIBIA,PLETHODONTIDAE,Plethodon,vehiculum,,,,"(Cooper, 1860)",Least Concern,,3.1,Stable,Global
+78906924,58553,Rana aurora,ANIMALIA,CHORDATA,ANURA,AMPHIBIA,RANIDAE,Rana,aurora,,,,"Baird &amp; Girard, 1852",Least Concern,,3.1,Decreasing,Global
+78909317,59469,Taricha granulosa,ANIMALIA,CHORDATA,CAUDATA,AMPHIBIA,SALAMANDRIDAE,Taricha,granulosa,,,,"(Skilton, 1849)",Least Concern,,3.1,Stable,Global
+78909622,59119,Aneides vagrans,ANIMALIA,CHORDATA,CAUDATA,AMPHIBIA,PLETHODONTIDAE,Aneides,vagrans,,,,"Wake &amp; Jackman, 1998",Near Threatened,,3.1,Decreasing,Global
+79515482,79515478,Tricholoma apium,FUNGI,BASIDIOMYCOTA,AGARICALES,AGARICOMYCETES,TRICHOLOMATACEAE,Tricholoma,apium,,,,Jul. Schäff.,Vulnerable,A2d+3d+4d,3.1,Decreasing,Global
+80671059,39328,Squatina californica,ANIMALIA,CHORDATA,SQUATINIFORMES,CHONDRICHTHYES,SQUATINIDAE,Squatina,californica,,,,"Ayres, 1859",Near Threatened,,3.1,Decreasing,Global
+80672988,39396,Tetronarce californica,ANIMALIA,CHORDATA,RAJIFORMES,CHONDRICHTHYES,TORPEDINIDAE,Tetronarce,californica,,,,"(Ayres, 1855)",Least Concern,,3.1,Unknown,Global
+80676077,161375,Bathyraja trachura,ANIMALIA,CHORDATA,RAJIFORMES,CHONDRICHTHYES,ARHYNCHOBATIDAE,Bathyraja,trachura,,,,"(Gilbert, 1892)",Least Concern,,3.1,Stable,Global
+80676476,161452,Amblyraja badia,ANIMALIA,CHORDATA,RAJIFORMES,CHONDRICHTHYES,RAJIDAE,Amblyraja,badia,,,,"(Garman, 1899)",Least Concern,,3.1,Unknown,Global
+80678052,60191,Hydrolagus colliei,ANIMALIA,CHORDATA,CHIMAERIFORMES,CHONDRICHTHYES,CHIMAERIDAE,Hydrolagus,colliei,,,,"(Lay &amp; Bennett, 1839)",Least Concern,,3.1,Increasing,Global
+80679344,44183,Beringraja binoculata,ANIMALIA,CHORDATA,RAJIFORMES,CHONDRICHTHYES,RAJIDAE,Beringraja,binoculata,,,,"(Girard, 1855)",Least Concern,,3.1,Stable,Global
+80958507,80603050,Allium validum,PLANTAE,TRACHEOPHYTA,ASPARAGALES,LILIOPSIDA,AMARYLLIDACEAE,Allium,validum,,,,S.Watson,Least Concern,,3.1,Unknown,Global
+80958517,80603211,Bidens amplissima,PLANTAE,TRACHEOPHYTA,ASTERALES,MAGNOLIOPSIDA,ASTERACEAE,Bidens,amplissima,,,,Greene,Near Threatened,,3.1,Decreasing,Global
+80958532,80603334,Carex unilateralis,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,CYPERACEAE,Carex,unilateralis,,,,Mack.,Least Concern,,3.1,Unknown,Global
+80958547,80603495,Claytonia cordifolia,PLANTAE,TRACHEOPHYTA,CARYOPHYLLALES,MAGNOLIOPSIDA,PORTULACACEAE,Claytonia,cordifolia,,,,S.Watson,Least Concern,,3.1,Unknown,Global
+80958552,80603544,Claytonia sarmentosa,PLANTAE,TRACHEOPHYTA,CARYOPHYLLALES,MAGNOLIOPSIDA,PORTULACACEAE,Claytonia,sarmentosa,,,,C.A.Mey.,Least Concern,,3.1,Unknown,Global
+80958557,80603599,Claytonia tuberosa,PLANTAE,TRACHEOPHYTA,CARYOPHYLLALES,MAGNOLIOPSIDA,PORTULACACEAE,Claytonia,tuberosa,,,,Pall. ex Schult.,Least Concern,,3.1,Unknown,Global
+80958597,80605013,Juncus kelloggii,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,JUNCACEAE,Juncus,kelloggii,,,,Engelm.,Data Deficient,,3.1,Unknown,Global
+80958602,80605049,Juncus lesueurii,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,JUNCACEAE,Juncus,lesueurii,,,,Bol.,Least Concern,,3.1,Unknown,Global
+80958642,80606791,Sidalcea hendersonii,PLANTAE,TRACHEOPHYTA,MALVALES,MAGNOLIOPSIDA,MALVACEAE,Sidalcea,hendersonii,,,,S.Watson,Least Concern,,3.1,Unknown,Global
+80973880,189129,Valvata tricarinata,ANIMALIA,MOLLUSCA,ALLOGASTROPODA,GASTROPODA,VALVATIDAE,Valvata,tricarinata,,,,"(Say, 1817)",Least Concern,,3.1,Stable,Global
+81357901,81357846,Salix raupii,PLANTAE,TRACHEOPHYTA,MALPIGHIALES,MAGNOLIOPSIDA,SALICACEAE,Salix,raupii,,,,Argus,Data Deficient,,3.1,Unknown,Global
+81358429,81358340,Minuartia pusilla,PLANTAE,TRACHEOPHYTA,CARYOPHYLLALES,MAGNOLIOPSIDA,CARYOPHYLLACEAE,Minuartia,pusilla,,,,(S.Watson) Mattf.,Least Concern,,3.1,Unknown,Global
+82664336,191206,Alosa sapidissima,ANIMALIA,CHORDATA,CLUPEIFORMES,ACTINOPTERYGII,CLUPEIDAE,Alosa,sapidissima,,,,"(Wilson, 1811)",Least Concern,,3.1,Unknown,Global
+83999434,164482,Ottelia alismoides,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,HYDROCHARITACEAE,Ottelia,alismoides,,,,(L.) Pers.,Least Concern,,3.1,Unknown,Global
+84287155,164042,Juncus bufonius,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,JUNCACEAE,Juncus,bufonius,,,,L.,Least Concern,,3.1,Stable,Global
+85926819,45100023,Phasianus colchicus,ANIMALIA,CHORDATA,GALLIFORMES,AVES,PHASIANIDAE,Phasianus,colchicus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+85966135,22679946,Branta bernicla,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Branta,bernicla,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Unknown,Global
+85980652,22679881,Anser albifrons,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Anser,albifrons,,,,"(Scopoli, 1769)",Least Concern,,3.1,Unknown,Global
+86020572,22680149,Mareca strepera,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Mareca,strepera,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+86585436,22693178,Numenius phaeopus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Numenius,phaeopus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+86591264,22693468,Calidris pugnax,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Calidris,pugnax,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+86614145,22693369,Calidris alba,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Calidris,alba,,,,"(Pallas, 1764)",Least Concern,,3.1,Unknown,Global
+86682083,22693207,Tringa erythropus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Tringa,erythropus,,,,"(Pallas, 1764)",Least Concern,,3.1,Stable,Global
+87304270,22727137,Picoides tridactylus,ANIMALIA,CHORDATA,PICIFORMES,AVES,PICIDAE,Picoides,tridactylus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+87399543,22708146,Bombycilla garrulus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,BOMBYCILLIDAE,Bombycilla,garrulus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+88203665,22720041,Fringilla montifringilla,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,FRINGILLIDAE,Fringilla,montifringilla,,,,"Linnaeus, 1758",Least Concern,,3.1,Decreasing,Global
+89345729,22721043,Plectrophenax nivalis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,CALCARIIDAE,Plectrophenax,nivalis,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+89644875,22679862,Cygnus columbianus,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Cygnus,columbianus,,,,"(Ord, 1815)",Least Concern,,3.1,Unknown,Global
+90067130,90066866,Contia tenuis,ANIMALIA,CHORDATA,SQUAMATA,REPTILIA,DIPSADIDAE,Contia,tenuis,,,,"(Baird &amp; Girard, 1852)",Least Concern,,3.1,Stable,Global
+92832376,22679859,Cygnus buccinator,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Cygnus,buccinator,,,,"Richardson, 1832",Least Concern,,3.1,Increasing,Global
+92843477,22680104,Aix sponsa,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Aix,sponsa,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+92846924,22680163,Mareca americana,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Mareca,americana,,,,"(Gmelin, 1789)",Least Concern,,3.1,Stable,Global
+92850997,22680229,Spatula discors,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Spatula,discors,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Decreasing,Global
+92851668,22680233,Spatula cyanoptera,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Spatula,cyanoptera,,,,"(Vieillot, 1816)",Least Concern,,3.1,Decreasing,Global
+92858752,22680364,Aythya valisineria,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Aythya,valisineria,,,,"(Wilson, 1814)",Least Concern,,3.1,Decreasing,Global
+92859064,22680367,Aythya americana,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Aythya,americana,,,,"(Eyton, 1838)",Least Concern,,3.1,Increasing,Global
+92859350,22680370,Aythya collaris,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Aythya,collaris,,,,"(Donovan, 1809)",Least Concern,,3.1,Increasing,Global
+92861095,22680402,Aythya affinis,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Aythya,affinis,,,,"(Eyton, 1838)",Least Concern,,3.1,Decreasing,Global
+92863192,22680462,Bucephala albeola,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Bucephala,albeola,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+92863561,22680472,Lophodytes cucullatus,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Lophodytes,cucullatus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+92879169,22680801,Melanerpes lewis,ANIMALIA,CHORDATA,PICIFORMES,AVES,PICIDAE,Melanerpes,lewis,,,,"(Gray, 1849)",Least Concern,,3.1,Decreasing,Global
+92894756,22681155,Dryobates pubescens,ANIMALIA,CHORDATA,PICIFORMES,AVES,PICIDAE,Dryobates,pubescens,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Stable,Global
+92895449,22681166,Leuconotopicus villosus,ANIMALIA,CHORDATA,PICIFORMES,AVES,PICIDAE,Leuconotopicus,villosus,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Increasing,Global
+92903232,22681363,Hylatomus pileatus,ANIMALIA,CHORDATA,PICIFORMES,AVES,PICIDAE,Hylatomus,pileatus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+92992287,22683623,Megaceryle alcyon,ANIMALIA,CHORDATA,CORACIIFORMES,AVES,ALCEDINIDAE,Megaceryle,alcyon,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+93186783,22688199,Calypte anna,ANIMALIA,CHORDATA,CAPRIMULGIFORMES,AVES,TROCHILIDAE,Calypte,anna,,,,"(Lesson, 1829)",Least Concern,,3.1,Increasing,Global
+93207555,22688747,Megascops kennicottii,ANIMALIA,CHORDATA,STRIGIFORMES,AVES,STRIGIDAE,Megascops,kennicottii,,,,"(Elliot, 1867)",Least Concern,,3.1,Decreasing,Global
+93217844,22689094,Strix varia,ANIMALIA,CHORDATA,STRIGIFORMES,AVES,STRIGIDAE,Strix,varia,,,,"Barton, 1799",Least Concern,,3.1,Increasing,Global
+93228127,22689362,Aegolius funereus,ANIMALIA,CHORDATA,STRIGIFORMES,AVES,STRIGIDAE,Aegolius,funereus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+93228694,22689366,Aegolius acadicus,ANIMALIA,CHORDATA,STRIGIFORMES,AVES,STRIGIDAE,Aegolius,acadicus,,,,"(Gmelin, 1788)",Least Concern,,3.1,Decreasing,Global
+93234548,22689531,Asio flammeus,ANIMALIA,CHORDATA,STRIGIFORMES,AVES,STRIGIDAE,Asio,flammeus,,,,"(Pontoppidan, 1763)",Least Concern,,3.1,Decreasing,Global
+93244252,22689714,Chordeiles minor,ANIMALIA,CHORDATA,CAPRIMULGIFORMES,AVES,CAPRIMULGIDAE,Chordeiles,minor,,,,"(Forster, 1771)",Least Concern,,3.1,Decreasing,Global
+93336581,22692078,Antigone canadensis,ANIMALIA,CHORDATA,GRUIFORMES,AVES,GRUIDAE,Antigone,canadensis,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+93364011,22692684,Porzana carolina,ANIMALIA,CHORDATA,GRUIFORMES,AVES,RALLIDAE,Porzana,carolina,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+93390204,22693195,Numenius americanus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Numenius,americanus,,,,"Bechstein, 1812",Least Concern,,3.1,Decreasing,Global
+93392247,22693231,Tringa melanoleuca,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Tringa,melanoleuca,,,,"(Gmelin, 1789)",Least Concern,,3.1,Stable,Global
+93392879,22693235,Tringa flavipes,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Tringa,flavipes,,,,"(Gmelin, 1789)",Least Concern,,3.1,Decreasing,Global
+93394194,22693277,Actitis macularius,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Actitis,macularius,,,,"Linnaeus, 1766",Least Concern,,3.1,Decreasing,Global
+93395464,22693305,Tringa incana,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Tringa,incana,,,,"(Gmelin, 1789)",Least Concern,,3.1,Stable,Global
+93396588,22693341,Arenaria melanocephala,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Arenaria,melanocephala,,,,"(Vigors, 1829)",Least Concern,,3.1,Stable,Global
+93396788,22693344,Limnodromus griseus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Limnodromus,griseus,,,,"(Gmelin, 1789)",Least Concern,,3.1,Decreasing,Global
+93397323,22693348,Limnodromus scolopaceus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Limnodromus,scolopaceus,,,,"(Say, 1823)",Least Concern,,3.1,Unknown,Global
+93398351,22693356,Calidris virgata,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Calidris,virgata,,,,"Gmelin, 1789",Least Concern,,3.1,Decreasing,Global
+93400702,22693373,Calidris pusilla,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Calidris,pusilla,,,,"(Linnaeus, 1766)",Near Threatened,A2bcd,3.1,Decreasing,Global
+93401409,22693376,Calidris mauri,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Calidris,mauri,,,,"(Cabanis, 1857)",Least Concern,,3.1,Decreasing,Global
+93403074,22693396,Calidris minutilla,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Calidris,minutilla,,,,"(Vieillot, 1819)",Least Concern,,3.1,Decreasing,Global
+93420396,22693740,Pluvialis dominica,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,CHARADRIIDAE,Pluvialis,dominica,,,,"(Müller, 1776)",Least Concern,,3.1,Decreasing,Global
+93422319,22693777,Charadrius vociferus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,CHARADRIIDAE,Charadrius,vociferus,,,,"Linnaeus, 1758",Least Concern,,3.1,Decreasing,Global
+93492523,22695144,Haliaeetus leucocephalus,ANIMALIA,CHORDATA,ACCIPITRIFORMES,AVES,ACCIPITRIDAE,Haliaeetus,leucocephalus,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Increasing,Global
+93521264,22695656,Accipiter cooperii,ANIMALIA,CHORDATA,ACCIPITRIFORMES,AVES,ACCIPITRIDAE,Accipiter,cooperii,,,,"(Bonaparte, 1828)",Least Concern,,3.1,Increasing,Global
+93522852,22695683,Accipiter gentilis,ANIMALIA,CHORDATA,ACCIPITRIFORMES,AVES,ACCIPITRIDAE,Accipiter,gentilis,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Unknown,Global
+93533217,22695903,Buteo swainsoni,ANIMALIA,CHORDATA,ACCIPITRIFORMES,AVES,ACCIPITRIDAE,Buteo,swainsoni,,,,"Bonaparte, 1838",Least Concern,,3.1,Stable,Global
+93534834,22695933,Buteo jamaicensis,ANIMALIA,CHORDATA,ACCIPITRIFORMES,AVES,ACCIPITRIDAE,Buteo,jamaicensis,,,,"(Gmelin, 1788)",Least Concern,,3.1,Increasing,Global
+93536293,22695973,Buteo lagopus,ANIMALIA,CHORDATA,ACCIPITRIFORMES,AVES,ACCIPITRIDAE,Buteo,lagopus,,,,"(Pontoppidan, 1763)",Least Concern,,3.1,Stable,Global
+93541662,22696060,Aquila chrysaetos,ANIMALIA,CHORDATA,ACCIPITRIFORMES,AVES,ACCIPITRIDAE,Aquila,chrysaetos,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+93559037,22696395,Falco sparverius,ANIMALIA,CHORDATA,FALCONIFORMES,AVES,FALCONIDAE,Falco,sparverius,,,,"Linnaeus, 1758",Least Concern,,3.1,Stable,Global
+93562971,22696453,Falco columbarius,ANIMALIA,CHORDATA,FALCONIFORMES,AVES,FALCONIDAE,Falco,columbarius,,,,"Linnaeus, 1758",Least Concern,,3.1,Stable,Global
+93568930,22696504,Falco mexicanus,ANIMALIA,CHORDATA,FALCONIFORMES,AVES,FALCONIDAE,Falco,mexicanus,,,,"Schlegel, 1850",Least Concern,,3.1,Increasing,Global
+93571798,22696574,Podilymbus podiceps,ANIMALIA,CHORDATA,PODICIPEDIFORMES,AVES,PODICIPEDIDAE,Podilymbus,podiceps,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+93595536,22696974,Egretta thula,ANIMALIA,CHORDATA,PELECANIFORMES,AVES,ARDEIDAE,Egretta,thula,,,,"(Molina, 1782)",Least Concern,,3.1,Increasing,Global
+93597223,22696998,Ardea herodias,ANIMALIA,CHORDATA,PELECANIFORMES,AVES,ARDEIDAE,Ardea,herodias,,,,"Linnaeus, 1758",Least Concern,,3.1,Increasing,Global
+93609388,22697340,Botaurus lentiginosus,ANIMALIA,CHORDATA,PELECANIFORMES,AVES,ARDEIDAE,Botaurus,lentiginosus,,,,"(Rackett, 1813)",Least Concern,,3.1,Decreasing,Global
+93748966,22699811,Contopus sordidulus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TYRANNIDAE,Contopus,sordidulus,,,,"Sclater, 1859",Least Concern,,3.1,Decreasing,Global
+93751510,22699848,Empidonax traillii,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TYRANNIDAE,Empidonax,traillii,,,,"(Audubon, 1828)",Least Concern,,3.1,Decreasing,Global
+93751971,22699854,Empidonax minimus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TYRANNIDAE,Empidonax,minimus,,,,"(Baird & Baird, 1843)",Least Concern,,3.1,Decreasing,Global
+93752232,22699857,Empidonax hammondii,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TYRANNIDAE,Empidonax,hammondii,,,,"(Xántus de Vesey, 1858)",Least Concern,,3.1,Increasing,Global
+93752625,22699864,Empidonax oberholseri,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TYRANNIDAE,Empidonax,oberholseri,,,,"Phillips, 1939",Least Concern,,3.1,Decreasing,Global
+93781244,22700506,Tyrannus tyrannus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TYRANNIDAE,Tyrannus,tyrannus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+94006862,22705228,Vireo cassinii,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,VIREONIDAE,Vireo,cassinii,,,,"Xántus de Vesey, 1858",Least Concern,,3.1,Increasing,Global
+94044793,22705986,Corvus caurinus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,CORVIDAE,Corvus,caurinus,,,,"Baird, 1858",Least Concern,,3.1,Increasing,Global
+94151379,22708153,Bombycilla cedrorum,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,BOMBYCILLIDAE,Bombycilla,cedrorum,,,,"Vieillot, 1808",Least Concern,,3.1,Increasing,Global
+94152063,22708163,Cinclus mexicanus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,CINCLIDAE,Cinclus,mexicanus,,,,"Swainson, 1827",Least Concern,,3.1,Stable,Global
+94159470,22708385,Ixoreus naevius,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TURDIDAE,Ixoreus,naevius,,,,"(Gmelin, 1789)",Least Concern,,3.1,Decreasing,Global
+94171278,22708667,Catharus guttatus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TURDIDAE,Catharus,guttatus,,,,"(Pallas, 1811)",Least Concern,,3.1,Increasing,Global
+94186470,103889499,Turdus migratorius,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TURDIDAE,Turdus,migratorius,,,,"Linnaeus, 1766",Least Concern,,3.1,Increasing,Global
+94269013,22710946,Acridotheres cristatellus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,STURNIDAE,Acridotheres,cristatellus,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Stable,Global
+94272855,22711013,Dumetella carolinensis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,MIMIDAE,Dumetella,carolinensis,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Stable,Global
+94283783,22711202,Sitta carolinensis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,SITTIDAE,Sitta,carolinensis,,,,"Latham, 1790",Least Concern,,3.1,Increasing,Global
+94285552,22711244,Certhia americana,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,CERTHIIDAE,Certhia,americana,,,,"Bonaparte, 1838",Least Concern,,3.1,Stable,Global
+94291392,22711374,Cistothorus palustris,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TROGLODYTIDAE,Cistothorus,palustris,,,,"(Wilson, 1807)",Least Concern,,3.1,Increasing,Global
+94308055,22711767,Poecile rufescens,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PARIDAE,Poecile,rufescens,,,,"(Townsend, 1837)",Least Concern,,3.1,Increasing,Global
+94316797,22712057,Tachycineta bicolor,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,HIRUNDINIDAE,Tachycineta,bicolor,,,,"(Vieillot, 1808)",Least Concern,,3.1,Stable,Global
+94333165,22712427,Petrochelidon pyrrhonota,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,HIRUNDINIDAE,Petrochelidon,pyrrhonota,,,,"Vieillot, 1817",Least Concern,,3.1,Increasing,Global
+94337029,22712567,Regulus calendula,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,REGULIDAE,Regulus,calendula,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Increasing,Global
+94666039,22720359,Spinus pinus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,FRINGILLIDAE,Spinus,pinus,,,,"(Wilson, 1810)",Least Concern,,3.1,Stable,Global
+94669207,22720407,Spinus tristis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,FRINGILLIDAE,Spinus,tristis,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+94672558,22720553,Haemorhous purpureus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,FRINGILLIDAE,Haemorhous,purpureus,,,,"(Gmelin, 1789)",Least Concern,,3.1,Decreasing,Global
+94696727,22721058,Melospiza melodia,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PASSERELLIDAE,Melospiza,melodia,,,,"(Wilson, 1810)",Least Concern,,3.1,Stable,Global
+94697045,22721064,Melospiza lincolnii,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PASSERELLIDAE,Melospiza,lincolnii,,,,"(Audubon, 1834)",Least Concern,,3.1,Stable,Global
+94698409,22721088,Zonotrichia leucophrys,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PASSERELLIDAE,Zonotrichia,leucophrys,,,,"(Forster, 1772)",Least Concern,,3.1,Stable,Global
+94698703,22721091,Zonotrichia atricapilla,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PASSERELLIDAE,Zonotrichia,atricapilla,,,,"(Gmelin, 1789)",Least Concern,,3.1,Increasing,Global
+94699265,103780243,Passerculus sandwichensis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PASSERELLIDAE,Passerculus,sandwichensis,,,,"(Gmelin, 1789)",Least Concern,,3.1,Stable,Global
+94703310,22721188,Pooecetes gramineus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PASSERELLIDAE,Pooecetes,gramineus,,,,"(Gmelin, 1789)",Least Concern,,3.1,Decreasing,Global
+94718199,22721624,Leiothlypis celata,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PARULIDAE,Leiothlypis,celata,,,,"(Say, 1823)",Least Concern,,3.1,Increasing,Global
+94723107,22721679,Setophaga nigrescens,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PARULIDAE,Setophaga,nigrescens,,,,"(Townsend, 1837)",Least Concern,,3.1,Stable,Global
+94723311,22721683,Setophaga townsendi,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PARULIDAE,Setophaga,townsendi,,,,"(Townsend, 1837)",Least Concern,,3.1,Stable,Global
+94733730,22721836,Geothlypis trichas,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PARULIDAE,Geothlypis,trichas,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Stable,Global
+94737104,22721879,Cardellina pusilla,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PARULIDAE,Cardellina,pusilla,,,,"(Wilson, 1811)",Least Concern,,3.1,Decreasing,Global
+94768218,22722471,Piranga ludoviciana,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,CARDINALIDAE,Piranga,ludoviciana,,,,"(Wilson, 1811)",Least Concern,,3.1,Increasing,Global
+94835325,22723816,Pheucticus melanocephalus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,CARDINALIDAE,Pheucticus,melanocephalus,,,,"Swainson, 1827",Least Concern,,3.1,Increasing,Global
+94861418,22724332,Euphagus cyanocephalus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,ICTERIDAE,Euphagus,cyanocephalus,,,,"(Wagler, 1829)",Least Concern,,3.1,Decreasing,Global
+94888623,22725264,Patagioenas fasciata,ANIMALIA,CHORDATA,COLUMBIFORMES,AVES,COLUMBIDAE,Patagioenas,fasciata,,,,"Say, 1823",Least Concern,,3.1,Decreasing,Global
+94921523,22726414,Colaptes cafer,ANIMALIA,CHORDATA,PICIFORMES,AVES,PICIDAE,Colaptes,cafer,,,,"(Gmelin, 1788)",Least Concern,,3.1,Decreasing,Global
+94959659,22727740,Circus hudsonius,ANIMALIA,CHORDATA,ACCIPITRIFORMES,AVES,ACCIPITRIDAE,Circus,hudsonius,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Decreasing,Global
+94973442,22728182,Butorides striata,ANIMALIA,CHORDATA,PELECANIFORMES,AVES,ARDEIDAE,Butorides,striata,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+95006324,103772680,Pipilo maculatus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PASSERELLIDAE,Pipilo,maculatus,,,,"Swainson, 1827",Least Concern,,3.1,Stable,Global
+95006716,22729123,Icterus bullockiorum,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,ICTERIDAE,Icterus,bullockiorum,,,,"(Swainson, 1827)",Least Concern,,3.1,Stable,Global
+95060484,22733619,Branta hutchinsii,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Branta,hutchinsii,,,,"(Richardson, 1832)",Least Concern,,3.1,Unknown,Global
+95069659,22733935,Chaetura vauxi,ANIMALIA,CHORDATA,CAPRIMULGIFORMES,AVES,APODIDAE,Chaetura,vauxi,,,,"(Townsend, 1839)",Least Concern,,3.1,Increasing,Global
+95095286,22734695,Dendragapus fuliginosus,ANIMALIA,CHORDATA,GALLIFORMES,AVES,PHASIANIDAE,Dendragapus,fuliginosus,,,,"(Ridgway, 1873)",Least Concern,,3.1,Decreasing,Global
+95099443,22721097,Junco hyemalis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PASSERELLIDAE,Junco,hyemalis,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+95102742,22712152,Stelgidopteryx serripennis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,HIRUNDINIDAE,Stelgidopteryx,serripennis,,,,"(Audubon, 1838)",Least Concern,,3.1,Decreasing,Global
+95167109,61204155,Falcipennis franklinii,ANIMALIA,CHORDATA,GALLIFORMES,AVES,PHASIANIDAE,Falcipennis,franklinii,,,,"(Douglas, 1829)",Least Concern,,3.1,Stable,Global
+95181072,61791401,Glaucidium californicum,ANIMALIA,CHORDATA,STRIGIFORMES,AVES,STRIGIDAE,Glaucidium,californicum,,,,"Sclater, 1857",Least Concern,,3.1,Increasing,Global
+95185212,62015238,Haematopus ater,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,HAEMATOPODIDAE,Haematopus,ater,,,,"Vieillot &amp; Oudart, 1825",Least Concern,,3.1,Unknown,Global
+95190980,62169677,Fulica americana,ANIMALIA,CHORDATA,GRUIFORMES,AVES,RALLIDAE,Fulica,americana,,,,"Gmelin, 1789",Least Concern,,3.1,Decreasing,Global
+95215602,22690736,Zenaida macroura,ANIMALIA,CHORDATA,COLUMBIFORMES,AVES,COLUMBIDAE,Zenaida,macroura,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+95385394,95383414,Biscogniauxia bartholomaei,FUNGI,ASCOMYCOTA,XYLARIALES,SORDARIOMYCETES,XYLARIACEAE,Biscogniauxia,bartholomaei,,,,(Peck) Lar.N.Vassiljeva,Data Deficient,,3.1,Unknown,Global
+96575438,164133,Zannichellia palustris,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,POTAMOGETONACEAE,Zannichellia,palustris,,,,L.,Least Concern,,3.1,Stable,Global
+97216466,18868,Puma concolor,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,FELIDAE,Puma,concolor,,,,"(Linnaeus, 1771)",Least Concern,,3.1,Decreasing,Global
+97667070,190422,Mola mola,ANIMALIA,CHORDATA,TETRAODONTIFORMES,ACTINOPTERYGII,MOLIDAE,Mola,mola,,,,"(Linnaeus, 1758)",Vulnerable,A4bd,3.1,Decreasing,Global
+98845541,98471199,Clupea pallasii,ANIMALIA,CHORDATA,CLUPEIFORMES,ACTINOPTERYGII,CLUPEIDAE,Clupea,pallasii,,,,"Valenciennes, 1847",Data Deficient,,3.1,Unknown,Global
+101138963,12518,Lynx canadensis,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,FELIDAE,Lynx,canadensis,,,,"Kerr, 1792",Least Concern,,3.1,Stable,Global
+103893556,3745,Canis latrans,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,CANIDAE,Canis,latrans,,,,"Say, 1823",Least Concern,,3.1,Increasing,Global
+104335354,103884879,Troglodytes pacificus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TROGLODYTIDAE,Troglodytes,pacificus,,,,"(Baird, 1864)",Least Concern,,3.1,Unknown,Global
+110639833,22696500,Falco rusticolus,ANIMALIA,CHORDATA,FALCONIFORMES,AVES,FALCONIDAE,Falco,rusticolus,,,,"Linnaeus, 1758",Least Concern,,3.1,Stable,Global
+110734937,22699787,Contopus cooperi,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TYRANNIDAE,Contopus,cooperi,,,,"(Swainson, 1832)",Near Threatened,A2bc+3bc+4bc,3.1,Decreasing,Global
+110847142,110847130,Mobula mobular,ANIMALIA,CHORDATA,MYLIOBATIFORMES,CHONDRICHTHYES,MOBULIDAE,Mobula,mobular,,,,"(Bonnaterre, 1788)",Endangered,A2bd+3d,3.1,Decreasing,Global
+111131604,22720646,Loxia curvirostra,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,FRINGILLIDAE,Loxia,curvirostra,,,,"Linnaeus, 1758",Least Concern,,3.1,Stable,Global
+111138693,22721033,Calcarius lapponicus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,CALCARIIDAE,Calcarius,lapponicus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+111144194,22728944,Loxia leucoptera,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,FRINGILLIDAE,Loxia,leucoptera,,,,"Gmelin, 1789",Least Concern,,3.1,Decreasing,Global
+111233524,22711026,Mimus polyglottos,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,MIMIDAE,Mimus,polyglottos,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+111242743,103886826,Troglodytes aedon,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TROGLODYTIDAE,Troglodytes,aedon,,,,"Vieillot, 1809",Least Concern,,3.1,Increasing,Global
+111465610,103727176,Pica hudsonia,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,CORVIDAE,Pica,hudsonia,,,,"(Sabine, 1823)",Least Concern,,3.1,Stable,Global
+111892532,22680157,Mareca penelope,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Mareca,penelope,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+112226939,22693764,Charadrius semipalmatus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,CHARADRIIDAE,Charadrius,semipalmatus,,,,"Bonaparte, 1825",Least Concern,,3.1,Stable,Global
+112409520,22729867,Gallinago delicata,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Gallinago,delicata,,,,"(Ord, 1825)",Least Concern,,3.1,Decreasing,Global
+113271893,22706068,Corvus corax,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,CORVIDAE,Corvus,corax,,,,"Linnaeus, 1758",Least Concern,,3.1,Increasing,Global
+113623562,22679464,Lagopus muta,ANIMALIA,CHORDATA,GALLIFORMES,AVES,PHASIANIDAE,Lagopus,muta,,,,"(Montin, 1776)",Least Concern,,3.1,Decreasing,Global
+114128748,91109639,Margaritifera falcata,ANIMALIA,MOLLUSCA,UNIONOIDA,BIVALVIA,MARGARITIFERIDAE,Margaritifera,falcata,,,,"(Gould, 1850)",Near Threatened,,3.1,Decreasing,Global
+114130670,91149898,Anodonta nuttalliana,ANIMALIA,MOLLUSCA,UNIONOIDA,BIVALVIA,UNIONIDAE,Anodonta,nuttalliana,,,,"Lea, I., 1838",Vulnerable,A2c,3.1,Decreasing,Global
+114131600,189487,Anodonta oregonensis,ANIMALIA,MOLLUSCA,UNIONOIDA,BIVALVIA,UNIONIDAE,Anodonta,oregonensis,,,,"Lea, 1838",Least Concern,,3.1,Unknown,Global
+114251609,41687,Ursus americanus,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,URSIDAE,Ursus,americanus,,,,"Pallas, 1780",Least Concern,,3.1,Increasing,Global
+115057269,1869,Aplodontia rufa,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,APLODONTIIDAE,Aplodontia,rufa,,,,"(Rafinesque, 1817)",Least Concern,,3.1,Stable,Global
+115114123,13452,Microtus pennsylvanicus,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,CRICETIDAE,Microtus,pennsylvanicus,,,,"(Ord, 1815)",Least Concern,,3.1,Stable,Global
+115114983,13487,Microtus townsendii,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,CRICETIDAE,Microtus,townsendii,,,,"(Bachman, 1839)",Least Concern,,3.1,Stable,Global
+115117618,13972,Mus musculus,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,MURIDAE,Mus,musculus,,,,"Linnaeus, 1758",Least Concern,,3.1,Stable,Global
+115167834,23192,Zapus trinotatus,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,DIPODIDAE,Zapus,trinotatus,,,,"Rhoads, 1895",Least Concern,,3.1,Unknown,Global
+115183051,41389,Sorex bendirii,ANIMALIA,CHORDATA,EULIPOTYPHLA,MAMMALIA,SORICIDAE,Sorex,bendirii,,,,"(Merriam, 1884)",Least Concern,,3.1,Unknown,Global
+115183208,41392,Sorex cinereus,ANIMALIA,CHORDATA,EULIPOTYPHLA,MAMMALIA,SORICIDAE,Sorex,cinereus,,,,"Kerr, 1792",Least Concern,,3.1,Stable,Global
+115184390,41405,Sorex monticolus,ANIMALIA,CHORDATA,EULIPOTYPHLA,MAMMALIA,SORICIDAE,Sorex,monticolus,,,,"Merriam, 1890",Least Concern,,3.1,Stable,Global
+115184897,41410,Sorex palustris,ANIMALIA,CHORDATA,EULIPOTYPHLA,MAMMALIA,SORICIDAE,Sorex,palustris,,,,"Richardson, 1828",Least Concern,,3.1,Stable,Global
+115185589,41421,Sorex trowbridgii,ANIMALIA,CHORDATA,EULIPOTYPHLA,MAMMALIA,SORICIDAE,Sorex,trowbridgii,,,,"Baird, 1857",Least Concern,,3.1,Stable,Global
+115186125,41425,Sorex vagrans,ANIMALIA,CHORDATA,EULIPOTYPHLA,MAMMALIA,SORICIDAE,Sorex,vagrans,,,,"Baird, 1857",Least Concern,,3.1,Stable,Global
+115188045,41468,Neurotrichus gibbsii,ANIMALIA,CHORDATA,EULIPOTYPHLA,MAMMALIA,TALPIDAE,Neurotrichus,gibbsii,,,,"(Baird, 1858)",Least Concern,,3.1,Stable,Global
+115188698,41474,Scapanus orarius,ANIMALIA,CHORDATA,EULIPOTYPHLA,MAMMALIA,TALPIDAE,Scapanus,orarius,,,,"True, 1896",Least Concern,,3.1,Stable,Global
+115190467,42569,Neotamias amoenus,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,SCIURIDAE,Neotamias,amoenus,,,,"(J.A. Allen, 1890)",Least Concern,,3.1,Stable,Global
+115191888,42584,Neotamias townsendii,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,SCIURIDAE,Neotamias,townsendii,,,,"(Bachman, 1839)",Least Concern,,3.1,Stable,Global
+115192165,42586,Tamiasciurus douglasii,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,SCIURIDAE,Tamiasciurus,douglasii,,,,"(Bachman, 1839)",Least Concern,,3.1,Stable,Global
+115192299,42587,Tamiasciurus hudsonicus,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,SCIURIDAE,Tamiasciurus,hudsonicus,,,,"(Erxleben, 1777)",Least Concern,,3.1,Stable,Global
+115195411,42617,Myodes gapperi,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,CRICETIDAE,Myodes,gapperi,,,,"(Vigors, 1830)",Least Concern,,3.1,Stable,Global
+115196586,42627,Microtus longicaudus,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,CRICETIDAE,Microtus,longicaudus,,,,"(Merriam, 1888)",Least Concern,,3.1,Stable,Global
+115197199,42632,Microtus oregoni,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,CRICETIDAE,Microtus,oregoni,,,,"(Bachman, 1839)",Least Concern,,3.1,Stable,Global
+115197660,42634,Microtus richardsoni,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,CRICETIDAE,Microtus,richardsoni,,,,"(DeKay, 1842)",Least Concern,,3.1,Stable,Global
+115197827,42636,Phenacomys intermedius,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,CRICETIDAE,Phenacomys,intermedius,,,,"Merriam, 1889",Least Concern,,3.1,Stable,Global
+115200351,42673,Neotoma cinerea,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,CRICETIDAE,Neotoma,cinerea,,,,"(Ord, 1815)",Least Concern,,3.1,Stable,Global
+115215575,154635,Lestidiops ringens,ANIMALIA,CHORDATA,AULOPIFORMES,ACTINOPTERYGII,PARALEPIDIDAE,Lestidiops,ringens,,,,"(Jordan &amp; Gilbert, 1880)",Least Concern,,3.1,Unknown,Global
+115231078,154755,Genyonemus lineatus,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,SCIAENIDAE,Genyonemus,lineatus,,,,"(Ayres, 1855)",Near Threatened,,3.1,Decreasing,Global
+115242010,154845,Lyopsetta exilis,ANIMALIA,CHORDATA,PLEURONECTIFORMES,ACTINOPTERYGII,PLEURONECTIDAE,Lyopsetta,exilis,,,,(Jordan &amp; Gilbert 1880),Least Concern,,3.1,Stable,Global
+115245783,154866,Pholis ornata,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,PHOLIDAE,Pholis,ornata,,,,"(Girard, 1854)",Least Concern,,3.1,Unknown,Global
+115260640,155009,Pseudobathylagus milleri,ANIMALIA,CHORDATA,OSMERIFORMES,ACTINOPTERYGII,BATHYLAGIDAE,Pseudobathylagus,milleri,,,,"(Jordan &amp; Gilbert, 1898)",Least Concern,,3.1,Unknown,Global
+115281503,155179,Rhacochilus vacca,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,EMBIOTOCIDAE,Rhacochilus,vacca,,,,"(Girard, 1855)",Least Concern,,3.1,Unknown,Global
+115287060,155216,Icelinus filamentosus,ANIMALIA,CHORDATA,SCORPAENIFORMES,ACTINOPTERYGII,COTTIDAE,Icelinus,filamentosus,,,,"Gilbert, 1890",Least Concern,,3.1,Unknown,Global
+115322218,190452,Naucrates ductor,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,CARANGIDAE,Naucrates,ductor,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+115338069,195038,Lampris guttatus,ANIMALIA,CHORDATA,LAMPRIFORMES,ACTINOPTERYGII,LAMPRIDAE,Lampris,guttatus,,,,"(Brünnich, 1788)",Least Concern,,3.1,Unknown,Global
+115406876,65134524,Aulorhynchus flavidus,ANIMALIA,CHORDATA,GASTEROSTEIFORMES,ACTINOPTERYGII,AULORHYNCHIDAE,Aulorhynchus,flavidus,,,,"Gill, 1861",Least Concern,,3.1,Unknown,Global
+118687681,22711716,Poecile atricapillus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PARIDAE,Poecile,atricapillus,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Increasing,Global
+118689035,22711724,Poecile gambeli,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PARIDAE,Poecile,gambeli,,,,"(Ridgway, 1886)",Least Concern,,3.1,Stable,Global
+118696277,22735122,Vireo gilvus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,VIREONIDAE,Vireo,gilvus,,,,"Vieillot, 1808)",Least Concern,,3.1,Increasing,Global
+118775235,103718956,Lanius borealis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,LANIIDAE,Lanius,borealis,,,,"Vieillot, 1808",Least Concern,,3.1,Stable,Global
+118809071,22705614,Cyanocitta stelleri,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,CORVIDAE,Cyanocitta,stelleri,,,,"(Gmelin, 1788)",Least Concern,,3.1,Increasing,Global
+118842397,22712077,Tachycineta thalassina,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,HIRUNDINIDAE,Tachycineta,thalassina,,,,"(Swainson, 1827)",Least Concern,,3.1,Increasing,Global
+119220243,22689089,Strix occidentalis,ANIMALIA,CHORDATA,STRIGIFORMES,AVES,STRIGIDAE,Strix,occidentalis,,,,"(Xantus de Vesey, 1860)",Near Threatened,A2abce+3bce+4abce; C2a(i),3.1,Decreasing,Global
+119479505,103798482,Setophaga auduboni,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PARULIDAE,Setophaga,auduboni,,,,"(Townsend, 1837)",Least Concern,,3.1,Unknown,Global
+119479879,103798425,Setophaga coronata,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PARULIDAE,Setophaga,coronata,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Unknown,Global
+119522791,22721657,Setophaga petechia,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PARULIDAE,Setophaga,petechia,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Stable,Global
+119623865,3746,Canis lupus,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,CANIDAE,Canis,lupus,,,,"Linnaeus, 1758",Least Concern,,3.1,Stable,Global
+120208445,164229,Spirodela polyrhiza,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,ARACEAE,Spirodela,polyrhiza,,,,(L.) Schleid.,Least Concern,,3.1,Stable,Global
+120218868,163982,Potamogeton pusillus,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,POTAMOGETONACEAE,Potamogeton,pusillus,,,,L.      ,Least Concern,,3.1,Stable,Global
+120220519,168962,Stuckenia pectinata,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,POTAMOGETONACEAE,Stuckenia,pectinata,,,,(L.) Börner,Least Concern,,3.1,Stable,Global
+120228484,164153,Trapa natans,PLANTAE,TRACHEOPHYTA,MYRTALES,MAGNOLIOPSIDA,LYTHRACEAE,Trapa,natans,,,,L.,Least Concern,,3.1,Unknown,Global
+120229199,164208,Typha domingensis,PLANTAE,TRACHEOPHYTA,POALES,LILIOPSIDA,TYPHACEAE,Typha,domingensis,,,,Pers.,Least Concern,,3.1,Stable,Global
+121229971,41688,Ursus arctos,ANIMALIA,CHORDATA,CARNIVORA,MAMMALIA,URSIDAE,Ursus,arctos,,,,"Linnaeus, 1758",Least Concern,,3.1,Stable,Global
+121572262,151913,Opuntia fragilis,PLANTAE,TRACHEOPHYTA,CARYOPHYLLALES,MAGNOLIOPSIDA,CACTACEAE,Opuntia,fragilis,,,,(Nutt.) Haw.,Least Concern,,3.1,Stable,Global
+122560084,42456,Marmota caligata,ANIMALIA,CHORDATA,RODENTIA,MAMMALIA,SCIURIDAE,Marmota,caligata,,,,"(Eschscholtz, 1829)",Least Concern,,3.1,Stable,Global
+123321764,123321057,Anotopterus nikparini,ANIMALIA,CHORDATA,AULOPIFORMES,ACTINOPTERYGII,ANOTOPTERIDAE,Anotopterus,nikparini,,,,"Kukuev, 1998",Least Concern,,3.1,Stable,Global
+123324318,123323873,Scopelosaurus adleri,ANIMALIA,CHORDATA,AULOPIFORMES,ACTINOPTERYGII,NOTOSUDIDAE,Scopelosaurus,adleri,,,,"(Fedorov, 1967)",Least Concern,,3.1,Unknown,Global
+124402990,39342,Lamna ditropis,ANIMALIA,CHORDATA,LAMNIFORMES,CHONDRICHTHYES,LAMNIDAE,Lamna,ditropis,,,,"Hubbs &amp; Follett, 1947",Least Concern,,3.1,Stable,Global
+125435470,125433585,Montagnea radiosa,FUNGI,BASIDIOMYCOTA,AGARICALES,AGARICOMYCETES,AGARICACEAE,Montagnea,radiosa,,,,(Pall.) Šebek,Least Concern,,3.1,Unknown,Global
+125923759,193546,Acer glabrum,PLANTAE,TRACHEOPHYTA,SAPINDALES,MAGNOLIOPSIDA,SAPINDACEAE,Acer,glabrum,,,,Torr.,Least Concern,,3.1,Unknown,Global
+127837214,22689055,Bubo scandiacus,ANIMALIA,CHORDATA,STRIGIFORMES,AVES,STRIGIDAE,Bubo,scandiacus,,,,"(Linnaeus, 1758)",Vulnerable,A2bd+3bd+4bd,3.1,Decreasing,Global
+128977857,68064111,Lampadena urophaos,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Lampadena,urophaos,,,,"Paxton, 1963",Least Concern,,3.1,Unknown,Global
+129564041,129299900,Ceratoscopelus townsendi,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Ceratoscopelus,townsendi,,,,"(Eigenmann &amp; Eigenmann, 1889)",Least Concern,,3.1,Unknown,Global
+129565116,129300151,Lampadena yaquinae,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Lampadena,yaquinae,,,,"(Coleman &amp; Nafpaktitis, 1972)",Least Concern,,3.1,Unknown,Global
+129565124,129300299,Lampanyctus acanthurus,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Lampanyctus,acanthurus,,,,"Wisner, 1974",Least Concern,,3.1,Unknown,Global
+129565302,129394341,Lampanyctus regalis,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Lampanyctus,regalis,,,,"(Gilbert, 1892)",Least Concern,,3.1,Unknown,Global
+129565310,129394449,Lampanyctus ritteri,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Lampanyctus,ritteri,,,,"Gilbert, 1915",Least Concern,,3.1,Unknown,Global
+129565318,129394511,Lampanyctus simulator,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Lampanyctus,simulator,,,,"Wisner, 1971",Least Concern,,3.1,Unknown,Global
+129565384,129511181,Stenobrachius nannochir,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Stenobrachius,nannochir,,,,"(Gilbert, 1890)",Least Concern,,3.1,Unknown,Global
+129565392,129511170,Stenobrachius leucopsarus,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Stenobrachius,leucopsarus,,,,"(Eigenmann &amp; Eigenmann, 1890)",Least Concern,,3.1,Unknown,Global
+130031376,191292,Pimephales promelas,ANIMALIA,CHORDATA,CYPRINIFORMES,ACTINOPTERYGII,CYPRINIDAE,Pimephales,promelas,,,,"Rafinesque, 1820",Least Concern,,3.1,Unknown,Global
+130036416,22680874,Sphyrapicus ruber,ANIMALIA,CHORDATA,PICIFORMES,AVES,PICIDAE,Sphyrapicus,ruber,,,,"(Gmelin, 1788)",Least Concern,,3.1,Decreasing,Global
+130050777,62204,Rhinichthys cataractae,ANIMALIA,CHORDATA,CYPRINIFORMES,ACTINOPTERYGII,CYPRINIDAE,Rhinichthys,cataractae,,,,"(Valenciennes, 1842)",Least Concern,,3.1,Stable,Global
+130372296,22705182,Vireo huttoni,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,VIREONIDAE,Vireo,huttoni,,,,"Cassin, 1851",Least Concern,,3.1,Stable,Global
+130380194,22705783,Perisoreus canadensis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,CORVIDAE,Perisoreus,canadensis,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Decreasing,Global
+130407851,22705909,Nucifraga columbiana,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,CORVIDAE,Nucifraga,columbiana,,,,"(Wilson, 1811)",Least Concern,,3.1,Stable,Global
+130414225,130286297,Diaphus theta,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Diaphus,theta,,,,"Eigenmann &amp; Eigenmann, 1890",Least Concern,,3.1,Unknown,Global
+130414350,130350214,Loweina terminata,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Loweina,terminata,,,,"Becker, 1964",Least Concern,,3.1,Unknown,Global
+130414395,130350511,Protomyctophum crockeri,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Protomyctophum,crockeri,,,,"(Bolin, 1939)",Least Concern,,3.1,Unknown,Global
+130414435,130351028,Protomyctophum thompsoni,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Protomyctophum,thompsoni,,,,"(Chapman, 1944)",Least Concern,,3.1,Unknown,Global
+130414440,130352266,Symbolophorus californiensis,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Symbolophorus,californiensis,,,,"(Eigenmann &amp; Eigenmann, 1889)",Least Concern,,3.1,Unknown,Global
+130414455,130353171,Tarletonbeania crenularis,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Tarletonbeania,crenularis,,,,"(Jordan &amp; Gilbert, 1880)",Least Concern,,3.1,Unknown,Global
+130414460,130353324,Tarletonbeania taylori,ANIMALIA,CHORDATA,MYCTOPHIFORMES,ACTINOPTERYGII,MYCTOPHIDAE,Tarletonbeania,taylori,,,,"Mead, 1953",Least Concern,,3.1,Unknown,Global
+130482064,2475,Balaenoptera borealis,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,BALAENOPTERIDAE,Balaenoptera,borealis,,,,"Lesson, 1828",Endangered,A1abd,3.1,Increasing,Global
+131006966,192929,Cymatogaster aggregata,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,EMBIOTOCIDAE,Cymatogaster,aggregata,,,,"Gibbons, 1854",Least Concern,,3.1,Stable,Global
+131500502,22720702,Hesperiphona vespertina,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,FRINGILLIDAE,Hesperiphona,vespertina,,,,"(Cooper, 1825)",Vulnerable,A2ac+3c+4ac,3.1,Decreasing,Global
+131750335,22688296,Selasphorus rufus,ANIMALIA,CHORDATA,CAPRIMULGIFORMES,AVES,TROCHILIDAE,Selasphorus,rufus,,,,"(Gmelin, 1788)",Near Threatened,A2ac+3c+4ac,3.1,Decreasing,Global
+131893534,22686440,Cypseloides niger,ANIMALIA,CHORDATA,CAPRIMULGIFORMES,AVES,APODIDAE,Cypseloides,niger,,,,"(Gmelin, 1789)",Vulnerable,A2ace+3ce+4ace,3.1,Decreasing,Global
+131905854,22679500,Bonasa umbellus,ANIMALIA,CHORDATA,GALLIFORMES,AVES,PHASIANIDAE,Bonasa,umbellus,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Decreasing,Global
+131906420,22679603,Callipepla californica,ANIMALIA,CHORDATA,GALLIFORMES,AVES,ODONTOPHORIDAE,Callipepla,californica,,,,"(Shaw, 1798)",Least Concern,,3.1,Increasing,Global
+131908897,22679896,Anser caerulescens,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Anser,caerulescens,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+131909406,22679935,Branta canadensis,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Branta,canadensis,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+131922722,22689507,Asio otus,ANIMALIA,CHORDATA,STRIGIFORMES,AVES,STRIGIDAE,Asio,otus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+131929912,22693424,Calidris ptilocnemis,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Calidris,ptilocnemis,,,,"(Coues, 1873)",Least Concern,,3.1,Decreasing,Global
+131933971,22694924,Cerorhinca monocerata,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,ALCIDAE,Cerorhinca,monocerata,,,,"(Pallas, 1811)",Least Concern,,3.1,Decreasing,Global
+131941613,22697627,Cathartes aura,ANIMALIA,CHORDATA,CATHARTIFORMES,AVES,CATHARTIDAE,Cathartes,aura,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+131942584,22697829,Gavia stellata,ANIMALIA,CHORDATA,GAVIIFORMES,AVES,GAVIIDAE,Gavia,stellata,,,,"(Pontoppidan, 1763)",Least Concern,,3.1,Decreasing,Global
+131945410,22705990,Corvus brachyrhynchos,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,CORVIDAE,Corvus,brachyrhynchos,,,,"Brehm, 1822",Least Concern,,3.1,Increasing,Global
+132001810,22720563,Haemorhous mexicanus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,FRINGILLIDAE,Haemorhous,mexicanus,,,,"(Müller, 1776)",Least Concern,,3.1,Increasing,Global
+132010232,22721830,Geothlypis tolmiei,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PARULIDAE,Geothlypis,tolmiei,,,,"(Townsend, 1839)",Least Concern,,3.1,Decreasing,Global
+132011103,22722057,Icteria virens,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,ICTERIDAE,Icteria,virens,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+132027891,22724191,Agelaius phoeniceus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,ICTERIDAE,Agelaius,phoeniceus,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Decreasing,Global
+132039486,61752071,Bubo virginianus,ANIMALIA,CHORDATA,STRIGIFORMES,AVES,STRIGIDAE,Bubo,virginianus,,,,"(Gmelin, 1788)",Least Concern,,3.1,Stable,Global
+132039889,102998555,Alauda arvensis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,ALAUDIDAE,Alauda,arvensis,,,,"Linnaeus, 1758",Least Concern,,3.1,Decreasing,Global
+132046297,103881682,Catharus ustulatus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TURDIDAE,Catharus,ustulatus,,,,"(Nuttall, 1840)",Least Concern,,3.1,Unknown,Global
+132051778,22679473,Lagopus leucura,ANIMALIA,CHORDATA,GALLIFORMES,AVES,PHASIANIDAE,Lagopus,leucura,,,,"(Richardson, 1831)",Least Concern,,3.1,Decreasing,Global
+132053220,22680485,Mergus serrator,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Mergus,serrator,,,,"Linnaeus, 1758",Least Concern,,3.1,Stable,Global
+132054083,22680492,Mergus merganser,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Mergus,merganser,,,,"Linnaeus, 1758",Least Concern,,3.1,Unknown,Global
+132065195,22694629,Sterna paradisaea,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,LARIDAE,Sterna,paradisaea,,,,"Pontoppidan, 1763",Least Concern,,3.1,Decreasing,Global
+132066871,22696606,Podiceps auritus,ANIMALIA,CHORDATA,PODICIPEDIFORMES,AVES,PODICIPEDIDAE,Podiceps,auritus,,,,"(Linnaeus, 1758)",Vulnerable,A2abce+3bce+4abce,3.1,Decreasing,Global
+132074027,22708587,Myadestes townsendi,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TURDIDAE,Myadestes,townsendi,,,,"(Audubon, 1838)",Least Concern,,3.1,Increasing,Global
+132094796,22711196,Sitta canadensis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,SITTIDAE,Sitta,canadensis,,,,"Linnaeus, 1766",Least Concern,,3.1,Increasing,Global
+132096463,22711377,Thryomanes bewickii,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TROGLODYTIDAE,Thryomanes,bewickii,,,,"(Audubon, 1827)",Least Concern,,3.1,Stable,Global
+132100477,22712028,Psaltriparus minimus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,AEGITHALIDAE,Psaltriparus,minimus,,,,"(Townsend, 1837)",Least Concern,,3.1,Stable,Global
+132100712,22712594,Regulus satrapa,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,REGULIDAE,Regulus,satrapa,,,,"Lichtenstein, 1823",Least Concern,,3.1,Increasing,Global
+132141004,22720482,Leucosticte tephrocotis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,FRINGILLIDAE,Leucosticte,tephrocotis,,,,"(Swainson, 1832)",Least Concern,,3.1,Stable,Global
+132141177,22720625,Pinicola enucleator,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,FRINGILLIDAE,Pinicola,enucleator,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+132142598,22721070,Melospiza georgiana,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PASSERELLIDAE,Melospiza,georgiana,,,,"(Latham, 1790)",Least Concern,,3.1,Increasing,Global
+132143191,22721085,Zonotrichia albicollis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PASSERELLIDAE,Zonotrichia,albicollis,,,,"(Gmelin, 1789)",Least Concern,,3.1,Stable,Global
+132143453,22721159,Passerella arborea,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PASSERELLIDAE,Passerella,arborea,,,,"(Wilson, 1810)",Least Concern,,3.1,Decreasing,Global
+132143690,22721162,Spizella passerina,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PASSERELLIDAE,Spizella,passerina,,,,"(Bechstein, 1798)",Least Concern,,3.1,Increasing,Global
+132173994,22724256,Sturnella neglecta,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,ICTERIDAE,Sturnella,neglecta,,,,"Audubon, 1844",Least Concern,,3.1,Decreasing,Global
+132175819,22724354,Molothrus ater,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,ICTERIDAE,Molothrus,ater,,,,"(Boddaert, 1783)",Least Concern,,3.1,Decreasing,Global
+132178041,22727750,Oxyura jamaicensis,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Oxyura,jamaicensis,,,,"(Gmelin, 1789)",Least Concern,,3.1,Decreasing,Global
+132193767,103779230,Passerella unalaschcensis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PASSERELLIDAE,Passerella,unalaschcensis,,,,"(Gmelin, 1789)",Least Concern,,3.1,Stable,Global
+132285482,22693363,Calidris canutus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Calidris,canutus,,,,"(Linnaeus, 1758)",Near Threatened,A2abc+3bc+4abc,3.1,Decreasing,Global
+132438484,132438298,Hydrobates leucorhous,ANIMALIA,CHORDATA,PROCELLARIIFORMES,AVES,HYDROBATIDAE,Hydrobates,leucorhous,,,,"(Vieillot, 1818)",Vulnerable,A2bce+3bce+4bce,3.1,Decreasing,Global
+132525108,22680398,Aythya marila,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Aythya,marila,,,,"(Linnaeus, 1761)",Least Concern,,3.1,Decreasing,Global
+132527785,22680423,Histrionicus histrionicus,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Histrionicus,histrionicus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+132528934,22680441,Melanitta perspicillata,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Melanitta,perspicillata,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+132529366,22680455,Bucephala clangula,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Bucephala,clangula,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Stable,Global
+132530132,22680459,Bucephala islandica,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Bucephala,islandica,,,,"(Gmelin, 1789)",Least Concern,,3.1,Increasing,Global
+132541912,22694317,Larus delawarensis,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,LARIDAE,Larus,delawarensis,,,,"Ord, 1815",Least Concern,,3.1,Increasing,Global
+132542511,22694321,Larus californicus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,LARIDAE,Larus,californicus,,,,"Lawrence, 1854",Least Concern,,3.1,Decreasing,Global
+132543276,22694334,Larus glaucescens,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,LARIDAE,Larus,glaucescens,,,,"Naumann, 1840",Least Concern,,3.1,Increasing,Global
+132543621,22694337,Larus occidentalis,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,LARIDAE,Larus,occidentalis,,,,"Audubon, 1839",Least Concern,,3.1,Increasing,Global
+132544122,22694343,Larus hyperboreus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,LARIDAE,Larus,hyperboreus,,,,"Gunnerus, 1767",Least Concern,,3.1,Stable,Global
+132550875,22694432,Larus philadelphia,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,LARIDAE,Larus,philadelphia,,,,"(Ord, 1815)",Least Concern,,3.1,Increasing,Global
+132555511,22694479,Xema sabini,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,LARIDAE,Xema,sabini,,,,"(Sabine, 1819)",Least Concern,,3.1,Stable,Global
+132577296,22694841,Uria aalge,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,ALCIDAE,Uria,aalge,,,,"(Pontoppidan, 1763)",Least Concern,,3.1,Increasing,Global
+132578338,22694864,Cepphus columba,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,ALCIDAE,Cepphus,columba,,,,"Pallas, 1811",Least Concern,,3.1,Stable,Global
+132580015,22694896,Synthliboramphus antiquus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,ALCIDAE,Synthliboramphus,antiquus,,,,"(Gmelin, 1789)",Least Concern,,3.1,Decreasing,Global
+132580716,22694903,Ptychoramphus aleuticus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,ALCIDAE,Ptychoramphus,aleuticus,,,,"(Pallas, 1811)",Near Threatened,A2b+3b+4b,3.1,Decreasing,Global
+132582688,22696599,Podiceps grisegena,ANIMALIA,CHORDATA,PODICIPEDIFORMES,AVES,PODICIPEDIDAE,Podiceps,grisegena,,,,"(Boddaert, 1783)",Least Concern,,3.1,Decreasing,Global
+132584321,22696610,Podiceps nigricollis,ANIMALIA,CHORDATA,PODICIPEDIFORMES,AVES,PODICIPEDIDAE,Podiceps,nigricollis,,,,"Brehm, 1831",Least Concern,,3.1,Unknown,Global
+132607134,22697839,Gavia pacifica,ANIMALIA,CHORDATA,GAVIIFORMES,AVES,GAVIIDAE,Gavia,pacifica,,,,"(Lawrence, 1858)",Least Concern,,3.1,Increasing,Global
+132607418,22697842,Gavia immer,ANIMALIA,CHORDATA,GAVIIFORMES,AVES,GAVIIDAE,Gavia,immer,,,,"(Brünnich, 1764)",Least Concern,,3.1,Stable,Global
+132607949,22697847,Gavia adamsii,ANIMALIA,CHORDATA,GAVIIFORMES,AVES,GAVIIDAE,Gavia,adamsii,,,,"(Gray, 1859)",Near Threatened,A2d+3d+4d; C1,3.1,Decreasing,Global
+132609419,22697866,Fulmarus glacialis,ANIMALIA,CHORDATA,PROCELLARIIFORMES,AVES,PROCELLARIIDAE,Fulmarus,glacialis,,,,"(Linnaeus, 1761)",Least Concern,,3.1,Increasing,Global
+132632044,22698182,Ardenna bulleri,ANIMALIA,CHORDATA,PROCELLARIIFORMES,AVES,PROCELLARIIDAE,Ardenna,bulleri,,,,"(Salvin, 1888)",Vulnerable,D2,3.1,Stable,Global
+132633266,22698195,Ardenna creatopus,ANIMALIA,CHORDATA,PROCELLARIIFORMES,AVES,PROCELLARIIDAE,Ardenna,creatopus,,,,"(Coues, 1864)",Vulnerable,D2,3.1,Unknown,Global
+132635686,22698216,Ardenna tenuirostris,ANIMALIA,CHORDATA,PROCELLARIIFORMES,AVES,PROCELLARIIDAE,Ardenna,tenuirostris,,,,"(Temminck, 1835)",Least Concern,,3.1,Decreasing,Global
+132642113,22698335,Phoebastria albatrus,ANIMALIA,CHORDATA,PROCELLARIIFORMES,AVES,DIOMEDEIDAE,Phoebastria,albatrus,,,,"(Pallas, 1769)",Vulnerable,D2,3.1,Increasing,Global
+132654302,22698572,Hydrobates furcatus,ANIMALIA,CHORDATA,PROCELLARIIFORMES,AVES,HYDROBATIDAE,Hydrobates,furcatus,,,,"(Gmelin, 1789)",Least Concern,,3.1,Increasing,Global
+132662655,22732425,Melanitta americana,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Melanitta,americana,,,,"(Swainson, 1832)",Near Threatened,A2bce+3bce+4bce,3.1,Decreasing,Global
+132663794,22734194,Melanitta deglandi,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Melanitta,deglandi,,,,"(Bonaparte, 1850)",Least Concern,,3.1,Decreasing,Global
+133552919,22696776,Nannopterum auritus,ANIMALIA,CHORDATA,SULIFORMES,AVES,PHALACROCORACIDAE,Nannopterum,auritus,,,,"(Lesson, 1831)",Least Concern,,3.1,Increasing,Global
+133800026,22696753,Urile penicillatus,ANIMALIA,CHORDATA,SULIFORMES,AVES,PHALACROCORACIDAE,Urile,penicillatus,,,,"(Brandt, 1837)",Least Concern,,3.1,Decreasing,Global
+137493608,22710886,Sturnus vulgaris,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,STURNIDAE,Sturnus,vulgaris,,,,"Linnaeus, 1758",Least Concern,,3.1,Decreasing,Global
+137560639,22708556,Sialia currucoides,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TURDIDAE,Sialia,currucoides,,,,"Bechstein, 1798",Least Concern,,3.1,Increasing,Global
+137668645,22712252,Hirundo rustica,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,HIRUNDINIDAE,Hirundo,rustica,,,,"Linnaeus, 1758",Least Concern,,3.1,Decreasing,Global
+137693170,22717434,Eremophila alpestris,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,ALAUDIDAE,Eremophila,alpestris,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+137780032,155115462,Vireo olivaceus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,VIREONIDAE,Vireo,olivaceus,,,,"(Linnaeus, 1766)",Least Concern,,3.1,Increasing,Global
+137979584,22699889,Sayornis saya,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TYRANNIDAE,Sayornis,saya,,,,"(Bonaparte, 1825)",Least Concern,,3.1,Increasing,Global
+137994099,22699871,Empidonax difficilis,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,TYRANNIDAE,Empidonax,difficilis,,,,"Baird, 1858",Least Concern,,3.1,Decreasing,Global
+138330361,138330030,Suillus lakei,FUNGI,BASIDIOMYCOTA,BOLETALES,AGARICOMYCETES,SUILLACEAE,Suillus,lakei,,,,(Murrill) A.H. Sm. &amp; Thiers,Least Concern,,3.1,Stable,Global
+139355294,22696631,Aechmophorus occidentalis,ANIMALIA,CHORDATA,PODICIPEDIFORMES,AVES,PODICIPEDIDAE,Aechmophorus,occidentalis,,,,"(Lawrence, 1858)",Least Concern,,3.1,Stable,Global
+140858973,140348014,Bertella idiomorpha,ANIMALIA,CHORDATA,LOPHIIFORMES,ACTINOPTERYGII,ONEIRODIDAE,Bertella,idiomorpha,,,,"Pietsch, 1973",Least Concern,,3.1,Unknown,Global
+140858978,140348039,Chaenophryne melanorhabdus,ANIMALIA,CHORDATA,LOPHIIFORMES,ACTINOPTERYGII,ONEIRODIDAE,Chaenophryne,melanorhabdus,,,,"Regan &amp; Trewavas, 1932",Least Concern,,3.1,Unknown,Global
+140859028,140348493,Oneirodes bulbosus,ANIMALIA,CHORDATA,LOPHIIFORMES,ACTINOPTERYGII,ONEIRODIDAE,Oneirodes,bulbosus,,,,"Chapman, 1939",Least Concern,,3.1,Unknown,Global
+140859138,140349619,Oneirodes thompsoni,ANIMALIA,CHORDATA,LOPHIIFORMES,ACTINOPTERYGII,ONEIRODIDAE,Oneirodes,thompsoni,,,,"(Schultz, 1934)",Least Concern,,3.1,Unknown,Global
+141781371,141481460,Embiotoca lateralis,ANIMALIA,CHORDATA,PERCIFORMES,ACTINOPTERYGII,EMBIOTOCIDAE,Embiotoca,lateralis,,,,"Agassiz, 1854",Least Concern,,3.1,Unknown,Global
+142396828,55997823,Cervus canadensis,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,CERVIDAE,Cervus,canadensis,,,,"Erxleben, 1777",Least Concern,,3.1,Increasing,Global
+143831586,183347,Sardinops sagax,ANIMALIA,CHORDATA,CLUPEIFORMES,ACTINOPTERYGII,CLUPEIDAE,Sardinops,sagax,,,,(Jenyns 1842),Least Concern,,3.1,Unknown,Global
+145357488,18596,Pseudorca crassidens,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,DELPHINIDAE,Pseudorca,crassidens,,,,"(Owen, 1846)",Near Threatened,A2d,3.1,Unknown,Global
+147686729,147129245,Arrhenia discorosea,FUNGI,BASIDIOMYCOTA,AGARICALES,AGARICOMYCETES,HYGROPHORACEAE,Arrhenia,discorosea,,,,"(Pilát) Zvyagina, Aleks. &amp; Bulyonk.",Vulnerable,C2a(i),3.1,Decreasing,Global
+147696943,147135428,Baeospora myriadophylla,FUNGI,BASIDIOMYCOTA,AGARICALES,AGARICOMYCETES,MARASMIACEAE,Baeospora,myriadophylla,,,,(Peck) Singer,Vulnerable,C2a(i),3.1,Decreasing,Global
+147715294,147158431,Catathelasma imperiale,FUNGI,BASIDIOMYCOTA,AGARICALES,AGARICOMYCETES,TRICHOLOMATACEAE,Catathelasma,imperiale,,,,(P. Karst.) Singer,Near Threatened,A2c+3c+4c,3.1,Decreasing,Global
+148048893,147440561,Pseudoplectania melaena,FUNGI,ASCOMYCOTA,PEZIZALES,PEZIZOMYCETES,SARCOSOMATACEAE,Pseudoplectania,melaena,,,,(Fr.) Sacc.,Near Threatened,A2c+3c+4c,3.1,Decreasing,Global
+148187575,148187454,Cortinarius pinophilus,FUNGI,BASIDIOMYCOTA,AGARICALES,AGARICOMYCETES,CORTINARIACEAE,Cortinarius,pinophilus,,,,Soop,Near Threatened,A2c+3c+4c,3.1,Decreasing,Global
+153875944,22680247,Spatula clypeata,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Spatula,clypeata,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+153882797,22680301,Anas acuta,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Anas,acuta,,,,"Linnaeus, 1758",Least Concern,,3.1,Decreasing,Global
+154348671,22720560,Haemorhous cassinii,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,FRINGILLIDAE,Haemorhous,cassinii,,,,"(Baird, 1854)",Least Concern,,3.1,Decreasing,Global
+154440143,22698209,Ardenna grisea,ANIMALIA,CHORDATA,PROCELLARIIFORMES,AVES,PROCELLARIIDAE,Ardenna,grisea,,,,"(Gmelin, 1789)",Near Threatened,A2de+3de+4de,3.1,Decreasing,Global
+154513104,22693749,Pluvialis squatarola,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,CHARADRIIDAE,Pluvialis,squatarola,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+155292529,22725044,Acanthis flammea,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,FRINGILLIDAE,Acanthis,flammea,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+155416546,22734130,Accipiter striatus,ANIMALIA,CHORDATA,ACCIPITRIFORMES,AVES,ACCIPITRIDAE,Accipiter,striatus,,,,"Vieillot, 1807",Least Concern,,3.1,Increasing,Global
+155421727,22694870,Brachyramphus marmoratus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,ALCIDAE,Brachyramphus,marmoratus,,,,"(Gmelin, 1789)",Endangered,A2bce+3bce+4bce,3.1,Decreasing,Global
+155437845,22718575,Anthus rubescens,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,MOTACILLIDAE,Anthus,rubescens,,,,"(Tunstall, 1771)",Least Concern,,3.1,Decreasing,Global
+155455470,22729717,Anas crecca,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Anas,crecca,,,,"Linnaeus, 1758",Least Concern,,3.1,Unknown,Global
+155456798,22698350,Phoebastria nigripes,ANIMALIA,CHORDATA,PROCELLARIIFORMES,AVES,DIOMEDEIDAE,Phoebastria,nigripes,,,,"(Audubon, 1849)",Near Threatened,A4cd,3.1,Increasing,Global
+155457360,22680186,Anas platyrhynchos,ANIMALIA,CHORDATA,ANSERIFORMES,AVES,ANATIDAE,Anas,platyrhynchos,,,,"Linnaeus, 1758",Least Concern,,3.1,Increasing,Global
+155469189,22698188,Ardenna carneipes,ANIMALIA,CHORDATA,PROCELLARIIFORMES,AVES,PROCELLARIIDAE,Ardenna,carneipes,,,,"(Gould, 1844)",Near Threatened,A2bcde+3bcde+4bcde,3.1,Decreasing,Global
+155477521,22697109,Bubulcus ibis,ANIMALIA,CHORDATA,PELECANIFORMES,AVES,ARDEIDAE,Bubulcus,ibis,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+155480296,22693427,Calidris alpina,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,SCOLOPACIDAE,Calidris,alpina,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+155491450,22694787,Chlidonias niger,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,LARIDAE,Chlidonias,niger,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+155500538,45354964,Falco peregrinus,ANIMALIA,CHORDATA,FALCONIFORMES,AVES,FALCONIDAE,Falco,peregrinus,,,,"Tunstall, 1771",Least Concern,,3.1,Stable,Global
+155509311,22694524,Hydroprogne caspia,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,LARIDAE,Hydroprogne,caspia,,,,"(Pallas, 1770)",Least Concern,,3.1,Increasing,Global
+155519951,22694938,Pandion haliaetus,ANIMALIA,CHORDATA,ACCIPITRIFORMES,AVES,PANDIONIDAE,Pandion,haliaetus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Increasing,Global
+155522130,103818789,Passer domesticus,ANIMALIA,CHORDATA,PASSERIFORMES,AVES,PASSERIDAE,Passer,domesticus,,,,"(Linnaeus, 1758)",Least Concern,,3.1,Decreasing,Global
+155529922,22693735,Pluvialis fulva,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,CHARADRIIDAE,Pluvialis,fulva,,,,"(Gmelin, 1789)",Least Concern,,3.1,Decreasing,Global
+155537726,22694623,Sterna hirundo,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,LARIDAE,Sterna,hirundo,,,,"Linnaeus, 1758",Least Concern,,3.1,Unknown,Global
+155542941,22688504,Tyto alba,ANIMALIA,CHORDATA,STRIGIFORMES,AVES,TYTONIDAE,Tyto,alba,,,,"(Scopoli, 1769)",Least Concern,,3.1,Stable,Global
+155576460,22694308,Larus canus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,LARIDAE,Larus,canus,,,,"Linnaeus, 1758",Least Concern,,3.1,Unknown,Global
+155595584,22729877,Larus glaucoides,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,LARIDAE,Larus,glaucoides,,,,"Meyer, 1822",Least Concern,,3.1,Stable,Global
+155596462,62030590,Larus smithsonianus,ANIMALIA,CHORDATA,CHARADRIIFORMES,AVES,LARIDAE,Larus,smithsonianus,,,,"Coues, 1862",Least Concern,,3.1,Decreasing,Global
+155617216,22692479,Rallus limicola,ANIMALIA,CHORDATA,GRUIFORMES,AVES,RALLIDAE,Rallus,limicola,,,,"Vieillot, 1819",Least Concern,,3.1,Increasing,Global
+155630943,22728950,Urile pelagicus,ANIMALIA,CHORDATA,SULIFORMES,AVES,PHALACROCORACIDAE,Urile,pelagicus,,,,"(Pallas, 1811)",Least Concern,,3.1,Decreasing,Global
+156923585,2477,Balaenoptera musculus,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,BALAENOPTERIDAE,Balaenoptera,musculus,,,,"(Linnaeus, 1758)",Endangered,A1abd,3.1,Increasing,Global
+159881386,147323011,Hygrophorus calophyllus,FUNGI,BASIDIOMYCOTA,AGARICALES,AGARICOMYCETES,HYGROPHORACEAE,Hygrophorus,calophyllus,,,,P. Karst.,Endangered,A2c+3c+4c,3.1,Decreasing,Global
+160983555,41755,Physeter macrocephalus,ANIMALIA,CHORDATA,CETARTIODACTYLA,MAMMALIA,PHYSETERIDAE,Physeter,macrocephalus,,,,"Linnaeus, 1758",Vulnerable,A1d,3.1,Unknown,Global
+161242108,167896,Potamogeton alpinus,PLANTAE,TRACHEOPHYTA,ALISMATALES,LILIOPSIDA,POTAMOGETONACEAE,Potamogeton,alpinus,,,,Balb.,Least Concern,,3.1,Stable,Global
+161580271,167857,Equisetum arvense,PLANTAE,TRACHEOPHYTA,EQUISETALES,POLYPODIOPSIDA,EQUISETACEAE,Equisetum,arvense,,,,L.,Least Concern,,3.1,Unknown,Global
