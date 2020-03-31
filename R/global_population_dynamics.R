@@ -71,6 +71,8 @@ ggsave("figures/gpdd.png", width = 14, height = 12)
 
 write_csv(ol, "data-processed/intratherm-gpdd.csv")
 
+unique(ol$TaxonName)
+
 sub <- ol %>% 
 	filter(MainID == 1822) %>%
 	select(location_description, ExactName, Country, everything()) %>% 
@@ -116,6 +118,7 @@ lpi_over <- lpi %>%
 	mutate(year = as.numeric(year))
 
 unique(lpi_over$genus_species)
+write_csv(lpi_over, "data-processed/lpi-intratherm-overlap.csv")
 
 
 lpi_over %>%  
@@ -123,7 +126,7 @@ lpi_over %>%
 	ggplot(aes(x = year, y = abundance, group = ID)) + geom_line() +
 	facet_wrap( ~ Location)
 ggsave("figures/lpi-examples-alewife.png", width = 10, height = 10)
-
+ggsave("figures/lpi-examples-alewife.png", width = 10, height = 10)
 
 alewife_locations_intra <- intratherm %>% 
 	filter(genus_species == "Alosa pseudoharengus")
