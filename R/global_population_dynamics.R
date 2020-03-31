@@ -28,6 +28,8 @@ length(unique(taxa$TaxonID))
 
 intratherm <- read_csv("data-processed/intratherm-cadillac-limits-traits-location-updated.csv") %>%
 	mutate(population_id = paste(genus_species, latitude, sep = "_"))
+intratherm <- read_csv("data-raw/intratherm-merged-nikkis-traits.csv") %>%
+	mutate(population_id = paste(genus_species, latitude, sep = "_"))
 
 
 overlap <- intersect(unique(intratherm$genus_species), unique(unique(taxa$TaxonName)))
@@ -60,11 +62,14 @@ ol <- left_join(overlap_gdata, overlap_main) %>%
 names(ol)
 
 ol %>% 
-	ggplot(aes(x = SeriesStep, y = Population, group = MainID)) + geom_line() +
-	facet_wrap( ~ MainID, scales = "free")
-ggsave("figures/gpdd.pdf", width = 14, height = 12)
+	mutate(unique_population = paste(TaxonName, MainID, sep = "_")) %>% 
+	select(unique_population, everything()) %>% 
+	ggplot(aes(x = SeriesStep, y = Population, group = unique_population, color = TaxonName)) + geom_line() +
+	facet_wrap( ~ unique_population, scales = "free")
+ggsave("figures/gpdd-taxon.pdf", width = 20, height = 12)
 ggsave("figures/gpdd.png", width = 14, height = 12)
 
+write_csv(ol, "data-processed/intratherm-gpdd.csv")
 
 sub <- ol %>% 
 	filter(MainID == 1822) %>%
@@ -158,7 +163,7 @@ rredlist::rl_use_iucn()
 rredlist::rl_use_iucn()
 
 
-iucn_species <- read_csv("data-raw/redlist_species_data_d/assessments.csv")
+iucn_species <- read_csv("~/Documents/redlist_species_data_d/assessments.csv")
 
 
 
@@ -166,10 +171,15 @@ over_iucn <- intersect(unique(iucn_species$scientificName), unique(intratherm$ge
 length(unique(over_iucn))
 length(unique(intratherm$genus_species))
 
-iucn_species %>% 
-	filter(scientificName %in% c(unique(intratherm$genus_species))) %>% 
-	ggplot(aes(x = redlistCategory)) + geom_histogram(stat = "count") +
+iucn_species_overlap <- iucn_species %>% 
+	filter(scientificName %in% c(unique(intratherm$genus_species)))
+
+write_csv(iucn_species_overlap, "data-processed/intratherm-species-redlist.csv")
+	
+iucn_species_overlap %>% 
+	ggplot(aes(x = redlistCategory)) + geom_histogram(stat = "count", fill = "pink") +
 	theme(axis.text.x = element_text(angle = 90))
+ggsave("figures/redlist-categories.pdf", width = 8, height = 8)
 ggsave("figures/redlist-categories.png", width = 8, height = 8)
 
 iucn_species %>% 
