@@ -125,7 +125,7 @@ lpi_over %>%
 	filter(Binomial == "Alosa_pseudoharengus") %>%
 	ggplot(aes(x = year, y = abundance, group = ID)) + geom_line() +
 	facet_wrap( ~ Location)
-ggsave("figures/lpi-examples-alewife.png", width = 10, height = 10)
+ggsave("figures/lpi-examples-alewife.pdf", width = 10, height = 10)
 ggsave("figures/lpi-examples-alewife.png", width = 10, height = 10)
 
 alewife_locations_intra <- intratherm %>% 
@@ -180,9 +180,9 @@ iucn_species_overlap <- iucn_species %>%
 write_csv(iucn_species_overlap, "data-processed/intratherm-species-redlist.csv")
 	
 iucn_species_overlap %>% 
-	ggplot(aes(x = redlistCategory)) + geom_histogram(stat = "count", fill = "pink") +
+	ggplot(aes(x = redlistCategory)) + geom_histogram(stat = "count", fill = "cadetblue") +
 	theme(axis.text.x = element_text(angle = 90))
-ggsave("figures/redlist-categories.pdf", width = 8, height = 8)
+ggsave("figures/redlist-categories.pdf", width = 6, height = 4)
 ggsave("figures/redlist-categories.png", width = 8, height = 8)
 
 iucn_species %>% 
