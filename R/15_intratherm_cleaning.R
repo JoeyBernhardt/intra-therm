@@ -8,8 +8,8 @@
 intratherm <- read_csv("data-raw/intratherm-merged-nikkis-traits-clean.csv") %>%
 	mutate(population_id = paste(genus_species, latitude, sep = "_")) %>% 
 	arrange(genus_species) %>% 
-	mutate(intratherm_id = rownames(.)) %>% 
-	select(intratherm_id, extractor, ref, original_compilation, genus_species, everything())
+	mutate(intratherm_id = as.numeric(rownames(.))) %>% 
+	select(intratherm_id, extractor, ref, original_compilation, genus_species, everything()) 
 
 write_csv(intratherm, "data-processed/intratherm-may-2020.csv")
 
