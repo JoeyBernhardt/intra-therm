@@ -37,18 +37,20 @@ intratherm <- read_csv("data-raw/intratherm-may-2020-nikki.csv") %>%
 
 ### realm
 intratherm %>% 
+	# filter(is.na(realm_general2)) %>% ## 249 rows missing
 	ggplot(aes(x = realm_general2)) + geom_histogram(stat = "count")
 ggsave("figures/intratherm-realm.png", width = 12, height = 6)
 
 ### tmax tmin
 intratherm %>% 
+	filter(is.na(parameter_tmax_or_tmin)) %>% ## 0 missing
 	ggplot(aes(x = parameter_tmax_or_tmin)) + geom_histogram(stat = "count")
 ggsave("figures/intratherm-parameter-tmax-tmin.png", width = 12, height = 6)
 
 
 ### metric type
 intratherm %>% 
-	# filter(is.na(metric_type)) %>% 
+	# filter(is.na(metric_type)) %>% no rows missing
 	ggplot(aes(x = metric_type)) + geom_histogram(stat = "count")
 ggsave("figures/metric_type.png", width = 12, height = 6)
 
@@ -143,3 +145,36 @@ intratherm %>%
 	ggplot(aes(x = lifespan_days)) + geom_histogram(stat = "count") +
 	theme(axis.text.x = element_text(angle = 90))
 ggsave("figures/lifespan-days.png", width = 12, height = 12)
+
+
+### latitude
+intratherm %>% 
+	# select(contains("dispersal")) %>% View
+	# filter(is.na(latitude)) %>%   ## 91 rows missing
+	ggplot(aes(x = latitude)) + geom_density() +
+	theme(axis.text.x = element_text(angle = 90))
+ggsave("figures/latitude.png", width = 12, height = 12)
+
+### latitude
+intratherm %>% 
+	# select(contains("dispersal")) %>% View
+	# filter(is.na(longitude)) %>% ## 95 rows missing
+	ggplot(aes(x = longitude)) + geom_density() +
+	theme(axis.text.x = element_text(angle = 90))
+ggsave("figures/longitude.png", width = 12, height = 12)
+
+
+
+### body size
+
+intratherm %>% 
+	# select(contains("maximum")) %>% View
+	# filter(is.na(maximum_body_size_svl_hbl_cm)) %>% ## 0 rows missing
+	ggplot(aes(x = maximum_body_size_svl_hbl_cm)) + geom_histogram(stat = "count") +
+	theme(axis.text.x = element_text(angle = 90))
+ggsave("figures/body_size.png", width = 20, height = 12)
+
+
+intratherm2 <- intratherm %>% 
+	mutate(hatchery_origin = ifelse(grepl("hatchery", location_description), "hatchery_origin", "non-hatchery")) %>% 
+	select(hatchery_origin, everything()) %>% View
