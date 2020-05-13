@@ -5,7 +5,7 @@ library(taxize)
 library(tidyverse)
 
 ## note: taxize code first used on may 2020 version of database, again used on precleaning database
-data <- read.csv("~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-may-2020-precleaning.csv")
+data <- read.csv("/Users/nikkimoore/Documents/intra-therm/data-raw/intratherm-may-2020-precleaning.csv")
 
 
 
@@ -82,12 +82,6 @@ data <- data %>%
 
 ## 
 ## for all taxa where higher taxonomy not found: data filled in manually using a google search 
-
-write.csv(data, "~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-may-2020-taxized.csv", row.names = FALSE)
-
-data <- read.csv("~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-may-2020-taxized.csv")
-data_protected <- data
-
 
 
 
@@ -551,6 +545,8 @@ data <- data_test
 
 
 write.csv(data, "~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
+
+
 
 
 
