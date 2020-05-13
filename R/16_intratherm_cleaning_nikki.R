@@ -541,18 +541,17 @@ data_test <- data[, !(names(data) %in% bad_columns)]
 
 ## remove db column that was added accidnetally with higher taxonomy 
 data_test <- data_test[,-70]
+
+
 data <- data_test
 
 
-write.csv(data, "~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
+write.csv(data, "/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
 
 
 
-
-
-
-## then went and added all missing taxa manually to file, called it squeaky clean 2
-data <- read.csv("~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-may-2020-squeaky-clean2.csv")
+## then went and added all missing taxa manually to squeaky clean file, reimported to continue cleaning 
+data <- read.csv("/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv")
 
 
 ## make sure no missing realms for ones that had no higher taxonomy 
@@ -572,10 +571,18 @@ data_amphibs <- data_flagged %>%
   filter(class == "Amphibia") %>% 
   mutate(realm_general2 = "Terrestrial") 
 
+data_test <- data_test %>%
+  filter(flag == FALSE)
+
 data_test <- rbind(data_test, data_amphibs)
 data_test <- data_test %>% 
   select(-flag)
 
 data <- data_test
+
+
+## rewrite updated version to data file:
+write.csv(data, "/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
+
 
 
