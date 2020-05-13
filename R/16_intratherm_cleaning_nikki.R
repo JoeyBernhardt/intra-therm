@@ -471,7 +471,7 @@ data_protected <- data
 ########################
 ## new population id: includes latitude AND elevation as unique identifier 
 data_test <- data %>%
-  mutate(population_id = paste(genus_species, "_", latitude, "_", elevation_of_collection)) 
+  mutate(population_id = paste(genus_species, latitude, elevation_of_collection, sep = "_")) 
 
 data <- data_test
 
