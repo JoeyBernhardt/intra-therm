@@ -718,7 +718,7 @@ ranoid <- missing_tax %>%
 data_test <- rbind(data_test, planz, palir, taky, isch, pleuro, rhyn, gymno, gloss, litho, squa, lamp, tem, ranoid)
 
 data_test <- data_test %>%
-  select(-is_missing, -is_May20)
+  select(-is_missing)
 
 data <- data_test
 data_protected <- data
