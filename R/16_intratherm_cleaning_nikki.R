@@ -520,7 +520,7 @@ data_test <- data %>%
 
 data_may20 <- data_test %>%
   filter(is_May20 == TRUE) %>%
-  mutate(elevation_of_collection = "2005")
+  mutate(elevation_of_collection = "5-20")
 
 data_test <- data_test %>%
   filter(is_May20 == FALSE) 
@@ -756,6 +756,55 @@ data_protected <- data
 
 ## write updated version to data file:
 write.csv(data, "/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
+
+
+
+## May 15: now need elevation data, so revisiting cleaning the column:
+#####################################################################
+## went back to studies to make sure elevation was in m and as reported in studies for all entries 
+## if in ft, changed value in precleaning data and then reran code to update squeaky clean
+data <- read.csv("/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv")
+
+unique(data$elevation_of_collection)
+
+
+## fix ranges 
+##############
+data_sub <- data %>%
+  mutate(has_hyphen = ifelse(str_detect(elevation_of_collection, "-"), "TRUE", "FALSE")) %>% ## detect ones with hyphen
+  filter(has_hyphen == TRUE) ##subset to data with hyphen 
+
+split <- str_split_fixed(data_sub$elevation_of_collection, pattern = "-", n = 2)
+split <- data.frame(split)
+
+split <- split %>% 
+  mutate(avg = (as.numeric(as.character(X1)) + as.numeric(as.character(X2))) / 2) ## make new column representing average
+
+data_sub <- data_sub %>%
+  mutate(elevation_of_collection = ifelse((has_hyphen == TRUE), split$avg, as.numeric(as.character(data_sub$elevation_of_collection)))) %>%
+  mutate(elevation_of_collection = as.factor(elevation_of_collection))
+
+data_test <- data %>%
+  mutate(has_hyphen = ifelse(str_detect(elevation_of_collection, "-"), "TRUE", "FALSE")) 
+
+get_rid <- which(data_test$has_hyphen == TRUE)
+data_test <- data_test[-get_rid,] ## remove rows where has_hyphen is TRUE
+
+merged <- rbind(data_test, data_sub) ## add back hyphenated with new values 
+
+data_test <- merged %>%
+  select(-has_hyphen)
+
+data <- data_test
+data_protected <- data
+
+## write updated version to data file:
+write.csv(data, "/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
+
+
+
+
+
 
 
 
