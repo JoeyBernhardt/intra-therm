@@ -53,6 +53,7 @@ merged$species <- split[,2]
 
 ## update the database :)
 test_data <- data %>%
+  ungroup()%>%
   mutate(genus = merged$genus) %>%
   mutate(species = merged$species) %>%
   mutate(genus_species = merged$taxa) 
@@ -65,7 +66,7 @@ data_protected <- data
 
 ## taxize all data to update higher taxonomy columns 
 ####################################################
-higher_tax <- tax_name(as.character(unique(taxa$taxa)), get = c("phylum","class","order","family")) 
+higher_tax <- tax_name(as.character(unique(data$genus_species)), get = c("phylum","class","order","family")) 
 higher_tax <- higher_tax[, -1]
 colnames(higher_tax)[2] <- "genus_species"
 
@@ -108,8 +109,7 @@ data <- data %>%
   select(-flag)
 
 ## check:
-data %>%
-  subset(extractor == "Nikki") %>% View
+data %>% View
 
 
 
@@ -216,6 +216,76 @@ data %>%
   subset(realm_general2 == "Aquatic") %>% View 
 
 data_protected <- data
+
+## change terrestrial to Terrestrial, marine to Marine and freshwater to Freshwater 
+unique(data$realm_general2)
+
+data_test <- data %>%
+  mutate(is_f = ifelse(is.na(realm_general2), "FALSE", 
+                       if_else(str_detect(realm_general2, "freshwater"), "TRUE", "FALSE"))) 
+
+data_f <- data_test %>%
+  filter(is_f == TRUE) %>%
+  mutate(realm_general2 = "Freshwater")
+
+data_test <- data_test %>%
+  filter(is_f == FALSE) 
+
+data_test <- rbind(data_test, data_f)
+
+data_test <- data_test %>%
+  select(-is_f)
+
+data <- data_test
+
+data_protected <- data
+
+unique(data$realm_general2)
+
+data_test <- data %>%
+  mutate(is_t = ifelse(is.na(realm_general2), "FALSE", 
+                       if_else(str_detect(realm_general2, "terrestrial"), "TRUE", "FALSE"))) 
+
+data_t <- data_test %>%
+  filter(is_t == TRUE) %>%
+  mutate(realm_general2 = "Terrestrial")
+
+data_test <- data_test %>%
+  filter(is_t == FALSE) 
+
+data_test <- rbind(data_test, data_t)
+
+data_test <- data_test %>%
+  select(-is_t)
+
+data <- data_test
+
+data_protected <- data
+
+unique(data$realm_general2)
+
+data_test <- data %>%
+  mutate(is_m = ifelse(is.na(realm_general2), "FALSE", 
+                       if_else(str_detect(realm_general2, "marine"), "TRUE", "FALSE"))) 
+
+data_m <- data_test %>%
+  filter(is_m == TRUE) %>%
+  mutate(realm_general2 = "Marine")
+
+data_test <- data_test %>%
+  filter(is_m == FALSE) 
+
+data_test <- rbind(data_test, data_m)
+
+data_test <- data_test %>%
+  select(-is_m)
+
+data <- data_test
+
+data_protected <- data
+
+
+
 
 
 
@@ -505,10 +575,6 @@ data_protected <- data
 
 
 
-## round all latitudes and longitudes that were marked inferred?
-
-
-
 
 
 ## remove columns we do not need right now: 
@@ -539,19 +605,124 @@ bad_columns <- c("realm_general3",
 
 data_test <- data[, !(names(data) %in% bad_columns)]
 
-## remove db column that was added accidnetally with higher taxonomy 
-data_test <- data_test[,-70]
+## remove db column that was added accidnetally with higher taxonomy, other flag columns 
+data_test <- data_test[,-c(70:78)]
 
 
 data <- data_test
 
 
-write.csv(data, "/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
 
+######################################
+## added all missing taxonomy manually
+missing_tax <- data %>%
+  filter(is.na(phylum)) 
 
+data_test <- data %>% ##remove all rows missing phylums
+  mutate(is_missing = ifelse(is.na(phylum), "TRUE", "FALSE")) %>%
+  filter(is_missing == FALSE)
 
-## then went and added all missing taxa manually to squeaky clean file, reimported to continue cleaning 
-data <- read.csv("/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv")
+unique(missing_tax$genus_species)
+
+planz <- missing_tax %>%
+  filter(genus_species == "Planiliza subviridis") %>%
+  mutate(phylum = "Chordata") %>%
+  mutate(class = "Actinopterygii") %>%
+  mutate(order = "Mugiliformes") %>%
+  mutate(family = "Mugilidae") 
+
+palir <- missing_tax %>%
+  filter(genus_species == "Palirhoeus eatoni") %>%
+  mutate(phylum = "Arthropoda") %>%
+  mutate(class = "Insecta") %>%
+  mutate(order = "Coleoptera") %>%
+  mutate(family = "Curculionidae") 
+
+taky <- missing_tax %>%
+  filter(genus_species == "Takydromus hsuehshanensis") %>%
+  mutate(phylum = "Chordata") %>%
+  mutate(class = "Reptilia") %>%
+  mutate(order = "Squamata") %>%
+  mutate(family = "Laertidae") 
+
+isch <- missing_tax %>%
+  filter(genus_species == "Ischnura elegans") %>%
+  mutate(phylum = "Arthropoda") %>%
+  mutate(class = "Insecta") %>%
+  mutate(order = "Odonata") %>%
+  mutate(family = "Coenagrionidae") 
+
+pleuro <- missing_tax %>%
+  filter(genus_species == "Pleurodema thaul") %>%
+  mutate(phylum = "Chordata") %>%
+  mutate(class = "Amphibia") %>%
+  mutate(order = "Anura") %>%
+  mutate(family = "Leptodactylidae") 
+
+rhyn <- missing_tax %>%
+  filter(genus_species == "Rhynchocypris oxycephalus") %>%
+  mutate(phylum = "Chordata") %>%
+  mutate(class = "Actinopterygii") %>%
+  mutate(order = "Cypriniformes") %>%
+  mutate(family = "Cyprinidae") 
+
+gymno <- missing_tax %>%
+  filter(genus_species == "Gymnocephalus cernua") %>%
+  mutate(phylum = "Chordata") %>%
+  mutate(class = "Actinopterygii") %>%
+  mutate(order = "Perciformes") %>%
+  mutate(family = "Percidae") 
+
+gloss <- missing_tax %>%
+  filter(genus_species == "Glossina pallidipes") %>%
+  mutate(phylum = "Chordata") %>%
+  mutate(class = "Actinopterygii") %>%
+  mutate(order = "Perciformes") %>%
+  mutate(family = "Percidae") 
+			
+litho <- missing_tax %>%
+  filter(genus_species == "Lithobates catesbeiana") %>%
+  mutate(phylum = "Chordata") %>%
+  mutate(class = "Amphibia") %>%
+  mutate(order = "Anura") %>%
+  mutate(family = "Ranidae") 
+
+squa <- missing_tax %>%
+  filter(genus_species == "Squalius cephalus") %>%
+  mutate(phylum = "Chordata") %>%
+  mutate(class = "Actinopterygii") %>%
+  mutate(order = "Cypriniformes") %>%
+  mutate(family = "Cyprinidae") 
+
+lamp <- missing_tax %>%
+  filter(genus_species == "Lampropholis coggeri") %>%
+  mutate(phylum = "Chordata") %>%
+  mutate(class = "Reptilia") %>%
+  mutate(order = "Squamata") %>%
+  mutate(family = "Scincidae") 
+
+tem <- missing_tax %>%
+  filter(genus_species == "Temnothorax curvispinosus") %>%
+  mutate(phylum = "Chordata") %>%
+  mutate(class = "Reptilia") %>%
+  mutate(order = "Squamata") %>%
+  mutate(family = "Scincidae") 
+
+ranoid <- missing_tax %>%
+  filter(genus_species == "Ranoidea caerulea") %>%
+  mutate(phylum = "Chordata") %>%
+  mutate(class = "Amphibia") %>%
+  mutate(order = "Anura") %>%
+  mutate(family = "Pelodryadidae") 
+
+data_test <- rbind(data_test, planz, palir, taky, isch, pleuro, rhyn, gymno, gloss, litho, squa, lamp, tem, ranoid)
+
+data_test <- data_test %>%
+  select(-is_missing, -is_May20)
+
+data <- data_test
+data_protected <- data
+
 
 
 ## make sure no missing realms for ones that had no higher taxonomy 
@@ -568,7 +739,6 @@ data_flagged <- data_test %>%
 
 ## change Amphibia to Terrestrial 
 data_amphibs <- data_flagged %>%
-  filter(class == "Amphibia") %>% 
   mutate(realm_general2 = "Terrestrial") 
 
 data_test <- data_test %>%
@@ -579,9 +749,12 @@ data_test <- data_test %>%
   select(-flag)
 
 data <- data_test
+data_protected <- data
 
 
-## rewrite updated version to data file:
+
+
+## write updated version to data file:
 write.csv(data, "/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
 
 
