@@ -42,12 +42,16 @@ library(geosphere)
 
 ### get all the the species that only have two populations
 
+names(intratherm)
+
 intra2 <- intratherm %>% 
 	filter(!is.na(latitude)) %>% 
 	filter(!is.na(longitude)) %>% 
+	select(elevation_of_collection, everything()) %>% 
 	mutate(lat_long = paste(latitude, longitude, sep = "_")) %>% 
 	group_by(genus_species) %>% 
-	distinct(ref) %>% 
+	select(genus_species, lat_long) %>% 
+	distinct(genus_species, lat_long) %>% 
 	tally() %>% 
 	filter(n == 2)
 
@@ -63,7 +67,7 @@ intra3 <- intratherm %>%
 intra_split <- intra3 %>% 
 	split(.$genus_species) 
 
-df <- intra_split[1]
+
 
 get_distance <- function(df){
 	distance = distm(c(df[[1]]$longitude[1], df[[1]]$latitude[1]),
@@ -108,4 +112,43 @@ ggsave("figures/distances-km.png", width = 6, height = 4)
 	intra_long2 <- intra_long %>% 
 		filter(!is.na(mean_max_temp))
 	
-	### daily mean maximum temperature
+	write_csv(intra_long, "data-processed/intratherm-temp-data-yearly-maxes.csv")
+	
+#### ok which of these are terrestrial? Only use the terrestrial species for now
+	
+	unique(intratherm$realm_general2)
+	
+	intra_temps <- intratherm %>% 
+		filter(realm_general2 == "Terrestrial") %>% 
+		select(genus_species, population_id, latitude, longitude) %>% 
+		distinct(.) %>% 
+		left_join(., intra_long2, by = "population_id") 
+		
+#### daily mean maximum temperature
+	
+	intra_species <- intratherm %>% 
+		select(genus_species, latitude, longitude, population_id) %>% 
+		distinct() 
+	
+	differences <- intra_long2 %>%
+		left_join(., intra_species) %>% 
+		# filter(!is.na(mean_max_temp)) %>% 
+		filter(genus_species %in% c(distances$species)) %>% 
+		select(genus_species, mean_max_temp, population_id, latitude, longitude) %>% 
+		left_join(., distances, by = c("genus_species" = "species")) %>% 
+		group_by(genus_species) %>% 
+		mutate(temp_diff = max(mean_max_temp) - min(mean_max_temp)) %>% 
+		filter(temp_diff != 0) 
+	
+	realms <- intratherm %>% 
+		select(genus_species, realm_general2) %>% 
+		distinct()
+	
+	differences %>% 
+		# distinct(temp_diff, .keep_all = TRUE) %>% 
+		left_join(., realms) %>% 
+		filter(realm_general2 == "Terrestrial") %>%
+		ggplot(aes(x = distance_km, y = temp_diff, color = realm_general2)) + geom_point() +
+		ylab("Max temperature difference") + xlab("Distance between populations (km)")
+	ggsave("figures/temp_diffs_distances.png", width = 6, height = 4)
+	
