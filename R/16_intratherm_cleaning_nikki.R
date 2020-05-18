@@ -803,3 +803,62 @@ write.csv(data, "/Users/nikkimoore/Documents/intra-therm/data-processed/intrathe
 
 
 
+
+
+## May 18: 
+## found a location labelled "fish farm" that should be removed since not wild 
+## remove all farmed data from data
+farm <- which(str_detect(data$location_description, "farm|Farm"))
+data_test <- data[-farm,]
+
+data <- data_test
+
+data_protected <- data
+
+
+
+#while getting freshwater data, found some freshwater species living in estuaries that should be labelled marine 
+## change realm_general2 to marine for these species 
+intratherm_ids_marine <- c(313,321,766,1792,1797,1164,657,1240,1791,968,949,1228)
+
+marine_sub <- data[-1:-2874,]
+
+data_test <- data
+
+i <- 1
+while (i < length(intratherm_ids_marine) + 1) {
+  pop <- intratherm_ids_marine[i]
+  row <- data[which(data$intratherm_id == pop),]
+  
+  if(length(row$latitude) == 0) {
+    i = i + 1
+  }
+  
+  else {
+    ## find all population members - same lat, long, elev
+    pop_members <- data %>%
+      filter(data$latitude == row$latitude & data$longitude == row$longitude) 
+    
+    marine_sub <- rbind(marine_sub, pop_members) ## add to subset
+    data_test <- data_test[!data_test$intratherm_id %in% pop_members$intratherm_id,] ## remove from dataset
+    
+    i <- i + 1
+  }
+}
+
+marine_sub$realm_general2 <- "Marine" ##change general realm to marine 
+
+data_test <- rbind(data_test, marine_sub)
+
+data <- data_test
+
+
+
+
+
+
+## write new verion to file:
+write.csv(data, "/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
+
+
+
