@@ -149,3 +149,5 @@ write.csv(temperature_data, "~/Documents/SUNDAY LAB/Intratherm/Data sheets/intra
 ## make sure it worked
 read <- read.csv("~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-temp-data-may-2020.csv")
 
+
+
