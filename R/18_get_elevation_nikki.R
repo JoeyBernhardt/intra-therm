@@ -7,6 +7,7 @@ library(rlist)
 library(tidyverse)
 library(rgbif)
 library(ncdf4)
+library(dplyr)
 
 
 ## 		GETTING GRID SQUARE COORDINATES		##
@@ -183,13 +184,13 @@ merged <- left_join(data, unique_locs)
 ########################################
 ## remove locations in which studies reported the collection point elevation 
 unique_locs <- data %>%
-	select(latitude, longitude, elevation_of_collection) %>% 
+	dplyr::select(latitude, longitude, elevation_of_collection) %>% 
 	unique()
 
 no_elev <- unique_locs %>%
 	filter(is.na(elevation_of_collection)) %>%
 	mutate(decimalLatitude = latitude, decimalLongitude = longitude) %>% 
-	select(-latitude, -longitude, -elevation_of_collection) %>% 
+	dplyr::select(-latitude, -longitude, -elevation_of_collection) %>% 
 	unique()
 
 ## set parameter elevation_model to 'astergdem' to get 30m x 30m elevation at exact collection locations
@@ -198,7 +199,7 @@ point_elev <- elevation(input = no_elev, elevation_model = "astergdem", username
 
 point_elev <- point_elev %>%
 	mutate(elevation_of_collection = elevation_geonames) %>% 
-	select(-elevation_geonames)
+	dplyr::select(-elevation_geonames)
 
 
 ## put all data together:
@@ -214,7 +215,7 @@ data_hasElev <- data %>%
 	filter(elevation_was_reported == TRUE) 
 
 data_noElev <- data %>%
-	select(-elevation_of_collection) %>%
+	dplyr::select(-elevation_of_collection) %>%
 	filter(elevation_was_reported == FALSE) 
 
 data_noElev <- left_join(data_noElev, no_elev)
@@ -222,17 +223,17 @@ data_noElev <- left_join(data_noElev, no_elev)
 data <- rbind(data_hasElev, data_noElev)
 
 data <- data %>%
-	select(-elevation_was_reported)
+	dplyr::select(-elevation_was_reported)
 
 
 ## final data: 
 merged <- merged %>%
-	select(-elevation_of_collection)
+	dplyr::select(-elevation_of_collection)
 
 raster_and_point <- left_join(data, merged) 
 
 raster_and_point <- raster_and_point %>%
-	select(-latitude_of_raster, -longitude_of_raster)
+	dplyr::select(-latitude_of_raster, -longitude_of_raster)
 
 ## merge with non-terrestrial data:
 old_squeaky <- read.csv("/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv") %>%
