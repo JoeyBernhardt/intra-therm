@@ -5,9 +5,12 @@
 library(tidyverse)
 library(cowplot)
 theme_set(theme_cowplot())
+library(geosphere)
 
 
-intratherm <- read_csv("data-processed/intratherm-may-2020-squeaky-clean.csv")
+intratherm <- read_csv("data-processed/intratherm-may-2020-squeaky-clean.csv") %>% 
+	mutate(population_id_old = population_id) %>% 
+	mutate(population_id = paste(population_id_old, longitude, sep = "_")) 
 
 
 ### how many populations do we have per species?
@@ -37,7 +40,7 @@ ggsave("figures/number-studies-per-species.png", width = 6, height = 4)
 
 ### how to calculate distance between two points?
 
-library(geosphere)
+
 # distm (c(lon1, lat1), c(lon2, lat2), fun = distHaversine)
 
 ### get all the the species that only have two populations
@@ -122,7 +125,7 @@ ggsave("figures/distances-km.png", width = 6, height = 4)
 		filter(realm_general2 == "Terrestrial") %>% 
 		select(genus_species, population_id, latitude, longitude) %>% 
 		distinct(.) %>% 
-		left_join(., intra_long2, by = "population_id") 
+		left_join(., intra_long2, by = c("population_id")) 
 		
 #### daily mean maximum temperature
 	
@@ -131,7 +134,7 @@ ggsave("figures/distances-km.png", width = 6, height = 4)
 		distinct() 
 	
 	differences <- intra_long2 %>%
-		left_join(., intra_species) %>% 
+		left_join(., intra_species) %>% View
 		# filter(!is.na(mean_max_temp)) %>% 
 		filter(genus_species %in% c(distances$species)) %>% 
 		select(genus_species, mean_max_temp, population_id, latitude, longitude) %>% 
@@ -152,3 +155,42 @@ ggsave("figures/distances-km.png", width = 6, height = 4)
 		ylab("Max temperature difference") + xlab("Distance between populations (km)")
 	ggsave("figures/temp_diffs_distances.png", width = 6, height = 4)
 	
+
+	
+	
+	
+# Freshwater temperatures -------------------------------------------------
+
+fw <- read_csv("data-processed/intratherm-freshwater-temp-data.csv")
+intra_fw <- read_csv("data-processed/intratherm-may-2020-squeaky-clean.csv") %>% 
+	mutate(population_id = paste(population_id, longitude, sep = "_")) %>% 
+	filter(realm_general2 == "Freshwater")
+	
+
+fw2 <- fw %>% 
+	gather(key = population_id, value = monthly_temp, 4:194) %>% 
+	separate(date_number, into = c("year", "fraction")) %>% 
+	group_by(population_id, year) %>% 
+	summarise(max_yearly_temp = max(monthly_temp)) %>% 
+	group_by(population_id) %>% 
+	summarise(mean_yearly_max_temp = mean(max_yearly_temp))
+
+intra_fw2 <- intra_fw %>% 
+	left_join(., fw2)
+
+	
+fw3 <- fw2 %>% 
+	separate(population_id, into = c("genus_species", "coordinates"), sep = "_", remove = FALSE) %>% 
+	filter(genus_species %in% distances$species) %>% 
+	left_join(., distances, by = c("genus_species" = "species")) %>% 
+	group_by(genus_species) %>% 
+	mutate(temp_difference = max(mean_yearly_max_temp) - min(mean_yearly_max_temp)) %>%
+	filter(temp_difference != 0)
+
+
+fw3 %>% 
+	ggplot(aes(x = distance_km, y = temp_difference)) + geom_point() +
+	ylab('Difference in yearly monthly max temperatures (°C)') +
+	xlab("Distance between populations (km)")
+ggsave("figures/temp-differences-freshwater.png", width = 6, height = 4)
+
