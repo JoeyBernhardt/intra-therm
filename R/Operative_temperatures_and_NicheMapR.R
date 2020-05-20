@@ -29,7 +29,7 @@ day = unique(micro_sun$DOY)[month] # this is the day of the year corresponding t
 AIRT_sun <- subset(micro_sun, DOY == day)$TALOC
 AIRT_shade <- subset(micro_shade, DOY == day)$TALOC
 
-plot(AIRT_sun, ylab="Air temperature, บC", xlab="Time, hour") # temperature in the sun (month 7)
+plot(AIRT_sun, ylab="Air temperature, ยบC", xlab="Time, hour") # temperature in the sun (month 7)
 points(AIRT_shade, pch=20) # temperature in the shade
 
 ############################################
@@ -52,7 +52,7 @@ lat <- ncvar_get(nc_data, "lat", verbose = F)
 t <- ncvar_get(nc_data, "time")
 lai.array <- ncvar_get(nc_data, "LAI")
 
-resolution = 1 # set resolution of the LAI layer to match with your data (e.g., 1บ x 1บ)
+resolution = 1 # set resolution of the LAI layer to match with your data (e.g., 1ยบ x 1ยบ)
 
 LAI_vector <- numeric(12)
 for(month in 1:12){
@@ -123,7 +123,7 @@ AIRT_sun # This array contains air temperatures in the sun in 12 columns (months
 
 month = 7
 
-plot(AIRT_sun[,month], ylab="Air temperature, บC", xlab="Time, hour") # temperature in the sun (month 7)
+plot(AIRT_sun[,month], ylab="Air temperature, ยบC", xlab="Time, hour") # temperature in the sun (month 7)
 points(AIRT_shade[,month], pch=20) # temperature in the shade
 
 # The temperature in the sun (0% of shade) looks exactly the same, but the temperaure in the shade is 
@@ -133,13 +133,13 @@ points(AIRT_shade[,month], pch=20) # temperature in the shade
 max(AIRT_shade)
 
 ############################################ OPERATIVE TEMPERATURES
-# This is the function used by Algar et al. (2018) (based on Buckley 2007) to compute operative temperatures on lizards in the sun. 
+# This is the function used by Algar et al. (2018) (based on Buckley 2007) to compute operative temperatures of lizards in the sun. 
 # We can parameterize this function using NicheMapR (for air T, soil T, wind velocity, and solar radiation) and our body size data 
 # (body length)
 
 Te_function <- function(S,    # Solar radiation (Wm-2)
-                        Ta,   # Air temperature (บC)
-                        Tg,   # Ground temperature (บC)
+                        Ta,   # Air temperature (ยบC)
+                        Tg,   # Ground temperature (ยบC)
                         v,    # Wind velocity (m/s)
                         d,    # Body length (m)
                         alpha_lw=0.965, # Skin absorbance (long wave) (Buckley 2007)
@@ -183,7 +183,7 @@ VLOC <- subset(micro_sun, DOY == day)$VLOC  # wind speed
 d = 0.05 # body length (m)
 Te <- Te_function(S=SOLR, Ta=AIRT, Tg=SOILT, v=VLOC, d=d)
 
-plot(Te, ylab="Operative temperature, บC", xlab="Time, hour") # Operative temperatures in the sun (month 7)
+plot(Te, ylab="Operative temperature, ยบC", xlab="Time, hour") # Operative temperatures in the sun (month 7)
 points(AIRT, col="blue")
 
 # The operative temperature is going to be higher than air T, especially when solar radiation is high. 
