@@ -5,7 +5,7 @@ library(taxize)
 library(tidyverse)
 
 ## note: taxize code first used on may 2020 version of database, again used on precleaning database
-data <- read.csv("/Users/nikkimoore/Documents/intra-therm/data-raw/intratherm-may-2020-precleaning.csv")
+data <- read.csv("./data-raw/intratherm-may-2020-precleaning.csv")
 
 
 
@@ -755,7 +755,7 @@ data_protected <- data
 
 
 ## write updated version to data file:
-write.csv(data, "/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
+write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
 
 
 
@@ -763,7 +763,7 @@ write.csv(data, "/Users/nikkimoore/Documents/intra-therm/data-processed/intrathe
 #####################################################################
 ## went back to studies to make sure elevation was in m and as reported in studies for all entries 
 ## if in ft, changed value in precleaning data and then reran code to update squeaky clean
-data <- read.csv("/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv")
+data <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv")
 
 unique(data$elevation_of_collection)
 
@@ -799,7 +799,7 @@ data <- data_test
 data_protected <- data
 
 ## write updated version to data file:
-write.csv(data, "/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
+write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
 
 
 
@@ -854,11 +854,19 @@ data <- data_test
 
 
 
+## cleaning up season_when_away100km+ and season_when_inactive 
+
+
+
+
+
+
+
+
+
+
 
 
 
 ## write new verion to file:
-write.csv(data, "/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
-
-
-
+write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)

@@ -27,7 +27,7 @@ long <- ncvar_get(ncfile, "longitude")
 nc_close(ncfile)
 
 ## subset data to only terrestrial populations with known location
-elev_sub <- read.csv("/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv") 
+elev_sub <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv") 
 elev_sub <- elev_sub %>%
 	filter(realm_general2 == "Terrestrial") %>%
 	filter(!is.na(latitude)) %>%
@@ -170,8 +170,6 @@ while (i < 139) {
 unique_locs$raster_mean <- unlist(raster_means, use.names=FALSE)
 precious_elevation <- unique_locs
 
-saveRDS(precious_elevation, file = "~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_elevation.rds") ##save !!!
-
 unique_locs <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_elevation.rds")
 
 
@@ -236,14 +234,10 @@ raster_and_point <- raster_and_point %>%
 	dplyr::select(-latitude_of_raster, -longitude_of_raster)
 
 ## merge with non-terrestrial data:
-old_squeaky <- read.csv("/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv") %>%
+old_squeaky <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv") %>%
 	filter(realm_general2 != "Terrestrial") %>%
 	mutate(raster_mean = NA)
 
 new_squeaky <- rbind(old_squeaky, raster_and_point)
 
-write.csv(new_squeaky, "/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-with-elev.csv")
-
-
-
-
+write.csv(new_squeaky, "./data-processed/intratherm-with-elev.csv")

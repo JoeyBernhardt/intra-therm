@@ -16,7 +16,7 @@ long <- ncvar_get(ncfile, "longitude")
 nc_close(ncfile)
 
 ## bring in data
-cadillac <- read.csv("/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv")
+cadillac <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv")
 
 ## filter out rows of data we cannot use  
 cadillac <- cadillac %>%
@@ -148,6 +148,3 @@ write.csv(temperature_data, "~/Documents/SUNDAY LAB/Intratherm/Data sheets/intra
 
 ## make sure it worked
 read <- read.csv("~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-temp-data-may-2020.csv")
-
-
-

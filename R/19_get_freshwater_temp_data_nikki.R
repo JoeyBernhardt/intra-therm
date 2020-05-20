@@ -5,7 +5,7 @@ library(ncdf4)
 library(tidyverse)
 
 ## open nc file and get lat lon and time vectors
-filename <- paste("/Volumes/TimeMachine/freshwater data/waterTemperature_monthly_1981-2014.nc", sep = "")
+filename <- paste("waterTemperature_monthly_1981-2014.nc", sep = "")
 ncfile <- nc_open(filename)
 
 
@@ -17,7 +17,7 @@ time <- ncvar_get(ncfile, "time") ## units: days since 1901-01-01
 nc_close(ncfile)
 
 ## bring in population data
-cadillac <- read.csv("/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-may-2020-squeaky-clean.csv")
+cadillac <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv")
 
 ## filter out rows of data we cannot use and that are not freshwater
 freshwater <- cadillac %>%
@@ -58,9 +58,6 @@ while (num_unique < length(unique_pairs$intratherm_id) + 1) {
 
 ## save to RDS
 precious_temps <- temperature_data
-
-saveRDS(precious_temps, file = "~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_temps.rds") ##save !!!
-
 temperature_data <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_temps.rds")
 
 ## convert from degrees K to degrees C
@@ -98,5 +95,4 @@ converted <- converted %>%
 
 
 ## write temperature file to processed data 
-write.csv(converted, "/Users/nikkimoore/Documents/intra-therm/data-processed/intratherm-freshwater-temp-data.csv")
-
+write.csv(converted, "./data-processed/intratherm-freshwater-temp-data.csv")
