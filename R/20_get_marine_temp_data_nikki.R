@@ -92,6 +92,38 @@ precious_marine_temps <- temperature_data
 temperature_data <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_marine_temps.rds")
 
 
+## add rows for populations with the same lat, long and elevation but different species 
+## will have same temperature data 
+populations <- marine[!duplicated(marine[,c("genus_species", "latitude", "longitude", "elevation_of_collection")]),]
+
+i <- 1
+while (i < length(unique_pairs$population_id) + 1) {
+		z <- 1
+		while (z < length(populations$population_id) + 1) {
+			same_pop <- (unique_pairs$latitude[i] == populations$latitude[z] & 
+						 	unique_pairs$longitude[i] == populations$longitude[z] & 
+						 	unique_pairs$genus_species[i] == populations$genus_species[z])
+			
+			same_loc <- (unique_pairs$latitude[i] == populations$latitude[z] & 
+						 	unique_pairs$longitude[i] == populations$longitude[z])
+			
+			if (!same_pop & same_loc) {
+				temperature_data$temps <- temperature_data[,i+1]
+				pop_id <- paste(populations$population_id[z], populations$longitude[z], sep = "_")
+				colnames(temperature_data)[length(temperature_data)]<- pop_id
+				same_pop = FALSE
+				same_loc = FALSE
+				z = z+1
+			}
+			else {
+				z = z+1
+			}
+		}
+		i = i+1
+}
+
+
+
 ## write to file:
 write.csv(temperature_data, "./data-processed/intratherm-marine-temp-data.csv")
 
