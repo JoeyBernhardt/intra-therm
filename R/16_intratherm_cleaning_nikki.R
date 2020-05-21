@@ -854,18 +854,95 @@ data <- data_test
 
 
 
-## cleaning up season_when_away100km+ and season_when_inactive 
+## cleaning up season_when_away100km+ and season_when_inactive
+## change names of columns to simplify:
+colnames(data)[which(names(data) == "season_when_away_100km...migratory.only.")] <- "season_when_away_100km"
+colnames(data)[which(names(data) == "season_when_away_10km...migratory.only.")] <- "season_when_away_10km"
+
+## clean up 100km:
+swa <- data$season_when_away_100km
+unique(swa)
+
+swa_test <- str_replace(swa, pattern = "October/Novermber/December/January/February", replacement = "Oct-Feb") %>%
+  str_replace(pattern = "spring-fall", replacement = "Spring-Fall") %>%
+  str_replace(pattern = "fall/winter", replacement = "Fall-Winter") %>%
+  str_replace(pattern = "March-April", replacement = "Mar-Apr") %>%
+  str_replace(pattern = "August/September/October", replacement = "Aug-Oct") %>%
+  str_replace(pattern = "summer", replacement = "Summer") %>%
+  str_replace(pattern = "fall", replacement = "Fall") %>%
+  str_replace(pattern = "autumn/winter", replacement = "Fall-Winter") %>%
+  str_replace(pattern = "April-Aug/Sept", replacement = "Apr-Sep") %>%
+  str_replace(pattern = "spring", replacement = "Spring") %>%
+  str_replace(pattern = "late Spring/early Summer", replacement = "Spring-Summer") %>%
+  str_replace(pattern = "3 months around April/May", replacement = "Apr-Jun") %>%
+  str_replace(pattern = "late winter-early Spring", replacement = "Winter-Spring") 
+
+unique(swa_test)
+
+swa <- swa_test
+data$season_when_away_100km <- swa
 
 
 
+## clean up 10km:
+swa <- data$season_when_away_10km
+unique(swa)
 
+swa_test <- str_replace(swa, pattern = "spring-fall", replacement = "Spring-Fall") %>%
+  str_replace(pattern = "winter(including Nov and Dec)", replacement = "Winter") %>%
+  str_replace(pattern = "August/September/October", replacement = "Aug-Oct") %>%
+  str_replace(pattern = "March-April", replacement = "Mar-Apr") %>%
+  str_replace(pattern = "fall/winter", replacement = "Fall-Winter") %>%
+  str_replace(pattern = "late spring/early summer", replacement = "Spring-Summer") %>%
+  str_replace(pattern = "October/Novermber/December/January/February", replacement = "Oct-Feb") %>%
+  str_replace(pattern = "spring", replacement = "Spring") %>%
+  str_replace(pattern = "May-October", replacement = "May-Oct") %>%
+  str_replace(pattern = "fall", replacement = "Fall") %>%
+  str_replace(pattern = "winter", replacement = "Winter") %>%
+  str_replace(pattern = "summer", replacement = "Summer") %>%
+  str_replace(pattern = "autumn/winter", replacement = "Fall-Winter") %>%
+  str_replace(pattern = "autumn/Winter", replacement = "Fall-Winter") %>%
+  str_replace(pattern = "February/March/April", replacement = "Feb-Apr") %>%
+  str_replace(pattern = "late winter-early spring", replacement = "Winter-Spring") %>%
+  str_replace(pattern = "April-Aug/Sept", replacement = "Apr-Sep") %>%
+  str_replace(pattern = "July-September", replacement = "Jul-Sep") %>%
+  str_replace(pattern = "August/September/October/November/December/January/February/March/April", replacement = "Aug-Apr") %>%
+  str_replace(pattern = "April/May/June", replacement = "Apr-Jun") %>%
+  str_replace(pattern = "late Winter-early Spring", replacement = "Winter-Spring") %>%
+  str_replace(pattern = "\\([^()]{0,}\\)", replacement = "") %>%
+  str_replace(pattern = "3 months around April/May", replacement = "Apr-Jun") %>%
+  str_replace(pattern = "Aug-Oct/November/December/January/Feb-Apr", replacement = "Aug-Apr") %>%
+  str_replace(pattern = "Spring\\+ two months", replacement = "Spring-Summer")
+  
+unique(swa_test)
+swa <- swa_test
+data$season_when_away_10km <- swa
 
+## clean up season inactive:
+## let dry == summer, hot == summer
+sia <- data$season_inactive
+unique(sia)
 
+sia_test <- str_replace(sia, pattern = "hot dry", replacement = "Summer") %>%
+  str_replace(pattern = "Oct - Mar", replacement = "Oct-Mar") %>%
+  str_replace(pattern = "summer/dry season", replacement = "Summer") %>%
+  str_replace(pattern = "winter", replacement = "Winter") %>%
+  str_replace(pattern = "Oct - Apr", replacement = "Oct-Apr") %>%
+  str_replace(pattern = "June - Oct", replacement = "Jun-Oct") %>%
+  str_replace(pattern = "fall-winter", replacement = "Fall-Winter") %>%
+  str_replace(pattern = "spring\\+ Winter", replacement = "Spring and Winter") %>%
+  str_replace(pattern = "hot", replacement = "Summer") %>%
+  str_replace(pattern = "dry", replacement = "Summer") %>%
+  str_replace(pattern = "summer", replacement = "Summer") %>%
+  str_replace(pattern = "Winter\\+hot", replacement = "Winter and Summer") %>%
+  str_replace(pattern = "Winter\\+dry", replacement = "Winter and Summer") %>%
+  str_replace(pattern = "Winter\\?", replacement = "Winter") %>%
+  str_replace(pattern = "fall\\-Winter", replacement = "Fall and Winter") %>%
+  str_replace(pattern = "Winter\\+Summer", replacement = "Summer and Winter") 
 
-
-
-
-
+unique(sia_test)
+sia <- sia_test
+data$season_inactive <- sia
 
 
 ## write new verion to file:

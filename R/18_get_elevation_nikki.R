@@ -16,7 +16,7 @@ library(dplyr)
 ## will then get average elevation across each of these grid squares 
 
 ## read in Berkeley Earth grid square vectors 
-filename <- paste("Complete_TMAX_Daily_LatLong1_1880.nc", sep = "")
+filename <- paste("./Berkeley_Tavg/Complete_TAVG_Daily_LatLong1_1880.nc", sep = "")
 ncfile <- nc_open(filename)
 
 ## create variables for things needed to use data

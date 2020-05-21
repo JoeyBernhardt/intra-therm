@@ -4,8 +4,9 @@ library(lattice)
 library(ncdf4)
 library(janitor)
 
+## Tavg files for 1900 + 1910 + 1920 are corrupt - start from 1930instead 
 ## read in gridded data in nc file for the file_index from berkeley earth and store data in R workspace 
-filename <- paste("Complete_TMAX_Daily_LatLong1_1880.nc", sep = "")
+filename <- paste("./Berkeley_Tavg/Complete_TAVG_Daily_LatLong1_1930.nc", sep = "")
 ncfile <- nc_open(filename)
 
 ## create variables for things needed to use data
@@ -19,30 +20,31 @@ nc_close(ncfile)
 cadillac <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv")
 
 ## filter out rows of data we cannot use  
-cadillac <- cadillac %>%
+terrestrial <- cadillac %>%
   subset(subset = !is.na(latitude)) %>%
-  subset(subset = !is.na(longitude)) 
+  subset(subset = !is.na(longitude)) %>%
+  subset(realm_general2 == "Terrestrial")
 
-cadillac <- droplevels(cadillac)
+terrestrial <- droplevels(terrestrial)
 
 ## get rid of duplicate population rows since all will have the same temp data
-unique_pairs <- subset(cadillac, !duplicated(cadillac$population_id))
+unique_pairs <- terrestrial[!duplicated(terrestrial[,c("latitude", "longitude", "elevation_of_collection")]),]
 
 ## temps:
-temperature_data <- data.frame(matrix(nrow = 51043))
+temperature_data <- data.frame(matrix(nrow = 32294))
 
 ## for each population:
 num_unique <- 1
-while (num_unique < 743) {
+while (num_unique < length(unique_pairs$population_id) + 1) {
   
   loc_cumulative <- data.frame(matrix(ncol=2))
   colnames(loc_cumulative) <- c("date", "temp_value")
-  rep = 1880
+  rep = 1930
   
-  while (rep < 2020) {
+  while (rep < 2013) {
     print(paste("On population number ", num_unique, ", getting temp data from ", rep, sep = ""))
     ## read in gridded data in nc file for the file_index from berkeley earth and store data in R workspace 
-    filename <- paste("Complete_TMAX_Daily_LatLong1_", rep, ".nc", sep = "")
+    filename <- paste("./Berkeley_Tavg/Complete_TAVG_Daily_LatLong1_", rep, ".nc", sep = "")
     ncfile <- nc_open(filename)
     
     ## create variables for things needed to use data
@@ -66,9 +68,14 @@ while (num_unique < 743) {
     ## repeat day list loc.clim.365d on normal years + loc.clim.366d on leap years 
     last_year = (rep + 10)
     loc.clim <- c()
+    
+    if(last_year == 2020) {
+      last_year = 2019
+    }
+    
     while (rep < last_year) {
-      if (rep == 2019) {
-        loc.clim <- append(loc.clim, loc.clim.365d[1:273], after = length(loc.clim))
+      if (rep == 2018) {
+        loc.clim <- append(loc.clim, loc.clim.365d[1:151], after = length(loc.clim))
       }
       else if (rep %% 4 == 0){
         if (rep == 1900) { 
@@ -90,11 +97,15 @@ while (num_unique < 743) {
     rep <- rep - 10
     d <- 1
     
+    if (rep == 2009) {
+      rep <- 2010
+    }
+    
     while (rep < max) {
-      if (rep == 2019) {
-        temps <- loc.anom[d:(d+272)] + loc.clim[d:(d+272)]
+      if (rep == 2018) {
+        temps <- loc.anom[d:(d+150)] + loc.clim[d:(d+150)]
         temp_list <- append(temp_list, temps, after = length(temp_list))
-        d = d + 273
+        d = d + 150
       }
       else if (rep %% 4 == 0) {
         if (rep == 1900) {
@@ -124,16 +135,17 @@ while (num_unique < 743) {
     loc_cumulative <- rbind(loc_cumulative, loc)
   }
   
-  population <- as.character(unique_pairs$population_id[num_unique])
+  pop_id <- paste(unique_pairs$population_id[num_unique], unique_pairs$longitude[num_unique], sep = "_")
+  
   ## add column for population to temperature data 
   if (num_unique == 1){
     temperature_data <- cbind(temperature_data, loc_cumulative)
     temperature_data <- temperature_data[,-1]
-    colnames(temperature_data)[num_unique+1] <- population
+    colnames(temperature_data)[num_unique+1] <- pop_id
   }
   else {
     temperature_data <- cbind(temperature_data, loc_cumulative[,2])
-    colnames(temperature_data)[num_unique+1] <- population
+    colnames(temperature_data)[num_unique+1] <- pop_id
   }
   
   num_unique = num_unique + 1;
@@ -143,8 +155,51 @@ while (num_unique < 743) {
 
 temperature_data <- temperature_data[-1,]
 
+temperature_data <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_terrestrial_tavg.rds")
+
+
+## add rows for populations with the same lat, long and elevation but different species 
+## will have same temperature data 
+populations <- terrestrial[!duplicated(terrestrial[,c("genus_species", "latitude", "longitude", "elevation_of_collection")]),]
+
+i <- 1
+while (i < length(unique_pairs$population_id) + 1) {
+  z <- 1
+  while (z < length(populations$population_id) + 1) {
+    if (is.na(unique_pairs$elevation_of_collection[i]) || is.na(populations$elevation_of_collection[z])) {
+      same_pop <- (unique_pairs$latitude[i] == populations$latitude[z] & 
+                     unique_pairs$longitude[i] == populations$longitude[z] & 
+                     unique_pairs$genus_species[i] == populations$genus_species[z])
+      same_loc <- (unique_pairs$latitude[i] == populations$latitude[z] & 
+                     unique_pairs$longitude[i] == populations$longitude[z] &
+                     unique_pairs$genus_species[i] == populations$genus_species[z])
+    }
+    else {
+      same_pop <- (unique_pairs$latitude[i] == populations$latitude[z] & 
+                     unique_pairs$longitude[i] == populations$longitude[z] & 
+                     unique_pairs$genus_species[i] == populations$genus_species[z] & 
+                     unique_pairs$elevation_of_collection[i] == populations$elevation_of_collection[z])
+      same_loc <- (unique_pairs$latitude[i] == populations$latitude[z] & 
+                     unique_pairs$longitude[i] == populations$longitude[z])
+    }
+    if (!same_pop & same_loc) {
+      temperature_data$temps <- temperature_data[,i+1]
+      pop_id <- paste(populations$population_id[z], populations$longitude[z], sep = "_")
+      colnames(temperature_data)[length(temperature_data)]<- pop_id
+      same_pop = FALSE
+      same_loc = FALSE
+      z = z+1
+    }
+    else {
+      z = z+1
+    }
+  }
+  i = i+1
+}
+
+
 ## write to file
-write.csv(temperature_data, "~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-temp-data-may-2020.csv", row.names = FALSE)
+write.csv(temperature_data, "~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-terrestrial-temps-tavg.csv", row.names = FALSE)
 
 ## make sure it worked
-read <- read.csv("~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-temp-data-may-2020.csv")
+read <- read.csv("~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-terrestrial-temps-tavg.csv")
