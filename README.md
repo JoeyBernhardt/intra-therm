@@ -7,3 +7,7 @@ There are multiple versions of the intratherm data.
 
 
 [this next version](https://github.com/JoeyBernhardt/intra-therm/blob/master/data-processed/intratherm-multi-pop.csv) has the subset of the data that has multiple collection locations
+
+
+
+[this next version](https://github.com/JoeyBernhardt/intra-therm/blob/master/data-processed/intratherm-may-2020-squeaky-clean.csv) is the most recent version of the database
