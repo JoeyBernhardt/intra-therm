@@ -11,7 +11,7 @@ cadillac <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv")
 marine <- cadillac %>%
 	subset(subset = !is.na(latitude)) %>%
 	subset(subset = !is.na(longitude)) %>%
-	filter(realm_general2 == "Marine")
+	subset(realm_general2 == "Marine")
 
 marine <- droplevels(marine)
 
