@@ -816,11 +816,9 @@ data <- data_test
 data_protected <- data
 
 
-
-#while getting freshwater data, found some freshwater species living in estuaries that should be labelled marine 
+## while getting freshwater data, found some freshwater species living in estuaries that should be labelled marine 
 ## change realm_general2 to marine for these species 
 intratherm_ids_marine <- c(313,321,766,1792,1797,1164,657,1240,1791,968,949,1228)
-
 marine_sub <- data[-1:-2874,]
 
 data_test <- data
@@ -851,6 +849,54 @@ marine_sub$realm_general2 <- "Marine" ##change general realm to marine
 data_test <- rbind(data_test, marine_sub)
 
 data <- data_test
+
+
+## while getting marine data, found one species labelled marine that might have data in freshwater:
+## change realm_general2 to freshwater for these species 
+intratherm_ids_fresh <- c(2837)
+
+fresh_sub <- data[-1:-2874,]
+
+data_test <- data
+
+i <- 1
+while (i < length(intratherm_ids_fresh) + 1) {
+  pop <- intratherm_ids_fresh[i]
+  row <- data[which(data$intratherm_id == pop),]
+  
+  if(length(row$latitude) == 0) {
+    i = i + 1
+  }
+  
+  else {
+    ## find all population members - same lat, long, elev
+    pop_members <- data %>%
+      filter(data$latitude == row$latitude & data$longitude == row$longitude) 
+    
+    fresh_sub <- rbind(fresh_sub, pop_members) ## add to subset
+    data_test <- data_test[!data_test$intratherm_id %in% pop_members$intratherm_id,] ## remove from dataset
+    
+    i <- i + 1
+  }
+}
+
+fresh_sub$realm_general2 <- "Freshwater" ##change general realm to marine 
+data_test <- rbind(data_test, fresh_sub)
+
+data <- data_test
+
+
+## May 22:
+## Madras Atomic Power Station Kalpakkam India and Central Institute of Fisheries Education Mumbai India not wild locations 
+## remove all 
+non_wild <- which(str_detect(data$location_description, "Education")) %>%
+  append(which(str_detect(data$location_description, "Atomic")))
+
+data_test <- data[-non_wild,]
+
+data <- data_test
+
+data_protected <- data
 
 
 
@@ -945,5 +991,14 @@ sia <- sia_test
 data$season_inactive <- sia
 
 
+## found more non-wild fish including in descriptions "Central Institute of Fisheries Education Mumbai India" and "Madras Atomic Power Station Kalpakkam India"
+
+
+
+
+
+
 ## write new verion to file:
 write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
+
+
