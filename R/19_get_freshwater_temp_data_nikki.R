@@ -285,7 +285,7 @@ while (z < length(populations$population_id) + 1) {
 						 	unique_pairs$elevation_of_collection[i] == populations$elevation_of_collection[z])
 		}
 		if (!same_pop & same_loc) {
-			temperature_data$temps <- temperature_data[,i+2]
+			temperature_data$temps <- temperature_data[,i+1]
 			pop_id <- paste(populations$population_id[z], populations$longitude[z], sep = "_")
 			colnames(temperature_data)[length(temperature_data)]<- pop_id
 			same_pop = FALSE
@@ -295,7 +295,7 @@ while (z < length(populations$population_id) + 1) {
 		else {
 			same_pop = FALSE
 			same_loc = FALSE
-			i = i + 1
+			i = i+1
 		}
 	}
 	z = z+1

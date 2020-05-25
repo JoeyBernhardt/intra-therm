@@ -12,7 +12,8 @@ library(dplyr)
 
 ## 		GETTING GRID SQUARE COORDINATES		##
 ##############################################
-## record lat and long of centre of each grid square population falls in in Berkeley Earth data
+## record lat and long of centre of each grid cell population falls in in Berkeley Earth data
+## (recall: grid cells of NA populations were adjusted, so change these grid cells)
 ## will then get average elevation across each of these grid squares 
 
 ## read in Berkeley Earth grid square vectors 
@@ -34,7 +35,7 @@ elev_sub <- elev_sub %>%
 	filter(!is.na(longitude))
 
 elev <- elev_sub %>% ##subset to unique pairs of lat long 
-	subset(select=c(latitude, longitude)) %>% 
+	subset(select=c(latitude, longitude, elevation_of_collection)) %>% 
 	unique()
 
 latitude_of_raster <- c() 
@@ -43,7 +44,7 @@ longitude_of_raster <- c()
 
 ## get grid square coordinates for each population
 num_unique <- 1
-while (num_unique < 188) {
+while (num_unique < 208) {
 	loc_long_index <- which.min(abs(long - elev$longitude[num_unique]))
 	loc_lat_index <- which.min(abs(lat - elev$latitude[num_unique]))
 	
@@ -53,6 +54,29 @@ while (num_unique < 188) {
 	num_unique <- num_unique + 1
 }
 
+## manually adjust ones that were changed when no temp data was retrieved: 
+longitude_of_raster[1:5] <- -60.5
+latitude_of_raster[1:5] <- 14.5
+longitude_of_raster[31:32] <- NA
+latitude_of_raster[31:32] <- NA
+longitude_of_raster[55] <- -70.5
+latitude_of_raster[55] <- 41.5
+longitude_of_raster[100] <- NA
+latitude_of_raster[100] <- NA
+longitude_of_raster[117] <- 148.5
+latitude_of_raster[117] <- -37.5
+longitude_of_raster[119] <- 148.5
+latitude_of_raster[119] <- -37.5
+longitude_of_raster[121] <- 148.5
+latitude_of_raster[121]<- -36.5
+longitude_of_raster[128] <- 150.5
+latitude_of_raster[128]<- -33.5
+longitude_of_raster[134] <- 150.5
+latitude_of_raster[134]<- -33.5
+longitude_of_raster[132] <- 146.5
+latitude_of_raster[132] <- -38.5
+longitude_of_raster[198] <- NA
+latitude_of_raster[198] <- NA
 
 elev$latitude_of_raster <- latitude_of_raster
 elev$longitude_of_raster <- longitude_of_raster
@@ -71,10 +95,11 @@ data <- elev_sub
 
 unique_locs <- data %>%
 	subset(select=c(latitude_of_raster, longitude_of_raster)) %>% 
+	filter(!is.na(latitude_of_raster) & !is.na(longitude_of_raster)) %>%
 	unique() 
 
-latitude <- unique_locs$latitude_of_raster 
-longitude <- unique_locs$longitude_of_raster
+latitude <- unique_locs$latitude_of_raster[which(!is.na(unique_locs$latitude_of_raster))]
+longitude <- unique_locs$longitude_of_raster[which(!is.na(unique_locs$longitude_of_raster))]
 
 
 ## 1. create a SpatialPolygonsDataFrame of 1 degree lat x 1 degree long rectangles representing each grid cell we need elevation for
@@ -86,7 +111,7 @@ raster_means <- c()
 
 ## for each grid cell we took temp data from:
 i <- 1
-while (i < 139) {
+while (i < 135) {
 	
 	## 1. create a rectangle representing grid cell:
 	## draw square with coords corresponding to corners 

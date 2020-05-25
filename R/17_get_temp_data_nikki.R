@@ -3,8 +3,9 @@ library(RColorBrewer)
 library(lattice)
 library(ncdf4)
 library(janitor)
+library(tidyverse)
 
-## Tavg files for 1900 + 1910 + 1920 are corrupt - start from 1930instead 
+## Tavg files for 1900 + 1910 + 1920 are corrupt - start from 1930 instead 
 ## read in gridded data in nc file for the file_index from berkeley earth and store data in R workspace 
 filename <- paste("./Berkeley_Tavg/Complete_TAVG_Daily_LatLong1_1930.nc", sep = "")
 ncfile <- nc_open(filename)
@@ -154,8 +155,201 @@ while (num_unique < length(unique_pairs$population_id) + 1) {
 
 
 temperature_data <- temperature_data[-1,]
-
 temperature_data <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_terrestrial_tavg.rds")
+
+
+
+## figure out which are NA and why:
+isNA <- select(temperature_data, as.vector(which(colSums(is.na(temperature_data)) == nrow(temperature_data))))
+indexNA <- as.vector(which(colSums(is.na(temperature_data)) == nrow(temperature_data)))
+uniqueNA <- unique_pairs[indexNA-1,]
+
+missing_long <- c()
+missing_lat <- c()
+
+## see what lat lon was and google maps it to investigate 
+x=1
+while (x < length(uniqueNA$genus_species) + 1) {
+  missing_long <- append(missing_long, long[which.min(abs(long - uniqueNA$longitude[x]))])
+  missing_lat <- append(missing_lat, lat[which.min(abs(lat - uniqueNA$latitude[x]))])
+  x=x+1
+}
+
+#### find new grid squares by looking on google maps:
+## first five are on Martinique
+missing_long[1:5] <- -60.5
+missing_lat[1:5] <- 14.5
+
+## for intratherm_id 2081 and 2085, no accurate temp data can be obtained since no data for any grid surrounding prince edward islands exists 
+missing_long[6:7] <- NA
+missing_lat[6:7] <- NA
+
+## move closer to Boston land mass:
+missing_long[8] <- -70.5
+missing_lat[8] <- 41.5
+
+## for intratherm_id 2531, no accurate temp data can be obtained since no data for island of St. Croix
+missing_long[9] <- NA
+missing_lat[9] <- NA
+
+## Buchan, Victoria:
+missing_long[10:11] <- 148.5
+missing_lat[10:11] <- -37.5
+
+## Murrindal, Victoria
+missing_long[12] <- 148.5
+missing_lat[12]<- -36.5
+
+## Godsford, NSW:
+missing_long[13] <- 150.5
+missing_lat[13]<- -33.5
+missing_long[15] <- 150.5
+missing_lat[15]<- -33.5
+
+## Wilson's Promontory National Park, Victoria
+missing_long[14] <- 146.5
+missing_lat[14] <- -38.5
+
+## "Supplier" in location description of intratherm_id 1431 means probably not a real collection location
+missing_long[16] <- NA
+missing_lat[16] <- NA
+
+##assign new lats and longs to use when getting temp data 
+uniqueNA$new_lat <- missing_lat
+uniqueNA$new_long <- missing_long
+
+
+
+## get temp data for populations that were NA
+temperature_data_NA <- data.frame(matrix(nrow = 32294))
+num_unique <- 1
+while (num_unique < length(uniqueNA$population_id) + 1) {
+  
+  loc_cumulative <- data.frame(matrix(ncol=2))
+  colnames(loc_cumulative) <- c("date", "temp_value")
+  rep = 1930
+  
+  while (rep < 2013) {
+    print(paste("On population number ", num_unique, ", getting temp data from ", rep, sep = ""))
+    ## read in gridded data in nc file for the file_index from berkeley earth and store data in R workspace 
+    filename <- paste("./Berkeley_Tavg/Complete_TAVG_Daily_LatLong1_", rep, ".nc", sep = "")
+    ncfile <- nc_open(filename)
+    
+    ## create variables for things needed to use data
+    date <- ncvar_get(ncfile, "date_number")
+    arr.anom <-ncvar_get(ncfile, "temperature")
+    arr.clim <- ncvar_get(ncfile, "climatology")
+    
+    nc_close(ncfile)
+    
+    ## get clim and anom data for collection location of species 
+    ## NaN here if location does not have data 
+    loc_long_index <- which.min(abs(long - uniqueNA$new_long[num_unique]))
+    loc_lat_index <- which.min(abs(lat - uniqueNA$new_lat[num_unique]))
+    loc.anom <- arr.anom[loc_long_index,loc_lat_index,]
+    loc.clim.365d <- arr.clim[loc_long_index,loc_lat_index,]
+    
+    ## account for leap year - duplicate day index added on feb 28 in clim array (this seems to be how they dealt with it when calculating anom)
+    index_59 <- loc.clim.365d[59]
+    loc.clim.366d <- append(loc.clim.365d, index_59, after = 59)
+    
+    ## repeat day list loc.clim.365d on normal years + loc.clim.366d on leap years 
+    last_year = (rep + 10)
+    loc.clim <- c()
+    
+    if(last_year == 2020) {
+      last_year = 2019
+    }
+    
+    while (rep < last_year) {
+      if (rep == 2018) {
+        loc.clim <- append(loc.clim, loc.clim.365d[1:151], after = length(loc.clim))
+      }
+      else if (rep %% 4 == 0){
+        if (rep == 1900) { 
+          loc.clim <- append(loc.clim, loc.clim.365d, after = length(loc.clim))
+        }
+        else {
+          loc.clim <- append(loc.clim, loc.clim.366d, after = length(loc.clim))
+        }
+      }
+      else {
+        loc.clim <- append(loc.clim, loc.clim.365d, after = length(loc.clim))
+      }
+      rep = rep + 1
+    }
+    
+    ## create dataframe of actual temp values at location by adding anomaly and climatology values over the 10 years 
+    temp_list <- c()
+    max <- rep
+    rep <- rep - 10
+    d <- 1
+    
+    if (rep == 2009) {
+      rep <- 2010
+    }
+    
+    while (rep < max) {
+      if (rep == 2018) {
+        temps <- loc.anom[d:(d+150)] + loc.clim[d:(d+150)]
+        temp_list <- append(temp_list, temps, after = length(temp_list))
+        d = d + 150
+      }
+      else if (rep %% 4 == 0) {
+        if (rep == 1900) {
+          temps <- loc.anom[d:(d+364)] + loc.clim[d:(d+364)]
+          temp_list <- append(temp_list, temps, after = length(temp_list))
+          d = d + 365
+        }
+        else { 
+          temps <- loc.anom[d:(d+365)] + loc.clim[d:(d+365)]
+          temp_list <- append(temp_list, temps, after = length(temp_list))
+          d = d + 366
+        }
+      }
+      else {
+        temps <- loc.anom[d:(d+364)] + loc.clim[d:(d+364)]
+        temp_list <- append(temp_list, temps, after = length(temp_list))
+        d = d + 365
+      }
+      rep = rep + 1
+    }
+    
+    ## make dataframe of date and corresponding temp values
+    loc <- data.frame(date[], temp_list[])
+    colnames(loc) <- c("date", "temp_value")
+    
+    ## add loc to loc_cumulative so one data frame contains data from all 10 year datasets
+    loc_cumulative <- rbind(loc_cumulative, loc)
+  }
+  
+  pop_id <- paste(uniqueNA$population_id[num_unique], uniqueNA$longitude[num_unique], sep = "_")
+  
+  ## add column for population to temperature data 
+  if (num_unique == 1){
+    temperature_data_NA <- cbind(temperature_data_NA, loc_cumulative)
+    temperature_data_NA <- temperature_data_NA[,-1]
+    colnames(temperature_data_NA)[num_unique+1] <- pop_id
+  }
+  else {
+    temperature_data_NA <- cbind(temperature_data_NA, loc_cumulative[,2])
+    colnames(temperature_data_NA)[num_unique+1] <- pop_id
+  }
+  
+  num_unique = num_unique + 1;
+  
+}
+
+
+temperature_data_NA <- temperature_data_NA[-1,]
+precious_NA_temps_terr <- temperature_data_NA
+saveRDS(precious_NA_temps_terr, "~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_NA_temps_terr.rds")
+temperature_data_NA <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_NA_temps_terr.rds") %>%
+  select(-date)
+
+##combine:
+temperature_data <- temperature_data[,-as.vector(which(colSums(is.na(temperature_data)) == nrow(temperature_data)))] ## remove NA columns
+temperature_data <- cbind(temperature_data, temperature_data_NA) ## add columns that were NA back
 
 
 ## add rows for populations with the same lat, long and elevation but different species 
@@ -173,7 +367,7 @@ while (z < length(populations$population_id) + 1) {
                      is.na(unique_pairs$elevation_of_collection[i]) & is.na(populations$elevation_of_collection[z]))
       same_loc <- (unique_pairs$latitude[i] == populations$latitude[z] & 
                      unique_pairs$longitude[i] == populations$longitude[z] &
-                      is.na(unique_pairs$elevation_of_collection[i]) & is.na(populations$elevation_of_collection[z]))
+                     is.na(unique_pairs$elevation_of_collection[i]) & is.na(populations$elevation_of_collection[z]))
     }
     else {
       same_pop <- (unique_pairs$latitude[i] == populations$latitude[z] & 
@@ -204,6 +398,3 @@ while (z < length(populations$population_id) + 1) {
 
 ## write to file
 write.csv(temperature_data, "~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-terrestrial-temps-tavg.csv", row.names = FALSE)
-
-## make sure it worked
-read <- read.csv("~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-terrestrial-temps-tavg.csv")
