@@ -9,10 +9,9 @@ library(geosphere)
 
 
 intratherm <- read_csv("data-processed/intratherm-may-2020-squeaky-clean.csv") %>% 
-	mutate(population_id_old = population_id) %>% 
-	mutate(population_id = paste(population_id_old, longitude, sep = "_")) 
+	mutate(population_id = paste(population_id, longitude, sep = "_")) 
 
-
+View(intratherm)
 ### how many populations do we have per species?
 
 intratherm %>% 
@@ -100,12 +99,16 @@ ggsave("figures/distances-km.png", width = 6, height = 4)
 
 ### read in temperature data
 	
-	intra_temps <- read_csv("~/Documents/intratherm-temp-data-may-2020.csv") 
+	intra_temps <- read_csv("~/Documents/too-big-for-github/intratherm-terrestrial-temps-tavg.csv") 
+	
+	
+	intra_temps %>%
+		select(contains("Anaxyrus")) %>% View
 	
 	intra_long <- intra_temps %>% 
 		mutate(date = as.character(date)) %>%
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
-		gather(key = population_id, value = temperature, 4:745) %>% 
+		gather(key = population_id, value = temperature, 4:299) %>% 
 		group_by(population_id, year) %>% 
 		summarise(max_temp = max(temperature)) %>% 
 		ungroup() %>% 
@@ -115,7 +118,7 @@ ggsave("figures/distances-km.png", width = 6, height = 4)
 	intra_long2 <- intra_long %>% 
 		filter(!is.na(mean_max_temp))
 	
-	write_csv(intra_long, "data-processed/intratherm-temp-data-yearly-maxes.csv")
+	write_csv(intra_long, "data-processed/intratherm-temp-data-yearly-maxes-daily-avg.csv")
 	
 #### ok which of these are terrestrial? Only use the terrestrial species for now
 	
@@ -129,19 +132,33 @@ ggsave("figures/distances-km.png", width = 6, height = 4)
 		
 #### daily mean maximum temperature
 	
+	names(intratherm)
+	
+library(readxl)	
+	intra_with_elev <- read_excel("data-processed/intratherm-with-elev.xlsx") %>% 
+		mutate(population_id = paste(population_id, longitude, sep = "_")) %>% 
+		select(intratherm_id, raster_mean, elevation_of_collection, realm_general2) %>% 
+		filter(realm_general2 == "Terrestrial")
+		
+	
 	intra_species <- intratherm %>% 
-		select(genus_species, latitude, longitude, population_id) %>% 
-		distinct() 
+		select(intratherm_id, genus_species, latitude, longitude, population_id) %>% 
+		distinct() %>% 
+		left_join(., intra_with_elev)
 	
 	differences <- intra_long2 %>%
-		left_join(., intra_species) %>% View
+		left_join(., intra_species) %>% 
 		# filter(!is.na(mean_max_temp)) %>% 
-		filter(genus_species %in% c(distances$species)) %>% 
-		select(genus_species, mean_max_temp, population_id, latitude, longitude) %>% 
+		# filter(genus_species %in% c(distances$species)) %>% 
+		select(intratherm_id, genus_species, mean_max_temp, population_id, latitude, longitude, raster_mean, elevation_of_collection) %>% 
 		left_join(., distances, by = c("genus_species" = "species")) %>% 
-		group_by(genus_species) %>% 
-		mutate(temp_diff = max(mean_max_temp) - min(mean_max_temp)) %>% 
-		filter(temp_diff != 0) 
+		mutate(elevation_of_collection = as.numeric(elevation_of_collection)) %>% 
+		mutate(raster_mean = as.numeric(raster_mean)) %>% 
+		mutate(temp_elev_corr = mean_max_temp + 5.5*((elevation_of_collection - raster_mean)/1000)) %>% 
+		group_by(genus_species) %>%
+		mutate(temp_diff = max(temp_elev_corr) - min(temp_elev_corr)) %>% 
+		filter(temp_diff != 0) %>% 
+		filter(!is.na(distance))
 	
 	realms <- intratherm %>% 
 		select(genus_species, realm_general2) %>% 
