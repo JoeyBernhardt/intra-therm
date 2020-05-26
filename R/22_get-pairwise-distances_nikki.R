@@ -94,16 +94,16 @@ distance_between <- function(population1, population2, all_combinations) {
 	if (length(match) == 0) {
 		print("Error: no match found for one of the populations.") 
 		if (!population1[1] %in% all_combinations$genus_species) {
-			print("There seems to be a problem with the first population's genus_species.")
-		}
-		if (!population2[1] %in% all_combinations$genus_species) {
 			print("There seems to be a problem with the second population's genus_species.")
 		}
+		if (!population2[1] %in% all_combinations$genus_species) {
+			print("There seems to be a problem with the first population's genus_species.")
+		}
 		if (!lat_lon1 %in% all_combinations$lat_lon_1) {
-			print("There seems to be a problem with the first population's coordinates.")
+			print("There seems to be a problem with the second population's coordinates.")
 		}
 		if (!lat_lon2 %in% all_combinations$lat_lon_2) {
-			print("There seems to be a problem with the second population's coordinates.")
+			print("There seems to be a problem with the first population's coordinates.")
 		}
 		return()
 	}
