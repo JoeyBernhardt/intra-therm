@@ -265,4 +265,4 @@ old_squeaky <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv"
 
 new_squeaky <- rbind(old_squeaky, raster_and_point)
 
-write.csv(new_squeaky, "./data-processed/intratherm-with-elev.csv")
+write.csv(new_squeaky, "./data-processed/intratherm-with-elev.csv", row.names = FALSE)

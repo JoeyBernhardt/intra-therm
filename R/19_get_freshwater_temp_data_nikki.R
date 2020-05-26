@@ -302,4 +302,4 @@ while (z < length(populations$population_id) + 1) {
 }
 
 ## write temperature file to processed data 
-write.csv(temperature_data, "./data-processed/intratherm-freshwater-temp-data-daily.csv")
+write.csv(temperature_data, "./data-processed/intratherm-freshwater-temp-data-daily.csv", row.names = FALSE)

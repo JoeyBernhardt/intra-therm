@@ -204,7 +204,7 @@ while (i < length(unique_pairs$population_id) + 1) {
 
 
 ## write to file:
-write.csv(temperature_data, "./data-processed/intratherm-marine-temp-data.csv")
+write.csv(temperature_data, "./data-processed/intratherm-marine-temp-data.csv", row.names = FALSE)
 
  
 
