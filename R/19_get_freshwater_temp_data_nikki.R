@@ -221,15 +221,15 @@ converted[, 2:193] <- converted[, 2:193] - 273.15
 
 ## convert date 
 ## starts at 1958-01-01
-year <- c(round(1/365, digits = 3))
-leap_year <- c(round(1/366, digits = 3))
+year <- c(round(0.5/365, digits = 3))
+leap_year <- c(round(0.5/366, digits = 3))
 
 i = 1
 while (i < 366) {
 	if (i < 365) {
-		year = append(year, round((i+1)/365, digits = 3))
+		year = append(year, round((i+0.5)/365, digits = 3))
 	}
-	leap_year = append(leap_year, round((i+1)/366, digits = 3))
+	leap_year = append(leap_year, round((i+0.5)/366, digits = 3))
 	i = i+1
 }
 
