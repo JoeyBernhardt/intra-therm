@@ -188,4 +188,30 @@ points(AIRT, col="blue")
 
 # The operative temperature is going to be higher than air T, especially when solar radiation is high. 
 
+############################################ TEMPERATURES -INTRATHERM
+
+########## Max air temperature with NicheMapR
+
+data <- read.csv("C:/Users/Juanvigr/Dropbox/Colaboraciones/CTmax variations Joey/intratherm-may-2020-squeaky-clean.txt", header = T, sep=",")
+data_terr <- subset(data, realm_general2="Terrestrial")
+
+loc <- cbind(data_terr$intratherm_id, data_terr$latitude, data_terr$longitude)
+
+AIRT_NicheMapR <- list()
+for(i in 1:nrow(loc)){
+  latlon <- loc[i,]
+  micro <- micro_global(loc = loc, minshade = 0, maxshade = 100, Usrhyt = 0.10) 
+  micro_sun <- as.data.frame(micro$metout) # meteorological conditions in the sun 
+  
+  Mat_loc <- array(NA, dim=c(24,12))
+  for(month in 1:12){
+    day = unique(micro_sun$DOY)[month] # this is the day of the year corresponding to month 7
+    AIRT_sun <- subset(micro_sun, DOY == day)$TALOC
+    Mat_loc[,month] <- AIRT_sun
+  }
+  
+   AIRT_NicheMapR[[i]] <- Mat_loc
+   
+   print(paste0(round(100 * i/nrow(loc),2), "%"))
+}
 
