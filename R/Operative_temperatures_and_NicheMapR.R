@@ -192,11 +192,13 @@ points(AIRT, col="blue")
 
 ########## Max air temperature with NicheMapR
 
-data <- read.csv("C:/Users/Juanvigr/Dropbox/Colaboraciones/CTmax variations Joey/intratherm-may-2020-squeaky-clean.txt", header = T, sep=",")
-data_terr <- subset(data, realm_general2="Terrestrial")
+data <- read.csv(".../intratherm-may-2020-squeaky-clean.txt", header = T, sep=",") 
+data_terr <- subset(data, realm_general2="Terrestrial") # Subset with terrestrial data
 
 loc <- cbind(data_terr$intratherm_id, data_terr$latitude, data_terr$longitude)
 
+# This loop creates a list that contains one 24x12 matrix per location, with daily air temperatures (24) for each month (12)
+# ...it takes some time
 AIRT_NicheMapR <- list()
 for(i in 1:nrow(loc)){
   latlon <- loc[i,]
