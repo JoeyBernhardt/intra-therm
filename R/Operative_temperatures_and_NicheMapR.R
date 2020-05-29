@@ -229,13 +229,13 @@ for(i in 1:nrow(loc)){
     SOLR <- subset(micro_sun, DOY == day)$SOLR   # solar radiation
     SOILT_0 <- subset(soil_sun, DOY == day)$D0   # soil surface temperature
     VLOC <- subset(micro_sun, DOY == day)$VLOC   # wind speed
-    RHLOC <- subset(micro_sun, DOY == day)$RHLOC # wind speed
+    RHLOC <- subset(micro_sun, DOY == day)$RHLOC # relative humidity
     
     # BURROWS
     SOILT_5 <- subset(soil_sun, DOY == day)$D5cm   # soil temperature, 5cm depth
 
     # OPERATIVE TEMPERATURES (open areas / burrows)
-    l = as.numeric(data_terr$maximum_body_size_svl_hbl_cm[i]) * 1e-3 # body length (m)
+    l = as.numeric(data_terr$maximum_body_size_svl_hbl_cm[i]) * 1e-2 # body length (m)
     M = 1e6*l^3 # Body mass (g)
     A = l^2 # Surface area (m2)
     
