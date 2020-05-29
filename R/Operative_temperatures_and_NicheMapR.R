@@ -188,32 +188,86 @@ points(AIRT, col="blue")
 
 # The operative temperature is going to be higher than air T, especially when solar radiation is high. 
 
-############################################ TEMPERATURES -INTRATHERM
+############################################ AIR / OPERATIVE TEMPERATURES -INTRATHERM
+require(NicheMapR)
+require(Rcpp)
+sourceCpp(".../theatmodelCpp.cpp")
 
-########## Max air temperature with NicheMapR
+# Here we compute operative temperatures numerically using a "transient-heat" model that estimates body temperature iteratively until it 
+# reaches the steady state (=operative temperature). We need to do this because body temperature itself affects EWL, which in turn reduces 
+# temperature... i.e., there is a feedback that makes the analytical solution really difficult. 
+l=0.05 # Body length (m)
+A=l^2  # Surface area (m2)
+M=1e6*l^3 # mass (g) -> This is just an approach to estimate mass from length (we will need a better one)
+r=60000 # total skin resistance to water loss (s m-1), 60000 sm-1 (dry-skin), 300 sm-1 (normal for amphibians) 
+delta=1000 # number of iterations
+theatmodelCpp(10, A=A, M=M, Ta=20, Tg=20, S=400, v=0.5, HR=40, resistance = r, Hv=1, vent=0.6, delta=delta, C=0.01)[1]
 
-data <- read.csv(".../intratherm-may-2020-squeaky-clean.txt", header = T, sep=",") 
-data_terr <- subset(data, realm_general2="Terrestrial") # Subset with terrestrial data
+#
 
-loc <- cbind(data_terr$intratherm_id, data_terr$latitude, data_terr$longitude)
+data <- read.csv(".../intratherm-may-2020-squeaky-clean.txt", header = T, sep=",")
+data_terr <- subset(data, realm_general2=="Terrestrial")
 
-# This loop creates a list that contains one 24x12 matrix per location, with daily air temperatures (24) for each month (12)
-# ...it takes some time
-AIRT_NicheMapR <- list()
+loc <- cbind(data_terr$intratherm_id, data_terr$longitude, data_terr$latitude)
+
+AIRTempts <- BURRTemps <- OPTemps_SUN <- OPTemps_BURR <- list()
 for(i in 1:nrow(loc)){
-  latlon <- loc[i,]
-  micro <- micro_global(loc = loc, minshade = 0, maxshade = 100, Usrhyt = 0.10) 
-  micro_sun <- as.data.frame(micro$metout) # meteorological conditions in the sun 
+  latlon <- loc[i,2:3]
   
-  Mat_loc <- array(NA, dim=c(24,12))
+  micro <- micro_global(loc = latlon, minshade = 0, maxshade = 100, Usrhyt = 0.10) 
+  
+  micro_sun <- as.data.frame(micro$metout) # meteorological conditions 
+  soil_sun <- as.data.frame(micro$soil) # soil temperatures
+  
+  Mat_TeSUN <- Mat_TeBURR <- Mat_Ta <- Mat_Tburrow <- array(NA, dim=c(24,12))
   for(month in 1:12){
-    day = unique(micro_sun$DOY)[month] # this is the day of the year corresponding to month 7
-    AIRT_sun <- subset(micro_sun, DOY == day)$TALOC
-    Mat_loc[,month] <- AIRT_sun
+    # NicheMapR microclimatic variables
+    day = unique(micro_sun$DOY)[month]
+
+    # SUN (open habitats)
+    AIRT <- subset(micro_sun, DOY == day)$TALOC  # air T 
+    SOLR <- subset(micro_sun, DOY == day)$SOLR   # solar radiation
+    SOILT_0 <- subset(soil_sun, DOY == day)$D0   # soil surface temperature
+    VLOC <- subset(micro_sun, DOY == day)$VLOC   # wind speed
+    RHLOC <- subset(micro_sun, DOY == day)$RHLOC # wind speed
+    
+    # BURROWS
+    SOILT_5 <- subset(soil_sun, DOY == day)$D5cm   # soil temperature, 5cm depth
+
+    # OPERATIVE TEMPERATURES (open areas / burrows)
+    l = as.numeric(data_terr$maximum_body_size_svl_hbl_cm[i]) * 1e-3 # body length (m)
+    M = 1e6*l^3 # Body mass (g)
+    A = l^2 # Surface area (m2)
+    
+    if(data_terr$class[i]=="Amphibia"){r=300}else{r=60000}
+    
+    delta=1000
+    for(hour in 1:24){
+      Mat_TeSUN[hour,month] <- theatmodelCpp(10, A=A, M=M, Ta=AIRT[hour], Tg=SOILT_0[hour], S=SOLR[hour], v=VLOC[hour], HR=RHLOC[hour], resistance = r, Hv=1, vent=0.6, delta=delta, C=0.01)[1]
+      Mat_TeBURR[hour,month] <- theatmodelCpp(10, A=A, M=M, Ta=SOILT_5[hour], Tg=SOILT_5[hour], S=0, v=0, HR=RHLOC[hour], resistance = r, Hv=1, vent=0.6, delta=delta, C=0.01)[1]
+    }
+    Mat_Ta[,month] <- AIRT
+    Mat_Tburrow[,month] <- SOILT_5
   }
   
-   AIRT_NicheMapR[[i]] <- Mat_loc
-   
-   print(paste0(round(100 * i/nrow(loc),2), "%"))
+  AIRTempts[[i]] <- Mat_Ta
+  BURRTemps[[i]] <- Mat_Tburrow
+  OPTemps_SUN[[i]] <- Mat_TeSUN
+  OPTemps_BURR[[i]] <- Mat_TeBURR
+  
+  print(paste0(round(100 * i/nrow(loc),2), " %"))
 }
+
+# AIRTempts, BURRTemps, OPTemps_SUN & OPTemps_BURR are 4 lists with as many matrices as cases we have in intratherm. 
+# Each matrix contains 24 rows (hours) and 12 colums (months). 
+# AIRTempts and BURRTemps contain air temperatures and soil (5cm depth) temperatures. 
+# OPTemps_SUN and OPTemps_BURR are operative temperatures
+
+case = 1 # case in intratherm
+month = 7
+
+plot(AIRTempts[[case]][,month]) # Daily air temperatures
+points(BURRTemps[[case]][,month]) # daily temps in a burrow
+plot(OPTemps_SUN[[case]][,month]) # daily operative temperature
+points(OPTemps_BURR[[case]][,month]) # oper temps in a burrow
 
