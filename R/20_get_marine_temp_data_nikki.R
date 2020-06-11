@@ -20,7 +20,7 @@ unique_pairs <- marine[!duplicated(marine[,c("latitude", "longitude", "elevation
 
 
 ## load info about NOAA data:
-info <- info("ncdcOisst2Agg_LonPM180")
+info <- info("ncdcOisst21Agg_LonPM180")
 
 
 ## make latitude and longitude vectors based on NOAA format
@@ -157,7 +157,6 @@ while (num_unique < length(uniqueNA$population_id) + 1) {
 }
 
 precious_marine_temps_NA <- temperature_data
-saveRDS(precious_marine_temps_NA, "~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_marine_temps_NA.rds")
 
 
 NA_temps <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_marine_temps_NA.rds")

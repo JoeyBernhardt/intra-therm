@@ -27,7 +27,7 @@ found <- syns %>%
   subset(match == "found") 
   
 report <- lapply(found$ids, itis_acceptname)
-report_df <- data.frame(matrix(unlist(report), nrow=208, byrow=T),stringsAsFactors=FALSE)
+report_df <- data.frame(matrix(unlist(report), nrow=209, byrow=T),stringsAsFactors=FALSE)
 
 found <- found %>%
   mutate(genus_species_corrected = report_df$X2)
@@ -68,20 +68,19 @@ data_protected <- data
 ####################################################
 higher_tax <- tax_name(as.character(unique(data$genus_species)), get = c("phylum","class","order","family")) 
 higher_tax <- higher_tax[, -1]
-colnames(higher_tax)[2] <- "genus_species"
+colnames(higher_tax)[1] <- "genus_species"
 
 ## get rid of old taxonomy columns 
 data <- data %>%
   select(-phylum.x,-order,-order.x,-family,-family.x,-class,-class.x) 
 
-## merge based on genus_species, leave all fields blank for taxa that were not found to be manually inputted
+## merge based on genus_species, leaves all fields blank for taxa that were not found to be manually inputted
 data <- left_join(data, higher_tax)
 
-## move columns:
+## move columns around:
 data <- data %>%
   select(intratherm_id, genus_species, genus, species, phylum, class, order, family, everything())  
 
-## 
 ## for all taxa where higher taxonomy not found: data filled in manually using a google search 
 
 
@@ -605,9 +604,6 @@ bad_columns <- c("realm_general3",
 
 data_test <- data[, !(names(data) %in% bad_columns)]
 
-## remove db column that was added accidnetally with higher taxonomy, other flag columns 
-data_test <- data_test[,-c(70:78)]
-
 
 data <- data_test
 
@@ -675,10 +671,10 @@ gymno <- missing_tax %>%
 
 gloss <- missing_tax %>%
   filter(genus_species == "Glossina pallidipes") %>%
-  mutate(phylum = "Chordata") %>%
-  mutate(class = "Actinopterygii") %>%
-  mutate(order = "Perciformes") %>%
-  mutate(family = "Percidae") 
+  mutate(phylum = "Arthropoda") %>%
+  mutate(class = "Insecta") %>%
+  mutate(order = "Diptera") %>%
+  mutate(family = "Glossinidae") 
 			
 litho <- missing_tax %>%
   filter(genus_species == "Lithobates catesbeiana") %>%
@@ -994,11 +990,6 @@ data$season_inactive <- sia
 ## found more non-wild fish including in descriptions "Central Institute of Fisheries Education Mumbai India" and "Madras Atomic Power Station Kalpakkam India"
 
 
-
-
-
-
 ## write new verion to file:
 write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
-
 
