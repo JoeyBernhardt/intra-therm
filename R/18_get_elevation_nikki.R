@@ -44,7 +44,7 @@ longitude_of_raster <- c()
 
 ## get grid square coordinates for each population
 num_unique <- 1
-while (num_unique < 208) {
+while (num_unique < 209) {
 	loc_long_index <- which.min(abs(long - elev$longitude[num_unique]))
 	loc_lat_index <- which.min(abs(lat - elev$latitude[num_unique]))
 	
@@ -239,13 +239,10 @@ data_hasElev <- data %>%
 
 data_noElev <- data %>%
 	dplyr::select(-elevation_of_collection) %>%
-	filter(elevation_was_reported == FALSE) 
+	filter(elevation_was_reported == FALSE) %>%
+	left_join(., no_elev)
 
-data_noElev <- left_join(data_noElev, no_elev)
-
-data <- rbind(data_hasElev, data_noElev)
-
-data <- data %>%
+data <- rbind(data_hasElev, data_noElev) %>%
 	dplyr::select(-elevation_was_reported)
 
 
@@ -253,9 +250,7 @@ data <- data %>%
 merged <- merged %>%
 	dplyr::select(-elevation_of_collection)
 
-raster_and_point <- left_join(data, merged) 
-
-raster_and_point <- raster_and_point %>%
+raster_and_point <- left_join(data, merged) %>%
 	dplyr::select(-latitude_of_raster, -longitude_of_raster)
 
 ## merge with non-terrestrial data:

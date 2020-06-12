@@ -160,9 +160,10 @@ temperature_data <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/preci
 
 
 ## figure out which are NA and why:
-isNA <- select(temperature_data, as.vector(which(colSums(is.na(temperature_data)) == nrow(temperature_data))))
+isNA <- temperature_data %>%
+  dplyr::select(as.vector(which(colSums(is.na(temperature_data)) == nrow(temperature_data))))
 indexNA <- as.vector(which(colSums(is.na(temperature_data)) == nrow(temperature_data)))
-uniqueNA <- unique_pairs[indexNA-1,]
+uniqueNA <- unique_pairs[indexNA,]
 
 missing_long <- c()
 missing_lat <- c()
@@ -343,9 +344,9 @@ while (num_unique < length(uniqueNA$population_id) + 1) {
 
 temperature_data_NA <- temperature_data_NA[-1,]
 precious_NA_temps_terr <- temperature_data_NA
-saveRDS(precious_NA_temps_terr, "~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_NA_temps_terr.rds")
+
 temperature_data_NA <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_NA_temps_terr.rds") %>%
-  select(-date)
+  dplyr::select(-date)
 
 ##combine:
 temperature_data <- temperature_data[,-as.vector(which(colSums(is.na(temperature_data)) == nrow(temperature_data)))] ## remove NA columns
