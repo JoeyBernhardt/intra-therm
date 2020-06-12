@@ -131,7 +131,7 @@ write.csv(template, "./intratherm_nocturnal-traits.csv", row.names = FALSE)
 
 
 ## import filled in file and merge back to intratherm:
-nocturnal_traits <- read.csv("./data-raw/intratherm_nocturnal-traits-complete.csv")
+## nocturnal_traits <- read.csv("./data-raw/intratherm_nocturnal-traits-complete.csv")
 
 terrestrial <- terrestrial %>%
 	select(-is.nocturnal)
