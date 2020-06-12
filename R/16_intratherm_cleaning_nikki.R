@@ -13,12 +13,12 @@ data <- read.csv("./data-raw/intratherm-may-2020-precleaning.csv")
 ###################################################
 ## note on taxize synonyms: acceptedname with return value NA means name given was accepted name, do nothing 
 
-taxa <- data$genus_species ## create dataframe of names to check
-taxa<- data.frame(taxa)
+taxa <- data.frame(taxa = data$genus_species) ## create dataframe of names to check
 
 
 syns <- unique(taxa)
 tsn_search <- get_tsn(as.character(syns$taxa), accepted = FALSE) ## find tsn for each unique taxa
+tsn_search <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/tsn_search.rds")
 tsns <- data.frame(tsn_search)
 tsns$taxa <- syns$taxa
 syns <- tsns
@@ -27,7 +27,8 @@ found <- syns %>%
   subset(match == "found") 
   
 report <- lapply(found$ids, itis_acceptname)
-report_df <- data.frame(matrix(unlist(report), nrow=209, byrow=T),stringsAsFactors=FALSE)
+report_df <- data.frame(matrix(unlist(report), nrow=208, byrow=T),stringsAsFactors=FALSE)
+report_df <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/report_df.rds")
 
 found <- found %>%
   mutate(genus_species_corrected = report_df$X2)
@@ -52,13 +53,12 @@ merged$genus <- split[,1]
 merged$species <- split[,2]
 
 ## update the database :)
-test_data <- data %>%
+data <- data %>%
   ungroup()%>%
   mutate(genus = merged$genus) %>%
   mutate(species = merged$species) %>%
   mutate(genus_species = merged$taxa) 
 
-data <- test_data
 data_protected <- data
 
 
@@ -66,20 +66,18 @@ data_protected <- data
 
 ## taxize all data to update higher taxonomy columns 
 ####################################################
-higher_tax <- tax_name(as.character(unique(data$genus_species)), get = c("phylum","class","order","family")) 
+higher_tax <- tax_name(as.character(unique(data$genus_species)), get = c("phylum","class","order","family"))
 higher_tax <- higher_tax[, -1]
 colnames(higher_tax)[1] <- "genus_species"
+higher_tax <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/higher_tax.rds")
 
-## get rid of old taxonomy columns 
 data <- data %>%
-  select(-phylum.x,-order,-order.x,-family,-family.x,-class,-class.x) 
+  select(-phylum.x,-order,-order.x,-family,-family.x,-class,-class.x) %>% ## get rid of old taxonomy
+  left_join(., higher_tax) %>% ## merge based on genus_species
+  select(intratherm_id, genus_species, genus, species, phylum, class, 
+         order, family, everything())  ## move columns around
 
-## merge based on genus_species, leaves all fields blank for taxa that were not found to be manually inputted
-data <- left_join(data, higher_tax)
-
-## move columns around:
-data <- data %>%
-  select(intratherm_id, genus_species, genus, species, phylum, class, order, family, everything())  
+data_protected <- data
 
 ## for all taxa where higher taxonomy not found: data filled in manually using a google search 
 
@@ -88,30 +86,26 @@ data <- data %>%
 
 ## change 'original_compilation' for entries by Nikki with field missing into intratherm_team 
 #############################################################################################
-## flag entries input by Nikki 
 data <- data %>%
   mutate(extractor) %>% 
   group_by(extractor) %>% 
-  mutate(flag = grepl(extractor, pattern = "Nikki")) 
+  mutate(flag = grepl(extractor, pattern = "Nikki")) ## flag entries input by Nikki 
 
 ## if flagged as Nikki's and if original compilation is missing, write original compilation as intratherm_team
+
 i = 1
 while(i < length(data$original_compilation)) {
   if(data$flag[i] == TRUE && is.na(data$original_compilation[i])) {
     data$original_compilation[i] <- 'intratherm_team' 
-  }
+ }
   i = i + 1
 }
 
 ## remove flag
 data <- data %>%
-  select(-flag)
+ select(-flag) 
 
-## check:
-data %>% View
-
-
-
+data_protected <- data
 
 
 
@@ -122,36 +116,32 @@ data %>% View
 unique(data$realm_general2)
 
 ## flag entries with value Aquatic & terrestrial
-data_test <- data %>%
+data <- data %>%
   mutate(flag = grepl(realm_general2, pattern = "Aquatic & terrestrial")) 
 
   
 ## inspected all flagged, all are amphibians or missing, since spend adult life on land change to terrestrial 
 ## otherwise mark as missing taxonomy 
-data_flagged <- data_test %>%
+data_flagged <- data %>%
   filter(flag == TRUE) %>% 
   mutate(realm_general2 = ifelse(grepl(class, pattern = "Amphibia"), "Terrestrial", "missing higher taxonomy")) 
 
-##change flagged data points to proper realm in database by removing flagged and readding 
-data_test <- data_test %>%
-  filter(flag == FALSE) 
-
-data_test <- rbind(data_test, data_flagged)
-data_test <- data_test %>%
+##change flagged data points to proper realm in database by removing flagged and reading 
+data <- data %>%
+  filter(flag == FALSE) %>%
+  rbind(., data_flagged) %>%
   select(-flag)
 
-##update the real data 
-data <- data_test
 data_protected <- data
 
 unique(data$realm_general2)
 
 ## flag entries with value Aquatic
-data_test <- data %>%
+data <- data %>%
   mutate(flag = grepl(realm_general2, pattern = "Aquatic")) 
 
 ## inspected all flagged, either Amphibia or Teleosti
-data_flagged <- data_test %>%
+data_flagged <- data %>%
   filter(flag == TRUE) 
 
 ## change Amphibia to Terrestrial 
@@ -159,21 +149,19 @@ data_amphibs <- data_flagged %>%
   filter(class == "Amphibia") %>% 
   mutate(realm_general2 = "Terrestrial") 
 
-data_test <- data %>%
+data <- data %>%
   mutate(flag = ((grepl(realm_general2, pattern = "Aquatic")) & (grepl(class, pattern = "Amphibia")))) %>% ##flag only amphibians
   filter(flag == FALSE) 
 
-data_test <- rbind(data_test, data_amphibs)
-data_test <- data_test %>% 
+data <- rbind(data, data_amphibs) %>% 
   select(-flag)
 
-data <- data_test
 
 ## reflag Aquatic and inspect
-data_test <- data %>%
+data <- data %>%
   mutate(flag = grepl(realm_general2, pattern = "Aquatic"))
 
-data_flagged <- data_test %>%
+data_flagged <- data %>%
   filter(flag == TRUE) 
 
 ## composed of family Cyprinidae and Zoarcidae, Cypr are freshwater and Zoarc are anadromous but spend most time in ocean 
@@ -185,30 +173,26 @@ data_cypr <- data_flagged %>%
   mutate(realm_general2 = "Freshwater") 
 
 ## remove Cpryn and reput with new realm
-data_test <- data_test %>%
+data <- data %>%
   mutate(flag = ((grepl(realm_general2, pattern = "Aquatic")) & (grepl(family, pattern = "Cyprinidae")))) %>% ##flag only Cypr
-  filter(flag == FALSE) 
-
-data_test <- rbind(data_test, data_cypr)
-data_test <- data_test %>% 
+  filter(flag == FALSE) %>%
+  rbind(., data_cypr) %>% 
   select(-flag)
 
-data <- data_test
+
 
 ## change Zoarcidae to marine 
 data_zoar <- data_flagged %>%
   filter(family == "Zoarcidae") %>% 
   mutate(realm_general2 = "Marine") 
 
-data_test <- data_test %>%
+data <- data %>%
   mutate(flag = ((grepl(realm_general2, pattern = "Aquatic")) & (grepl(family, pattern = "Zoarcidae")))) %>% ##flag only Zoar with aquatic
-  filter(flag == FALSE) ## remove
-
-data_test <- rbind(data_test, data_zoar)
-data_test <- data_test %>%
+  filter(flag == FALSE) %>% ## remove
+  rbind(., data_zoar) %>%
   select(-flag)
 
-data <- data_test
+
 
 ## make sure all is well and no aquatic are left: 
 data %>%
@@ -219,70 +203,56 @@ data_protected <- data
 ## change terrestrial to Terrestrial, marine to Marine and freshwater to Freshwater 
 unique(data$realm_general2)
 
-data_test <- data %>%
+data <- data %>%
   mutate(is_f = ifelse(is.na(realm_general2), "FALSE", 
                        if_else(str_detect(realm_general2, "freshwater"), "TRUE", "FALSE"))) 
 
-data_f <- data_test %>%
+data_f <- data %>%
   filter(is_f == TRUE) %>%
   mutate(realm_general2 = "Freshwater")
 
-data_test <- data_test %>%
-  filter(is_f == FALSE) 
-
-data_test <- rbind(data_test, data_f)
-
-data_test <- data_test %>%
+data <- data %>%
+  filter(is_f == FALSE) %>%
+  rbind(., data_f) %>%
   select(-is_f)
 
-data <- data_test
 
 data_protected <- data
 
 unique(data$realm_general2)
 
-data_test <- data %>%
+data <- data %>%
   mutate(is_t = ifelse(is.na(realm_general2), "FALSE", 
                        if_else(str_detect(realm_general2, "terrestrial"), "TRUE", "FALSE"))) 
 
-data_t <- data_test %>%
+data_t <- data %>%
   filter(is_t == TRUE) %>%
   mutate(realm_general2 = "Terrestrial")
 
-data_test <- data_test %>%
-  filter(is_t == FALSE) 
-
-data_test <- rbind(data_test, data_t)
-
-data_test <- data_test %>%
+data <- data %>%
+  filter(is_t == FALSE)%>%
+  rbind(., data_t) %>%
   select(-is_t)
-
-data <- data_test
 
 data_protected <- data
 
 unique(data$realm_general2)
 
-data_test <- data %>%
+data <- data %>%
   mutate(is_m = ifelse(is.na(realm_general2), "FALSE", 
                        if_else(str_detect(realm_general2, "marine"), "TRUE", "FALSE"))) 
 
-data_m <- data_test %>%
+data_m <- data %>%
   filter(is_m == TRUE) %>%
   mutate(realm_general2 = "Marine")
 
-data_test <- data_test %>%
-  filter(is_m == FALSE) 
-
-data_test <- rbind(data_test, data_m)
-
-data_test <- data_test %>%
+data <- data %>%
+  filter(is_m == FALSE)%>%
+  rbind(., data_m) %>%
   select(-is_m)
 
-data <- data_test
 
 data_protected <- data
-
 
 
 
@@ -296,137 +266,112 @@ data_protected <- data
 unique(data$life_stage.x)
 
 ## fix adults
-data_test <- data %>%
+data <- data %>%
   mutate(is_adult = ifelse(is.na(life_stage.x), "FALSE", if_else(str_detect(life_stage.x, "juvenile|sub|Juvenile|Sub|juveniles"), 
                                                                  "FALSE", ifelse(str_detect(life_stage.x, "adult|Adult|adults"), 
                                                                                  "TRUE", "FALSE")))) 
-data_adults <- data_test %>%
+data_adults <- data %>%
   filter(is_adult == TRUE) %>%
   mutate(life_stage.x = "Adult")
 
-data_test <- data_test %>%
-  filter(is_adult == FALSE) 
-
-data_test <- rbind(data_test, data_adults)
-
-data_test %>%
+data <- data %>%
+  filter(is_adult == FALSE) %>%
+  rbind(., data_adults) %>%
   select(-is_adult)
 
-data <- data_test
 
-unique(data_test$life_stage.x)
+unique(data$life_stage.x)
 
 ## fix juveniles
-data_test <- data %>%
+data <- data %>%
   mutate(is_juv = ifelse(is.na(life_stage.x), "FALSE", 
                          if_else(str_detect(life_stage.x, "sub-adult"), "TRUE", 
                          ifelse(str_detect(life_stage.x, "adult|Adult"), "FALSE", 
                          ifelse(str_detect(life_stage.x, "juvenile|Juvenile|sub-adult|fingerling|elver|fry"), "TRUE", "FALSE"))))) 
   
 
-data_juv <- data_test %>%
+data_juv <- data %>%
   filter(is_juv == TRUE) %>%
   mutate(life_stage.x = "Juvenile")
 
-data_test <- data_test %>%
-  filter(is_juv == FALSE) 
-
-data_test <- rbind(data_test, data_juv)
-
-data_test %>%
+data <- data %>%
+  filter(is_juv == FALSE) %>%
+  rbind(., data_juv) %>%
   select(-is_juv)
 
-data <- data_test
 
-unique(data_test$life_stage.x)
+unique(data$life_stage.x)
 
 
 ## fix larvae
-data_test <- data %>%
+data <- data %>%
   mutate(is_larvae = ifelse(is.na(life_stage.x), "FALSE", 
                          if_else(str_detect(life_stage.x, "larva"), "TRUE", "FALSE"))) 
 
-data_larvae <- data_test %>%
+data_larvae <- data %>%
   filter(is_larvae == TRUE) %>%
   mutate(life_stage.x = "Larva")
 
-data_test <- data_test %>%
-  filter(is_larvae == FALSE) 
-
-data_test <- rbind(data_test, data_larvae)
-
-data_test %>%
+data <- data %>%
+  filter(is_larvae == FALSE)%>%
+  rbind(., data_larvae) %>%
   select(-is_larvae)
 
-data <- data_test
 
-unique(data_test$life_stage.x)
+unique(data$life_stage.x)
 
 
 ## fix juveniles and adults to "Juvenile and adult"
-data_test <- data %>%
+data <- data %>%
   mutate(is_mixed = ifelse(is.na(life_stage.x), "FALSE", 
                             if_else(str_detect(life_stage.x, "juveniles adult|juvenile and"), "TRUE", "FALSE"))) 
 
-data_mixed <- data_test %>%
+data_mixed <- data %>%
   filter(is_mixed == TRUE) %>%
   mutate(life_stage.x = "Juvenile and adult")
 
-data_test <- data_test %>%
-  filter(is_mixed == FALSE) 
-
-data_test <- rbind(data_test, data_mixed)
-
-data_test %>%
+data <- data %>%
+  filter(is_mixed == FALSE) %>%
+  rbind(., data_mixed) %>%
   select(-is_mixed)
 
-data <- data_test
-
-unique(data_test$life_stage.x)
+unique(data$life_stage.x)
 
 
 ## fix embryos
-data_test <- data %>%
+data <- data %>%
   mutate(is_emb = ifelse(is.na(life_stage.x), "FALSE", 
                            if_else(str_detect(life_stage.x, "embryo"), "TRUE", "FALSE"))) 
 
-data_emb <- data_test %>%
+data_emb <- data %>%
   filter(is_emb == TRUE) %>%
   mutate(life_stage.x = "Embryo")
 
-data_test <- data_test %>%
-  filter(is_emb == FALSE) 
-
-data_test <- rbind(data_test, data_emb)
-
-data_test %>%
+data <- data %>%
+  filter(is_emb == FALSE) %>%
+  rbind(., data_emb) %>%
   select(-is_emb)
 
-data <- data_test
 
-unique(data_test$life_stage.x)
+unique(data$life_stage.x)
 
 
 ## fix unknown
-data_test <- data %>%
+data <- data %>%
   mutate(is_unk = ifelse(is.na(life_stage.x), "FALSE", 
                          if_else(str_detect(life_stage.x, "unknown"), "TRUE", "FALSE"))) 
 
-data_unk <- data_test %>%
+data_unk <- data %>%
   filter(is_unk == TRUE) %>%
   mutate(life_stage.x = "Unknown")
 
-data_test <- data_test %>%
-  filter(is_unk == FALSE) 
-
-data_test <- rbind(data_test, data_unk)
-
-data_test %>%
+data <- data %>%
+  filter(is_unk == FALSE) %>%
+  rbind(., data_unk) %>%
   select(-is_unk)
 
-data <- data_test
 
-unique(data_test$life_stage.x)
+unique(data$life_stage.x)
 
 data_protected <- data
 
@@ -440,23 +385,19 @@ unique(data$dispersal_distance_category)
 
 data$dispersal_distance_category <- as.character(data$dispersal_distance_category)
 
-data_test <- data %>%
+data <- data %>%
   mutate(is_Jan10 = ifelse(is.na(dispersal_distance_category), "FALSE", 
                          ifelse(str_detect(dispersal_distance_category, "10-Jan"), "TRUE", "FALSE"))) 
 
-data_jan10 <- data_test %>%
+data_jan10 <- data %>%
   filter(is_Jan10 == TRUE) %>%
   mutate(dispersal_distance_category = "1-10")
 
-data_test <- data_test %>%
-  filter(is_Jan10 == FALSE) 
-
-data_test <- rbind(data_test, data_jan10)
-
-data_test %>%
+data <- data %>%
+  filter(is_Jan10 == FALSE) %>%
+  rbind(., data_jan10) %>%
   select(-is_Jan10)
 
-data <- data_test
 
 data_protected <- data
 
@@ -473,10 +414,8 @@ data_sub <- data %>%
   mutate(has_hyphen = ifelse(str_detect(acclim_temp, "-"), "TRUE", "FALSE")) %>% ## detect ones with hyphen
   filter(has_hyphen == TRUE) ##subset to data with hyphen 
 
-split <- str_split_fixed(data_sub$acclim_temp, pattern = "-", n = 2)
-split <- data.frame(split)
-
-split <- split %>%
+split <- str_split_fixed(data_sub$acclim_temp, pattern = "-", n = 2) %>%
+  data.frame(.) %>%
   mutate(is_empty = ifelse(str_detect(X1, ""), (ifelse(str_detect(X2, ""), "FALSE", "TRUE")), "TRUE")) ## detect ones that are   empty to make sure no hypthens represented negative values 
 
 data_sub$has_hyphen[which(split$is_empty == TRUE)] <- FALSE ##unflag ones with hyphen not surrounded by two things
@@ -489,18 +428,17 @@ data_sub <- data_sub %>%
   mutate(acclim_temp = ifelse((has_hyphen == TRUE), split$avg, as.numeric(as.character(data_sub$acclim_temp)))) %>%
   mutate(acclim_temp = as.factor(acclim_temp))
 
-data_test <- data %>%
+data <- data %>%
   mutate(has_hyphen = ifelse(str_detect(acclim_temp, "-"), "TRUE", "FALSE")) 
 
-get_rid <- which(data_test$has_hyphen == TRUE)
-data_test <- data_test[-get_rid,] ## remove rows where has_hyphen is TRUE
+get_rid <- which(data$has_hyphen == TRUE)
+data <- data[-get_rid,] ## remove rows where has_hyphen is TRUE
 
-merged <- rbind(data_test, data_sub) ## add back hyphenated with new values 
+merged <- rbind(data, data_sub) ## add back hyphenated with new values 
 
-data_test <- merged %>%
+data <- merged %>%
   select(-has_hyphen)
 
-data <- data_test
 data_protected <- data
 
 
@@ -513,23 +451,19 @@ unique(data$elevation_of_collection)
 ## fix 20-May
 data$elevation_of_collection <- as.character(data$elevation_of_collection)
 
-data_test <- data %>%
+data <- data %>%
   mutate(is_May20 = ifelse(is.na(elevation_of_collection), "FALSE", 
                            ifelse(str_detect(elevation_of_collection, "20-May"), "TRUE", "FALSE"))) 
 
-data_may20 <- data_test %>%
+data_may20 <- data %>%
   filter(is_May20 == TRUE) %>%
   mutate(elevation_of_collection = "5-20")
 
-data_test <- data_test %>%
-  filter(is_May20 == FALSE) 
-
-data_test <- rbind(data_test, data_may20)
-
-data_test %>%
+data <- data %>%
+  filter(is_May20 == FALSE) %>%
+  rbind(., data_may20) %>%
   select(-is_May20)
 
-data <- data_test
 
 data_protected <- data
 
@@ -539,10 +473,9 @@ data_protected <- data
 ## update population id 
 ########################
 ## new population id: includes latitude AND elevation as unique identifier 
-data_test <- data %>%
+data <- data %>%
   mutate(population_id = paste(genus_species, latitude, elevation_of_collection, sep = "_")) 
 
-data <- data_test
 
 data_protected <- data
 
@@ -555,20 +488,15 @@ data_protected <- data
 data_hatch <- data %>%
   mutate(is_hatchery = ifelse(str_detect(location_description, "hatchery|Hatchery"), "TRUE", "FALSE")) %>%
   filter(is_hatchery == TRUE) %>%
-  select(-is_hatchery)
-
-## flag wild populations as keep in subset
-data_hatch <- data_hatch %>%
-  mutate(keep = ifelse(str_detect(location_description, "wild|Wild"), "TRUE", "FALSE")) %>% 
+  select(-is_hatchery) %>%
+  mutate(keep = ifelse(str_detect(location_description, "wild|Wild"), "TRUE", "FALSE")) %>%  ## flag wild populations as keep in subset
   filter(keep == TRUE) %>%
   select(-keep)
 
 ## remove all hatchery data from data, re-add ones flagged keep
 hatchery <- which(str_detect(data$location_description, "hatchery|Hatchery"))
-data_test <- data[-hatchery,]
-merged <- rbind(data_test, data_hatch)
-
-data <- merged
+data <- data[-hatchery,] %>%
+  rbind(., data_hatch)
 
 data_protected <- data
 
@@ -602,10 +530,8 @@ bad_columns <- c("realm_general3",
                  "dispersal_distance2_category",
                  "logic_source_for_dispersal_distance2_category")
 
-data_test <- data[, !(names(data) %in% bad_columns)]
+data <- data[, !(names(data) %in% bad_columns)]
 
-
-data <- data_test
 
 
 
@@ -614,7 +540,7 @@ data <- data_test
 missing_tax <- data %>%
   filter(is.na(phylum)) 
 
-data_test <- data %>% ##remove all rows missing phylums
+data <- data %>% ##remove all rows missing phylums
   mutate(is_missing = ifelse(is.na(phylum), "TRUE", "FALSE")) %>%
   filter(is_missing == FALSE)
 
@@ -711,12 +637,11 @@ ranoid <- missing_tax %>%
   mutate(order = "Anura") %>%
   mutate(family = "Pelodryadidae") 
 
-data_test <- rbind(data_test, planz, palir, taky, isch, pleuro, rhyn, gymno, gloss, litho, squa, lamp, tem, ranoid)
-
-data_test <- data_test %>%
+data <- rbind(data, planz, palir, taky, isch, pleuro, rhyn, 
+              gymno, gloss, litho, squa, lamp, tem, ranoid) %>%
   select(-is_missing)
 
-data <- data_test
+
 data_protected <- data
 
 
@@ -726,25 +651,22 @@ unique(data$realm_general2)
 
 ## change realm to terresrtrial since amphibian
 ## flag entries with value Aquatic
-data_test <- data %>%
+data <- data %>%
   mutate(flag = grepl(realm_general2, pattern = "missing higher taxonomy")) 
 
 ## inspected all flagged, either Amphibia or Teleosti
-data_flagged <- data_test %>%
+data_flagged <- data %>%
   filter(flag == TRUE)
 
 ## change Amphibia to Terrestrial 
 data_amphibs <- data_flagged %>%
   mutate(realm_general2 = "Terrestrial") 
 
-data_test <- data_test %>%
-  filter(flag == FALSE)
-
-data_test <- rbind(data_test, data_amphibs)
-data_test <- data_test %>% 
+data <- data %>%
+  filter(flag == FALSE)%>%
+  rbind(., data_amphibs) %>%
   select(-flag)
 
-data <- data_test
 data_protected <- data
 
 
@@ -770,28 +692,25 @@ data_sub <- data %>%
   mutate(has_hyphen = ifelse(str_detect(elevation_of_collection, "-"), "TRUE", "FALSE")) %>% ## detect ones with hyphen
   filter(has_hyphen == TRUE) ##subset to data with hyphen 
 
-split <- str_split_fixed(data_sub$elevation_of_collection, pattern = "-", n = 2)
-split <- data.frame(split)
-
-split <- split %>% 
+split <- str_split_fixed(data_sub$elevation_of_collection, pattern = "-", n = 2) %>%
+  data.frame(split) %>% 
   mutate(avg = (as.numeric(as.character(X1)) + as.numeric(as.character(X2))) / 2) ## make new column representing average
 
 data_sub <- data_sub %>%
   mutate(elevation_of_collection = ifelse((has_hyphen == TRUE), split$avg, as.numeric(as.character(data_sub$elevation_of_collection)))) %>%
   mutate(elevation_of_collection = as.factor(elevation_of_collection))
 
-data_test <- data %>%
+data <- data %>%
   mutate(has_hyphen = ifelse(str_detect(elevation_of_collection, "-"), "TRUE", "FALSE")) 
 
-get_rid <- which(data_test$has_hyphen == TRUE)
-data_test <- data_test[-get_rid,] ## remove rows where has_hyphen is TRUE
+get_rid <- which(data$has_hyphen == TRUE)
+data <- data[-get_rid,] ## remove rows where has_hyphen is TRUE
 
-merged <- rbind(data_test, data_sub) ## add back hyphenated with new values 
+merged <- rbind(data, data_sub) ## add back hyphenated with new values 
 
-data_test <- merged %>%
+data <- merged %>%
   select(-has_hyphen)
 
-data <- data_test
 data_protected <- data
 
 ## write updated version to data file:
@@ -805,9 +724,8 @@ write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.na
 ## found a location labelled "fish farm" that should be removed since not wild 
 ## remove all farmed data from data
 farm <- which(str_detect(data$location_description, "farm|Farm"))
-data_test <- data[-farm,]
+data <- data[-farm,]
 
-data <- data_test
 
 data_protected <- data
 
@@ -816,8 +734,6 @@ data_protected <- data
 ## change realm_general2 to marine for these species 
 intratherm_ids_marine <- c(313,321,766,1792,1797,1164,657,1240,1791,968,949,1228)
 marine_sub <- data[-1:-2874,]
-
-data_test <- data
 
 i <- 1
 while (i < length(intratherm_ids_marine) + 1) {
@@ -834,7 +750,7 @@ while (i < length(intratherm_ids_marine) + 1) {
       filter(data$latitude == row$latitude & data$longitude == row$longitude) 
     
     marine_sub <- rbind(marine_sub, pop_members) ## add to subset
-    data_test <- data_test[!data_test$intratherm_id %in% pop_members$intratherm_id,] ## remove from dataset
+    data <- data[!data$intratherm_id %in% pop_members$intratherm_id,] ## remove from dataset
     
     i <- i + 1
   }
@@ -842,9 +758,8 @@ while (i < length(intratherm_ids_marine) + 1) {
 
 marine_sub$realm_general2 <- "Marine" ##change general realm to marine 
 
-data_test <- rbind(data_test, marine_sub)
+data <- rbind(data, marine_sub)
 
-data <- data_test
 
 
 ## while getting marine data, found one species labelled marine that might have data in freshwater:
@@ -852,8 +767,6 @@ data <- data_test
 intratherm_ids_fresh <- c(2837)
 
 fresh_sub <- data[-1:-2874,]
-
-data_test <- data
 
 i <- 1
 while (i < length(intratherm_ids_fresh) + 1) {
@@ -870,16 +783,15 @@ while (i < length(intratherm_ids_fresh) + 1) {
       filter(data$latitude == row$latitude & data$longitude == row$longitude) 
     
     fresh_sub <- rbind(fresh_sub, pop_members) ## add to subset
-    data_test <- data_test[!data_test$intratherm_id %in% pop_members$intratherm_id,] ## remove from dataset
+    data <- data[!data$intratherm_id %in% pop_members$intratherm_id,] ## remove from dataset
     
     i <- i + 1
   }
 }
 
 fresh_sub$realm_general2 <- "Freshwater" ##change general realm to marine 
-data_test <- rbind(data_test, fresh_sub)
+data <- rbind(data, fresh_sub)
 
-data <- data_test
 
 
 ## May 22:
@@ -888,9 +800,8 @@ data <- data_test
 non_wild <- which(str_detect(data$location_description, "Education")) %>%
   append(which(str_detect(data$location_description, "Atomic")))
 
-data_test <- data[-non_wild,]
+data <- data[-non_wild,]
 
-data <- data_test
 
 data_protected <- data
 
@@ -905,7 +816,7 @@ colnames(data)[which(names(data) == "season_when_away_10km...migratory.only.")] 
 swa <- data$season_when_away_100km
 unique(swa)
 
-swa_test <- str_replace(swa, pattern = "October/Novermber/December/January/February", replacement = "Oct-Feb") %>%
+swa <- str_replace(swa, pattern = "October/Novermber/December/January/February", replacement = "Oct-Feb") %>%
   str_replace(pattern = "spring-fall", replacement = "Spring-Fall") %>%
   str_replace(pattern = "fall/winter", replacement = "Fall-Winter") %>%
   str_replace(pattern = "March-April", replacement = "Mar-Apr") %>%
@@ -919,9 +830,8 @@ swa_test <- str_replace(swa, pattern = "October/Novermber/December/January/Febru
   str_replace(pattern = "3 months around April/May", replacement = "Apr-Jun") %>%
   str_replace(pattern = "late winter-early Spring", replacement = "Winter-Spring") 
 
-unique(swa_test)
+unique(swa)
 
-swa <- swa_test
 data$season_when_away_100km <- swa
 
 
@@ -930,7 +840,7 @@ data$season_when_away_100km <- swa
 swa <- data$season_when_away_10km
 unique(swa)
 
-swa_test <- str_replace(swa, pattern = "spring-fall", replacement = "Spring-Fall") %>%
+swa <- str_replace(swa, pattern = "spring-fall", replacement = "Spring-Fall") %>%
   str_replace(pattern = "winter(including Nov and Dec)", replacement = "Winter") %>%
   str_replace(pattern = "August/September/October", replacement = "Aug-Oct") %>%
   str_replace(pattern = "March-April", replacement = "Mar-Apr") %>%
@@ -956,8 +866,7 @@ swa_test <- str_replace(swa, pattern = "spring-fall", replacement = "Spring-Fall
   str_replace(pattern = "Aug-Oct/November/December/January/Feb-Apr", replacement = "Aug-Apr") %>%
   str_replace(pattern = "Spring\\+ two months", replacement = "Spring-Summer")
   
-unique(swa_test)
-swa <- swa_test
+unique(swa)
 data$season_when_away_10km <- swa
 
 ## clean up season inactive:
@@ -965,7 +874,7 @@ data$season_when_away_10km <- swa
 sia <- data$season_inactive
 unique(sia)
 
-sia_test <- str_replace(sia, pattern = "hot dry", replacement = "Summer") %>%
+sia <- str_replace(sia, pattern = "hot dry", replacement = "Summer") %>%
   str_replace(pattern = "Oct - Mar", replacement = "Oct-Mar") %>%
   str_replace(pattern = "summer/dry season", replacement = "Summer") %>%
   str_replace(pattern = "winter", replacement = "Winter") %>%
@@ -982,8 +891,7 @@ sia_test <- str_replace(sia, pattern = "hot dry", replacement = "Summer") %>%
   str_replace(pattern = "fall\\-Winter", replacement = "Fall and Winter") %>%
   str_replace(pattern = "Winter\\+Summer", replacement = "Summer and Winter") 
 
-unique(sia_test)
-sia <- sia_test
+unique(sia)
 data$season_inactive <- sia
 
 
