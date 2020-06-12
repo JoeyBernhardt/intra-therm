@@ -4,7 +4,7 @@ library(utils)
 library(geosphere)
 
 ## calcualte differences in distance and temperature between all populations of each species 
-pop_difs <- initialize_pairwise_differences_experienced()
+pop_difs <- initialize_pairwise_differences_nichemapr()
 
 ## convert distance between to km 
 pop_difs <- pop_difs %>%
@@ -18,7 +18,7 @@ pop_difs <- inner_join(realm, pop_difs, by = "genus_species")
 
 ##plot all realms 
 pop_difs %>% 
-	ggplot(aes(x = distance_km, y = temp_difference)) + geom_point() +
+	ggplot(aes(x = distance_km, y = temp_difference_topt)) + geom_point() +
 	ylab('Difference in yearly monthly max temperatures (°C)') +
 	xlab("Distance between populations (km)") 
 
@@ -402,6 +402,104 @@ initialize_pairwise_differences <- function() {
 	return (all_combinations)
 }
 
+#
+###
+#######
+##############
+##########################
+####################################
+#####################################################################
+# FUNCTION TO INITILIZE THE DISTANCE AND TEMP DIFFERENCE DATAFRAME #
+#####################################################################
+## no input
+## returns a dataframe containing pairwise differences in NicheMapR temperatures and distances for terrestrial species
+initialize_pairwise_differences_nichemapr <- function() {
+	topt <- read.delim("./data-processed/OperativeTemperatures.csv", sep = " ") %>%
+		rename(intratherm_id = ID)
+	intratherm <- read.csv("./data-processed/intratherm-with-elev.csv")%>%
+		select(intratherm_id, genus_species, population_id, class,
+			   is.nocturnal, latitude, longitude, elevation_of_collection, realm_general2) %>%
+		filter(realm_general2 == "Terrestrial") %>%
+		droplevels()
+
+	## make column of which topt temperature will be used: 
+	## based on is_nocturnal
+	## if is_nocturnal, use burrow t_opt temp 
+	topt <- left_join(topt, intratherm) %>%
+		mutate(t_opt = ifelse(is.nocturnal == "Y", TeBurrQ75, ## topt in burrow 
+													 TeSunQ75)) ## topt in exposed area 
+	
+	## split into chunks of each species
+	species_list <- split(topt, topt$genus_species)
+	
+	## prepare empty data frame to add pairwise differences to
+	all_combinations <- data.frame(matrix(ncol = 9))
+	colnames(all_combinations) <- c("genus_species", "lat_lon_1", "lat_lon_2", 
+									"elev_1", "elev_2", "t_opt1", 
+									"t_opt2","distance", "temp_difference_topt")
+	
+	i = 1
+	## go through all groups of species, calculating pairwise differences and adding them to the data frame
+	while(i < length(species_list) + 1) {
+		
+		## get next group of speices and add lat_lon column:
+		species <- data.frame(species_list[i])
+		colnames(species) <- colnames(topt)
+		unique_pops <- species %>%
+			mutate(lat_lon = paste(latitude, longitude, sep = "_")) %>%
+			filter(!duplicated(lat_lon)) %>%
+			select(genus_species, latitude, longitude, elevation_of_collection, 
+				   lat_lon, t_opt)%>%
+			mutate(lat_lon = as.character(lat_lon))
+		
+		## if the species has more than one populatopt
+		if(nrow(unique_pops) > 1) {
+			
+			## find all unique combinations of lat_lon
+			combinations <- combn(unique_pops$lat_lon,m=2, simplify = TRUE,)
+			
+			## split lat_lon string so distance between the coordinates can be calculated
+			## cooridnates must be in format c(longitude, latitude) so reverse column order
+			split1 <- str_split_fixed(combinations[1,], n=3, pattern = "_")
+			first_coord <- cbind(as.numeric(split1[,2]), as.numeric(split1[,1]))
+			split2 <- str_split_fixed(combinations[2,], n=3, pattern = "_")
+			second_coord <- cbind(as.numeric(split2[,2]), as.numeric(split2[,1]))
+			
+			## calculate distance between each unique coordinate pair 
+			distance <- distHaversine(first_coord, second_coord)
+			
+			## combine all info in a dataframe 
+			df1 <- data.frame(lat_lon = combinations[1,]) %>%
+				mutate(lat_lon = as.character(lat_lon)) %>%
+				left_join(., unique_pops, by = "lat_lon") %>%
+				select(-latitude, -longitude) %>%
+				rename(lat_lon_1 = lat_lon, elev_1 = elevation_of_collection,
+					   t_opt1 = t_opt)
+			
+			df2 <- data.frame(lat_lon = combinations[2,]) %>%
+				mutate(lat_lon = as.character(lat_lon), by = "lat_lon") %>%
+				left_join(., unique_pops) %>%
+				select(-genus_species, -latitude,-longitude) %>%
+				rename(lat_lon_2 = lat_lon, elev_2 = elevation_of_collection,
+					   t_opt2 = t_opt)
+			
+			df <- cbind(df1, df2) %>%
+				mutate(distance = distance)  %>%
+				mutate(temp_difference_topt = abs(t_opt1 - t_opt2)) %>%
+				select(genus_species, lat_lon_1, lat_lon_2, elev_1, elev_2, t_opt1,
+					   t_opt2, distance, temp_difference_topt)
+			
+			all_combinations <- rbind(all_combinations, df)
+		}
+		
+		i = i + 1
+		
+	}
+	
+	all_combinations <- all_combinations[-1,]
+	
+	return (all_combinations)
+}
 #
 ###
 #######
