@@ -531,9 +531,9 @@ bad_columns <- c("realm_general3",
                  "logic_source_for_dispersal_distance2_category")
 
 data <- data[, !(names(data) %in% bad_columns)]
+write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
 
-
-
+data <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv")
 
 ######################################
 ## added all missing taxonomy manually
@@ -637,9 +637,11 @@ ranoid <- missing_tax %>%
   mutate(order = "Anura") %>%
   mutate(family = "Pelodryadidae") 
 
-data <- rbind(data, planz, palir, taky, isch, pleuro, rhyn, 
-              gymno, gloss, litho, squa, lamp, tem, ranoid) %>%
-  select(-is_missing)
+data <- data %>%
+  select(-is_missing) %>%
+  rbind(., planz, palir, taky, isch, pleuro, rhyn, 
+              gymno, gloss, litho, squa, lamp, tem, ranoid) 
+  
 
 
 data_protected <- data
@@ -692,8 +694,8 @@ data_sub <- data %>%
   mutate(has_hyphen = ifelse(str_detect(elevation_of_collection, "-"), "TRUE", "FALSE")) %>% ## detect ones with hyphen
   filter(has_hyphen == TRUE) ##subset to data with hyphen 
 
-split <- str_split_fixed(data_sub$elevation_of_collection, pattern = "-", n = 2) %>%
-  data.frame(split) %>% 
+split <- str_split_fixed(data_sub$elevation_of_collection, pattern = "-", n = 2)%>%
+  data.frame() %>% 
   mutate(avg = (as.numeric(as.character(X1)) + as.numeric(as.character(X2))) / 2) ## make new column representing average
 
 data_sub <- data_sub %>%
@@ -723,6 +725,7 @@ write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.na
 ## May 18: 
 ## found a location labelled "fish farm" that should be removed since not wild 
 ## remove all farmed data from data
+data <- read.csv( "./data-processed/intratherm-may-2020-squeaky-clean.csv")
 farm <- which(str_detect(data$location_description, "farm|Farm"))
 data <- data[-farm,]
 
@@ -733,7 +736,7 @@ data_protected <- data
 ## while getting freshwater data, found some freshwater species living in estuaries that should be labelled marine 
 ## change realm_general2 to marine for these species 
 intratherm_ids_marine <- c(313,321,766,1792,1797,1164,657,1240,1791,968,949,1228)
-marine_sub <- data[-1:-2874,]
+marine_sub <- data[-1:-2898,]
 
 i <- 1
 while (i < length(intratherm_ids_marine) + 1) {
@@ -766,7 +769,7 @@ data <- rbind(data, marine_sub)
 ## change realm_general2 to freshwater for these species 
 intratherm_ids_fresh <- c(2837)
 
-fresh_sub <- data[-1:-2874,]
+fresh_sub <- data[-1:-2898,]
 
 i <- 1
 while (i < length(intratherm_ids_fresh) + 1) {
@@ -898,6 +901,17 @@ data$season_inactive <- sia
 ## found more non-wild fish including in descriptions "Central Institute of Fisheries Education Mumbai India" and "Madras Atomic Power Station Kalpakkam India"
 
 
+
+## formatting references 
+unique(data$ref)
+
+## fix special characters
+data <- data %>%
+  mutate(ref = iconv(ref, from = 'UTF-8', to = 'ASCII//TRANSLIT')) %>%
+  mutate(ref = str_replace_all(ref, pattern = "\\^a\\^_\\^ao/oo ", replacement = "í")) %>%
+  mutate(ref = str_replace_all(ref, pattern = "\\^a\\^_\\^A\\^0", replacement = "á")) %>%
+  mutate(ref = str_replace_all(ref, pattern = "\\^a\\^_\\^a\\^'", replacement = "ö")) %>%
+  mutate(ref = str_replace_all(ref, pattern = "\\^a\\^_\\^A", replacement = "ü"))
+
 ## write new verion to file:
 write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
-
