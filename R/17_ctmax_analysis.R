@@ -211,3 +211,273 @@ fw3 %>%
 	xlab("Distance between populations (km)")
 ggsave("figures/temp-differences-freshwater.png", width = 6, height = 4)
 
+
+### get all combinations
+sample_list <- NULL
+for (i in 1:nrow(ntbl_sub1) ) {
+	output <- combn(nrow(ntbl_sub1), i, FUN=function(x) ntbl_sub1[x,], simplify = FALSE)
+	output <- bind_rows(output, .id = "sample_id")
+	subsample_size <- rep(i, nrow(output))
+	output <- cbind(output, subsample_size)
+	sample_list <- rbind(sample_list,output)
+}
+
+
+
+#### ok now try to get all pairwise distances
+intratherm <- read_csv("data-processed/intratherm-with-elev.csv") %>% 
+	filter(!is.na(latitude)) %>% 
+	filter(!is.na(longitude)) %>% 
+	mutate(lat_long = paste(latitude, longitude, sep = "_")) %>% 
+	mutate(population_id2 = paste(genus_species, latitude, longitude, sep = "_"))
+
+### find all species that have 2 or more populations
+intra2 <- intratherm %>% 
+	select(elevation_of_collection, everything()) %>% 
+	mutate(lat_long = paste(latitude, longitude, sep = "_")) %>% 
+	group_by(genus_species) %>% 
+	select(genus_species, lat_long) %>% 
+	distinct(genus_species, lat_long) %>% 
+	tally() %>% 
+	filter(n > 1)
+
+### find all the possible combinations of population pairs
+find_all_combos <- function(df) {
+	combos <- combn(x = df$intratherm_id, m = 2) %>% 
+	t %>% 
+	as.data.frame() %>% 
+	rename(pop1 = V1,
+		   pop2 = V2) 
+	combos$genus_species <- unique(df$genus_species)
+	combos$unique_combo <- paste(unique(df$genus_species), rownames(combos), sep = "_")
+	return(combos)
+}
+
+## split intratherm by species
+intra_split <- intratherm %>% 
+	filter(genus_species %in% c(intra2$genus_species)) %>% 
+	distinct(genus_species, lat_long, .keep_all = TRUE) %>% 
+	split(.$genus_species)
+
+### find population pairs
+pop_combos <- intra_split %>% 
+	map_df(find_all_combos) 
+
+## use distm function to calculate distances in meters among populations
+distances <- data.frame() 
+for (i in 1:nrow(pop_combos)) {
+	longitude1 <- intratherm$longitude[intratherm$intratherm_id == pop_combos$pop1[i]]
+	latitude1 <- intratherm$latitude[intratherm$intratherm_id == pop_combos$pop1[i]]
+	longitude2 <- intratherm$longitude[intratherm$intratherm_id == pop_combos$pop2[i]]
+	latitude2 <- intratherm$latitude[intratherm$intratherm_id == pop_combos$pop2[i]]
+	unique_combo <- pop_combos$unique_combo[i]
+	genus_species <- pop_combos$genus_species[i]
+	distance <- distm(x = c(longitude1, latitude1), y = c(longitude2, latitude2), fun = distHaversine)
+	hold <- data.frame(pop1_long = longitude1, pop1_lat = latitude1,
+					   pop2_long = longitude2, pop2_lat = latitude2,
+					   unique_combo = unique_combo,
+					   genus_species = genus_species,
+					   distance = distance/1000)
+	distances <- bind_rows(distances, hold)
+}
+
+### plot pairwise distances among all populations of a given species
+distances %>% 
+	ggplot(aes(x = distance)) + geom_histogram()
+
+
+
+# Pop difs analysis -------------------------------------------------------
+library(broom)
+
+pop_difs <- read_csv("data-processed/pop_difs.csv")
+
+## this is model we want to fit: 
+### tmax.diffspecies_i ~ ARRspecies_i + tenvmax.diff + dispersal_distance + spatial_distance + dispersal_distance:spatial_distance + ARR:tenvmax.dif, random=species.
+
+
+### get ARR for each species
+intratherm <- read_csv("./data-processed/intratherm-may-2020-squeaky-clean.csv") %>% 
+	mutate(population_id = paste(population_id, longitude, sep = "_"))
+
+multi_acc <- intratherm %>% 
+	filter(parameter_tmax_or_tmin=="tmax") %>%
+	filter(!is.na(acclim_temp)) %>%
+	group_by(genus_species, population_id) %>% 
+	tally() %>% 
+	filter(n > 1)
+	
+
+arrs <- intratherm %>% 
+	filter(parameter_tmax_or_tmin=="tmax") %>% 
+	filter(!is.na(acclim_temp)) %>%
+	filter(population_id %in% c(multi_acc$population_id)) %>% 
+	mutate(lat_long = paste(latitude, longitude, sep = "_")) %>% 
+	group_by(realm_general2, genus_species, population_id, lat_long) %>% 
+	do(tidy(lm(parameter_value~acclim_temp, data=.))) 
+
+### look at the slopes
+intratherm %>% 
+	filter(parameter_tmax_or_tmin=="tmax") %>% 
+	filter(!is.na(acclim_temp)) %>%
+	ggplot(aes(x = acclim_temp, y = parameter_value, group = population_id)) + 
+	geom_smooth(method = "lm", se = FALSE, alpha = 0.5) 
+
+arr_slopes <- arrs %>% 
+	filter(term != "(Intercept)") %>% 
+	select(genus_species, population_id, estimate) %>% 
+	rename(slope = estimate)
+
+intercepts <- arrs %>% 
+	filter(term == "(Intercept)")  %>% 
+	select(genus_species, population_id, estimate) %>% 
+	rename(intercept = estimate)
+
+slopes_int <- left_join(intercepts, arr_slopes)
+
+ctmax_20 <- arrs %>% 
+	select(genus_species, population_id, term, estimate) %>% 
+	spread(key = term, value = estimate) %>% 
+	rename(intercept = `(Intercept)`) %>% 
+	mutate(ctmax_20 = acclim_temp*20 + intercept) %>% 
+	filter(!is.na(ctmax_20)) 
+
+arr_slopes %>% 
+	ggplot(aes(x = slope)) + geom_histogram(bins = 70) +
+	xlab("ARR slope") +
+	facet_wrap( ~ realm_general2)
+ggsave("figures/ARR-slopes-histogram.png", width = 8, height = 4)
+
+arr_slopes2 <- arr_slopes %>% 
+	group_by(genus_species) %>% 
+	summarise(mean_arr = mean(slope))
+
+dispersals <- intratherm %>% 
+	select(genus_species, dispersal_distance_category) %>% 
+	distinct() 
+
+
+intra2 <- intratherm %>% 
+	filter(parameter_tmax_or_tmin=="tmax") %>% 
+	filter(!is.na(acclim_temp)) %>%
+	filter(population_id %in% c(multi_acc$population_id)) 
+
+arr_model <- function(df) {
+	lm(parameter_value~acclim_temp, data = df)
+}
+
+
+by_popid <- intra2 %>%
+	group_by(realm_general2, genus_species, population_id) %>%
+	nest()
+
+by_popid2 <- by_popid %>%
+	mutate(model = map(.x = data, .f = arr_model))
+
+
+by_popid3 <- by_popid2 %>% 
+	mutate(
+		preds  = map2(.x = data, .y = model, .f = add_predictions),
+		resids = map2(.x = data, .y = model, .f = add_residuals)
+	)
+
+
+preds <- unnest(data = by_popid3, preds)
+resids <- unnest(data = by_popid3, resids)
+
+preds %>%
+	select(genus_species, population_id, acclim_temp, pred, parameter_value) %>% 
+	ggplot(aes(acclim_temp, pred, group = population_id)) +
+	geom_line(alpha = 0.35) 
+
+resids %>%
+	ggplot(aes(acclim_temp, resid, group = population_id)) +
+	geom_line(alpha = 0.35)
+
+#### ok now get the ctmax differences
+
+View(pop_difs)
+
+pd2 <- pop_difs %>% 
+	mutate(pop1 = paste(genus_species, lat_lon_1, sep = "_")) %>% 
+	mutate(pop2 = paste(genus_species, lat_lon_2, sep = "_")) 
+
+pop1_ctmax <- ctmax_20 %>% 
+	mutate(pop1 = paste(genus_species, lat_long, sep = "_")) %>% 
+	filter(pop1 %in% c(pd2$pop1)) %>% 
+	ungroup() %>% 
+	select(pop1, ctmax_20) %>% 
+	rename(ctmax_pop1 = ctmax_20)
+
+pop2_ctmax <- ctmax_20 %>% 
+	mutate(pop2 = paste(genus_species, lat_long, sep = "_")) %>% 
+	filter(pop2 %in% c(pd2$pop2)) %>% 
+	ungroup() %>% 
+	select(pop2, ctmax_20) %>% 
+	rename(ctmax_pop2 = ctmax_20)
+	
+pd3 <- left_join(pd2, pop1_ctmax) %>% 
+	left_join(., pop2_ctmax) 
+
+pd4 <- pd3 %>% 
+	filter(!is.na(ctmax_pop2)) %>% 
+	filter(!is.na(ctmax_pop1)) %>% 
+	mutate(diff_ctmax = abs(ctmax_pop1 - ctmax_pop2))
+
+arr_slopes2 <- arr_slopes %>% 
+	group_by(genus_species) %>% 
+	summarise(mean_arr = mean(slope)) 
+
+dispersals <- intratherm %>% 
+	select(genus_species, dispersal_distance_category) %>% 
+	distinct() 
+
+pd5 <- left_join(pd4, arr_slopes2) %>% 
+	left_join(., dispersals) 
+# ctmax.diffspecies_i ~ ARRspecies_i + tenvmax.diff + dispersal_distance + spatial_distance + dispersal_distance:spatial_distance + ARR:tenvmax.dif, random=species.
+
+mod <- lm(diff_ctmax ~ mean_arr + temp_difference + dispersal_distance_category +
+		  	distance + dispersal_distance_category:distance + mean_arr:temp_difference, data = pd5)
+summary(mod)
+
+library(visreg)
+
+mod <- lm(diff_ctmax ~ mean_arr + temp_difference + dispersal_distance_category +
+		  	distance + dispersal_distance_category:distance + mean_arr:temp_difference, data = pd5)
+
+mod <- lm(diff_ctmax ~ mean_arr +
+		  	distance  + mean_arr:temp_difference, data = pd5)
+
+
+summary(mod)
+visreg(mod)
+car::vif(mod)
+library(car)
+library(plyr)
+?vif
+
+
+cutoff=2
+# Create function to sequentially drop the variable with the largest VIF until 
+# all variables have VIF > cutoff
+flag=TRUE
+viftable=data.frame()
+while(flag==TRUE) {
+	vfit=vif(mod)
+	viftable=rbind.fill(viftable,as.data.frame(t(vfit)))
+	if(max(vfit)>cutoff) { mod=
+		update(mod,as.formula(paste(".","~",".","-",names(which.max(vfit))))) }
+	else { flag=FALSE } }
+# Look at the final model
+print(mod)
+vif(mod)
+
+
+
+pd5 %>% 
+	ggplot(aes(x = diff_ctmax, y = temp_difference)) + geom_point() +
+	ylab("Environmental temperature difference") + xlab("CTmax difference") 
+ggsave("figures/env-temp-diff-ctmax-diff.png", width = 8, height = 6)
+
+
+pd5 
