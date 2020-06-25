@@ -27,7 +27,7 @@ found <- syns %>%
   subset(match == "found") 
   
 report <- lapply(found$ids, itis_acceptname)
-report_df <- data.frame(matrix(unlist(report), nrow=208, byrow=T),stringsAsFactors=FALSE)
+report_df <- data.frame(matrix(unlist(report), nrow=209, byrow=T),stringsAsFactors=FALSE)
 report_df <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/report_df.rds")
 
 found <- found %>%
@@ -59,9 +59,12 @@ data <- data %>%
   mutate(species = merged$species) %>%
   mutate(genus_species = merged$taxa) 
 
-data_protected <- data
 
 
+## get rid of non-existent species Hyla alpina
+##############################################
+data <- data %>%
+  filter(genus_species != "Hyla alpina")
 
 
 ## taxize all data to update higher taxonomy columns 
@@ -77,7 +80,6 @@ data <- data %>%
   select(intratherm_id, genus_species, genus, species, phylum, class, 
          order, family, everything())  ## move columns around
 
-data_protected <- data
 
 ## for all taxa where higher taxonomy not found: data filled in manually using a google search 
 
@@ -105,7 +107,6 @@ while(i < length(data$original_compilation)) {
 data <- data %>%
  select(-flag) 
 
-data_protected <- data
 
 
 
@@ -132,7 +133,6 @@ data <- data %>%
   rbind(., data_flagged) %>%
   select(-flag)
 
-data_protected <- data
 
 unique(data$realm_general2)
 
@@ -198,7 +198,6 @@ data <- data %>%
 data %>%
   subset(realm_general2 == "Aquatic") %>% View 
 
-data_protected <- data
 
 ## change terrestrial to Terrestrial, marine to Marine and freshwater to Freshwater 
 unique(data$realm_general2)
@@ -217,7 +216,6 @@ data <- data %>%
   select(-is_f)
 
 
-data_protected <- data
 
 unique(data$realm_general2)
 
@@ -234,7 +232,6 @@ data <- data %>%
   rbind(., data_t) %>%
   select(-is_t)
 
-data_protected <- data
 
 unique(data$realm_general2)
 
@@ -252,7 +249,6 @@ data <- data %>%
   select(-is_m)
 
 
-data_protected <- data
 
 
 
@@ -373,7 +369,6 @@ data <- data %>%
 
 unique(data$life_stage.x)
 
-data_protected <- data
 
 
 
@@ -398,8 +393,6 @@ data <- data %>%
   rbind(., data_jan10) %>%
   select(-is_Jan10)
 
-
-data_protected <- data
 
 
 
@@ -439,7 +432,6 @@ merged <- rbind(data, data_sub) ## add back hyphenated with new values
 data <- merged %>%
   select(-has_hyphen)
 
-data_protected <- data
 
 
 
@@ -465,8 +457,6 @@ data <- data %>%
   select(-is_May20)
 
 
-data_protected <- data
-
 
 
 
@@ -477,7 +467,6 @@ data <- data %>%
   mutate(population_id = paste(genus_species, latitude, elevation_of_collection, sep = "_")) 
 
 
-data_protected <- data
 
 
 
@@ -498,7 +487,6 @@ hatchery <- which(str_detect(data$location_description, "hatchery|Hatchery"))
 data <- data[-hatchery,] %>%
   rbind(., data_hatch)
 
-data_protected <- data
 
 
 
@@ -644,8 +632,6 @@ data <- data %>%
   
 
 
-data_protected <- data
-
 
 
 ## make sure no missing realms for ones that had no higher taxonomy 
@@ -669,7 +655,6 @@ data <- data %>%
   rbind(., data_amphibs) %>%
   select(-flag)
 
-data_protected <- data
 
 
 
@@ -713,7 +698,6 @@ merged <- rbind(data, data_sub) ## add back hyphenated with new values
 data <- merged %>%
   select(-has_hyphen)
 
-data_protected <- data
 
 ## write updated version to data file:
 write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
@@ -730,7 +714,6 @@ farm <- which(str_detect(data$location_description, "farm|Farm"))
 data <- data[-farm,]
 
 
-data_protected <- data
 
 
 ## while getting freshwater data, found some freshwater species living in estuaries that should be labelled marine 
@@ -806,7 +789,21 @@ non_wild <- which(str_detect(data$location_description, "Education")) %>%
 data <- data[-non_wild,]
 
 
-data_protected <- data
+
+
+
+##updating traits and clean references:
+genus <- data$genus
+species <- data$species
+
+traits <- read.csv("./data-processed/intratherm-traits-clean-citations.csv") %>%
+  dplyr::select(-dispersal_distance2_category, -logic_source_for_dispersal_distance2)
+  
+
+data <- data %>%
+  dplyr::select(-colnames(traits))%>%
+  mutate(genus = all_of(genus), species = all_of(species))%>%
+  left_join(., traits)
 
 
 
@@ -913,5 +910,8 @@ data <- data %>%
   mutate(ref = str_replace_all(ref, pattern = "\\^a\\^_\\^a\\^'", replacement = "ö")) %>%
   mutate(ref = str_replace_all(ref, pattern = "\\^a\\^_\\^A", replacement = "ü"))
 
-## write new verion to file:
+## write new verion to file
 write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
+
+
+

@@ -24,9 +24,8 @@ cadillac <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv")
 terrestrial <- cadillac %>%
   subset(subset = !is.na(latitude)) %>%
   subset(subset = !is.na(longitude)) %>%
-  subset(realm_general2 == "Terrestrial")
-
-terrestrial <- droplevels(terrestrial)
+  subset(realm_general2 == "Terrestrial") %>%
+  droplevels()
 
 ## get rid of duplicate population rows since all will have the same temp data
 unique_pairs <- terrestrial[!duplicated(terrestrial[,c("latitude", "longitude", "elevation_of_collection")]),]

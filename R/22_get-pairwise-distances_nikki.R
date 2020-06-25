@@ -81,13 +81,11 @@ pop_difs %>%
 initialize_distance_data <- function() {
 	data <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv")
 	
-	## subset to data that has both latitude and longitude 
-	data <- data %>%
+	## subset to data that has both latitude and longitude and split into chunks of each species
+	species_list <- data %>%
 		filter(!is.na(latitude)) %>%
-		filter(!is.na(longitude))
-	
-	## split into chunks of each species
-	species_list <- split(data, data$genus_species)
+		filter(!is.na(longitude)) %>%
+		split(., data$genus_species)
 	
 	all_combinations <- data.frame(matrix(ncol = 4))
 	colnames(all_combinations) <- c("lat_lon_1", "lat_lon_2", "distance", "genus_species")
@@ -145,8 +143,7 @@ initialize_distance_data <- function() {
 ## corrects for elevation for terrestrial species 
 ## returns intratherm with all unique populations and with column mean_yearly_max_temp
 get_mean_yearly_max <- function() {
-	intratherm <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv")
-	intratherm <- intratherm %>%
+	intratherm <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv") %>%
 		filter(!is.na(latitude)) %>%
 		filter(!is.na(longitude))
 	
@@ -180,18 +177,12 @@ get_mean_yearly_max <- function() {
 		summarise(mean_yearly_max_temp = mean(max_temp))
 	
 	terrestrial <- left_join(terrestrial, intra_long) %>%
-		select(-population_id, -elevation_of_collection)
-	
-	terrestrial <- left_join(terrestrial, elev) 
-	
-	## elevation correction:
-	terrestrial <- terrestrial %>%
-		mutate(elevation_of_collection = as.numeric(elevation_of_collection)) %>% 
+		select(-population_id, -elevation_of_collection) %>% 
+		left_join(., elev) %>%
+		mutate(elevation_of_collection = as.numeric(elevation_of_collection)) %>%  ## elevation correction:
 		mutate(raster_mean = as.numeric(raster_mean)) %>% 
 		mutate(mean_yearly_max_temp = mean_yearly_max_temp
-			   + 5.5*((raster_mean - elevation_of_collection)/1000)) 
-	
-	terrestrial <- terrestrial %>%
+			   + 5.5*((raster_mean - elevation_of_collection)/1000)) %>%
 		select(-raster_mean)
 	
 	
@@ -333,10 +324,10 @@ initialize_pairwise_differences <- function() {
 	## now must calculate temp differences for terrestrial species at the same latitude and longitude but with different elevations 
 	
 	## subset to terrestrial species and break into species chunks 
-	data <- data %>%
-		filter(realm_general2 == "Terrestrial")
-	data <- droplevels(data)
-	terr_list <- split(data, data$genus_species)
+	terr_list <- data %>%
+		filter(realm_general2 == "Terrestrial") %>%
+		droplevels() %>%
+	 	split(., data$genus_species)
 	
 	i = 1
 	## go through all terrestrial species, check if any have the same lat_lon but different elevations 
@@ -585,8 +576,7 @@ populations_of_species <- function(species, all_combinations) {
 ## "experienced" means mean_yearly_max_temp after temperatures in seasons when that species is away or inactive have been removed 
 get_experienced_mean_yearly_max <- function() {
 
-	intratherm <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv")
-	intratherm <- intratherm %>%
+	intratherm <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv") %>%
 		filter(!is.na(latitude)) %>%
 		filter(!is.na(longitude))
 	
@@ -602,9 +592,7 @@ get_experienced_mean_yearly_max <- function() {
 	terrestrial <- terrestrial[!duplicated(terrestrial[,c("genus_species", "latitude", "longitude", "elevation_of_collection")]),]
 	
 	
-	elev <- read.csv("./data-processed/intratherm-with-elev.csv")
-	
-	elev <- elev %>% 
+	elev <- read.csv("./data-processed/intratherm-with-elev.csv") %>% 
 		filter(realm_general2 == "Terrestrial") %>%
 		mutate(population_id = paste(population_id, longitude, sep = "_"))
 	
@@ -634,9 +622,8 @@ get_experienced_mean_yearly_max <- function() {
 	
 	terrestrial <- left_join(terrestrial, intra_long) %>%
 		left_join(., intra_long_exp) %>%
-		select(-population_id, -elevation_of_collection)
-	
-	terrestrial <- left_join(terrestrial, elev) 
+		select(-population_id, -elevation_of_collection) %>%
+		left_join(., elev) 
 	
 	## elevation correction:
 	terrestrial <- terrestrial %>%
@@ -645,9 +632,7 @@ get_experienced_mean_yearly_max <- function() {
 		mutate(experienced_mean_yearly_max_temp = experienced_mean_yearly_max_temp
 			   + 5.5*((raster_mean - elevation_of_collection)/1000)) %>%
 		mutate(mean_yearly_max_temp = mean_yearly_max_temp
-			   + 5.5*((raster_mean - elevation_of_collection)/1000)) 
-	
-	terrestrial <- terrestrial %>%
+			   + 5.5*((raster_mean - elevation_of_collection)/1000)) %>%
 		select(-raster_mean)
 	
 	
@@ -816,8 +801,8 @@ initialize_pairwise_differences_experienced <- function() {
 	
 	## subset to terrestrial species and break into species chunks 
 	terr <- data %>%
-		filter(realm_general2 == "Terrestrial")
-	terr <- droplevels(terr)
+		filter(realm_general2 == "Terrestrial") %>%
+		droplevels()
 	
 	terr_list <- split(terr, terr$genus_species)
 	
@@ -918,7 +903,7 @@ set_temps_to_NA <- function(temp_data, realm) {
 	while (z < ncol(temp_data) + 1) {
 		
 		##figure out the species 
-		column <- temp_data[,z]
+		column <- as.data.frame(temp_data[,z], nrow = 50000)
 		species <- as.character(as.data.frame(str_split(colnames(temp_data)[z], pattern = "_"))[1,])
 		
 		species_rows <- intratherm[which(intratherm$genus_species == species),]
@@ -1104,7 +1089,7 @@ set_temps_to_NA <- function(temp_data, realm) {
 				if (isTRUE(months[4])) {
 					column[(day_index + 89):(day_index + 119),] <- NA
 				}
-				if (isTRUE(months[5])& day_index < day_max) {
+				if (isTRUE(months[5])) {
 					column[(day_index + 119):(day_index + 150),] <- NA
 				}
 				if (isTRUE(months[6])) {
@@ -1143,7 +1128,7 @@ set_temps_to_NA <- function(temp_data, realm) {
 		
 		z = z + 1	
 	}
-	
+	colnames(new_temp_data)[2:length(new_temp_data)] <- colnames(temp_data)
 	return(new_temp_data)
 	
 }
