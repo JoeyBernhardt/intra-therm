@@ -1,0 +1,303 @@
+genus,species,age_maturity_days_female_reference,age_maturity_days_male_reference,logic_source_for_dispersal_distance,source_for_maximum_body_size,average_body_size_female_reference,average_body_size_male_reference,logic_source_for_season_inactive,source_logic_for_migration_info,logic_source_season_when_away,logic.source_for_Home.range.size,lifespan_days_reference
+Canthon,humectus,,,"Verdú & Lobo, 2008","Dunlap et al., 2015",,,"Ortega-Martínez et al., 2014","IUCN, 2020",,,"Verdú, 2011"
+Gayralia,sp,,,,,,,,,,,
+Anguilla,australis,"Gomon & Bray, 2018","Gomon & Bray, 2018","IUCN, 2020;Beumer, 1979","Froese & Pauly, 2000",,,,"IUCN, 2020","Tudorache et al., 2015;IUCN, 2020","Beumer, 1979","De Magalhães & Costa, 2009"
+Anguilla,dieffenbachii,"Doole, 2005","Doole, 2005","R. M. McDowall, 2010","Froese & Pauly, 2000",,,,"IUCN, 2020","Palstra & van den Thillart, 2010;Froese & Pauly, 2000","Chisnall & Kalish, 1993","McEwan & Joy, 2016"
+Apogon,pacificus,,,"IUCN, 2020","Froese & Pauly, 2000",,,"Froese & Pauly, 2000",,,,
+Chaenocephalus,aceratus,"M. La Mesa et al., 2004","M. La Mesa et al., 2004","Damerau et al., 2014","Froese & Pauly, 2000",,,,"Reid et al., 2007","Papetti et al., 2012;Detrich et al., 2005",,"Saveliev et al., 2006"
+Chionodraco,rastrospinosus,"M. La Mesa & Ashford, 2008","M. La Mesa & Ashford, 2008","Papetti et al., 2012","Froese & Pauly, 2000;M. La Mesa & Ashford, 2008","M. La Mesa & Ashford, 2008","M. La Mesa & Ashford, 2008",,"Papetti et al., 2012",,,"Saveliev et al., 2006"
+Cirrhitichthys,oxycephalus,,,https://media.nature.com/original/nature-assets/ncomms/2014/141121/ncomms6575/extref/ncomms6575-s2.docx,"Froese & Pauly, 2000",,,"Froese & Pauly, 2000","Mora & Ospína, 2001;Grove & Lavenberg, 1997",,,"Pixie Hawkfish (Cirrhitichthys oxycephalus), n.d."
+Culaea,inconstans,"Eakins, 2020a","Eakins, 2020a","Jacobus & Webb, 2005;Manion, 1977;Stewart et al., 2007","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Froese & Pauly, 2000;Eakins, 2020a"
+Bathygobius,soporator,"Tavolga, 1954;K. M. Peters, 1983","Tavolga, 1954;K. M. Peters, 1983","K. M. Peters, 1983","Froese & Pauly, 2000",,,"Froese & Pauly, 2000","Froese & Pauly, 2000",,,"Niyonkuru et al., 2007"
+Coryphopterus,urospilus,"Victor et al., 2010","Victor et al., 2010","Victor et al., 2010","Froese & Pauly, 2000",,,"Froese & Pauly, 2000","Mora & Ospína, 2001;Grove & Lavenberg, 1997",,,
+Halichoeres,dispilus,,,"Victor & Wellington, 2000","Froese & Pauly, 2000",,,"Froese & Pauly, 2000",,,,"Snow, n.d."
+Thalassoma,lucasanum,,,"Wellington & Victor, 1992","Froese & Pauly, 2000",,,"Froese & Pauly, 2000","Warner, 1982",,,"Snow, n.d."
+Lutjanus,guttatus,"Sarabia-Méndez et al., 2010","Sarabia-Méndez et al., 2010","Zapata & Herrón, 2002","Froese & Pauly, 2000",,,"Froese & Pauly, 2000","Bayona-Vásquez et al., 2017",,,"Gonzalez-Ochoa et al., 2009"
+Poecilia,mexicana,"Froese & Pauly, 2000","Froese & Pauly, 2000","Riesch et al., 2010","Froese & Pauly, 2000",,,"Froese & Pauly, 2000","IUCN, 2020",,"Balsano et al., 1985","Shortfin Molly (Poecilia mexicana), n.d."
+Acris,crepitans,"Oliveira et al., 2017","Oliveira et al., 2017","AmphibiaWeb, 2020","Oliveira et al., 2017",,,"AmphibiaWeb, 2020;Meyers et al., 2015",,,"AmphibiaWeb, 2020","Oliveira et al., 2017"
+Ambystoma,jeffersonianum,"Oliveira et al., 2017","Oliveira et al., 2017","AmphibiaWeb, 2020","Oliveira et al., 2017",,,"AmphibiaWeb, 2020",,,"Faccio, 2003","Meyers et al., 2015"
+Ambystoma,macrodactylum,"Oliveira et al., 2017","Oliveira et al., 2017","Funk & Dunlap, 1999","Oliveira et al., 2017;A. P. Russell et al., 1996",,,"AmphibiaWeb, 2020",,,"AmphibiaWeb, 2020","Oliveira et al., 2017"
+Ambystoma,maculatum,"Oliveira et al., 2017","Oliveira et al., 2017","Madison, 1997","Oliveira et al., 2017",,,"Gatz, 1973;AmphibiaWeb, 2020",,,"Meyers et al., 2015","Oliveira et al., 2017;AmphibiaWeb, 2020"
+Ambystoma,tigrinum,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","AmphibiaWeb, 2020;Madison & Farrand, 1998","Oliveira et al., 2017",,,"AmphibiaWeb, 2020",,,"Madison & Farrand, 1998;AmphibiaWeb, 2020","AmphibiaWeb, 2020"
+Lagopus,lagopus,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Brøseth et al., 2005;Hörnell-Willebrand et al., 2014","Meyers et al., 2015",,,,"IUCN, 2020",,"Brøseth et al., 2005","De Magalhães & Costa, 2009"
+Laudakia,stellio,"Ergül et al., 2014","Ergül et al., 2014","Ibrahim & El-Naggar, 2013","Ergül et al., 2014","Ergül et al., 2014","Ergül et al., 2014",,"Southwood & Avens, 2010",,,"Ergül et al., 2014"
+Anolis,cybotes,"Licht & Gorman, 1970","Licht & Gorman, 1970","Fobes et al., 1992","Conant & Collins, 1998","M. A. Johnson & Wade, 2010","M. A. Johnson & Wade, 2010",,"Fobes et al., 1992",,"Fobes et al., 1992",
+Anolis,krugi,"Gorman & Licht, 1974",,"RodrÍguez-Robles et al., 2010",,"Mowbray, n.d.-b","Mowbray, n.d.-b",,,,,
+Anolis,pulchellus,,,"Gorman & Harwood, 1977",,"Huyghe et al., 2007","Huyghe et al., 2007",,,,"Gorman & Harwood, 1977",
+Anolis,semilineatus,,,,"Cochran, 1941",,,,,,,
+Cophosaurus,texanus,"Ballinger et al., 1972;Sugg et al., 1995","Schrank & Ballinger, 1973;Sugg et al., 1995","Franco, 2015","Degenhardt et al., 2016","Degenhardt et al., 2016","Degenhardt et al., 2016","Sugg et al., 1995","Howland, 1992",,"Verwaijen & Van Damme, 2008","Sugg et al., 1995"
+Dipsosaurus,dorsalis,"Krekorian, 1984","Krekorian, 1984","Krekorian, 1984","Hulse, 1992","Meyers et al., 2015","Meyers et al., 2015","Moberly, 1963","Krekorian, 1984",,"Krekorian, 1984","De Magalhães & Costa, 2009"
+Sceloporus,grammicus,"Jiménez-Cruz et al., 2005","Jiménez-Cruz et al., 2005","Hall & Selander, 1973","Guillette & Casas-Andreu, 1980","Hernández-Salinas et al., 2010","Hernández-Salinas et al., 2010","Andrews, 1998",,,,
+Sceloporus,occidentalis,"Goldberg, 1973","Goldberg, 1974","Massot et al., 2003","Davis, 1967","Davis, 1967","Davis, 1967","Goldberg, 1973","Southwood & Avens, 2010",,"Tanner & Hopkin, 1971","Davis, 1967"
+Lacerta,agilis,"Roitberg & Smirina, 2006;Guarino et al., 2010",,"M. Olsson et al., 1996","Guarino et al., 2010","Guarino et al., 2010","Guarino et al., 2010","Saveliev et al., 2006","Southwood & Avens, 2010",,"M. Olsson et al., 1996","Olsson & Shine, 1996"
+Podarcis,tilliguerta,,,"Mangiacotti et al., 2013",,"Biaggini et al., 2013","Biaggini et al., 2013",,"Southwood & Avens, 2010",,,"Jesus, 2012"
+Takydromus,septentrionalis,"Du et al., 2005",,"Xiang & Peichao, 1989","Du et al., 2006",,,"IUCN, 2020",,,"Xiang & Peichao, 1989",
+Zootoca,vivipara,"Sorci & Clobert, 1995","Sorci & Clobert, 1995","Strijbosch et al., 1983",,"Pilorge, 1987","Pilorge, 1987","Bauwens, 1981;Pilorge, 1987","Southwood & Avens, 2010",,"Ortega-Rubio et al., 1988","Avery, 1975"
+Rattus,fuscipes,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Peakall et al., 2003","K. E. Jones et al., 2009",,,"Glanville & Seebacher, 2010","Green & Osborne, 1981",,"Peakall et al., 2003","J. M. Taylor & Calaby, 1988"
+Anaxyrus,americanus,"AmphibiaWeb, 2020","AmphibiaWeb, 2020","AmphibiaWeb, 2020","Oliveira et al., 2017","Meyers et al., 2015","Meyers et al., 2015","Meyers et al., 2015",,,"AmphibiaWeb, 2020","AmphibiaWeb, 2020;Meyers et al., 2015"
+Desmarestia,viridis,"Hiroyuki Nakahara, 1984","Hiroyuki Nakahara, 1984","Norton, 1992","Desmarestia viridis, n.d.",,,"Blain & Gagnon, 2013",,,,"Blain & Gagnon, 2013"
+Desmarestia,aculeata,"Ramirez et al., 1986","Ramirez et al., 1986","Norton, 1992","Johannesson et al., 2000",,,"Chapman & Burrows, 1971",,,,"A. L. Baker et al., 2012"
+Desmarestia,herbacea,"Zepp, 2017","Zepp, 2017","Norton, 1992;Reed et al., 1997;Zepp, 2017","WoRMS Editorial Board, 2020",,,"Reed et al., 1997",,,,"M. S. Edwards, 1998"
+Desmarestia,willii,,,"Norton, 1992","Kim et al., 2001",,,,,,,"Bellemo et al., 2001"
+Dictyosiphon,foeniculaceus,"Peters & Müller, 1985;Saga, 1986","Saga, 1986","Peters & Müller, 1985","AlgaeBase, 2006;Gosner, 1979",,,"Lindeberg & Lindstrom, n.d.;Peters & Müller, 1985",,,,"Lindeberg & Lindstrom, n.d."
+Dictyosiphon,hirsutus,"Peters, 1992a","Peters, 1992a","Peters, 1992a","Peters, 1992a",,,"Peters, 1992a",,,,"Peters, 1992a"
+Dumontia,contorta,"Rietema & Klein, 1981","Rietema & Klein, 1981",,"Pot et al., 1988",,,"Wilce & Davis, 1984",,,,"Rietema & Klein, 1981"
+Haplogloia,andersonii,"Peters, 1992b","Peters, 1992b",,"DeCew & Silva, 2006",,,"DeCew & Silva, 2006",,,,
+Sphaerotrichia,divaricata,"Umezaki, 1990","Umezaki, 1990","A. F. Peters et al., 1993","van Den Hoek et al., 1995;Umezaki, 1990",,,"van Den Hoek et al., 1995;A. F. Peters et al., 1993",,,,"Novaczek & McLachlan, 1987"
+Tinocladia,falklandica,,,,"AlgaeBase, 2006",,,,,,,
+Trachynema,groenlandicum,,,"Norton, 1992","Pedersen, 1985",,,,,,,
+Laminaria,longicruris,"Chapman, 1986","Chapman, 1986","Norton, 1992","Chmura et al., 2007;Harvey, 1857",,,"Egan & Yarish, 1990",,,,"Harvey, 1857"
+Gigartina,teedii,"Guiry, 1984","Guiry, 1984","Guiry, 1984","Guiry, 1984",,,,,,,"Harvey, 1857"
+Anisotome,imbricata,,,"Thorsen et al., 2009","Thorsen et al., 2009",,,,,,,"C. S. Brown et al., 2006"
+Artemisia,californica,"Pratt et al., 2014","Pratt et al., 2014","Umezaki, 1990","Umezaki, 1990",,,,,,,"Montalvo et al., 2017"
+Celmisia,haastii,,,"Spence, 1990;Thorsen et al., 2009","Celmisia Species, New Zealand Daisy, n.d.",,,,,,,"Hadley & Rosen, 1974"
+Celmisia,viscosa,"A. D. Campbell, 1980","A. D. Campbell, 1980","Spence, 1990",,,,,,,,
+Encelia,farinosa,"Umezaki, 1990","Montalvo, 2004","D. E. Brown & Minnich, 1986","Umezaki, 1990",,,,,,,"Fehlberg & Ranker, 2009"
+Atriplex,hymenelytra,"Reed, 1993","Reed, 1993",,"Atriplex hymenelytra, n.d.-b",,,,,,,"Atriplex hymenelytra, n.d.-a"
+Atriplex,leucophylla,"Reed, 1993","Reed, 1993",,"Zacharias, 2013",,,,,,,"“Atriplex leucophylla,” 2020"
+Silene,acaulis,"Morris & Doak, 1998","Morris & Doak, 1998","Gehring & Delph, 1999","Silene acaulis, n.d.",,,,,,,"Morris & Doak, 1998"
+Hectorella,caespitosa,,,,"Breitwieser et al., 2020",,,,,,,"Morton & Allan, 1967"
+Eriogonum,latifolium,,,"Riley et al., 2019","Reveal & Rosatti, 2012",,,"Dziminski & Alford, 2005",,,"Simkins et al., 2011","USDA, 2006"
+Eriogonum,fasciculatum,"Umezaki, 1990","Umezaki, 1990","Umezaki, 1990","Eriogonum fasciculatum, n.d.",,,,,,,"Sawyer et al., 2001"
+Dracophyllum,muscoides,,,"Thorsen et al., 2009","de Lange, 2020",,,,,,,
+Salvia,leucophylla,,,,"Averett, 2012a",,,,,,,"USDA, 2006"
+Salvia,mohavensis,,,,"Averett, 2012b",,,,,,,"USDA, 2006"
+Bromus,tectorum,"Zouhar, 2003","Zouhar, 2003","Zouhar, 2003","Zouhar, 2003",,,,,,,"Zouhar, 2003"
+Bromus,rubens,"Wu & Jain, 1979","Wu & Jain, 1979","Chambers et al., 2016;CABI, 2020b","CABI, 2020b",,,,,,,"“Bromus rubens,” 2020"
+Poa,colensoi,,,"Spence, 1990","Basher & Lynn, 1996",,,,,,,"Connor, 1963"
+Palirhoeus,eatoni,,,"Chown & Klok, 2001a","Janse van Rensburg, 2006","Chown & Klok, 2001b","Chown & Klok, 2001b",,,,,
+Calathus,melanocephalus,"Filippov, 2006","Filippov, 2006","Aukema, 1995","Van Noordwijk et al., 2015",,,"Filippov, 2006;“Calathus melanocephalus,” 2009",,,,"Filippov, 2006"
+Glossina,pallidipes,"Ackley & Hargrove, 2017;“Tsetse fly,” n.d.","Ackley & Hargrove, 2017;“Tsetse fly,” n.d.","B. Williams et al., 1992","Schofield, 1986",,,,"Brightwell et al., 1997",,,"Clutton-Brock & Langley, 1997"
+Myrmecocystus,depilis,"“Myrmecocystus,” n.d.",,"“Myrmecocystus mexicanus,” n.d.","“Myrmecocystus depilis,” n.d.",,,"“Myrmecocystus species group,” n.d.",,,"Cole et al., 2001","Holldobler & Wilson, 1990"
+Alosa,pseudoharengus,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Spares et al., 2016","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020","Saila et al., 1972;Durbin et al., 1979","Meyers et al., 2015","Meyers et al., 2015;CABI, 2020a"
+Catostomus,clarkii,"NatureServe, 2020","NatureServe, 2020","Booth et al., 2013","Froese & Pauly, 2000",,,,"IUCN, 2020",,"Booth et al., 2013","NatureServe, 2020"
+Agosia,chrysogaster,"Winther, 1962","Winther, 1962","Minckley & Barber, 1971","Winther, 1962",,,"Minckley & Barber, 1971","IUCN, 2020",,,"NatureServe, 2020"
+Gila,robusta,"NatureServe, 2020","NatureServe, 2020","Brouder et al., 2000","Froese & Pauly, 2000",,,"Gila robusta jordani, 1990","IUCN, 2020",,"Brouder et al., 2000","NatureServe, 2020"
+Meda,fulgida,"NatureServe, 2020","NatureServe, 2020","Propst et al., 1986","Froese & Pauly, 2000",,,"NatureServe, 2020","IUCN, 2020",,,"NatureServe, 2020"
+Pogonichthys,macrolepidotus,"NatureServe, 2020","NatureServe, 2020","Baerwald et al., 2007;Moyle et al., 2004","Froese & Pauly, 2000",,,"NatureServe, 2020","IUCN, 2020",,"Sommer et al., 2008","NatureServe, 2020"
+Rhinichthys,cobitis,"NatureServe, 2020","NatureServe, 2020",,"NatureServe, 2020",,,"NatureServe, 2020","IUCN, 2020",,,"Froese & Pauly, 2000"
+Cyprinodon,macularius,"NatureServe, 2020","NatureServe, 2020","G. W. Barlow, 1958","Froese & Pauly, 2000",,,,"IUCN, 2020",,,"Froese & Pauly, 2000"
+Galaxias,fasciatus,"IUCN, 2020","IUCN, 2020","Akbaripasand et al., 2011","Froese & Pauly, 2000",,,,"Hopkins, 1979","Hopkins, 1979",,"IUCN, 2020"
+Galaxias,maculatus,"IUCN, 2020","IUCN, 2020","Delgado et al., 2019","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Froese & Pauly, 2000","Barriga et al., 2007;Ergül et al., 2014",,"IUCN, 2020"
+Gillichthys,mirabilis,"G. Barlow, 1963","G. Barlow, 1963","McGourty et al., 2009;Yoklavich et al., 1992;Moser, 1996","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","NatureServe, 2020","IUCN, 2020",,"Bano et al., 2007","Froese & Pauly, 2000"
+Ambassis,ambassis,"Milton & Arthington, 1985","Milton & Arthington, 1985","Dyer et al., 2015","Froese & Pauly, 2000",,,,"IUCN, 2020",,,"Milton & Arthington, 1985"
+Apogon,dovii,,,"IUCN, 2020","Froese & Pauly, 2000",,,,"IUCN, 2020",,,
+Lipophrys,pholis,"M. G. Carvalho et al., 2017","M. G. Carvalho et al., 2017","M. G. Carvalho et al., 2017","Froese & Pauly, 2000",,,,"IUCN, 2020",,"Gibson, 1967","De Magalhães & Costa, 2009;Froese & Pauly, 2000"
+Lipophrys,trigloides,,,"Macpherson & Raventos, 2006","Froese & Pauly, 2000",,,,,,,
+Carpiodes,cyprinus,"Parker & Franzin, 1991","Parker & Franzin, 1991","NatureServe, 2020","Parker & Franzin, 1991","Parker & Franzin, 1991","Parker & Franzin, 1991",,"NatureServe, 2020","NatureServe, 2020",,"Meyers et al., 2015"
+Catostomus,commersonii,"Meyers et al., 2015","Meyers et al., 2015","Meyers et al., 2015;NatureServe, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020","NatureServe, 2020;Meyers et al., 2015",,"Meyers et al., 2015"
+Ambloplites,rupestris,"Meyers et al., 2015","Meyers et al., 2015","Sabat, 1994;MacLean & Teleki, 1977","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Meyers et al., 2015","NatureServe, 2020","MacLean & Teleki, 1977","MacLean & Teleki, 1977","Meyers et al., 2015;Froese & Pauly, 2000"
+Lepomis,cyanellus,"Meyers et al., 2015","NatureServe, 2020","Smithson & Johnston, 1999","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"NatureServe, 2020",,"Berra & Gunning, 1973","De Magalhães & Costa, 2009"
+Lepomis,gibbosus,"Meyers et al., 2015","W. B. Scott & Crossman, 1973","McCairns & Fox, 2004","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"NatureServe, 2020",,"McCairns & Fox, 2004","Eakins, 2020b"
+Lepomis,macrochirus,"Peterson et al., 2010","Peterson et al., 2010","Hohausová et al., 2010","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"NatureServe, 2020",,"Bluegill, n.d.","De Magalhães & Costa, 2009"
+Lepomis,megalotis,https://www.dec.ny.gov/docs/wildlife_pdf/lesunfishrpt.pdf,https://www.dec.ny.gov/docs/wildlife_pdf/lesunfishrpt.pdf,"Smithson & Johnston, 1999","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Fentress et al., 2006",,"Berra & Gunning, 1973","Meyers et al., 2015;De Magalhães & Costa, 2009"
+Micropterus,punctulatus,"NatureServe, 2020","NatureServe, 2020","Hunter & Maceina, 2008","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"NatureServe, 2020",,"Hunter & Maceina, 2008","Froese & Pauly, 2000"
+Pomoxis,annularis,"Meyers et al., 2015","Meyers et al., 2015","Markham et al., 1991","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","NatureServe, 2020","NatureServe, 2020",,"Meyers et al., 2015","Meyers et al., 2015"
+Pomoxis,nigromaculatus,"Nelson, 1974;Meyers et al., 2015","Meyers et al., 2015;Nelson, 1974","Guy et al., 1992","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"Guy et al., 1992","Meyers et al., 2015"
+Lates,calcarifer,"Meyers et al., 2015;Froese & Pauly, 2000","Meyers et al., 2015","D. J. Russell & Garrett, 1988;Chenoweth et al., 1998;Moore & Reynold, 1982","Froese & Pauly, 2000",,,,"IUCN, 2020","Moore & Reynold, 1982;Meyers et al., 2015",,"Balston, 2009"
+Gymnocharacinus,bergii,"Cussac & Ortubay, 2002","Cussac & Ortubay, 2002","IUCN, 2020;Cussac & Ortubay, 2002","Froese & Pauly, 2000",,,,"IUCN, 2020",,"IUCN, 2020","Cussac & Ortubay, 2002"
+Etroplus,suratensis,"Shubodha, 2012","Shubodha, 2012","Chandrasekar et al., 2019;Bindu & Padmakumar, 2016","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","IUCN, 2020",,"Mohideen et al., 2014","Pon Saravana Karman et al., 2014"
+Cottus,gobio,"IUCN, 2020","IUCN, 2020","Hänfling et al., 2002","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Fischer & Kummer, 2000",,"Hänfling et al., 2002","Froese & Pauly, 2000"
+Carassius,carassius,"Tarkan et al., 2016","Tarkan et al., 2016","Jeffries et al., 2016","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Müller & Berg, 1982",,"Froese & Pauly, 2000"
+Chrosomus,erythrogaster,"NatureServe, 2020","NatureServe, 2020","Walker et al., 2013","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"Walker et al., 2013","Froese & Pauly, 2000;NatureServe, 2020"
+Cyprinella,lutrensis,"NatureServe, 2020","NatureServe, 2020",,"Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Froese & Pauly, 2000"
+Cyprinella,spiloptera,"NatureServe, 2020","NatureServe, 2020",,"Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"NatureServe, 2020;Froese & Pauly, 2000"
+Danio,rerio,"Singleman & Holtzman, 2014","Singleman & Holtzman, 2014","Gratton et al., 2004","Froese & Pauly, 2000",,,"Froese & Pauly, 2000","Braithwaite & De Perera, 2006",,,"IUCN, 2020"
+Gobio,gobio,"IUCN, 2020","IUCN, 2020","Stott, 1967","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Flammarion et al., 1999",,"Stott, 1967;Stott, 1967","IUCN, 2020"
+Hybognathus,placitus,"C. M. Taylor & Miller, 1990","C. M. Taylor & Miller, 1990","Osterhaus & Martin, 2019","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"C. M. Taylor & Miller, 1990"
+Hypophthalmichthys,nobilis,"IUCN, 2020","IUCN, 2020","L. M. Peters et al., 2006","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020","L. M. Peters et al., 2006;Froese & Pauly, 2000",,"Froese & Pauly, 2000"
+Luxilus,chrysocephalus,"Eakins, 2020c","Eakins, 2020c","Lonzarich et al., 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"Lonzarich et al., 2000","Simmons & Beckman, 2012"
+Luxilus,cornutus,"Wichert & Rapport, 1998","Wichert & Rapport, 1998",,"Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Froese & Pauly, 2000"
+Notemigonus,crysoleucas,"Wichert & Rapport, 1998","Wichert & Rapport, 1998",,"Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Meyers et al., 2015;Froese & Pauly, 2000"
+Notropis,atherinoides,"Wichert & Rapport, 1998","Wichert & Rapport, 1998",,"Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Huenemann et al., 2015"
+Notropis,hudsonius,"NatureServe, 2020;Peer, 1966","NatureServe, 2020;Peer, 1966","Choy et al., 2008","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"Happel et al., 2015","Peer, 1966"
+Notropis,rubellus,"Wichert & Rapport, 1998","Wichert & Rapport, 1998","IUCN, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Froese & Pauly, 2000"
+Notropis,stramineus,"Peer, 1966","Peer, 1966","IUCN, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Huenemann et al., 2015"
+Pimephales,notatus,"NatureServe, 2020","NatureServe, 2020","Jacquemin et al., 2013;Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Meyers et al., 2015;Froese & Pauly, 2000"
+Rhinichthys,osculus,"NatureServe, 2020;Peden & Hughes, 1981",,"Robinson et al., 1998","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"NatureServe, 2020"
+Siphateles,bicolor,"NatureServe, 2020","NatureServe, 2020",,"Froese & Pauly, 2000",,,,"IUCN, 2020",,,"Finger & May, 2015"
+Squalius,cephalus,"IUCN, 2020","IUCN, 2020","Říha et al., 2013;Fredrich et al., 2003","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020","Fredrich et al., 2003;Filipović Marijić & Raspor, 2014","Fredrich et al., 2003","IUCN, 2020"
+Cyprinodon,bovinus,"Hanna et al., 2015","Hanna et al., 2015",,"Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","S. E. Kennedy, 1977","IUCN, 2020",,,"NatureServe, 2020"
+Cyprinodon,dearborni,"Kristensen, 1970","Kristensen, 1970",,"Froese & Pauly, 2000;Debrot, 2003",,,"Froese & Pauly, 2000","Kristensen, 1970",,,
+Cyprinodon,nevadensis,"NatureServe, 2020","NatureServe, 2020","NatureServe, 2020","Froese & Pauly, 2000;Debrot, 2003","Froese & Pauly, 2000;   (Debrot+ A. O. (2003). A review of the freshwater fishes of Curaçao+ with comments on those of Aruba and Bonaire. Caribbean Journal of Science+ 39(1)+ 100-108.)","Froese & Pauly, 2000; Debrot, 2003",,"IUCN, 2020",,,"Gerking & Lee, 1982"
+Gobiomorphus,basalis,"IUCN, 2020","IUCN, 2020",,"Froese & Pauly, 2000",,,,"IUCN, 2020",,,"IUCN, 2020"
+Gobiomorphus,cotidianus,"IUCN, 2020","IUCN, 2020","Van Den Heuvel et al., 2007;Landman et al., 2010","Froese & Pauly, 2000",,,,"IUCN, 2020","Michel et al., 2008",,"IUCN, 2020"
+Fundulus,diaphanus,"Phillips et al., 2007",,"Hoare et al., 2000;IUCN, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Phillips et al., 2007"
+Fundulus,heteroclitus,"NatureServe, 2020","NatureServe, 2020","Fritz et al., 1975;D. R. Brown et al., 2016","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Skinner et al., 2005;IUCN, 2020","IUCN, 2020",,"Skinner et al., 2005;Hoff, 1985;Lotrich, 1975","Kneib & Stiven, 1978;Froese & Pauly, 2000"
+Fundulus,notatus,"NatureServe, 2020","NatureServe, 2020","Alldredge et al., 2011","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","NatureServe, 2020","IUCN, 2020",,"Skinner et al., 2005","Mandrak & Holm, 2001"
+Gobiesox,strumosus,"Runyan, 1961",,"Runyan, 1961","Froese & Pauly, 2000",,,"Froese & Pauly, 2000","Saksena & Joseph, 1972",,,
+Bathygobius,fuscus,"Kong & Chen, 2013",,"Taru et al., 2002","Froese & Pauly, 2000",,,"Froese & Pauly, 2000","M. Y. Chang et al., 2006",,"Taru et al., 2002","Takegaki et al., 2012"
+Bathygobius,ramosus,,,,"Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,,,
+Gobiosoma,chiquita,"Stahl, 1975",,"Clobert et al., 1998","Froese & Pauly, 2000",,,,"Stahl, 1975",,,
+Haemulon,flavolineatum,"IUCN, 2020;Munro, 1983","IUCN, 2020;Munro, 1983","IUCN, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Cocheret De La Morinière et al., 2002",,"Munro, 1983","McDougall et al., 2019"
+Ameiurus,catus,"NatureServe, 2020","NatureServe, 2020","Hayes et al., 2017","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"De Magalhães & Costa, 2009"
+Ameiurus,nebulosus,"NatureServe, 2020","NatureServe, 2020","Sakaris et al., 2005","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","NatureServe, 2020;Froese & Pauly, 2000","IUCN, 2020",,"Sakaris et al., 2005","NatureServe, 2020;Froese & Pauly, 2000"
+Ictalurus,punctatus,"Froese & Pauly, 2000","Froese & Pauly, 2000","Welker, 1967;NatureServe, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Cooke & McKinley, 1999","IUCN, 2020",,"Meyers et al., 2015","Meyers et al., 2015;Froese & Pauly, 2000"
+Kuhlia,sandvicensis,,,"Feutry et al., 2012","Froese & Pauly, 2000",,,"Froese & Pauly, 2000","Poepoe et al., 2003","Poepoe et al., 2003",,
+Morone,saxatilis,"IUCN, 2020","IUCN, 2020","Secor et al., 1995;Ng et al., 2007;Eldridge, 1988","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Cooke & McKinley, 1999","IUCN, 2020","Eldridge, 1988;IUCN, 2020;Meyers et al., 2015","Ng et al., 2007","Meyers et al., 2015;Froese & Pauly, 2000"
+Chelon,subviridis,"Al‐Daham & Wahab, 1991","Al‐Daham & Wahab, 1991","Saha & Kabir, 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"C. W. Chang & Iizuka, 2012","Chung et al., 2017",,"Al‐Daham & Wahab, 1991"
+Gobionotothen,gibberifrons,"IUCN, 2020",,"Matschiner et al., 2009","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","North, 2001","Marschoff et al., 2012",,,"Marschoff et al., 2012"
+Notothenia,coriiceps,"Calì et al., 2017","Calì et al., 2017","Kellermann, 1991","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","H. A. Campbell et al., 2008",,,"Zamzow et al., 2011","Calì et al., 2017"
+Pagothenia,borchgrevinki,"Pankhurst, 1990","Pankhurst, 1990",,"Froese & Pauly, 2000",,,"North, 2001",,,,"El-Sayed, 1994"
+Trematomus,hansoni,"M. La Mesa & Vacchi, 2001","M. La Mesa & Vacchi, 2001","A. P. Van de Putte et al., 2012","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Somero & DeVries, 1967",,,"M. La Mesa & Vacchi, 2001"
+Hypomesus,transpacificus,"Swanson et al., 2000","Swanson et al., 2000","Moyle et al., 1991;Sommer et al., 2011","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Swee J. Teh, 2007","Sommer et al., 2011","Sommer et al., 2011","Latour, 2012","Froese & Pauly, 2000;NatureServe, 2020"
+Osmerus,mordax,"Murawski & Cole, 1978","Murawski & Cole, 1978","Bradbury et al., 2008;Enterline, 2013;Froese & Pauly, 2000","Froese & Pauly, 2000",,,,"IUCN, 2020","Froese & Pauly, 2000;IUCN, 2020;Jilek et al., 1979",,"Froese & Pauly, 2000"
+Etheostoma,caeruleum,"Marjan et al., 2017","Marjan et al., 2017","Hicks & Servos, 2017;Sommer et al., 2011","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"Hicks & Servos, 2017","Froese & Pauly, 2000"
+Etheostoma,flabellare,"NatureServe, 2020","NatureServe, 2020","Klein, 2001;Lngersoll et al., 1984;IUCN, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"Lngersoll et al., 1984","Froese & Pauly, 2000"
+Etheostoma,nigrum,"NatureServe, 2020","NatureServe, 2020","Lngersoll et al., 1984;Klein, 2001;IUCN, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"Lngersoll et al., 1984","Froese & Pauly, 2000"
+Etheostoma,spectabile,"NatureServe, 2020","NatureServe, 2020","Lngersoll et al., 1984;IUCN, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"Lngersoll et al., 1984","R. J. Edwards, 1977"
+Gymnocephalus,cernua,"IUCN, 2020","IUCN, 2020","Gutsch & Hoffman, 2016","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Gutsch & Hoffman, 2016","Gutsch & Hoffman, 2016;Popova et al., 1998",,"NatureServe, 2020"
+Perca,flavescens,"NatureServe, 2020","NatureServe, 2020","Glover et al., 2008;Brodnik et al., 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"Glover et al., 2008","Froese & Pauly, 2000"
+Sander,vitreus,"NatureServe, 2020","NatureServe, 2020","Hayden et al., 2018;Kirby et al., 2017;Backhouse-James & Docker, 2012; NatureServe, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020","NatureServe, 2020","Kirby et al., 2017","Froese & Pauly, 2000"
+Heterandria,formosa,"Ala-Honkola et al., 2011","Ala-Honkola et al., 2011","Baer, 1998;Leips et al., 2013","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Soucy & Travis, 2003"
+Abudefduf,saxatilis,"Bessa et al., 2007","Bessa et al., 2007","Wellington & Victor, 1989","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Sergeant Major (Abudefduf saxatilis), n.d."
+Coregonus,artedi,"Meyers et al., 2015","Meyers et al., 2015","E. M. George et al., 2018;Oyadomari & Auer, 2008;Meyers et al., 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020","Meyers et al., 2015;Morin et al., 1981",,"Meyers et al., 2015"
+Coregonus,clupeaformis,"NatureServe, 2020","NatureServe, 2020","Ebener & Copes, 1985;Meyers et al., 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"NatureServe, 2020",,"O. H. Smith & Van Oosten, 1940;Rennie et al., 2012","Meyers et al., 2015"
+Oncorhynchus,mykiss,"Froese & Pauly, 2000","Froese & Pauly, 2000","Bridger et al., 2001;NatureServe, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"NatureServe, 2020","NatureServe, 2020","Blanchfield et al., 2009","Froese & Pauly, 2000;NatureServe, 2020"
+Salmo,trutta,"Froese & Pauly, 2000","Froese & Pauly, 2000","Jensen et al., 2015;Berg & Berg, 1987","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020","Saraniemi et al., 2008;IUCN, 2020","Bridcut & Giller, 1993","NatureServe, 2020"
+Thymallus,arcticus,"NatureServe, 2020","NatureServe, 2020","Buzby & Deegan, 2000;Meyers et al., 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020","“Arctic grayling,” n.d.;Meyers et al., 2015;IUCN, 2020","Nykänen et al., 2004","Froese & Pauly, 2000;NatureServe, 2020"
+Scatophagus,argus,"Gupta, 2016","Gupta, 2016","Cai et al., 2010","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Wongchinawit & Paphavasit, 2009",,,"Green Scat (Scatophagus argus), n.d."
+Aplodinotus,grunniens,"NatureServe, 2020","NatureServe, 2020","NatureServe, 2020;Meyers et al., 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Froese & Pauly, 2000;NatureServe, 2020"
+Diplodus,vulgaris,"IUCN, 2020","IUCN, 2020","Jug-Dujaković & Glamuzina, 1988","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Gonçalves & Erzini, 2000;Abecasis et al., 2009",,"Abecasis et al., 2009","IUCN, 2020"
+Terapon,jarbua,"Fortaleza et al., 2019","Fortaleza et al., 2019","Liu et al., 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Froese & Pauly, 2000","Le Thi Nhu Phuong & Nguyen Quang Linh, 2017;Froese & Pauly, 2000",,"Targetfish (Terapon jarbua), n.d."
+Sphoeroides,annulatus,,,"Komar et al., 2004","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Duncan et al., 2003",,,"Bullseye Puffer (Sphoeroides annulatus), n.d."
+Retropinna,retropinna,"IUCN, 2020;McDowall & Whitaker, 1975","IUCN, 2020;McDowall & Whitaker, 1975","C. J. McDowall, 2016","Froese & Pauly, 2000",,,,"IUCN, 2020","E. B. Taylor & McPhail, 1986;IUCN, 2020",,"IUCN, 2020"
+Gasterosteus,aculeatus,"IUCN, 2020","IUCN, 2020","Ward et al., 2013;Saimoto, 1993;E. B. Taylor & McPhail, 1986","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Froese & Pauly, 2000"
+Zoarces,viviparus,"Froese & Pauly, 2000",,"Bergek et al., 2012;Simonsen & Strand, 2010","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Simonsen & Strand, 2010",,"Simonsen & Strand, 2010","IUCN, 2020"
+Oncorhynchus,clarkii,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Losee et al., 2018","Froese & Pauly, 2000",,,,"Crocker, 1995","Crocker, 1995","Cutthroat trout, n.d.;Losee et al., 2018","Meyers et al., 2015;Froese & Pauly, 2000"
+Anaxyrus,boreas,"Oliveira et al., 2017","Oliveira et al., 2017","Wind & Dupuis, 2002","Oliveira et al., 2017",,,"AmphibiaWeb, 2020",,,"Wind & Dupuis, 2002","Oliveira et al., 2017"
+Anaxyrus,cognatus,"Oliveira et al., 2017","Oliveira et al., 2017","AmphibiaWeb, 2020","Oliveira et al., 2017",,,"AmphibiaWeb, 2020",,,"AmphibiaWeb, 2020","AmphibiaWeb, 2020;Oliveira et al., 2017"
+Anaxyrus,woodhousii,"Oliveira et al., 2017","Oliveira et al., 2017","NatureServe, 2020;AmphibiaWeb, 2020","Oliveira et al., 2017",,,"NatureServe, 2020",,,"AmphibiaWeb, 2020","Oliveira et al., 2017"
+Ascaphus,truei,"Oliveira et al., 2017","Oliveira et al., 2017","AmphibiaWeb, 2020","Oliveira et al., 2017",,,"Meyers et al., 2015",,,"AmphibiaWeb, 2020","AmphibiaWeb, 2020"
+Buergeria,japonica,"Lue & Liou, 2010","Lue & Liou, 2010","Haramura, 2011","Oliveira et al., 2017","Y. H. Chang et al., 2017","Y. H. Chang et al., 2017",,,,,"Lue & Liou, 2010"
+Bufo,boreas,"Oliveira et al., 2017","Oliveira et al., 2017","Wind & Dupuis, 2002","Oliveira et al., 2017",,,"AmphibiaWeb, 2020",,,"Wind & Dupuis, 2002","Oliveira et al., 2017"
+Crinia,parainsignifera,,,"Bishop-Taylor et al., 2015","Oliveira et al., 2017",,,"Wassens et al., 2013;Chambers, 2008",,,,
+Crinia,parinsignifera,,,"Bishop-Taylor et al., 2015","Oliveira et al., 2017",,,"Wassens et al., 2013;Chambers, 2008",,,,
+Crinia,signifera,"Lauck, 2005a","Lauck, 2005a","Lauck, 2005b","S. Baker & Lauck, 2006"," S. Baker & Lauck, 2006","S. Baker & Lauck, 2006","S. Baker & Lauck, 2006",,,,"Lauck, 2005b"
+Crinia,victoriana,,,,"Oliveira et al., 2017",,,,,,,
+Cyclorana,brevipes,https://web.archive.org/web/20061002035356/http://www.frogsaustralia.net.au/frogs/display.cfm?frog_id=119,,,https://web.archive.org/web/20061002035356/http://www.frogsaustralia.net.au/frogs/display.cfm?frog_id=119,,,"Short-footed frog, n.d.",,,,
+Desmognathus,fuscus,"AmphibiaWeb, 2020","AmphibiaWeb, 2020","Barthalmus & Bellis, 1972;AmphibiaWeb, 2020","Oliveira et al., 2017;R. L. Jones, 1986","Meyers et al., 2015","Meyers et al., 2015","AmphibiaWeb, 2020",,"AmphibiaWeb, 2020","Meyers et al., 2015","Oliveira et al., 2017"
+Desmognathus,monticola,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Brandon & Huheey, 1971","AmphibiaWeb, 2020",,,"AmphibiaWeb, 2020",,,"AmphibiaWeb, 2020","AmphibiaWeb, 2020"
+Desmognathus,ochrophaeus,"Oliveira et al., 2017","Oliveira et al., 2017","AmphibiaWeb, 2020","Oliveira et al., 2017",,,"AmphibiaWeb, 2020",,,"AmphibiaWeb, 2020","Oliveira et al., 2017"
+Desmognathus,quadramaculatus,"Oliveira et al., 2017","Oliveira et al., 2017","Cecala & Maerz, 2015","Oliveira et al., 2017",,,"AmphibiaWeb, 2020",,,"Camp & Lee, 1996","Oliveira et al., 2017"
+Eleutherodactylus,coqui,"Oliveira et al., 2017","Oliveira et al., 2017","Höbel, 2008","Oliveira et al., 2017",,,"Beachy et al., 2011",,,"AmphibiaWeb, 2020","AmphibiaWeb, 2020;Oliveira et al., 2017"
+Eleutherodactylus,portoricensis,"AmphibiaWeb, 2020",,"Longo & Burrowes, 2010","Oliveira et al., 2017","AmphibiaWeb, 2020","AmphibiaWeb, 2020","Mowbray, n.d.-a",,,,
+Eurycea,bislineata,"Oliveira et al., 2017","Oliveira et al., 2017","J. E. Johnson & Goldberg, 1975","Oliveira et al., 2017",,,"Meyers et al., 2015;Ashton & Ashton, 1978",,,"Ashton & Ashton, 1978","Caudata - Max Longevity, n.d."
+Eurycea,longicauda,"Oliveira et al., 2017","Oliveira et al., 2017","Mohr, 1944","Oliveira et al., 2017",,,"AmphibiaWeb, 2020",,,"Meyers et al., 2015","Caudata - Max Longevity, n.d.;Meyers et al., 2015"
+Eurycea,lucifuga,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Hutchison, 1958","Oliveira et al., 2017;D. E. Scott & Petranka, 1999",,,"AmphibiaWeb, 2020",,,"AmphibiaWeb, 2020","Oliveira et al., 2017"
+Geocrinia,victoriana,,,,"Oliveira et al., 2017",,,,,,,
+Hyla,alpina,,,,"“Litoria verreauxi,” 2020",,,,,,,
+Hyla,aurea,"Oliveira et al., 2017","Oliveira et al., 2017","A. W. White & Pyke, 2008","Oliveira et al., 2017",,,"Green and golden bell frog, n.d.;Department of Environment and Conservation NSW, 2005",,,,"Oliveira et al., 2017"
+Hyla,caerulea,"Meyers et al., 2015","Meyers et al., 2015","Ocock et al., 2014","Oliveira et al., 2017",,,"Meyers et al., 2015",,,"Ocock et al., 2014","Oliveira et al., 2017"
+Hyla,chloris,"Oliveira et al., 2017","Oliveira et al., 2017",,"Oliveira et al., 2017",,,,,,,"Oliveira et al., 2017"
+Hyla,ewingi,,,"Kearney et al., 2015","Oliveira et al., 2017",,,"Bazin et al., 2007",,,,
+Hyla,glauerti,,"Upton et al., 2018","Stockwell et al., 2015;Simkins et al., 2011","Eastern dwarf tree frog, n.d.",,,"Dziminski & Alford, 2005",,,,
+Hyla,gracilenta,"AmphibiaWeb, 2020","AmphibiaWeb, 2020",,"Vanderduys, 2019",,,"Dziminski & Alford, 2005",,,,
+Hyla,lesueuri,"Oliveira et al., 2017","Oliveira et al., 2017","Rowley & Alford, 2007","Oliveira et al., 2017",,,,,,"Rowley & Alford, 2007","Oliveira et al., 2017"
+Hyla,peroni,,,"IUCN, 2020;Parris, 2006","Oliveira et al., 2017",,,"Withers & Hillman, 2001",,,,
+Hyla,phyllochroa,,,,"Oliveira et al., 2017",,,,,,,
+Hyla,rothii,"Roth's tree frog, n.d.","Roth's tree frog, n.d.","Department of the Environment, 2020","Oliveira et al., 2017",,,"Dziminski & Alford, 2005",,,,
+Hyla,rubella,"Wassens & Maher, 2011","Wassens & Maher, 2011",,"Oliveira et al., 2017",,,"Dziminski & Alford, 2005;AmphibiaWeb, 2020",,,,
+Hyla,versicolor,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","AmphibiaWeb, 2020","Meyers et al., 2015",,,"Meyers et al., 2015",,,"Roble, 1979","AmphibiaWeb, 2020"
+Hyperolius,viridiflavus,"Meyers et al., 2015","Meyers et al., 2015",,"Oliveira et al., 2017",,,"Meyers et al., 2015",,,"Meyers et al., 2015","Meyers et al., 2015"
+Limnodynastes,dorsalis,https://web.archive.org/web/20080719222308/http://frogsaustralia.net.au/frogs/display.cfm?frog_id=35,,,"Oliveira et al., 2017",,,"IUCN, 2020",,,,
+Limnodynastes,peroni,"Pyke et al., 2010",,"Parris, 2006","Oliveira et al., 2017","Meyers et al., 2015","Meyers et al., 2015",,,,"Hamer & Parris, 2011",
+Limnodynastes,peronii,,,"Parris, 2006","Oliveira et al., 2017","Meyers et al., 2015","Meyers et al., 2015",,,,"Hamer & Parris, 2011",
+Limnodynastes,salmini,,,,"Oliveira et al., 2017",,,"Ocock, 2018;Tyler & Knight, 2020",,,,
+Limnodynastes,tasmaniensis,"Oliveira et al., 2017","Oliveira et al., 2017","Wilson et al., 2013","Oliveira et al., 2017",,,"Schell, 2002",,,,"Schell, 2002"
+Lithobates,berlandieri,"Meyers et al., 2015","Meyers et al., 2015","AmphibiaWeb, 2020","Oliveira et al., 2017",,,"AmphibiaWeb, 2020",,,"Meyers et al., 2015;AmphibiaWeb, 2020","Meyers et al., 2015;AmphibiaWeb, 2020"
+Lithobates,catesbeiana,"Oliveira et al., 2017","Oliveira et al., 2017","Gahl et al., 2009","Oliveira et al., 2017","AmphibiaWeb, 2020","AmphibiaWeb, 2020","Meyers et al., 2015",,,"Meyers et al., 2015","Oliveira et al., 2017;Meyers et al., 2015"
+Lithobates,pipiens,"Oliveira et al., 2017","Oliveira et al., 2017",,"Oliveira et al., 2017",,,Herbert 2002,,,"Blomquist & Hunter, 2009;Herbert 2002","Herbert 2002;Oliveira et al., 2017"
+Lithobates,sylvaticus,"Oliveira et al., 2017","Oliveira et al., 2017","Furman et al., 2016","Oliveira et al., 2017;Lithobates sylvaticus (LeConte, 1825) -- Wood Frog, n.d.",,,"Meyers et al., 2015",,,"Meyers et al., 2015","Oliveira et al., 2017"
+Litoria,aurea,"Oliveira et al., 2017","Oliveira et al., 2017","A. W. White & Pyke, 2008","Oliveira et al., 2017",,,"Green and golden bell frog, n.d.;Department of Environment and Conservation NSW, 2005",,,,"Oliveira et al., 2017"
+Litoria,australis,,,,"Oliveira et al., 2017",,,,,,,
+Litoria,bicolor,,,,"Oliveira et al., 2017",,,"Dziminski & Alford, 2005",,,,
+Litoria,caerulea,"Meyers et al., 2015","Meyers et al., 2015","Ocock et al., 2014","Oliveira et al., 2017",,,"Meyers et al., 2015",,,"Ocock et al., 2014","Oliveira et al., 2017"
+Litoria,chloris,"Oliveira et al., 2017","Oliveira et al., 2017",,"Oliveira et al., 2017",,,,,,,"Oliveira et al., 2017"
+Litoria,ewingii,,,"Kearney et al., 2015","Oliveira et al., 2017",,,"Bazin et al., 2007",,,,
+Litoria,fallax,,"Upton et al., 2018","Stockwell et al., 2015;Simkins et al., 2011","Eastern dwarf tree frog, n.d.",,,"Dziminski & Alford, 2005",,,"Simkins et al., 2011",
+Litoria,freycineti,,,"Lemckert & Mahoney, 2018","Oliveira et al., 2017",,,,,,,
+Litoria,gracilenta,"AmphibiaWeb, 2020","AmphibiaWeb, 2020",,"Vanderduys, 2019",,,"Dziminski & Alford, 2005",,,,
+Litoria,lesueuri,"Oliveira et al., 2017","Oliveira et al., 2017","Rowley & Alford, 2007","Oliveira et al., 2017",,,,,,"Rowley & Alford, 2007","Oliveira et al., 2017"
+Litoria,nasuta,,,"Tyler & Doughty, 2009","Tyler & Doughty, 2009","Tyler & Doughty, 2009","Tyler & Doughty, 2009","Roberts & Edwards, 2018",,,,
+Litoria,peronii,,,"IUCN, 2020;Parris, 2006","Oliveira et al., 2017",,,"Withers & Hillman, 2001",,,,
+Litoria,phyllochroa,,,,"Oliveira et al., 2017",,,,,,,
+Litoria,rothii,"Roth's tree frog, n.d.","Roth's tree frog, n.d.","Department of the Environment, 2020","Oliveira et al., 2017",,,"Dziminski & Alford, 2005",,,,
+Litoria,rubella,"Wassens & Maher, 2011","Wassens & Maher, 2011",,"Oliveira et al., 2017",,,"Dziminski & Alford, 2005;AmphibiaWeb, 2020",,,,
+Litoria,verreauxii,"Brannelly et al., 2016","Brannelly et al., 2016","Parris, 2006","Oliveira et al., 2017",,,"IUCN, 2020",,,,"Scheele et al., 2019"
+Melanophryniscus,rubriventris,,,"Vaira, 2005","Oliveira et al., 2017","Bidau et al., 2011","Bidau et al., 2011",,,,,
+Mixophyes,fasciolatus,"Oliveira et al., 2017","Oliveira et al., 2017","Schwenke, 2016","Oliveira et al., 2017",,,"Parris, 2002",,,"Schwenke, 2016","Oliveira et al., 2017"
+Necturus,maculosus,"Oliveira et al., 2017;De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Smith & Green, 2005","Oliveira et al., 2017",,,"Meyers et al., 2015",,,"AmphibiaWeb, 2020","Oliveira et al., 2017"
+Neobatrachus,pictus,,,"Carthew et al., 2009","Oliveira et al., 2017",,,"Lee & Mercer, 1967",,,,
+Notophthalmus,viridescens,"Oliveira et al., 2017","Oliveira et al., 2017","Healy, 1975","Oliveira et al., 2017",,,"Meyers et al., 2015;AmphibiaWeb, 2020",,,"Healy, 1975","Oliveira et al., 2017;AmphibiaWeb, 2020"
+Odontophrynus,occidentalis,,,,"Oliveira et al., 2017",,,,,,,
+Paa,spinosa,,,"Chan et al., 2014","Zheng & Liu, 2010",,,,,,"Chan et al., 2014",
+Plethodon,cinereus,"Oliveira et al., 2017","Oliveira et al., 2017","Ousterhout & Liebgold, 2010","Oliveira et al., 2017","AmphibiaWeb, 2020","AmphibiaWeb, 2020","AmphibiaWeb, 2020",,,"AmphibiaWeb, 2020","Oliveira et al., 2017"
+Plethodon,glutinosus,"De Magalhães & Costa, 2009","Oliveira et al., 2017","Wells & Wells, 1976","Powders, 1973",,,"AmphibiaWeb, 2020;IUCN, 2020;NatureServe, 2020",,,"Merchant, 1972","AmphibiaWeb, 2020"
+Plethodon,jordani,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Smith & Green, 2005","Oliveira et al., 2017",,,"AmphibiaWeb, 2020",,,"Merchant, 1972","Oliveira et al., 2017"
+Pseudacris,crucifer,"Oliveira et al., 2017","Oliveira et al., 2017","Meyers et al., 2015","Oliveira et al., 2017",,,"Meyers et al., 2015",,,"Meyers et al., 2015","Oliveira et al., 2017"
+Pseudacris,regilla,"Oliveira et al., 2017","Oliveira et al., 2017","Jameson, 1957","Oliveira et al., 2017",,,"Yeabsley, 2012;Jameson, 1957",,,"Jameson, 1957","Pacific Treefrog: Pseudacris regilla, n.d."
+Pseudacris,triseriata,"COSEWIC, 2008","COSEWIC, 2008","Kramer, 1973;COSEWIC, 2008","Oliveira et al., 2017","COSEWIC, 2008","COSEWIC, 2008","COSEWIC, 2008",,,"COSEWIC, 2008","Meyers et al., 2015"
+Pseudacris,triseriata,"COSEWIC, 2008","COSEWIC, 2008","Kramer, 1973;COSEWIC, 2008","Oliveira et al., 2017","COSEWIC, 2008","COSEWIC, 2008","COSEWIC, 2008",,,"COSEWIC, 2008","Meyers et al., 2015"
+Pseudophryne,bibroni,,,"Barton, 1981","Oliveira et al., 2017",,,"Woodruff, 1977",,,"Woodruff, 1977","Woodruff, 1977"
+Anolis,roquet,"Clobert et al., 1998","Clobert et al., 1998","Johansson et al., 2008","Walsh, 1992","Clobert et al., 1998",,,,,,"De Magalhães & Costa, 2009"
+Takydromus,hsuehshaner,"Chen et al., 2013","Chen et al., 2013",,"Huang, 1998",,,"Chen et al., 2013",,,,
+Oreochromis,mossambicus,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Ellender et al., 2008;NatureServe, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Ellender et al., 2008",,,"Froese & Pauly, 2000"
+Carassius,auratus,"NatureServe, 2020","NatureServe, 2020","Beatty et al., 2017","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Li et al., 2005","NatureServe, 2020",,,"Froese & Pauly, 2000"
+Pimephales,promelas,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Schlosser, 1995;NatureServe, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Schlosser, 1995",,,"Froese & Pauly, 2000"
+Rhinichthys,atratulus,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Fitzgerald et al., 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"De Magalhães & Costa, 2009;Froese & Pauly, 2000"
+Lepidonotothen,squamifrons,"Gregory et al., 2014","Gregory et al., 2014","Koubbi et al., 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,,,,"Froese & Pauly, 2000"
+Etheostoma,blennioides,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Meyers et al., 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Froese & Pauly, 2000"
+Gambusia,affinis,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Pyke, 2005;Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Froese & Pauly, 2000;IUCN, 2020"
+Acipenser,brevirostrum,"IUCN, 2020","IUCN, 2020","Quattro et al., 2002;NatureServe, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","NatureServe, 2020","IUCN, 2020","IUCN, 2020;NatureServe, 2020","Kynard et al., 2009","IUCN, 2020"
+Hypentelium,nigricans,"NatureServe, 2020","NatureServe, 2020","Gleason, 1984;Raney & Lachner, 1946","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"Gleason, 1984","O’Kelley & Powers, 2007"
+Micropterus,salmoides,"Meyers et al., 2015","Meyers et al., 2015","Waters & Noble, 2004;Murray et al., 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Crawshaw, 1984","IUCN, 2020",,"Meyers et al., 2015","Froese & Pauly, 2000;Meyers et al., 2015"
+Micropterus,dolomieu,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Meyers et al., 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"Hubert & Lackey, 1980","Froese & Pauly, 2000;Meyers et al., 2015"
+Dorosoma,cepedianum,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Downey & Toetz, 1983;Puckridge & Walker, 1990","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Froese & Pauly, 2000;NatureServe, 2020"
+Sardinops,sagax,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","J. M. Miller et al., 1984","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020","Wind & Dupuis, 2002",,"IUCN, 2020"
+Cottus,bairdii,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Meyers et al., 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Breen et al., 2009","IUCN, 2020",,"Meyers et al., 2015","Froese & Pauly, 2000"
+Cottus,carolinae,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Wells et al., 2017","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"NatureServe, 2020","NatureServe, 2020"
+Campostoma,anomalum,"NatureServe, 2020","NatureServe, 2020","Heithaus & Laushman, 1997","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,,"Meyers et al., 2015"
+Couesius,plumbeus,"Meyers et al., 2015","Meyers et al., 2015","Debruyn, 2014","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Debruyn, 2014","Debruyn, 2014","Meyers et al., 2015","Froese & Pauly, 2000;Meyers et al., 2015"
+Ctenopharyngodon,idella,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Nixon & Miller, 1978;Froese & Pauly, 2000;A. E. George & Chapman, 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Nixon & Miller, 1978","NatureServe, 2020",,"Chilton & Poarch, 1997","Froese & Pauly, 2000;NatureServe, 2020"
+Cyprinus,carpio,"IUCN, 2020","IUCN, 2020","Stuart & Jones, 2006","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Stuart & Jones, 2006","Stuart & Jones, 2006","Stuart & Jones, 2006","Froese & Pauly, 2000;NatureServe, 2020"
+Labeo,rohita,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009",,"Froese & Pauly, 2000",,,,"Mir et al., 2013",,,"Froese & Pauly, 2000"
+Leuciscus,idus,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Winter & Fredrich, 2003;Kulíšková et al., 2009","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Kulíšková et al., 2009","IUCN, 2020","Kulíšková et al., 2009;Winter & Fredrich, 2003;IUCN, 2020","Kulíšková et al., 2009","IUCN, 2020;Froese & Pauly, 2000"
+Rutilus,rutilus,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","W. P. Williams, 1965;Goldspink, 1977","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Heermann & Borcherding, 2006","Kestemont et al., 1999;Skov et al., 2013",,"W. P. Williams, 1965","IUCN, 2020;Froese & Pauly, 2000"
+Scardinius,erythrophthalmus,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009",,"Froese & Pauly, 2000",,,"M. Kennedy & Fitzmaurice, 1974","M. Kennedy & Fitzmaurice, 1974",,,"IUCN, 2020;Froese & Pauly, 2000"
+Semotilus,atromaculatus,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Meyers et al., 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"Belica & Rahel, 2008","Froese & Pauly, 2000"
+Esox,lucius,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","L. M. Miller et al., 2001;IUCN, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Diana et al., 1977","IUCN, 2020",,"Knight et al., 2008","Froese & Pauly, 2000;Meyers et al., 2015"
+Esox,masquinongy,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Jennings et al., 2011;IUCN, 2020;NatureServe, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"M. L. Miller & Menzel, 1986","Froese & Pauly, 2000;Meyers et al., 2015"
+Gobius,paganellus,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Vinagre et al., 2016;Roma et al., 2018;IUCN, 2020","Froese & Pauly, 2000",,,,"P. J. Miller, 1961",,"Roma et al., 2018","Froese & Pauly, 2000"
+Ameiurus,melas,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009",,"Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020",,"Meyers et al., 2015","Froese & Pauly, 2000;Meyers et al., 2015"
+Ameiurus,natalis,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Meyers et al., 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Greenbank, 1956","IUCN, 2020",,"Meyers et al., 2015","Meyers et al., 2015"
+Dicentrarchus,labrax,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Meyers et al., 2015;Kelley & Pickett, 1987","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020","Kelley & Pickett, 1987;Meyers et al., 2015","Kelley & Pickett, 1987","Froese & Pauly, 2000"
+Morone,chrysops,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Starnes et al., 1983;NatureServe, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"IUCN, 2020","Meyers et al., 2015","Martin et al., 2009","Froese & Pauly, 2000;Meyers et al., 2015"
+Mugil,cephalus,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Strydom & D’Hotman, 2005;Meyers et al., 2015","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Meyers et al., 2015","Meyers et al., 2015","Meyers et al., 2015","IUCN, 2020;Froese & Pauly, 2000"
+Trematomus,bernacchii,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","A. Van de Putte, 2008","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Miyamoto & Tanimura, 1999","Corbett et al., 2014",,"Miyamoto & Tanimura, 1999","Froese & Pauly, 2000"
+Perca,fluviatilis,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Bergek & Olsson, 2009;Bruylants et al., 1986","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Le Cren, 1951","Riede, 2004","Allen, 1935","Bruylants et al., 1986","IUCN, 2020;Froese & Pauly, 2000"
+Oncorhynchus,kisutch,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Labelle, 1992;NatureServe, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Bustard & Narver, 1975","NatureServe, 2020;Riede, 2004","NatureServe, 2020",,"Meerburg, 1986;Froese & Pauly, 2000"
+Salvelinus,fontinalis,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","H. C. White, 1941;NatureServe, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"NatureServe, 2020;Riede, 2004","NatureServe, 2020;Meyers et al., 2015",,"Altman & Dittmer, 1962;Froese & Pauly, 2000"
+Salvelinus,alpinus,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Bernatchez et al., 1998;DeCicco, 1992","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Mortensen et al., 2007","IUCN, 2020","DeCicco, 1992;Meyers et al., 2015","Meyers et al., 2015","Meyers et al., 2015;Froese & Pauly, 2000"
+Salvelinus,namaycush,"De Magalhães & Costa, 2009","De Magalhães & Costa, 2009","Binder et al., 2015;Bronte et al., 2007;NatureServe, 2020","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000","Flavelle et al., 2001","NatureServe, 2020","NatureServe, 2020","Flavelle et al., 2001","Meyers et al., 2015;Froese & Pauly, 2000"
+Pseudophryne,bibronii,,,"Barton, 1981","Oliveira et al., 2017",,,"Woodruff, 1977",,,"Woodruff, 1977","Woodruff, 1977"
+Quasipaa,spinosa,,,"Chan et al., 2014","Zheng & Liu, 2010",,,,,,"Chan et al., 2014",
+Rana,clamitans,"AmphibiaWeb, 2020","AmphibiaWeb, 2020","AmphibiaWeb, 2020","NatureServe, 2020",,,"AmphibiaWeb, 2020",,,"AmphibiaWeb, 2020","AmphibiaWeb, 2020"
+Rana,pipiens,"Oliveira et al., 2017","Oliveira et al., 2017",,"Oliveira et al., 2017",,,Herbert 2002,,,"Blomquist & Hunter, 2009;Herbert 2002","Herbert 2002;Oliveira et al., 2017"
+Rhinella,granulosa,"Chammas et al., 2015",,,"Oliveira et al., 2017",,,"J. E. Carvalho et al., 2010",,,,
+Rhinella,marina,"Oliveira et al., 2017","Oliveira et al., 2017",,"Oliveira et al., 2017",,,"AmphibiaWeb, 2020",,,"AmphibiaWeb, 2020","Oliveira et al., 2017"
+Spea,hammondii,"AmphibiaWeb, 2020","AmphibiaWeb, 2020","Baumberger et al., 2019","Oliveira et al., 2017",,,"AmphibiaWeb, 2020",,,"Baumberger et al., 2019","AmphibiaWeb, 2020"
+Pleurodema,thaul,"Iturra-Cid et al., 2010","Iturra-Cid et al., 2010",,"Iturra-Cid et al., 2010",,,"Iturra-Cid et al., 2010",,,,"Iturra-Cid et al., 2010"
+Drosophila,melanogaster,"Sgrò & Partridge, 2000","Sgrò & Partridge, 2000","Coyne & Milstead, 1987","Meyers et al., 2015",,,"Lirakis et al., 2018",,,,"R. S. Miller & Thomas, 1958"
+Rhinella,spinulosa,,,"Parr, 1973","Womack et al., 2016",,,"Rodríguez et al., 2019",,,,
+Atractosteus,spatula,"Meyers et al., 2015","Meyers et al., 2015","Buckmeier, 2008","Meyers et al., 2015",,,,"Buckmeier et al., 2013",,"Buckmeier, 2008","Meyers et al., 2015"
+Ischnura,elegans,"Thompson, 1978","Thompson, 1978","Parr, 1973","Watson & Dallwitz, 2019",,,,,,"Parr, 1973","Piersanti et al., 2015"
+Temnothorax,curvispinosus,,,"Pratt, 2008","Geraghty et al., 2007",,,"Alloway et al., 1982",,,,"Diamond et al., 2017"
+Mauremys,reevesii,"IUCN, 2020",,,"IUCN, 2020",,,,,,,
+Trachemys scripta,elegans,"IUCN, 2020","IUCN, 2020","Meyers et al., 2015","IUCN, 2020",,,,,,"Meyers et al., 2015","De Magalhães & Costa, 2009"
+Rhynchocypris,oxycephalus,"Liang et al., 2014","Liang et al., 2014",,"Froese & Pauly, 2000",,,,"Nishida et al., 2014",,,"Liang et al., 2014"
+Ceratitis,capitata,"H. V. Weems, 1981","H. V. Weems, 1981","Meats & Smallridge, 2007","H. V. Weems, 1981",,,,,,,"H. V. Weems, 1981"
+Lampropholis,coggeri,,,,"Llewelyn et al., 2017",,,,,,,"Llewelyn et al., 2016"
+Orchesella,cincta,"Zizzari et al., 2009","Zizzari et al., 2009","Timmermans et al., 2005","Driessen, 2007",,,,,,,"Zizzari et al., 2009"
+Tigriopus,californicus,"Vittor, 1971",,,"Powlik et al., 1997",,,,,,,
+Couesius,plumbeus,"Meyers et al., 2015","Meyers et al., 2015","Debruyn, 2014","Froese & Pauly, 2000","Froese & Pauly, 2000","Froese & Pauly, 2000",,"Debruyn, 2014","Debruyn, 2014","Meyers et al., 2015","Froese & Pauly, 2000;Meyers et al., 2015"
