@@ -26,6 +26,7 @@ locations %>%
 intratherm <- read_csv("data-processed/intratherm-cadillac-limits-traits.csv") %>%
 	mutate(population_id = paste(genus_species, latitude, sep = "_"))
 
+unique(intratherm$genus_species)
 intratherm_complete_locations <- intratherm %>% 
 	filter(!is.na(longitude))
 

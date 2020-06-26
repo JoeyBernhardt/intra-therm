@@ -320,15 +320,18 @@ arrs <- intratherm %>%
 intratherm %>% 
 	filter(parameter_tmax_or_tmin=="tmax") %>% 
 	filter(!is.na(acclim_temp)) %>%
+	# filter(population_id == "Lithobates sylvaticus_37.56_NA_-84.3") %>% 
 	ggplot(aes(x = acclim_temp, y = parameter_value, group = population_id)) + 
-	geom_smooth(method = "lm", se = FALSE, alpha = 0.5) +
+	geom_smooth(method = "lm", se = FALSE, alpha = 0.5) + geom_point() +
 	ylab("CTmax") + xlab("Acclimation temperature")
 ggsave("figures/arr-slopes.png", width = 8, height = 6)
 
 arr_slopes <- arrs %>% 
-	filter(term != "(Intercept)") %>% 
+	filter(term != "(Intercept)") %>% ## ok fewer than half of the data have more than 2 acclimation temperatures
 	select(genus_species, population_id, estimate) %>% 
-	rename(slope = estimate)
+	rename(slope = estimate) %>% 
+	filter(population_id != "Retropinna retropinna_-37.595991_NA_175.104216") %>% ## this is the super high ARR, it's only got two data points
+	filter(population_id != "Perca flavescens_42.08_NA_-81.34") ### this is the super low ARR
 
 ### plot the distribution of slopes
 
@@ -340,7 +343,10 @@ ggsave("figures/ARR-slope-histogram.png", width = 8, height = 6)
 intercepts <- arrs %>% 
 	filter(term == "(Intercept)")  %>% 
 	select(genus_species, population_id, estimate) %>% 
-	rename(intercept = estimate)
+	rename(intercept = estimate) %>% 
+	filter(population_id != "Perca flavescens_42.08_NA_-81.34") %>%  ### this is the super low ARR
+	filter(population_id != "Retropinna retropinna_-37.595991_NA_175.104216") ## this is the super high ARR, it's only got two data points
+
 
 slopes_int <- left_join(intercepts, arr_slopes)
 
@@ -459,18 +465,26 @@ pd6 <- pd5 %>%
 	mutate(realm_general2 = as.numeric(as.factor(realm_general2)))
 
 pd7 <- pd5 %>% 
-	select(diff_ctmax, mean_arr, temp_difference, dispersal_distance_category, distance, realm_general2) %>% 
-	filter(dispersal_distance_category != "unk") %>% 
-	mutate(distance = scale(distance)) %>% 
-	mutate(mean_arr = scale(mean_arr)) %>% 
-	mutate(temp_difference = scale(temp_difference)) 
+	mutate(distance_km = ifelse(distance_km == 0, 1, distance_km)) %>% ## trying to avoid the issue of 0 distance, when elevations are different
+	select(diff_ctmax, mean_arr, temp_difference, dispersal_distance_category, distance_km, realm_general2) %>% 
+	filter(dispersal_distance_category != "unk") %>%
+	mutate(distance_km = log(distance_km)) %>% 
+	mutate(disperal_cat_numeric = case_when(dispersal_distance_category == "0-1" ~ "1",
+											dispersal_distance_category == "1-10" ~ "10",
+											dispersal_distance_category == "10-100" ~ "100",
+											dispersal_distance_category == "100+" ~ "1000",
+											TRUE ~ "other")) %>% 
+	mutate(dispersal_cat_numeric = as.numeric(disperal_cat_numeric))
 
-str(pd6)	
-pd6 <- scale(pd6) %>% 
-	as.data.frame()
+str(pd7)
+unique(pd7$dispersal_distance_category)
 
 mod <- lm(diff_ctmax ~ mean_arr + temp_difference + dispersal_distance_category +
-		  	log(distance) + dispersal_distance_category:log(distance) + mean_arr:temp_difference + realm_general2, data = pd7)
+		  	distance_km + dispersal_distance_category:distance_km + mean_arr:temp_difference, data = pd7)
+
+mod <- lm(diff_ctmax ~ mean_arr + temp_difference + dispersal_cat_numeric +
+		  	distance_km + dispersal_cat_numeric:distance_km + mean_arr:temp_difference, data = pd7)
+
 summary(mod)
 
 
@@ -488,12 +502,12 @@ plot2 <- visreg(mod, "temp_difference", gg = TRUE, size = 4, by = "mean_arr") +
 plot3 <- visreg(mod, "dispersal_distance_category", gg = TRUE, size = 4) +
 	ylab("CTmax difference") + xlab("Dispersal distance") 
 
-plot4 <- visreg(mod, "distance", gg = TRUE, size = 4, by = "dispersal_distance_category") +
+plot4 <- visreg(mod, "distance_km", gg = TRUE, size = 4, by = "dispersal_distance_category") +
 	ylab("CTmax difference") + xlab("Geographical distance") 
 
-plot5 <- visreg(mod, "realm_general2", gg = TRUE, size = 4) +
+# plot5 <- visreg(mod, "realm_general2", gg = TRUE, size = 4) +
 	ylab("CTmax difference") + xlab("Realm") 
-plot6 <- visreg(mod, "distance", gg = TRUE, size = 4) +
+plot6 <- visreg(mod, "distance_km", gg = TRUE, size = 4) +
 	ylab("CTmax difference") + xlab("Geographical distance") 
 plot7 <- visreg(mod, "temp_difference", gg = TRUE, size = 4) +
 	ylab("CTmax difference") + xlab("Temperature difference") 
@@ -501,7 +515,7 @@ plot7 <- visreg(mod, "temp_difference", gg = TRUE, size = 4) +
 
 
 library(patchwork)
-plot_all <- plot1 + plot2 + plot3 + plot4 + plot5 + plot6 + plot7 +
+plot_all <- plot1 + plot2 + plot3 + plot4+ plot6 + plot7 +
 	plot_annotation(tag_levels = 'A') 
 
 
