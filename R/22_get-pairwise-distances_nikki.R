@@ -4,7 +4,7 @@ library(utils)
 library(geosphere)
 
 ## calcualte differences in distance and temperature between all populations of each species 
-pop_difs <- initialize_pairwise_differences_nichemapr()
+pop_difs <- get_experienced_mean_yearly_max()
 
 ## convert distance between to km 
 pop_difs <- pop_difs %>%

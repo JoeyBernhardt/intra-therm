@@ -61,11 +61,6 @@ data <- data %>%
 
 
 
-## get rid of non-existent species Hyla alpina
-##############################################
-data <- data %>%
-  filter(genus_species != "Hyla alpina")
-
 
 ## taxize all data to update higher taxonomy columns 
 ####################################################
@@ -789,9 +784,6 @@ non_wild <- which(str_detect(data$location_description, "Education")) %>%
 data <- data[-non_wild,]
 
 
-
-
-
 ##updating traits and clean references:
 genus <- data$genus
 species <- data$species
@@ -885,13 +877,15 @@ sia <- str_replace(sia, pattern = "hot dry", replacement = "Summer") %>%
   str_replace(pattern = "hot", replacement = "Summer") %>%
   str_replace(pattern = "dry", replacement = "Summer") %>%
   str_replace(pattern = "summer", replacement = "Summer") %>%
-  str_replace(pattern = "Winter\\+hot", replacement = "Winter and Summer") %>%
-  str_replace(pattern = "Winter\\+dry", replacement = "Winter and Summer") %>%
-  str_replace(pattern = "Winter\\?", replacement = "Winter") %>%
+  str_replace(pattern = "winter\\+hot", replacement = "Winter and Summer") %>%
+  str_replace(pattern = "winter\\+dry", replacement = "Winter and Summer") %>%
   str_replace(pattern = "fall\\-Winter", replacement = "Fall and Winter") %>%
-  str_replace(pattern = "Winter\\+Summer", replacement = "Summer and Winter") 
+  str_replace(pattern = "Winter\\+Summer", replacement = "Summer and Winter") %>%
+  str_replace(pattern = "none ", replacement = "") %>%
+  str_replace(pattern = "none", replacement = "") %>%
+  str_replace(pattern = "Winter\\?", replacement = "Winter") 
 
-unique(sia)
+unique (sia)
 data$season_inactive <- sia
 
 
@@ -913,5 +907,21 @@ data <- data %>%
 ## write new verion to file
 write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
 
+## ran elevation script
+## ran nocturnal script
+
+## get rid of non-existent species Hyla alpina
+##############################################
+data <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv")
+with_elev <- read.csv("./data-processed/intratherm-with-elev.csv")
+
+data <- data %>%
+  filter(genus_species != "Hyla alpina")
+
+with_elev <- with_elev %>%
+  filter(genus_species != "Hyla alpina")
+
+write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
+write.csv(with_elev, "./data-processed/intratherm-with-elev.csv", row.names = FALSE)
 
 
