@@ -294,7 +294,7 @@ pop_difs <- read_csv("data-processed/pop_difs.csv")
 
 ## this is model we want to fit: 
 ### tmax.diffspecies_i ~ ARRspecies_i + tenvmax.diff + dispersal_distance + spatial_distance + dispersal_distance:spatial_distance + ARR:tenvmax.dif, random=species.
-
+library(broom)
 
 ### get ARR for each species
 intratherm <- read_csv("./data-processed/intratherm-may-2020-squeaky-clean.csv") %>% 
@@ -321,12 +321,21 @@ intratherm %>%
 	filter(parameter_tmax_or_tmin=="tmax") %>% 
 	filter(!is.na(acclim_temp)) %>%
 	ggplot(aes(x = acclim_temp, y = parameter_value, group = population_id)) + 
-	geom_smooth(method = "lm", se = FALSE, alpha = 0.5) 
+	geom_smooth(method = "lm", se = FALSE, alpha = 0.5) +
+	ylab("CTmax") + xlab("Acclimation temperature")
+ggsave("figures/arr-slopes.png", width = 8, height = 6)
 
 arr_slopes <- arrs %>% 
 	filter(term != "(Intercept)") %>% 
 	select(genus_species, population_id, estimate) %>% 
 	rename(slope = estimate)
+
+### plot the distribution of slopes
+
+arr_slopes %>% 
+	ggplot(aes(x = slope)) + geom_histogram() +
+	geom_vline(xintercept = 0) + xlab("ARR (slope)")
+ggsave("figures/ARR-slope-histogram.png", width = 8, height = 6)
 
 intercepts <- arrs %>% 
 	filter(term == "(Intercept)")  %>% 
@@ -437,20 +446,69 @@ pd5 <- left_join(pd4, arr_slopes2) %>%
 # ctmax.diffspecies_i ~ ARRspecies_i + tenvmax.diff + dispersal_distance + spatial_distance + dispersal_distance:spatial_distance + ARR:tenvmax.dif, random=species.
 
 mod <- lm(diff_ctmax ~ mean_arr + temp_difference + dispersal_distance_category +
-		  	distance + dispersal_distance_category:distance + mean_arr:temp_difference, data = pd5)
+		  	distance + dispersal_distance_category:distance + mean_arr:temp_difference + realm_general2, data = pd5)
 summary(mod)
 
 library(visreg)
 
+
+pd6 <- pd5 %>% 
+	select(diff_ctmax, mean_arr, temp_difference, dispersal_distance_category, distance, realm_general2) %>% 
+	filter(dispersal_distance_category != "unk") %>% 
+	mutate(dispersal_distance_category = as.numeric(factor(dispersal_distance_category, levels = c("0-1", "10-100", "100+")))) %>% 
+	mutate(realm_general2 = as.numeric(as.factor(realm_general2)))
+
+pd7 <- pd5 %>% 
+	select(diff_ctmax, mean_arr, temp_difference, dispersal_distance_category, distance, realm_general2) %>% 
+	filter(dispersal_distance_category != "unk") %>% 
+	mutate(distance = scale(distance)) %>% 
+	mutate(mean_arr = scale(mean_arr)) %>% 
+	mutate(temp_difference = scale(temp_difference)) 
+
+str(pd6)	
+pd6 <- scale(pd6) %>% 
+	as.data.frame()
+
 mod <- lm(diff_ctmax ~ mean_arr + temp_difference + dispersal_distance_category +
-		  	distance + dispersal_distance_category:distance + mean_arr:temp_difference, data = pd5)
-
-mod <- lm(diff_ctmax ~ mean_arr +
-		  	distance  + mean_arr:temp_difference, data = pd5)
+		  	log(distance) + dispersal_distance_category:log(distance) + mean_arr:temp_difference + realm_general2, data = pd7)
+summary(mod)
 
 
+library(visreg)
 summary(mod)
 visreg(mod)
+
+
+plot1 <- visreg(mod, "mean_arr", gg = TRUE, size = 4) +
+	ylab("CTmax difference") + xlab("ARR") 
+
+plot2 <- visreg(mod, "temp_difference", gg = TRUE, size = 4, by = "mean_arr") +
+	ylab("CTmax difference") + xlab("Temperature difference") 
+
+plot3 <- visreg(mod, "dispersal_distance_category", gg = TRUE, size = 4) +
+	ylab("CTmax difference") + xlab("Dispersal distance") 
+
+plot4 <- visreg(mod, "distance", gg = TRUE, size = 4, by = "dispersal_distance_category") +
+	ylab("CTmax difference") + xlab("Geographical distance") 
+
+plot5 <- visreg(mod, "realm_general2", gg = TRUE, size = 4) +
+	ylab("CTmax difference") + xlab("Realm") 
+plot6 <- visreg(mod, "distance", gg = TRUE, size = 4) +
+	ylab("CTmax difference") + xlab("Geographical distance") 
+plot7 <- visreg(mod, "temp_difference", gg = TRUE, size = 4) +
+	ylab("CTmax difference") + xlab("Temperature difference") 
+
+
+
+library(patchwork)
+plot_all <- plot1 + plot2 + plot3 + plot4 + plot5 + plot6 + plot7 +
+	plot_annotation(tag_levels = 'A') 
+
+
+ggsave("figures/ctmax-partial-regressions.png", plot = plot_all, width = 14, height = 10)
+
+
+
 car::vif(mod)
 library(car)
 library(plyr)

@@ -239,6 +239,14 @@ combined3 <- comb_tmax2 %>%
 
 write_csv(combined3, "data-processed/intratherm-multi-pop.csv")
 
+combined5 <- comb_tmax2 %>% 
+	filter(genus_species %in% c(mult_acclim_comb$genus_species)) %>% 
+	select(genus_species, latitude, longitude, everything()) %>% 
+	mutate(population_id = paste(genus_species, latitude, sep = "_")) %>% 
+	select(genus_species, population_id, acclim_temp, everything())
+
+write_csv(combined5, "data-processed/intratherm-multi-acclim.csv")
+
 
 ### now this has multiple acclimation temps
 combined4 <- comb_tmax2 %>% 
@@ -249,7 +257,8 @@ combined4 <- comb_tmax2 %>%
 
 write_csv(combined4, "data-processed/intratherm-multi-pop-multi-acclim.csv")
 
-
+unique(combined4$genus_species)
+unique(comb_tmax2$genus_species)
 intratherm_species <- combined4 %>% 
 	distinct(genus_species, .keep_all = TRUE) %>% 
 	select(genus_species, phylum, class, order, family, life_stage)

@@ -41,6 +41,15 @@ intratherm_traits2 <- left_join(intratherm_traits, ages2) %>%
 write_csv(intratherm_traits, "data-processed/intratherm_traits.csv")
 write_excel_csv(intratherm_traits2, "data-processed/intratherm_traits.csv")
 
+intratherm1 <- read_csv("data-processed/intratherm_traits.csv") %>% 
+	mutate(genus_species = paste(genus, species, sep = " "))
+unique(intratherm1$genus_species)
+
+intratherm2 <- read_csv("data-processed/intratherm-cadillac-limits-traits-location-updated.csv") %>%
+	mutate(population_id = paste(genus_species, latitude, sep = "_"))
+
+unique(intratherm2$genus_species)
+
 library(fuzzyjoin)
 
 fjoined <- gspecies %>%
