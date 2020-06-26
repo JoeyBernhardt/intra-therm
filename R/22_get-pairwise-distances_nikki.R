@@ -4,8 +4,11 @@ library(utils)
 library(geosphere)
 
 ## calcualte differences in distance and temperature between all populations of each species 
-pop_difs <- get_experienced_mean_yearly_max()
-write.csv(pop_difs, "./data-processed/get_experienced_mean_yearly_max_output.csv", row.names = FALSE)
+experienced <- get_experienced_mean_yearly_max()
+write.csv(experienced, "./data-processed/get_experienced_mean_yearly_max_output.csv", row.names = FALSE)
+
+pop_difs <- initialize_pairwise_differences_experienced()
+write.csv(pop_difs, "./data-processed/initialize_pairwise_differences_experienced_output.csv", row.names = FALSE)
 
 ## convert distance between to km 
 pop_difs <- pop_difs %>%
