@@ -1,0 +1,5 @@
+*.psd filter=lfs diff=lfs merge=lfs -text
+intratherm-freshwater-temp-data-daily.csv filter=lfs diff=lfs merge=lfs -text
+intratherm-terrestrial-temps-tavg.csv filter=lfs diff=lfs merge=lfs -text
+data-processed/intratherm-terrestrial-temps-tavg.csv filter=lfs diff=lfs merge=lfs -text
+data-processed/intratherm-freshwater-temp-data-daily.csv filter=lfs diff=lfs merge=lfs -text
