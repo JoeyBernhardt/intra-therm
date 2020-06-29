@@ -397,4 +397,4 @@ while (z < length(populations$population_id) + 1) {
 
 
 ## write to file
-write.csv(temperature_data, "~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-terrestrial-temps-tavg.csv", row.names = FALSE)
+write.csv(temperature_data, "./data-processed/intratherm-terrestrial-temps-tavg.csv", row.names = FALSE)
