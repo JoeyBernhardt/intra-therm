@@ -44,7 +44,7 @@ longitude_of_raster <- c()
 
 ## get grid square coordinates for each population
 num_unique <- 1
-while (num_unique < 209) {
+while (num_unique < nrow(elev)+1) {
 	loc_long_index <- which.min(abs(long - elev$longitude[num_unique]))
 	loc_lat_index <- which.min(abs(lat - elev$latitude[num_unique]))
 	
@@ -67,16 +67,16 @@ longitude_of_raster[117] <- 148.5
 latitude_of_raster[117] <- -37.5
 longitude_of_raster[119] <- 148.5
 latitude_of_raster[119] <- -37.5
-longitude_of_raster[121] <- 148.5
-latitude_of_raster[121]<- -36.5
-longitude_of_raster[128] <- 150.5
-latitude_of_raster[128]<- -33.5
-longitude_of_raster[134] <- 150.5
-latitude_of_raster[134]<- -33.5
-longitude_of_raster[132] <- 146.5
-latitude_of_raster[132] <- -38.5
-longitude_of_raster[198] <- NA
-latitude_of_raster[198] <- NA
+longitude_of_raster[120] <- 148.5
+latitude_of_raster[120]<- -36.5
+longitude_of_raster[121] <- 150.5
+latitude_of_raster[121]<- -33.5
+longitude_of_raster[132] <- 150.5
+latitude_of_raster[132]<- -33.5
+longitude_of_raster[128] <- 146.5
+latitude_of_raster[128] <- -38.5
+longitude_of_raster[195] <- NA
+latitude_of_raster[195] <- NA
 
 elev$latitude_of_raster <- latitude_of_raster
 elev$longitude_of_raster <- longitude_of_raster
@@ -111,7 +111,7 @@ raster_means <- c()
 
 ## for each grid cell we took temp data from:
 i <- 1
-while (i < 135) {
+while (i < nrow(unique_locs)+1) {
 	
 	## 1. create a rectangle representing grid cell:
 	## draw square with coords corresponding to corners 
@@ -194,7 +194,6 @@ while (i < 135) {
 
 unique_locs$raster_mean <- unlist(raster_means, use.names=FALSE)
 precious_elevation <- unique_locs
-
 unique_locs <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_elevation.rds")
 
 
