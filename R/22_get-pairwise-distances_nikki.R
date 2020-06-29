@@ -153,7 +153,9 @@ get_mean_yearly_max <- function() {
 	
 	
 	##### Terrestrial species: -----------------------------------------------------
-	terr_temps <- read_csv("~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-terrestrial-temps-tavg.csv") 
+	terr_temps <- read.csv("./data-processed/intratherm-terrestrial-temps-tavg.csv") 
+	temp_colnames <- colnames(read_csv("./data-processed/intratherm-terrestrial-temps-tavg.csv"))
+	colnames(terr_temps) <- temp_colnames 
 	
 	terrestrial <- intratherm %>%
 		filter(realm_general2 == "Terrestrial") %>%
@@ -175,10 +177,10 @@ get_mean_yearly_max <- function() {
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
 		gather(key = population_id, value = temperature, 4:296) %>% 
 		group_by(population_id, year) %>% 
-		summarise(max_temp = max(temperature)) %>%
+		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
 		ungroup() %>% 
 		group_by(population_id) %>% 
-		summarise(mean_yearly_max_temp = mean(max_temp))
+		summarise(mean_yearly_max_temp = mean(max_temp, na.rm = TRUE))
 	
 	terrestrial <- left_join(terrestrial, intra_long) %>%
 		select(-population_id, -elevation_of_collection) %>% 
@@ -204,10 +206,10 @@ get_mean_yearly_max <- function() {
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
 		gather(key = population_id, value = temperature, 4:385) %>% 
 		group_by(population_id, year) %>% 
-		summarise(max_temp = max(temperature)) %>%
+		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
 		ungroup() %>% 
 		group_by(population_id) %>% 
-		summarise(mean_yearly_max_temp = mean(max_temp))
+		summarise(mean_yearly_max_temp = mean(max_temp, na.rm = TRUE))
 	
 	freshwater <- left_join(freshwater, intra_long) 
 	
@@ -226,10 +228,10 @@ get_mean_yearly_max <- function() {
 		separate(date, sep = "-", into = c("year", "months", "days"), remove = FALSE) %>% 
 		gather(key = population_id, value = temperature, 5:75) %>% 
 		group_by(population_id, year) %>% 
-		summarise(max_temp = max(temperature)) %>%
+		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
 		ungroup() %>% 
 		group_by(population_id) %>% 
-		summarise(mean_yearly_max_temp = mean(max_temp))
+		summarise(mean_yearly_max_temp = mean(max_temp, na.rm = TRUE))
 	
 	marine <- left_join(marine, intra_long) 
 	
@@ -586,7 +588,10 @@ get_experienced_mean_yearly_max <- function() {
 	
 	
 	##### Terrestrial species: -----------------------------------------------------
-	terr_temps <- read_csv("~/Documents/SUNDAY LAB/Intratherm/Data sheets/intratherm-terrestrial-temps-tavg.csv") 
+	terr_temps <- read.csv("./data-processed/intratherm-terrestrial-temps-tavg.csv") 
+	temp_colnames <- colnames(read_csv("./data-processed/intratherm-terrestrial-temps-tavg.csv"))
+	colnames(terr_temps) <- temp_colnames
+	
 	terr_experienced_temps <- set_temps_to_NA(terr_temps, realm = "Terrestrial")
 	
 	terrestrial <- intratherm %>%
@@ -610,7 +615,7 @@ get_experienced_mean_yearly_max <- function() {
 		summarise(max_temp = max(temperature)) %>%
 		ungroup() %>% 
 		group_by(population_id) %>% 
-		summarise(mean_yearly_max_temp = mean(max_temp))
+		summarise(mean_yearly_max_temp = mean(max_temp, na.rm = TRUE))
 	
 	intra_long_exp <- terr_experienced_temps %>% 
 		mutate(date = as.character(date)) %>%
@@ -618,11 +623,12 @@ get_experienced_mean_yearly_max <- function() {
 		gather(key = population_id, value = temperature, 4:296) %>% 
 		group_by(population_id, year) %>% 
 		summarise(experienced_max_temp = max(temperature, na.rm = TRUE)) %>%
+		mutate(experienced_max_temp = ifelse(is.infinite(experienced_max_temp),
+														 NA, experienced_max_temp))%>%
 		ungroup() %>% 
 		group_by(population_id) %>% 
-		summarise(experienced_mean_yearly_max_temp = mean(experienced_max_temp, na.rm = TRUE)) %>%
-		mutate(experienced_mean_yearly_max_temp = ifelse(is.infinite(experienced_mean_yearly_max_temp),
-														 NA, experienced_mean_yearly_max_temp))
+		summarise(experienced_mean_yearly_max_temp = mean(experienced_max_temp, na.rm = TRUE))
+		
 	
 	terrestrial <- left_join(terrestrial, intra_long) %>%
 		left_join(., intra_long_exp) %>%
@@ -656,10 +662,10 @@ get_experienced_mean_yearly_max <- function() {
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
 		gather(key = population_id, value = temperature, 4:385) %>% 
 		group_by(population_id, year) %>% 
-		summarise(max_temp = max(temperature)) %>%
+		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
 		ungroup() %>% 
 		group_by(population_id) %>% 
-		summarise(mean_yearly_max_temp = mean(max_temp))
+		summarise(mean_yearly_max_temp = mean(max_temp, na.rm = TRUE))
 	
 	intra_long_exp <- fresh_experienced_temps %>% 
 		mutate(date = as.character(date)) %>%
@@ -696,10 +702,10 @@ get_experienced_mean_yearly_max <- function() {
 		separate(date, sep = "-", into = c("year", "months", "days"), remove = FALSE) %>% 
 		gather(key = population_id, value = temperature, 5:75) %>% 
 		group_by(population_id, year) %>% 
-		summarise(max_temp = max(temperature)) %>%
+		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
 		ungroup() %>% 
 		group_by(population_id) %>% 
-		summarise(mean_yearly_max_temp = mean(max_temp))
+		summarise(mean_yearly_max_temp = mean(max_temp, na.rm = TRUE))
 	
 	intra_long_exp <- marine_experienced_temps %>% 
 		mutate(date = as.character(date)) %>%
