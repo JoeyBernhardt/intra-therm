@@ -514,9 +514,14 @@ bad_columns <- c("realm_general3",
                  "logic_source_for_dispersal_distance2_category")
 
 data <- data[, !(names(data) %in% bad_columns)]
-write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
 
-data <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv")
+
+
+## get rid of non-existent species Hyla alpina
+##############################################
+data <- data %>%
+  filter(genus_species != "Hyla alpina")
+
 
 ######################################
 ## added all missing taxonomy manually
@@ -654,17 +659,11 @@ data <- data %>%
 
 
 
-## write updated version to data file:
-write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
-
-
 
 ## May 15: now need elevation data, so revisiting cleaning the column:
 #####################################################################
 ## went back to studies to make sure elevation was in m and as reported in studies for all entries 
 ## if in ft, changed value in precleaning data and then reran code to update squeaky clean
-data <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv")
-
 unique(data$elevation_of_collection)
 
 
@@ -694,9 +693,6 @@ data <- merged %>%
   select(-has_hyphen)
 
 
-## write updated version to data file:
-write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
-
 
 
 
@@ -704,7 +700,6 @@ write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.na
 ## May 18: 
 ## found a location labelled "fish farm" that should be removed since not wild 
 ## remove all farmed data from data
-data <- read.csv( "./data-processed/intratherm-may-2020-squeaky-clean.csv")
 farm <- which(str_detect(data$location_description, "farm|Farm"))
 data <- data[-farm,]
 
@@ -904,24 +899,42 @@ data <- data %>%
   mutate(ref = str_replace_all(ref, pattern = "\\^a\\^_\\^a\\^'", replacement = "ö")) %>%
   mutate(ref = str_replace_all(ref, pattern = "\\^a\\^_\\^A", replacement = "ü"))
 
-## write new verion to file
-write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
 
-## ran elevation script
-## ran nocturnal script
 
-## get rid of non-existent species Hyla alpina
-##############################################
-data <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv")
-with_elev <- read.csv("./data-processed/intratherm-with-elev.csv")
+## investigate suspicious locations including word "Supplier"
+##############################################################
+supplier <- which(str_detect(data$location_description, "supplier")) %>%
+  append(which(str_detect(data$location_description, "Supplier"))) %>%
+  data[.,]
 
+## notes: 
+##      - Spina et al. does not mention whether population is originally wild - remove
+##      - Geise & Linsenmair does not specify supplier or provide distinct location 
+##      - Seibel, 1970 information on supplier mentioned cannot be found 
+##      - Mahoney & Hutchison supplier has mixed populations 
+##      - Sherman et al. mentions non-specific supplier 
+##      - Brattstrom 1962, "presumably obtained in Wisconsin" 
+##      - Maness & Hutchison, Zetts Fish Farm and Hatcheries has no info on whether wild population or not
+##          but Rana berlandieri collected from Sinaloa Mexico
+##          24.997770, -107.24825 - assumed loc
+##      - Ritchart & Hutchison, information on supplier Kons Scientific Supply cannot be found
+##      - Erskine & Hutchison mentions non-specific supplier 
+## conclusion: only usable data is Rana berlandier from Maness & Hutchison 
+
+## change loc of usable data in database:
+data$location_description <- as.character(data$location_description)
+data$location_description[which(data$intratherm_id == 1431)] <- "hatchery where wild population was collected from Sinaloa, Mexico"
+data$latitude[which(data$intratherm_id == 1431)] <- 24.997770
+data$longitude[which(data$intratherm_id == 1431)] <- -107.24825
+
+## get rid of all mentioning supplier now:
 data <- data %>%
-  filter(genus_species != "Hyla alpina")
+  filter(!str_detect(location_description, "supplier")) %>%
+  filter(!str_detect(location_description, "Supplier")) 
 
-with_elev <- with_elev %>%
-  filter(genus_species != "Hyla alpina")
-
+## write out to file
 write.csv(data, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
-write.csv(with_elev, "./data-processed/intratherm-with-elev.csv", row.names = FALSE)
 
-
+## got temp data HERE
+## ran elevation script HERE
+## ran nocturnal script HERE
