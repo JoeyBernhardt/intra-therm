@@ -1,6 +1,3 @@
-library(chron)
-library(RColorBrewer)
-library(lattice)
 library(ncdf4)
 library(janitor)
 library(tidyverse)
@@ -30,7 +27,7 @@ terrestrial <- cadillac %>%
 ## get rid of duplicate population rows since all will have the same temp data
 unique_pairs <- terrestrial[!duplicated(terrestrial[,c("latitude", "longitude", "elevation_of_collection")]),]
 
-## temps:
+temp## temps:
 temperature_data <- data.frame(matrix(nrow = 32294))
 
 ## for each population:
@@ -157,62 +154,61 @@ temperature_data <- temperature_data[-1,]
 temperature_data <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_terrestrial_tavg.rds")
 
 
-
 ## figure out which are NA and why:
 isNA <- temperature_data %>%
   dplyr::select(as.vector(which(colSums(is.na(temperature_data)) == nrow(temperature_data))))
 indexNA <- as.vector(which(colSums(is.na(temperature_data)) == nrow(temperature_data)))
-uniqueNA <- unique_pairs[indexNA,]
+uniqueNA <- unique_pairs[indexNA-1,]
 
 missing_long <- c()
 missing_lat <- c()
 
 ## see what lat lon was and google maps it to investigate 
 x=1
-while (x < length(uniqueNA$genus_species) + 1) {
+while (x < ncol(isNA) + 1) {
   missing_long <- append(missing_long, long[which.min(abs(long - uniqueNA$longitude[x]))])
   missing_lat <- append(missing_lat, lat[which.min(abs(lat - uniqueNA$latitude[x]))])
   x=x+1
 }
 
 #### find new grid squares by looking on google maps:
-## first five are on Martinique
-missing_long[1:5] <- -60.5
-missing_lat[1:5] <- 14.5
-
-## for intratherm_id 2081 and 2085, no accurate temp data can be obtained since no data for any grid surrounding prince edward islands exists 
-missing_long[6:7] <- NA
-missing_lat[6:7] <- NA
-
 ## move closer to Boston land mass:
-missing_long[8] <- -70.5
-missing_lat[8] <- 41.5
+missing_long[1] <- -70.5
+missing_lat[1] <- 41.5
 
-## for intratherm_id 2531, no accurate temp data can be obtained since no data for island of St. Croix
-missing_long[9] <- NA
-missing_lat[9] <- NA
+## five are on Martinique
+missing_long[2:6] <- -60.5
+missing_lat[2:6] <- 14.5
+
+## for intratherm_id 2531, on virgin islands
+missing_long[7] <- NA
+missing_lat[7] <- NA
+
+## marion island
+missing_long[14:15] <- NA
+missing_lat[14:15] <- NA
 
 ## Buchan, Victoria:
-missing_long[10:11] <- 148.5
-missing_lat[10:11] <- -37.5
+missing_long[8] <- 148.5
+missing_lat[8] <- -37.5
 
 ## Murrindal, Victoria
-missing_long[12] <- 148.5
-missing_lat[12]<- -36.5
+missing_long[9] <- 148.5
+missing_lat[9]<- -36.5
 
 ## Godsford, NSW:
+missing_long[10] <- 150.5
+missing_lat[10]<- -33.5
 missing_long[13] <- 150.5
 missing_lat[13]<- -33.5
-missing_long[15] <- 150.5
-missing_lat[15]<- -33.5
 
 ## Wilson's Promontory National Park, Victoria
-missing_long[14] <- 146.5
-missing_lat[14] <- -38.5
+missing_long[11] <- 146.5
+missing_lat[11] <- -38.5
 
-## "Supplier" in location description of intratherm_id 1431 means probably not a real collection location
-missing_long[16] <- NA
-missing_lat[16] <- NA
+## Sylvania, NSW: -34.014631, 151.098761
+missing_long[12] <- 150.5
+missing_lat[12] <- -33.5
 
 ##assign new lats and longs to use when getting temp data 
 uniqueNA$new_lat <- missing_lat

@@ -55,28 +55,34 @@ while (num_unique < nrow(elev)+1) {
 }
 
 ## manually adjust ones that were changed when no temp data was retrieved: 
-longitude_of_raster[1:5] <- -60.5
-latitude_of_raster[1:5] <- 14.5
-longitude_of_raster[31:32] <- NA
-latitude_of_raster[31:32] <- NA
-longitude_of_raster[55] <- -70.5
-latitude_of_raster[55] <- 41.5
-longitude_of_raster[100] <- NA
-latitude_of_raster[100] <- NA
-longitude_of_raster[117] <- 148.5
-latitude_of_raster[117] <- -37.5
-longitude_of_raster[119] <- 148.5
-latitude_of_raster[119] <- -37.5
-longitude_of_raster[120] <- 148.5
-latitude_of_raster[120]<- -36.5
-longitude_of_raster[121] <- 150.5
-latitude_of_raster[121]<- -33.5
-longitude_of_raster[132] <- 150.5
-latitude_of_raster[132]<- -33.5
-longitude_of_raster[128] <- 146.5
-latitude_of_raster[128] <- -38.5
-longitude_of_raster[195] <- NA
-latitude_of_raster[195] <- NA
+longitude_of_raster[15] <- -70.5
+latitude_of_raster[15] <- 41.5
+
+longitude_of_raster[16:20] <- -60.5
+latitude_of_raster[16:20] <- 14.5
+
+longitude_of_raster[66] <- NA
+latitude_of_raster[66] <- NA
+
+longitude_of_raster[85] <- NA
+latitude_of_raster[85] <- NA
+longitude_of_raster[87] <- NA
+latitude_of_raster[87] <- NA
+
+longitude_of_raster[89] <- 150.5
+latitude_of_raster[89] <- -33.5
+longitude_of_raster[101] <- 150.5
+latitude_of_raster[101] <- -33.5
+
+longitude_of_raster[99] <- 150.5
+latitude_of_raster[99] <- -33.5
+
+longitude_of_raster[95] <- 146.5
+latitude_of_raster[95] <- -38.5
+
+longitude_of_raster[185] <- NA
+latitude_of_raster[185] <- NA
+
 
 elev$latitude_of_raster <- latitude_of_raster
 elev$longitude_of_raster <- longitude_of_raster
@@ -194,6 +200,7 @@ while (i < nrow(unique_locs)+1) {
 
 unique_locs$raster_mean <- unlist(raster_means, use.names=FALSE)
 precious_elevation <- unique_locs
+
 unique_locs <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_elevation.rds")
 
 
