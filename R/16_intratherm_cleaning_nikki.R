@@ -1,5 +1,4 @@
 ## data cleaning ##
-
 ## load packages 
 library(taxize)
 library(tidyverse)
@@ -11,8 +10,7 @@ data <- read.csv("./data-raw/intratherm-may-2020-precleaning.csv")
 
 ## taxize all data so genus and species are correct
 ###################################################
-## note on taxize synonyms: acceptedname with return value NA means name given was accepted name, do nothing 
-
+## note on taxize synonyms: acceptedname with return value NA means name given was accepted name, do nothing
 taxa <- data.frame(taxa = data$genus_species) ## create dataframe of names to check
 
 
@@ -723,7 +721,7 @@ while (i < length(intratherm_ids_marine) + 1) {
   else {
     ## find all population members - same lat, long, elev
     pop_members <- data %>%
-      filter(data$latitude == row$latitude & data$longitude == row$longitude) 
+      filter(latitude == row$latitude & longitude == row$longitude) 
     
     marine_sub <- rbind(marine_sub, pop_members) ## add to subset
     data <- data[!data$intratherm_id %in% pop_members$intratherm_id,] ## remove from dataset
@@ -756,7 +754,7 @@ while (i < length(intratherm_ids_fresh) + 1) {
   else {
     ## find all population members - same lat, long, elev
     pop_members <- data %>%
-      filter(data$latitude == row$latitude & data$longitude == row$longitude) 
+      filter(latitude == row$latitude & longitude == row$longitude) 
     
     fresh_sub <- rbind(fresh_sub, pop_members) ## add to subset
     data <- data[!data$intratherm_id %in% pop_members$intratherm_id,] ## remove from dataset
@@ -780,16 +778,16 @@ data <- data[-non_wild,]
 
 
 ##updating traits and clean references:
-genus <- data$genus
-species <- data$species
+genus_col <- data$genus
+species_col <- data$species
 
 traits <- read.csv("./data-processed/intratherm-traits-clean-citations.csv") %>%
   dplyr::select(-dispersal_distance2_category, -logic_source_for_dispersal_distance2)
   
-
 data <- data %>%
-  dplyr::select(-colnames(traits))%>%
-  mutate(genus = all_of(genus), species = all_of(species))%>%
+  ungroup() %>%
+  select(-colnames(traits))%>%
+  mutate(genus = genus, species = species)%>%
   left_join(., traits)
 
 
