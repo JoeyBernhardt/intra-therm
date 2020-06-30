@@ -175,7 +175,7 @@ get_mean_yearly_max <- function() {
 	intra_long <- terr_temps %>% 
 		mutate(date = as.character(date)) %>%
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
-		gather(key = population_id, value = temperature, 4:296) %>% 
+		gather(key = population_id, value = temperature, 4:283) %>% 
 		group_by(population_id, year) %>% 
 		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
 		ungroup() %>% 
@@ -610,7 +610,7 @@ get_experienced_mean_yearly_max <- function() {
 	intra_long <- terr_temps %>% 
 		mutate(date = as.character(date)) %>%
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
-		gather(key = population_id, value = temperature, 4:296) %>% 
+		gather(key = population_id, value = temperature, 4:283) %>% 
 		group_by(population_id, year) %>% 
 		summarise(max_temp = max(temperature)) %>%
 		ungroup() %>% 
@@ -620,7 +620,7 @@ get_experienced_mean_yearly_max <- function() {
 	intra_long_exp <- terr_experienced_temps %>% 
 		mutate(date = as.character(date)) %>%
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
-		gather(key = population_id, value = temperature, 4:296) %>% 
+		gather(key = population_id, value = temperature, 4:283) %>% 
 		group_by(population_id, year) %>% 
 		summarise(experienced_max_temp = max(temperature, na.rm = TRUE)) %>%
 		mutate(experienced_max_temp = ifelse(is.infinite(experienced_max_temp),
