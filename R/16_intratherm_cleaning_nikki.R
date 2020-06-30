@@ -787,9 +787,8 @@ traits <- read.csv("./data-processed/intratherm-traits-clean-citations.csv") %>%
 data <- data %>%
   ungroup() %>%
   select(-colnames(traits))%>%
-  mutate(genus = genus, species = species)%>%
+  mutate(genus = genus_col, species = species_col)%>%
   left_join(., traits)
-
 
 
 ## cleaning up season_when_away100km+ and season_when_inactive
