@@ -1,78 +1,78 @@
 genus_species,is.nocturnal,is.nocturnal_source
-Anolis roquet,N,https://doi.org/10.1093/sysbio/syx029
-Anolis cybotes,N,http://www.anapsid.org/anole.html
-Anolis armouri,N,https://lososlab.oeb.harvard.edu/files/lososlab/files/newsletter_v.pdf
-Calathus melanocephalus,Y,https://www.ukbeetles.co.uk/calathus-melanocephalus
-Orchesella cincta,Y,https://doi.org/10.1007/BF00407477
-Myrmecocystus depilis,N,DOI: 10.2307/2425641
-Ceratitis capitata,N,https://animaldiversity.org/accounts/Ceratitis_capitata/
-Drosophila melanogaster,N,https://doi.org/10.1101/380733
-Palirhoeus eatoni,N,https://www.jstor.org/stable/4008914
-Takydromus hsuehshanensis,N,https://doi.org/10.2108/zsj.30.15
-Glossina pallidipes,N,http://www.fao.org/3/p5444e/P5444E02.htm
-Lampropholis coggeri,N,https://doi.org/10.1111/1365-2435.12609
-Temnothorax curvispinosus,Y,https://bugguide.net/node/view/382030
-Plethodon glutinosus,N,AmphiBIO
-Eurycea bislineata,N,AmphiBIO
-Eurycea longicauda,Y,AmphiBIO
-Eurycea lucifuga,N,AmphiBIO
-Ambystoma tigrinum,N,AmphiBIO
-Litoria ewingii,N,AmphiBIO
-Ambystoma maculatum,N,AmphiBIO
-Eleutherodactylus coqui,Y,AmphiBIO
-Anaxyrus americanus,Y,AmphiBIO
-Anaxyrus woodhousii,N,AmphiBIO
-Desmognathus fuscus,N,AmphiBIO
-Desmognathus ochrophaeus,N,AmphiBIO
-Desmognathus quadramaculatus,N,AmphiBIO
-Eleutherodactylus portoricensis,N,AmphiBIO
-Lithobates pipiens,N,AmphiBIO
-Lithobates sylvaticus,N,AmphiBIO
-Litoria peronii,Y,AmphiBIO
-Neobatrachus pictus,N,AmphiBIO
-Odontophrynus occidentalis,N,AmphiBIO
-Pseudacris triseriata,N,AmphiBIO
-Plethodon cinereus,N,AmphiBIO
-Plethodon jordani,Y,AmphiBIO
-Pseudacris crucifer,Y,AmphiBIO
-Pseudophryne bibronii,Y,AmphiBIO
-Rhinella granulosa,Y,AmphiBIO
-Rhinella marina,Y,AmphiBIO
-Spea hammondii,Y,AmphiBIO
-Ambystoma jeffersonianum,N,AmphiBIO
-Ascaphus truei,Y,AmphiBIO
-Crinia parinsignifera,N,AmphiBIO
-Crinia signifera,Y,AmphiBIO
-Geocrinia victoriana,N,AmphiBIO
-Hyperolius viridiflavus,Y,AmphiBIO
-Limnodynastes dorsalis,N,AmphiBIO
-Limnodynastes peronii,Y,AmphiBIO
-Limnodynastes salmini,N,AmphiBIO
-Limnodynastes tasmaniensis,N,AmphiBIO
-Litoria bicolor,N,AmphiBIO
-Litoria fallax,Y,AmphiBIO
-Litoria freycineti,N,AmphiBIO
-Litoria rothii,N,AmphiBIO
-Litoria rubella,N,AmphiBIO
-Litoria verreauxii,Y,AmphiBIO
-Mixophyes fasciolatus,N,AmphiBIO
-Notophthalmus viridescens,N,AmphiBIO
-Ranoidea brevipes,N,AmphiBIO
-Ranoidea chloris,Y,AmphiBIO
-Ranoidea lesueurii,Y,AmphiBIO
-Ranoidea phyllochroa,N,AmphiBIO
-Necturus maculosus,Y,AmphiBIO
-Rhinella spinulosa,N,AmphiBIO
-Buergeria japonica,N,AmphiBIO
-Anaxyrus boreas,N,AmphiBIO
-Anaxyrus cognatus,N,AmphiBIO
-Pseudacris regilla,Y,AmphiBIO
-Acris crepitans,Y,AmphiBIO
-Ambystoma macrodactylum,N,AmphiBIO
-Lithobates berlandieri,N,AmphiBIO
-Lithobates clamitans,Y,AmphiBIO
-Ranoidea aurea,Y,AmphiBIO
-Lithobates catesbeiana,Y,http://issg.org/database/species/ecology.asp?si=80&fr=1&sts=&%20ang=EN&ver=print&prtflag=false
-Dryophytes versicolor,Y,AmphiBIO
-Ranoidea caerulea,N,AmphiBIO
-Ranoidea gracilenta,N,AmphiBIO
+Anolis roquet,N,"Poe et al., 2017"
+Anolis cybotes,N,"Losos & Leal, 1999"
+Anolis armouri,N,"Losos & Leal, 1999"
+Calathus melanocephalus,Y,"Calathus melanocephalus (Linnaeus, 1758), 2020"
+Orchesella cincta,Y,"Joosse-van Damme, 1965"
+Myrmecocystus depilis,N,"Chew, 1987"
+Ceratitis capitata,N,"Meyers et al., 2015"
+Drosophila melanogaster,unk,
+Palirhoeus eatoni,N,"Chown, 1993"
+Takydromus hsuehshanensis,N,"Chen et al., 2013"
+Glossina pallidipes,N,"Pollock, 1982"
+Lampropholis coggeri,N,"Phillips et al., 2016"
+Temnothorax curvispinosus,Y,"Vernier, 2020"
+Plethodon glutinosus,N,"Oliveira et al., 2017"
+Eurycea bislineata,N,"Oliveira et al., 2017"
+Eurycea longicauda,Y,"Oliveira et al., 2017"
+Eurycea lucifuga,N,"Oliveira et al., 2017"
+Ambystoma tigrinum,N,"Oliveira et al., 2017"
+Litoria ewingii,N,"Oliveira et al., 2017"
+Ambystoma maculatum,N,"Oliveira et al., 2017"
+Eleutherodactylus coqui,Y,"Oliveira et al., 2017"
+Anaxyrus americanus,Y,"Oliveira et al., 2017"
+Anaxyrus woodhousii,N,"Oliveira et al., 2017"
+Desmognathus fuscus,N,"Oliveira et al., 2017"
+Desmognathus ochrophaeus,N,"Oliveira et al., 2017"
+Desmognathus quadramaculatus,N,"Oliveira et al., 2017"
+Eleutherodactylus portoricensis,N,"Oliveira et al., 2017"
+Lithobates pipiens,N,"Oliveira et al., 2017"
+Lithobates sylvaticus,N,"Oliveira et al., 2017"
+Litoria peronii,Y,"Oliveira et al., 2017"
+Neobatrachus pictus,N,"Oliveira et al., 2017"
+Odontophrynus occidentalis,N,"Oliveira et al., 2017"
+Pseudacris triseriata,N,"Oliveira et al., 2017"
+Plethodon cinereus,N,"Oliveira et al., 2017"
+Plethodon jordani,Y,"Oliveira et al., 2017"
+Pseudacris crucifer,Y,"Oliveira et al., 2017"
+Pseudophryne bibronii,Y,"Oliveira et al., 2017"
+Rhinella granulosa,Y,"Oliveira et al., 2017"
+Rhinella marina,Y,"Oliveira et al., 2017"
+Spea hammondii,Y,"Oliveira et al., 2017"
+Ambystoma jeffersonianum,N,"Oliveira et al., 2017"
+Ascaphus truei,Y,"Oliveira et al., 2017"
+Crinia parinsignifera,N,"Oliveira et al., 2017"
+Crinia signifera,Y,"Oliveira et al., 2017"
+Geocrinia victoriana,N,"Oliveira et al., 2017"
+Hyperolius viridiflavus,Y,"Oliveira et al., 2017"
+Limnodynastes dorsalis,N,"Oliveira et al., 2017"
+Limnodynastes peronii,Y,"Oliveira et al., 2017"
+Limnodynastes salmini,N,"Oliveira et al., 2017"
+Limnodynastes tasmaniensis,N,"Oliveira et al., 2017"
+Litoria bicolor,N,"Oliveira et al., 2017"
+Litoria fallax,Y,"Oliveira et al., 2017"
+Litoria freycineti,N,"Oliveira et al., 2017"
+Litoria rothii,N,"Oliveira et al., 2017"
+Litoria rubella,N,"Oliveira et al., 2017"
+Litoria verreauxii,Y,"Oliveira et al., 2017"
+Mixophyes fasciolatus,N,"Oliveira et al., 2017"
+Notophthalmus viridescens,N,"Oliveira et al., 2017"
+Ranoidea brevipes,N,"Oliveira et al., 2017"
+Ranoidea chloris,Y,"Oliveira et al., 2017"
+Ranoidea lesueurii,Y,"Oliveira et al., 2017"
+Ranoidea phyllochroa,N,"Oliveira et al., 2017"
+Necturus maculosus,Y,"Oliveira et al., 2017"
+Rhinella spinulosa,N,"Oliveira et al., 2017"
+Buergeria japonica,N,"Oliveira et al., 2017"
+Anaxyrus boreas,N,"Oliveira et al., 2017"
+Anaxyrus cognatus,N,"Oliveira et al., 2017"
+Pseudacris regilla,Y,"Oliveira et al., 2017"
+Acris crepitans,Y,"Oliveira et al., 2017"
+Ambystoma macrodactylum,N,"Oliveira et al., 2017"
+Lithobates berlandieri,N,"Oliveira et al., 2017"
+Lithobates clamitans,Y,"Oliveira et al., 2017"
+Ranoidea aurea,Y,"Oliveira et al., 2017"
+Lithobates catesbeiana,Y,"Species profile: Lithobates catesbeianus, 2020"
+Dryophytes versicolor,Y,"Oliveira et al., 2017"
+Ranoidea caerulea,N,"Oliveira et al., 2017"
+Ranoidea gracilenta,N,"Oliveira et al., 2017"
