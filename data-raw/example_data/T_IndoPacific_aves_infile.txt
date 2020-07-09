@@ -1,0 +1,2 @@
+"FileName"	"Group"	"Weighting"
+"example_data/T_IndoPacific_aves_pops.txt"	1	1

@@ -38,8 +38,10 @@ intratherm <- read_csv("data-raw/intratherm-may-2020-nikki.csv") %>%
 ### realm
 intratherm %>% 
 	# filter(is.na(realm_general2)) %>% ## 249 rows missing
-	ggplot(aes(x = realm_general2)) + geom_histogram(stat = "count")
+	ggplot(aes(x = realm_general2)) + geom_histogram(stat = "count") +
+	xlab("Realm")
 ggsave("figures/intratherm-realm.png", width = 12, height = 6)
+ggsave("figures/intratherm-realm.png", width = 8, height = 4)
 
 ### tmax tmin
 intratherm %>% 
@@ -120,6 +122,7 @@ intratherm %>%
 	ggplot(aes(x = dispersal_distance_category)) + geom_histogram(stat = "count") +
 	theme(axis.text.x = element_text(angle = 90))
 ggsave("figures/dispersal_distance_category.png", width = 12, height = 12)
+ggsave("figures/dispersal_distance_category.png", width = 6, height = 4)
 
 ### season inactive
 intratherm %>% 

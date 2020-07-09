@@ -1,0 +1,4 @@
+"FileName"	"Group"	"Weighting"
+"example_data/T_Nearctic_aves_pops.txt"	1	0.376366476
+"example_data/T_Nearctic_mammalia_pops.txt"	1	0.249869859
+"example_data/T_Nearctic_herps_pops.txt"	1	0.373763665
