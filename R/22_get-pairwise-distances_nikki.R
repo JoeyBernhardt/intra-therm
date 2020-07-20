@@ -10,6 +10,9 @@ write.csv(experienced, "./data-processed/get_experienced_mean_yearly_max_output.
 pop_difs <- initialize_pairwise_differences_experienced()
 write.csv(pop_difs, "./data-processed/initialize_pairwise_differences_experienced_output.csv", row.names = FALSE)
 
+pop_difs_overlap <- initialize_pairwise_differences_experienced_overlap()
+write.csv(pop_difs_overlap, "./data-processed/initialize_pairwise_differences_experienced_overlap_output.csv", row.names = FALSE)
+
 ## convert distance between to km 
 pop_difs <- pop_difs %>%
 	mutate(distance_km = distance/1000)
@@ -242,6 +245,74 @@ get_mean_yearly_max <- function() {
 	return(intratherm_maxtemp)
 }
 
+get_mean_yearly_max_overlap <- function() {
+	overlap <- read_csv("data-processed/population-overlap.csv") 
+	
+	##### Terrestrial species: -----------------------------------------------------
+	terr_temps <- read_csv("./data-processed/intratherm-terrestrial-temps-tavg_popdynam.csv") 
+	
+	terrestrial <- overlap %>%
+		filter(realm_of_population == "Terrestrial") 
+	
+	intra_long <- terr_temps %>% 
+		mutate(date = as.character(date)) %>%
+		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>%
+		gather(key = temp_id, value = temperature, 4:30) %>% 
+		group_by(temp_id, year) %>% 
+		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
+		ungroup() %>% 
+		group_by(temp_id) %>% 
+		summarise(mean_yearly_max_temp = mean(max_temp, na.rm = TRUE))
+	
+	terrestrial <- left_join(terrestrial, intra_long) %>% ## elevation correction:
+		mutate(mean_yearly_max_temp = mean_yearly_max_temp
+			   + 5.5*((raster_mean - elevation_of_collection)/1000)) 
+	
+	##### Freshwater species: -----------------------------------------------------
+	fresh_temps <- read_csv("data-processed/intratherm-freshwater-temp-data-daily_popdynam.csv")
+	
+	freshwater <- overlap %>%
+		filter(realm_of_population == "Freshwater") 
+	
+	intra_long <- fresh_temps %>% 
+		mutate(date = as.character(date)) %>%
+		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
+		gather(key = temp_id, value = temperature, 4:284) %>% 
+		group_by(temp_id, year) %>% 
+		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
+		ungroup() %>% 
+		group_by(temp_id) %>% 
+		summarise(mean_yearly_max_temp = mean(max_temp, na.rm = TRUE))
+	
+	freshwater <- left_join(freshwater, intra_long) 
+	
+	
+	##### Marine species: -----------------------------------------------------
+	marine_temps <- read_csv("data-processed/intratherm-marine-temp-data_popdynam.csv")
+	
+	marine <- overlap %>%
+		filter(realm_of_population == "Marine") 
+	
+	intra_long <- marine_temps %>% 
+		mutate(date = as.character(date)) %>%
+		separate(date, sep = "-", into = c("year", "months", "days"), remove = FALSE) %>% 
+		gather(key = temp_id, value = temperature, 5:30) %>% 
+		group_by(temp_id, year) %>% 
+		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
+		ungroup() %>% 
+		group_by(temp_id) %>% 
+		summarise(mean_yearly_max_temp = mean(max_temp, na.rm = TRUE))
+	
+	marine <- left_join(marine, intra_long) 
+	
+	
+	#### combine all together: -----------------------------------------------------
+	overlap_maxtemp <- rbind(freshwater, marine, terrestrial) %>%
+		mutate(mean_yearly_max_temp = ifelse(is.infinite(mean_yearly_max_temp), NA, mean_yearly_max_temp))
+	
+	return(overlap_maxtemp)
+}
+
 #
 ###
 #######
@@ -394,6 +465,163 @@ initialize_pairwise_differences <- function() {
 			}
 		}
 			
+		i = i + 1
+	}
+	return (all_combinations)
+}
+
+initialize_pairwise_differences_overlap <- function() {
+	intratherm <- get_mean_yearly_max() %>%
+		mutate(population_source = "Intratherm") %>%
+		rename(realm_of_population = realm_general2) %>%
+		select(genus_species, latitude, longitude, elevation_of_collection, mean_yearly_max_temp,
+			   population_source, realm_of_population) %>%
+		mutate(temp_id = paste(latitude, longitude, sep = "_")) 
+	
+	overlap <- get_mean_yearly_max_overlap() %>%
+		select(which(colnames(.) %in% colnames(intratherm)))
+	
+	## combine relevant populations from intratherm with overlap populations:
+	data <- rbind(intratherm, overlap)
+	
+	## split into chunks of each species
+	species_list <- split(data, data$genus_species)
+	
+	## prepare empty data frame to add pairwise differences to
+	all_combinations <- data.frame(matrix(ncol = 11))
+	colnames(all_combinations) <- c("genus_species", "lat_lon_1", "lat_lon_2", 
+									"elev_1", "elev_2", "mean_yearly_max_temp1", 
+									"mean_yearly_max_temp2","distance", "temp_difference", 
+									"population_source1", "population_source2")
+	
+	i = 1
+	## go through all groups of species, calculating pairwise differences and adding them to the data frame 
+	while(i < length(species_list) + 1) {
+		
+		## get next group of speices and add lat_lon column:
+		species <- as.data.frame(species_list[i])
+		colnames(species) <- colnames(data)
+		unique_pops <- species %>%
+			mutate(lat_lon = paste(latitude, longitude, sep = "_")) %>%
+			filter(!duplicated(lat_lon)) %>%
+			select(genus_species, latitude, longitude, elevation_of_collection, 
+				   lat_lon, mean_yearly_max_temp, population_source) %>%
+			mutate(lat_lon = as.character(lat_lon))
+		
+		## if the species has more than one population
+		if(nrow(unique_pops) > 1) {
+			
+			## find all unique combinations of lat_lon
+			combinations <- combn(unique_pops$lat_lon,m=2, simplify = TRUE,)
+			
+			## split lat_lon string so distance between the coordinates can be calculated
+			## cooridnates must be in format c(longitude, latitude) so reverse column order
+			split1 <- str_split_fixed(combinations[1,], n=3, pattern = "_")
+			first_coord <- cbind(as.numeric(split1[,2]), as.numeric(split1[,1]))
+			split2 <- str_split_fixed(combinations[2,], n=3, pattern = "_")
+			second_coord <- cbind(as.numeric(split2[,2]), as.numeric(split2[,1]))
+			
+			## calculate distance between each unique coordinate pair 
+			distance <- distHaversine(first_coord, second_coord)
+			
+			## combine all info in a dataframe 
+			df1 <- data.frame(lat_lon = combinations[1,]) %>%
+				mutate(lat_lon = as.character(lat_lon)) %>%
+				left_join(., unique_pops, by = "lat_lon") %>%
+				select(-latitude, -longitude) %>%
+				rename(lat_lon_1 = lat_lon, elev_1 = elevation_of_collection,
+					   mean_yearly_max_temp1 = mean_yearly_max_temp, population_source1 = population_source)
+			
+			df2 <- data.frame(lat_lon = combinations[2,]) %>%
+				mutate(lat_lon = as.character(lat_lon)) %>%
+				left_join(., unique_pops, by = "lat_lon") %>%
+				select(-genus_species, -latitude,-longitude) %>%
+				rename(lat_lon_2 = lat_lon, elev_2 = elevation_of_collection,
+					   mean_yearly_max_temp2 = mean_yearly_max_temp,  population_source2 = population_source)
+			
+			df <- cbind(df1, df2) %>%
+				mutate(distance = distance)
+			
+			df <- df  %>%
+				mutate(temp_difference = abs(mean_yearly_max_temp1 - mean_yearly_max_temp2)) %>%
+				select(genus_species, lat_lon_1, lat_lon_2, elev_1, elev_2, mean_yearly_max_temp1,
+					   mean_yearly_max_temp2, distance, temp_difference, population_source1, population_source2)
+			
+			all_combinations <- rbind(all_combinations, df)
+		}
+		
+		i = i + 1
+		
+	}
+	
+	all_combinations <- all_combinations[-1,]
+	
+	## now must calculate temp differences for terrestrial species at the same latitude and longitude but with different elevations 
+	
+	## subset to terrestrial species and break into species chunks 
+	terr_list <- data %>%
+		filter(realm_of_population == "Terrestrial") %>%
+		droplevels() %>%
+		split(., .$genus_species)
+	
+	i = 1
+	## go through all terrestrial species, check if any have the same lat_lon but different elevations 
+	while(i < length(terr_list) + 1) {
+		
+		## get next group of species and add lat_lon column:
+		species <- as.data.frame(terr_list[i])
+		colnames(species) <- colnames(data)
+		species <- species %>%
+			mutate(lat_lon = paste(latitude, longitude, sep = "_")) 
+		
+		## figure out if any have the same lat_lon and different elevation 
+		is_duplicated <- species$lat_lon[which(duplicated(species$lat_lon))]
+		same_coords <- species %>%
+			filter(lat_lon %in% is_duplicated) 
+		
+		## if they do
+		if(nrow(same_coords) > 2) {
+			## split into chunks of the duplicate lat_lons 
+			dups <- split(same_coords, same_coords$lat_lon)
+			z = 1
+			while (z < length(dups) + 1) {
+				## go through each chunk
+				dup <- as.data.frame(dups[z]) 
+				colnames(dup) <- names
+				dup <- dup %>% 
+					select(genus_species, latitude, longitude, elevation_of_collection, 
+						   temp_id, mean_yearly_max_temp, population_source) 
+				
+				## find pairwise combinations of elevations, calculate temp differences and add them to the data frame
+				combinations <- combn(dup$elevation_of_collection,m=2, simplify = TRUE,)
+				
+				df1 <- data.frame(elevation_of_collection = combinations[1,])%>%
+					mutate(elevation_of_collection = elevation_of_collection) %>%
+					left_join(., dup, by = "elevation_of_collection") %>%
+					select(-latitude, -longitude) %>%
+					rename(lat_lon_1 = temp_id, elev_1 = elevation_of_collection,
+						   mean_yearly_max_temp1 = mean_yearly_max_temp, population_source1 = population_source)
+				
+				df2 <- data.frame(elevation_of_collection = combinations[2,])%>%
+					mutate(elevation_of_collection = elevation_of_collection) %>%
+					left_join(., dup, by = "elevation_of_collection") %>%
+					select(-latitude, -longitude, -genus_species) %>%
+					rename(lat_lon_2 = temp_id, elev_2 = elevation_of_collection,
+						   mean_yearly_max_temp2 = mean_yearly_max_temp, population_source2 = population_source)
+				
+				df <- cbind(df1, df2) 
+				df$distance = 0 ##since no lat_lon difference, assign distance between = 0
+				
+				df <- df  %>%
+					mutate(temp_difference = abs(mean_yearly_max_temp1 - mean_yearly_max_temp2)) %>%
+					select(genus_species, lat_lon_1, lat_lon_2, elev_1, elev_2, mean_yearly_max_temp1,
+						   mean_yearly_max_temp2, distance, temp_difference, population_source1, population_source2)
+				
+				all_combinations <- rbind(all_combinations, df)
+				z = z + 1
+			}
+		}
+		
 		i = i + 1
 	}
 	return (all_combinations)
@@ -729,6 +957,271 @@ get_experienced_mean_yearly_max <- function() {
 	return(intratherm_maxtemp)
 }
 
+get_experienced_mean_yearly_max_overlap <- function() {
+	overlap <- read.csv("data-processed/population-overlap.csv", stringsAsFactors = FALSE) 
+	
+	##### Terrestrial species: -----------------------------------------------------
+	terr_temps <- read_csv("./data-processed/intratherm-terrestrial-temps-tavg_popdynam.csv") 
+	
+	oldcols <- colnames(terr_temps) 
+	temp_ids_reps <- overlap %>%
+		filter(realm_of_population == "Terrestrial") %>%
+		unique() %>%
+		select(temp_id) %>%
+		table(.)
+	
+	i = 1
+	z = 1
+	while (i < length(oldcols)) {
+		freq <- as.numeric(temp_ids_reps[oldcols[i+1]])
+		if (is.na(freq)) {
+			terr_temps <- terr_temps[,-(z+1)]
+			i = i+1
+			z = z+1
+		}
+		else if (freq == 1) {
+			i = i+1
+			z = z+1
+		}
+		else {
+			while(freq > 1) {
+				terr_temps_first  <- terr_temps[,1:(z+1)]
+				terr_temps_second <- terr_temps[,-1:-(z+1)]
+				terr_temps = cbind(terr_temps_first, i = rep(terr_temps[,z+1]), terr_temps_second)
+				freq = freq - 1
+				z = z+1
+			}
+			i = i+1
+		}
+	}
+
+	## change column names of temp data to include species:
+	pop_overlap <- overlap %>%
+		filter(realm_of_population == "Terrestrial") %>%
+		select(temp_id, genus_species)
+	cols <- data.frame(oldcols) %>% 
+		rename(temp_id = oldcols) %>%
+		left_join(., pop_overlap) %>%
+		filter(!is.na(genus_species)) %>%
+		mutate(pop_id = paste(genus_species, temp_id, sep = "_")) %>%
+		select(pop_id) 
+		
+	cols <- rbind("date", cols) 
+	colnames(terr_temps) <- cols$pop_id
+	terr_temps <- terr_temps[,unique(colnames(terr_temps))]
+	
+	terr_experienced_temps <- set_temps_to_NA(terr_temps, realm = "Terrestrial")
+	
+	terrestrial <- overlap %>%
+		filter(realm_of_population == "Terrestrial") %>%
+		mutate(temp_id = paste(genus_species, temp_id, sep = "_"))
+	
+	intra_long <- terr_temps %>% 
+		mutate(date = as.character(date)) %>%
+		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>%
+		gather(key = temp_id, value = temperature, 4:30) %>% 
+		group_by(temp_id, year) %>% 
+		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
+		ungroup() %>% 
+		group_by(temp_id) %>% 
+		summarise(mean_yearly_max_temp = mean(max_temp, na.rm = TRUE))
+	
+	intra_long_exp <- terr_experienced_temps %>% 
+		mutate(date = as.character(date)) %>%
+		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
+		gather(key = temp_id, value = temperature, 4:30) %>% 
+		group_by(temp_id, year) %>% 
+		summarise(experienced_max_temp = max(temperature, na.rm = TRUE)) %>%
+		mutate(experienced_max_temp = ifelse(is.infinite(experienced_max_temp),
+											 NA, experienced_max_temp))%>%
+		ungroup() %>% 
+		group_by(temp_id) %>% 
+		summarise(experienced_mean_yearly_max_temp = mean(experienced_max_temp, na.rm = TRUE))
+		
+	
+	terrestrial <- left_join(terrestrial, intra_long) %>% 
+		left_join(., intra_long_exp) %>% ## elevation correction:
+		mutate(mean_yearly_max_temp = mean_yearly_max_temp
+			   + 5.5*((raster_mean - elevation_of_collection)/1000)) %>%
+		mutate(experienced_mean_yearly_max_temp = experienced_mean_yearly_max_temp
+			   + 5.5*((raster_mean - elevation_of_collection)/1000)) %>%
+		mutate(temp_id = paste(latitude, longitude, sep = "_"))
+	
+	
+	##### Freshwater species: -----------------------------------------------------
+	fresh_temps <- read_csv("data-processed/intratherm-freshwater-temp-data-daily_popdynam.csv")
+	
+	oldcols <- colnames(fresh_temps) 
+	temp_ids_reps <- overlap %>%
+		filter(realm_of_population == "Freshwater") %>%
+		select(temp_id) %>%
+		table(.)
+	
+	i = 1
+	z = 1
+	while (i < length(oldcols)) {
+		freq <- as.numeric(temp_ids_reps[oldcols[i+1]])
+		if (is.na(freq)) {
+			fresh_temps <- fresh_temps[,-(z+1)]
+			i = i+1
+			z = z+1
+		}
+		else if (freq == 1) {
+			i = i+1
+			z = z+1
+		}
+		else {
+			while(freq > 1) {
+				fresh_temps_first  <- fresh_temps[,1:(z+1)]
+				fresh_temps_second <- fresh_temps[,-1:-(z+1)]
+				fresh_temps = cbind(fresh_temps_first, i = rep(fresh_temps[,z+1]), fresh_temps_second)
+				freq = freq - 1
+				z = z+1
+			}
+			i = i+1
+		}
+	}
+	
+	## change column names of temp data to include species:
+	pop_overlap <- overlap %>%
+		filter(realm_of_population == "Freshwater") %>%
+		select(temp_id, genus_species)
+	cols <- data.frame(oldcols) %>% 
+		rename(temp_id = oldcols) %>%
+		left_join(., pop_overlap) %>%
+		filter(!is.na(genus_species)) %>%
+		mutate(pop_id = paste(genus_species, temp_id, sep = "_")) %>%
+		select(pop_id) 
+	
+	cols <- rbind("date", cols) 
+	colnames(fresh_temps) <- cols$pop_id
+	fresh_temps <- fresh_temps[,unique(colnames(fresh_temps))]
+	
+	fresh_experienced_temps <- set_temps_to_NA(fresh_temps, realm = "Freshwater")
+	
+	freshwater <- overlap %>%
+		filter(realm_of_population == "Freshwater") %>%
+		mutate(temp_id = paste(genus_species, temp_id, sep = "_"))
+	
+	intra_long <- fresh_temps %>% 
+		mutate(date = as.character(date)) %>%
+		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>%
+		gather(key = temp_id, value = temperature, 4:465) %>% 
+		group_by(temp_id, year) %>% 
+		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
+		ungroup() %>% 
+		group_by(temp_id) %>% 
+		summarise(mean_yearly_max_temp = mean(max_temp, na.rm = TRUE))
+	
+	intra_long_exp <- fresh_experienced_temps %>% 
+		mutate(date = as.character(date)) %>%
+		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
+		gather(key = temp_id, value = temperature, 4:465) %>% 
+		group_by(temp_id, year) %>% 
+		summarise(experienced_max_temp = max(temperature, na.rm = TRUE)) %>%
+		mutate(experienced_max_temp = ifelse(is.infinite(experienced_max_temp),
+											 NA, experienced_max_temp))%>%
+		ungroup() %>% 
+		group_by(temp_id) %>% 
+		summarise(experienced_mean_yearly_max_temp = mean(experienced_max_temp, na.rm = TRUE))
+	
+	
+	freshwater <- left_join(freshwater, intra_long) %>% 
+		left_join(., intra_long_exp) %>% ## elevation correction:
+		mutate(temp_id = paste(latitude, longitude, sep = "_"))
+
+	
+	##### Marine species: -----------------------------------------------------
+	marine_temps <- read_csv("data-processed/intratherm-marine-temp-data_popdynam.csv")
+	
+	oldcols <- colnames(marine_temps) 
+	temp_ids_reps <- overlap %>%
+		filter(realm_of_population == "Marine") %>%
+		select(temp_id) %>%
+		table(.)
+	
+	i = 1
+	z = 1
+	while (i < length(oldcols)) {
+		freq <- as.numeric(temp_ids_reps[oldcols[i+1]])
+		if (is.na(freq)) {
+			marine_temps <- marine_temps[,-(z+1)]
+			i = i+1
+			z = z+1
+		}
+		else if (freq == 1) {
+			i = i+1
+			z = z+1
+		}
+		else {
+			while(freq > 1) {
+				marine_temps_first  <- marine_temps[,1:(z+1)]
+				marine_temps_second <- marine_temps[,-1:-(z+1)]
+				marine_temps = cbind(marine_temps_first, i = rep(marine_temps[,z+1]), marine_temps_second)
+				freq = freq - 1
+				z = z+1
+			}
+			i = i+1
+		}
+	}
+	
+	## change column names of temp data to include species:
+	pop_overlap <- overlap %>%
+		filter(realm_of_population == "Marine") %>%
+		select(temp_id, genus_species)
+	cols <- data.frame(oldcols) %>% 
+		rename(temp_id = oldcols) %>%
+		left_join(., pop_overlap) %>%
+		filter(!is.na(genus_species)) %>%
+		mutate(pop_id = paste(genus_species, temp_id, sep = "_")) %>%
+		select(pop_id) 
+	
+	cols <- rbind("date", cols) 
+	colnames(marine_temps) <- cols$pop_id
+	marine_temps <- marine_temps[,unique(colnames(marine_temps))]
+	
+	marine_experienced_temps <- set_temps_to_NA(marine_temps, realm = "Marine")
+	
+	marine <- overlap %>%
+		filter(realm_of_population == "Marine") %>%
+		mutate(temp_id = paste(genus_species, temp_id, sep = "_"))
+	
+	intra_long <- marine_temps %>% 
+		mutate(date = as.character(date)) %>%
+		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>%
+		gather(key = temp_id, value = temperature, 4:32) %>% 
+		group_by(temp_id, year) %>% 
+		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
+		ungroup() %>% 
+		group_by(temp_id) %>% 
+		summarise(mean_yearly_max_temp = mean(max_temp, na.rm = TRUE))
+	
+	intra_long_exp <- marine_experienced_temps %>% 
+		mutate(date = as.character(date)) %>%
+		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
+		gather(key = temp_id, value = temperature, 4:32) %>% 
+		group_by(temp_id, year) %>% 
+		summarise(experienced_max_temp = max(temperature, na.rm = TRUE)) %>%
+		mutate(experienced_max_temp = ifelse(is.infinite(experienced_max_temp),
+											 NA, experienced_max_temp))%>%
+		ungroup() %>% 
+		group_by(temp_id) %>% 
+		summarise(experienced_mean_yearly_max_temp = mean(experienced_max_temp, na.rm = TRUE))
+	
+	
+	marine <- left_join(marine, intra_long) %>% 
+		left_join(., intra_long_exp) %>% ## elevation correction:
+		mutate(temp_id = paste(latitude, longitude, sep = "_"))
+	
+	
+	
+	#### combine all together: -----------------------------------------------------
+	overlap_maxtemp <- rbind(freshwater, marine, terrestrial) %>%
+		mutate(mean_yearly_max_temp = ifelse(is.infinite(mean_yearly_max_temp), NA, mean_yearly_max_temp))
+	
+	return(overlap_maxtemp)
+}
+
 initialize_pairwise_differences_experienced <- function() {
 	data = get_experienced_mean_yearly_max()
 	
@@ -884,6 +1377,177 @@ initialize_pairwise_differences_experienced <- function() {
 	return (all_combinations)
 }
 
+initialize_pairwise_differences_experienced_overlap <- function() {
+	intratherm <- get_experienced_mean_yearly_max() %>%
+		mutate(population_source = "Intratherm") %>%
+		rename(realm_of_population = realm_general2) %>%
+		select(genus_species, latitude, longitude, elevation_of_collection,
+			   mean_yearly_max_temp, experienced_mean_yearly_max_temp, population_source, realm_of_population) %>%
+		mutate(temp_id = paste(latitude, longitude, sep = "_")) 
+	
+	overlap <- get_experienced_mean_yearly_max_overlap() %>%
+		select(which(colnames(.) %in% colnames(intratherm)))
+	
+	## combine relevant populations from intratherm with overlap populations:
+	data <- rbind(intratherm, overlap)
+	
+	## split into chunks of each species
+	species_list <- split(data, data$genus_species)
+	
+	## prepare empty data frame to add pairwise differences to
+	all_combinations <- data.frame(matrix(ncol = 14))
+	colnames(all_combinations) <- c("genus_species", "lat_lon_1", "lat_lon_2", 
+									"elev_1", "elev_2", "mean_yearly_max_temp1", 
+									"mean_yearly_max_temp2","experienced_mean_yearly_max_temp1", "experienced_mean_yearly_max_temp2", "distance", "temp_difference", "experienced_temp_difference", "population_source1", "population_source2")
+	
+	i = 1
+	## go through all groups of species, calculating pairwise differences and adding them to the data frame 
+	while(i < length(species_list) + 1) {
+		
+		## get next group of speices and add lat_lon column:
+		species <- as.data.frame(species_list[i])
+		colnames(species) <- colnames(data)
+		unique_pops <- species %>%
+			mutate(lat_lon = paste(latitude, longitude, sep = "_")) %>%
+			filter(!duplicated(lat_lon)) %>%
+			select(genus_species, latitude, longitude, elevation_of_collection, 
+				   lat_lon, mean_yearly_max_temp, experienced_mean_yearly_max_temp, population_source) %>%
+			mutate(lat_lon = as.character(lat_lon))
+		
+		## if the species has more than one population
+		if(nrow(unique_pops) > 1) {
+			
+			## find all unique combinations of lat_lon
+			combinations <- combn(unique_pops$lat_lon,m=2, simplify = TRUE,)
+			
+			## split lat_lon string so distance between the coordinates can be calculated
+			## cooridnates must be in format c(longitude, latitude) so reverse column order
+			split1 <- str_split_fixed(combinations[1,], n=3, pattern = "_")
+			first_coord <- cbind(as.numeric(split1[,2]), as.numeric(split1[,1]))
+			split2 <- str_split_fixed(combinations[2,], n=3, pattern = "_")
+			second_coord <- cbind(as.numeric(split2[,2]), as.numeric(split2[,1]))
+			
+			## calculate distance between each unique coordinate pair 
+			distance <- distHaversine(first_coord, second_coord)
+			
+			## combine all info in a dataframe 
+			df1 <- data.frame(lat_lon = combinations[1,]) %>%
+				mutate(lat_lon = as.character(lat_lon)) %>%
+				left_join(., unique_pops, by = "lat_lon") %>%
+				select(-latitude, -longitude) %>%
+				rename(lat_lon_1 = lat_lon, elev_1 = elevation_of_collection,
+					   mean_yearly_max_temp1 = mean_yearly_max_temp, 
+					   experienced_mean_yearly_max_temp1 = experienced_mean_yearly_max_temp,
+					   population_source1 = population_source)
+			
+			df2 <- data.frame(lat_lon = combinations[2,]) %>%
+				mutate(lat_lon = as.character(lat_lon), by = "lat_lon") %>%
+				left_join(., unique_pops) %>%
+				select(-genus_species, -latitude,-longitude) %>%
+				rename(lat_lon_2 = lat_lon, elev_2 = elevation_of_collection,
+					   mean_yearly_max_temp2 = mean_yearly_max_temp, 
+					   experienced_mean_yearly_max_temp2 = experienced_mean_yearly_max_temp, 
+					   population_source2 = population_source)
+			
+			df <- cbind(df1, df2) %>%
+				mutate(distance = distance)
+			
+			df <- df  %>%
+				mutate(temp_difference = abs(mean_yearly_max_temp1 - mean_yearly_max_temp2)) %>%
+				mutate(experienced_temp_difference = abs(experienced_mean_yearly_max_temp1 - experienced_mean_yearly_max_temp2)) %>%
+				select(genus_species, lat_lon_1, lat_lon_2, elev_1, elev_2, mean_yearly_max_temp1,
+					   mean_yearly_max_temp2, experienced_mean_yearly_max_temp1, 
+					   experienced_mean_yearly_max_temp2, distance, temp_difference, 
+					   experienced_temp_difference, population_source1, population_source2)
+			
+			all_combinations <- rbind(all_combinations, df)
+		}
+		
+		i = i + 1
+		
+	}
+	
+	all_combinations <- all_combinations[-1,]
+	
+	## now must calculate temp differences for terrestrial species at the same latitude and longitude but with different elevations 
+	
+	## subset to terrestrial species and break into species chunks 
+	terr <- data %>%
+		filter(realm_of_population == "Terrestrial") %>%
+		droplevels()
+	
+	terr_list <- split(terr, terr$genus_species)
+	
+	i = 1
+	## go through all terrestrial species, check if any have the same lat_lon but different elevations 
+	while(i < length(terr_list) + 1) {
+		
+		## get next group of speices and add lat_lon column:
+		species <- as.data.frame(terr_list[i])
+		colnames(species) <- colnames(data)
+		species <- species %>%
+			mutate(lat_lon = paste(latitude, longitude, sep = "_")) 
+		
+		## figure out if any have the same lat_lon and different elevation 
+		is_duplicated <- species$lat_lon[which(duplicated(species$lat_lon))]
+		same_coords <- species %>%
+			filter(lat_lon %in% is_duplicated) 
+		
+		## if they do
+		if(nrow(same_coords) > 2) {
+			## split into chunks of the duplicate lat_lons 
+			dups <- split(same_coords, same_coords$lat_lon)
+			z = 1
+			while (z < length(dups) + 1) {
+				## go through each chunk
+				dup <- as.data.frame(dups[z]) 
+				names <- append(colnames(terr), "lat_lon")
+				colnames(dup) <- names
+				dup <- dup %>% 
+					select(genus_species, latitude, longitude, elevation_of_collection, 
+						   lat_lon, mean_yearly_max_temp, experienced_mean_yearly_max_temp, population_source) 
+				
+				## find pairwise combinations of elevations, calculate temp differences and add them to the data frame
+				combinations <- combn(dup$elevation_of_collection,m=2, simplify = TRUE,)
+				
+				df1 <- data.frame(elevation_of_collection = combinations[1,])%>%
+					mutate(elevation_of_collection = elevation_of_collection) %>%
+					left_join(., dup, by = "elevation_of_collection") %>%
+					select(-latitude, -longitude) %>%
+					rename(lat_lon_1 = lat_lon, elev_1 = elevation_of_collection,
+						   mean_yearly_max_temp1 = mean_yearly_max_temp, 
+						   experienced_mean_yearly_max_temp1 = experienced_mean_yearly_max_temp, 
+						   population_source1 = population_source)
+				
+				df2 <- data.frame(elevation_of_collection = combinations[2,])%>%
+					mutate(elevation_of_collection = elevation_of_collection) %>%
+					left_join(., dup, by = "elevation_of_collection") %>%
+					select(-latitude, -longitude, -genus_species) %>%
+					rename(lat_lon_2 = lat_lon, elev_2 = elevation_of_collection,
+						   mean_yearly_max_temp2 = mean_yearly_max_temp, 
+						   experienced_mean_yearly_max_temp2 = experienced_mean_yearly_max_temp,
+						   population_source2 = population_source)
+				
+				df <- cbind(df1, df2) 
+				df$distance = 0 ##since no lat_lon difference, assign distance between = 0
+				
+				df <- df  %>%
+					mutate(temp_difference = abs(mean_yearly_max_temp1 - mean_yearly_max_temp2)) %>%
+					mutate(experienced_temp_difference = abs(experienced_mean_yearly_max_temp1 - experienced_mean_yearly_max_temp2)) %>%
+					select(genus_species, lat_lon_1, lat_lon_2, elev_1, elev_2, mean_yearly_max_temp1,
+						   mean_yearly_max_temp2, experienced_mean_yearly_max_temp1, 
+						   experienced_mean_yearly_max_temp2, distance, temp_difference, experienced_temp_difference,
+						   population_source1, population_source2)
+				
+				all_combinations <- rbind(all_combinations, df)
+				z = z + 1
+			}
+		}
+		
+		i = i + 1
+	}
+	return (all_combinations)
+}
 
 
 #
