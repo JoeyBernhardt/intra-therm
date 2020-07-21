@@ -211,13 +211,12 @@ while (num_unique < length(unique_pairs$intratherm_id) + 1) {
 
 ## save to RDS
 precious_temps_freshdaily <- temperature_data
-saveRDS(precious_temps_freshdaily, "~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_temps_freshdaily.rds")
 
 temperature_data <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_temps_freshdaily.rds")
 
 ## convert from degrees K to degrees C
 converted <- temperature_data
-converted[, 2:193] <- converted[, 2:193] - 273.15
+converted[, 2:196] <- converted[, 2:196] - 273.15
 
 ## convert date 
 ## starts at 1958-01-01

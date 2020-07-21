@@ -17,19 +17,25 @@ pop_difs_nichemapr <- initialize_pairwise_differences_nichemapr()
 write.csv(pop_difs_nichemapr, "./data-processed/initialize_pairwise_differences_experienced_and_topt.csv", row.names = FALSE)
 
 ## convert distance between to km 
-pop_difs <- pop_difs %>%
+pop_difs_nichemapr <- pop_difs_nichemapr %>%
 	mutate(distance_km = distance/1000)
 
 ## add realm column 
-realm <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv") %>%
+pop_difs <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv") %>%
 	select(genus_species, realm_general2) %>%
-	filter(!duplicated(genus_species))
-pop_difs <- inner_join(realm, pop_difs, by = "genus_species")
+	filter(!duplicated(genus_species)) %>%
+	inner_join(., pop_difs_nichemapr, by = "genus_species")
 
 ##plot all realms 
 pop_difs %>% 
-	ggplot(aes(x = distance_km, y = temp_difference_topt)) + geom_point() +
+	ggplot(aes(x = distance_km, y = temp_difference)) + geom_point() +
 	ylab('Difference in yearly monthly max temperatures (°C)') +
+	xlab("Distance between populations (km)") 
+
+pop_difs %>% 
+	filter(realm_general2 == "Terrestrial") %>%
+	ggplot(aes(x = distance_km, y = temp_difference_topt)) + geom_point() +
+	ylab('Difference in topt (°C)') +
 	xlab("Distance between populations (km)") 
 
 pop_difs %>% 
@@ -40,6 +46,12 @@ pop_difs %>%
 pop_difs %>% 
 	ggplot(aes(x = temp_difference, y = experienced_temp_difference)) + geom_point() +
 	ylab('Difference in experienced yearly monthly max temperatures (°C)') +
+	xlab("Difference in yearly monthly max temperatures (°C)") 
+
+pop_difs %>% 
+	filter(realm_general2 == "Terrestrial") %>%
+	ggplot(aes(x = temp_difference, y = temp_difference_topt)) + geom_point() +
+	ylab('Difference in topt (°C)') +
 	xlab("Difference in yearly monthly max temperatures (°C)") 
 
 ## split by realm
@@ -72,15 +84,6 @@ pop_difs %>%
 	ggplot(aes(x = abs(elev_2-elev_1), y = temp_difference,col = realm_general2)) + geom_point() +
 	ylab('Difference in yearly monthly max temperatures (°C)') +
 	xlab("Distance in elevation between populations (m)") 
-
-
-
-
-
-
-
-
-
 
 
 
