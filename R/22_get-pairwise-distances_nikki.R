@@ -240,7 +240,8 @@ get_mean_yearly_max <- function() {
 	
 	
 	#### combine all together: -----------------------------------------------------
-	intratherm_maxtemp <- rbind(freshwater, marine, terrestrial)
+	intratherm_maxtemp <- rbind(freshwater, marine, terrestrial) %>%
+		mutate(mean_yearly_max_temp = ifelse(is.infinite(mean_yearly_max_temp), NA, mean_yearly_max_temp))
 	
 	return(intratherm_maxtemp)
 }
@@ -257,7 +258,7 @@ get_mean_yearly_max_overlap <- function() {
 	intra_long <- terr_temps %>% 
 		mutate(date = as.character(date)) %>%
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>%
-		gather(key = temp_id, value = temperature, 4:30) %>% 
+		gather(key = temp_id, value = temperature, 4:88) %>% 
 		group_by(temp_id, year) %>% 
 		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
 		ungroup() %>% 
@@ -277,7 +278,7 @@ get_mean_yearly_max_overlap <- function() {
 	intra_long <- fresh_temps %>% 
 		mutate(date = as.character(date)) %>%
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
-		gather(key = temp_id, value = temperature, 4:284) %>% 
+		gather(key = temp_id, value = temperature, 4:225) %>% 
 		group_by(temp_id, year) %>% 
 		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
 		ungroup() %>% 
@@ -296,7 +297,7 @@ get_mean_yearly_max_overlap <- function() {
 	intra_long <- marine_temps %>% 
 		mutate(date = as.character(date)) %>%
 		separate(date, sep = "-", into = c("year", "months", "days"), remove = FALSE) %>% 
-		gather(key = temp_id, value = temperature, 5:30) %>% 
+		gather(key = temp_id, value = temperature, 5:35) %>% 
 		group_by(temp_id, year) %>% 
 		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
 		ungroup() %>% 
@@ -481,7 +482,7 @@ initialize_pairwise_differences_overlap <- function() {
 	overlap <- get_mean_yearly_max_overlap() %>%
 		select(which(colnames(.) %in% colnames(intratherm)))
 	
-	## combine relevant populations from intratherm with overlap populations:
+	   ## combine relevant populations from intratherm with overlap populations:
 	data <- rbind(intratherm, overlap)
 	
 	## split into chunks of each species
@@ -587,7 +588,7 @@ initialize_pairwise_differences_overlap <- function() {
 			while (z < length(dups) + 1) {
 				## go through each chunk
 				dup <- as.data.frame(dups[z]) 
-				colnames(dup) <- names
+				colnames(dup) <- colnames(species)
 				dup <- dup %>% 
 					select(genus_species, latitude, longitude, elevation_of_collection, 
 						   temp_id, mean_yearly_max_temp, population_source) 
@@ -1019,7 +1020,7 @@ get_experienced_mean_yearly_max_overlap <- function() {
 	intra_long <- terr_temps %>% 
 		mutate(date = as.character(date)) %>%
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>%
-		gather(key = temp_id, value = temperature, 4:30) %>% 
+		gather(key = temp_id, value = temperature, 4:124) %>% 
 		group_by(temp_id, year) %>% 
 		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
 		ungroup() %>% 
@@ -1029,7 +1030,7 @@ get_experienced_mean_yearly_max_overlap <- function() {
 	intra_long_exp <- terr_experienced_temps %>% 
 		mutate(date = as.character(date)) %>%
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
-		gather(key = temp_id, value = temperature, 4:30) %>% 
+		gather(key = temp_id, value = temperature, 4:124) %>% 
 		group_by(temp_id, year) %>% 
 		summarise(experienced_max_temp = max(temperature, na.rm = TRUE)) %>%
 		mutate(experienced_max_temp = ifelse(is.infinite(experienced_max_temp),
@@ -1106,7 +1107,7 @@ get_experienced_mean_yearly_max_overlap <- function() {
 	intra_long <- fresh_temps %>% 
 		mutate(date = as.character(date)) %>%
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>%
-		gather(key = temp_id, value = temperature, 4:465) %>% 
+		gather(key = temp_id, value = temperature, 4:374) %>% 
 		group_by(temp_id, year) %>% 
 		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
 		ungroup() %>% 
@@ -1116,7 +1117,7 @@ get_experienced_mean_yearly_max_overlap <- function() {
 	intra_long_exp <- fresh_experienced_temps %>% 
 		mutate(date = as.character(date)) %>%
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
-		gather(key = temp_id, value = temperature, 4:465) %>% 
+		gather(key = temp_id, value = temperature, 4:374) %>% 
 		group_by(temp_id, year) %>% 
 		summarise(experienced_max_temp = max(temperature, na.rm = TRUE)) %>%
 		mutate(experienced_max_temp = ifelse(is.infinite(experienced_max_temp),
@@ -1189,7 +1190,7 @@ get_experienced_mean_yearly_max_overlap <- function() {
 	intra_long <- marine_temps %>% 
 		mutate(date = as.character(date)) %>%
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>%
-		gather(key = temp_id, value = temperature, 4:32) %>% 
+		gather(key = temp_id, value = temperature, 4:37) %>% 
 		group_by(temp_id, year) %>% 
 		summarise(max_temp = max(temperature, na.rm = TRUE)) %>%
 		ungroup() %>% 
@@ -1199,7 +1200,7 @@ get_experienced_mean_yearly_max_overlap <- function() {
 	intra_long_exp <- marine_experienced_temps %>% 
 		mutate(date = as.character(date)) %>%
 		separate(date, sep = 4, into = c("year", "decimal_year"), remove = FALSE) %>% 
-		gather(key = temp_id, value = temperature, 4:32) %>% 
+		gather(key = temp_id, value = temperature, 4:37) %>% 
 		group_by(temp_id, year) %>% 
 		summarise(experienced_max_temp = max(temperature, na.rm = TRUE)) %>%
 		mutate(experienced_max_temp = ifelse(is.infinite(experienced_max_temp),
@@ -1217,7 +1218,12 @@ get_experienced_mean_yearly_max_overlap <- function() {
 	
 	#### combine all together: -----------------------------------------------------
 	overlap_maxtemp <- rbind(freshwater, marine, terrestrial) %>%
-		mutate(mean_yearly_max_temp = ifelse(is.infinite(mean_yearly_max_temp), NA, mean_yearly_max_temp))
+		mutate(mean_yearly_max_temp = ifelse(is.infinite(mean_yearly_max_temp), NA, mean_yearly_max_temp)) %>%
+		mutate(experienced_mean_yearly_max_temp = ifelse(is.infinite(experienced_mean_yearly_max_temp), NA, 
+														 experienced_mean_yearly_max_temp)) %>%
+		mutate(experienced_mean_yearly_max_temp = ifelse(is.nan(experienced_mean_yearly_max_temp), NA, 
+														 experienced_mean_yearly_max_temp)) %>%
+		select(-latitude_of_raster, -longitude_of_raster)
 	
 	return(overlap_maxtemp)
 }

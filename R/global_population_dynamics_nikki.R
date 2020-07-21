@@ -163,6 +163,7 @@ ol_locs_gdpp <- gpdd_ol %>%
 ol_locs_lpi <- lpi_ol %>%
 	mutate(temp_id = paste(Latitude, Longitude, sep = "_"), LocationID = NA) %>%
 	rename(realm_of_population = System) %>%
+	mutate(realm_of_population = ifelse(str_detect(Class, "Amphibia"), "Terrestrial", as.character(realm_of_population))) %>%
 	select(LocationID, temp_id, realm_of_population, Latitude, Longitude) %>%
 	rename(latitude = Latitude, longitude = Longitude) %>%
 	mutate(population_source = "LPI") %>%
@@ -217,6 +218,7 @@ library(conflicted)
 library(rlist)
 conflict_prefer("select", "dplyr")
 conflict_prefer("filter", "dplyr")
+conflict_prefer("extract", "raster")
 
 latitude <- unique_locs$latitude_of_raster
 longitude <- unique_locs$longitude_of_raster
@@ -312,7 +314,7 @@ while (i < nrow(unique_locs)+1) {
 	i <- i + 1
 }
 
-unique_pairs$raster_mean <- unlist(raster_means, use.names=FALSE)
+unique_locs$raster_mean <- unlist(raster_means, use.names=FALSE)
 
 unique_pairs <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_elevation_popdynam.rds")
 
@@ -331,9 +333,12 @@ unique_pairs <- left_join(unique_pairs, point_elev)
 ol_locs_all <- left_join(ol_locs_all, unique_pairs) 
 
 lpi <- lpi_ol %>%
-	select(genus_species, Latitude, Longitude, System) %>%
+	select(genus_species, Latitude, Longitude, System, Class) %>%
 	unique() %>%
 	rename(latitude = Latitude, longitude = Longitude, realm_of_population = System) %>%
+	mutate(realm_of_population = ifelse(str_detect(Class, "Amphibia"), "Terrestrial", 
+										as.character(realm_of_population))) %>%
+	select(-Class) %>%
 	left_join(., ol_locs_all) %>%
 	filter(population_source == "LPI") %>%
 	arrange(temp_id, latitude, longitude)
@@ -646,7 +651,7 @@ population_overlap <- population_overlap %>%
 
 ## convert from degrees K to degrees C
 converted <- freshwater_temps
-converted[, 2:288] <- converted[, 2:288] - 273.15
+converted[, 2:230] <- converted[, 2:230] - 273.15
 
 ## convert date 
 ## starts at 1958-01-01
