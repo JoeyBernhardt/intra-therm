@@ -6,7 +6,7 @@ library(taxize)
 amphibio <- read.csv("./AmphiBIO_v1/AmphiBIO_v1.csv")
 
 ## subset intratherm to only amphibians 
-amphibs <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv") %>%
+amphibs <- read.csv("./data-processed/intratherm-with-elev.csv") %>%
 	subset(class == "Amphibia") 
 
 ## get species list to look for 
@@ -37,7 +37,7 @@ amphib_species <- rbind(amphibio, amphib_species)
 
 amphibs <- left_join(amphibs, amphib_species) 
 
-non_amphibs <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv") %>%
+non_amphibs <- read.csv("./data-processed/intratherm-with-elev.csv") %>%
 	subset(class != "Amphibia") 
 
 non_amphibs$is.nocturnal <- as.character("NA")
@@ -46,7 +46,7 @@ all_species <- rbind(non_amphibs, amphibs)
 
 
 ## see if synonyms in amphibio:
-amphibs <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv") %>%
+amphibs <- read.csv("./data-processed/intratherm-with-elev.csv") %>%
 	subset(class == "Amphibia") 
 amphib_species <- unique(amphibs$genus_species) %>%
 	droplevels()
@@ -134,11 +134,11 @@ write.csv(template, "./intratherm_nocturnal-traits.csv", row.names = FALSE)
 nocturnal_traits <- read.csv("./data-raw/intratherm_nocturnal-traits-complete.csv")
 
 terrestrial <- terrestrial %>%
-	select(-is.nocturnal)
+	select(-is.nocturnal, -is.nocturnal_source)
 
 merged <- left_join(terrestrial, nocturnal_traits)
 
-non_terrestrial <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv") %>%
+non_terrestrial <- read.csv("./data-processed/intratherm-with-elev.csv") %>%
 	filter(!realm_general2 == "Terrestrial") %>%
 	mutate(is.nocturnal = "NA") %>%
 	mutate(is.nocturnal_source = "NA")
@@ -147,4 +147,4 @@ all <- rbind(non_terrestrial, merged)
 
 
 ## write to file:
-write.csv(all, "./data-processed/intratherm-may-2020-squeaky-clean.csv", row.names = FALSE)
+write.csv(all, "./data-processed/intratherm-with-elev.csv", row.names = FALSE)

@@ -13,6 +13,9 @@ write.csv(pop_difs, "./data-processed/initialize_pairwise_differences_experience
 pop_difs_overlap <- initialize_pairwise_differences_experienced_overlap()
 write.csv(pop_difs_overlap, "./data-processed/initialize_pairwise_differences_experienced_overlap_output.csv", row.names = FALSE)
 
+pop_difs_nichemapr <- initialize_pairwise_differences_nichemapr()
+write.csv(pop_difs_nichemapr, "./data-processed/initialize_pairwise_differences_experienced_and_topt.csv", row.names = FALSE)
+
 ## convert distance between to km 
 pop_difs <- pop_difs %>%
 	mutate(distance_km = distance/1000)
@@ -69,6 +72,13 @@ pop_difs %>%
 	ggplot(aes(x = abs(elev_2-elev_1), y = temp_difference,col = realm_general2)) + geom_point() +
 	ylab('Difference in yearly monthly max temperatures (°C)') +
 	xlab("Distance in elevation between populations (m)") 
+
+
+
+
+
+
+
 
 
 
@@ -640,9 +650,9 @@ initialize_pairwise_differences_overlap <- function() {
 ## no input
 ## returns a dataframe containing pairwise differences in NicheMapR temperatures and distances for terrestrial species
 initialize_pairwise_differences_nichemapr <- function() {
-	topt <- read.delim("./data-processed/OperativeTemperatures.csv", sep = " ") %>%
+	topt <- read.delim("./data-processed/OperativeTemperatures_shade.csv", sep = " ") %>%
 		rename(intratherm_id = ID)
-	intratherm <- read.csv("./data-processed/intratherm-with-elev.csv")%>%
+	intratherm <- read.csv("./data-processed/intratherm-with-elev.csv") %>%
 		select(intratherm_id, genus_species, population_id, class,
 			   is.nocturnal, latitude, longitude, elevation_of_collection, realm_general2) %>%
 		filter(realm_general2 == "Terrestrial") %>%
@@ -651,9 +661,11 @@ initialize_pairwise_differences_nichemapr <- function() {
 	## make column of which topt temperature will be used: 
 	## based on is_nocturnal
 	## if is_nocturnal, use burrow t_opt temp 
-	topt <- left_join(topt, intratherm) %>%
-		mutate(t_opt = ifelse(is.nocturnal == "Y", TeBurrQ75, ## topt in burrow 
-													 TeSunQ75)) ## topt in exposed area 
+	topt <- topt %>%
+		filter(intratherm_id %in% intratherm$intratherm_id) %>%
+		left_join(., intratherm) %>%
+		mutate(t_opt = ifelse(is.nocturnal == "Y", TeBurrQ75, ## topt in burrow (nocturnal)
+													 TeSunQ75)) ## topt in exposed area (diurnal and unk)
 	
 	## split into chunks of each species
 	species_list <- split(topt, topt$genus_species)
@@ -722,9 +734,12 @@ initialize_pairwise_differences_nichemapr <- function() {
 		
 	}
 	
-	all_combinations <- all_combinations[-1,]
+	all_combinations <- all_combinations[-1,] 
 	
-	return (all_combinations)
+	pop_difs_topt <- initialize_pairwise_differences_experienced() %>%
+		left_join(., all_combinations)
+	
+	return (pop_difs_topt)
 }
 #
 ###
@@ -811,7 +826,7 @@ populations_of_species <- function(species, all_combinations) {
 ## "experienced" means mean_yearly_max_temp after temperatures in seasons when that species is away or inactive have been removed 
 get_experienced_mean_yearly_max <- function() {
 
-	intratherm <- read.csv("./data-processed/intratherm-may-2020-squeaky-clean.csv") %>%
+	intratherm <- read.csv("./data-processed/intratherm-with-elev.csv") %>%
 		filter(!is.na(latitude)) %>%
 		filter(!is.na(longitude))
 	
@@ -828,13 +843,6 @@ get_experienced_mean_yearly_max <- function() {
 		mutate(population_id = paste(population_id, longitude, sep = "_"))
 	
 	terrestrial <- terrestrial[!duplicated(terrestrial[,c("genus_species", "latitude", "longitude", "elevation_of_collection")]),]
-	
-	
-	elev <- read.csv("./data-processed/intratherm-with-elev.csv") %>% 
-		filter(realm_general2 == "Terrestrial") %>%
-		mutate(population_id = paste(population_id, longitude, sep = "_"))
-	
-	elev <- elev[!duplicated(elev[,c("genus_species", "latitude", "longitude", "elevation_of_collection")]),]
 	
 	intra_long <- terr_temps %>% 
 		mutate(date = as.character(date)) %>%
@@ -858,11 +866,8 @@ get_experienced_mean_yearly_max <- function() {
 		group_by(population_id) %>% 
 		summarise(experienced_mean_yearly_max_temp = mean(experienced_max_temp, na.rm = TRUE))
 		
-	
 	terrestrial <- left_join(terrestrial, intra_long) %>%
-		left_join(., intra_long_exp) %>%
-		select(-population_id, -elevation_of_collection) %>%
-		left_join(., elev) 
+		left_join(., intra_long_exp)
 	
 	## elevation correction:
 	terrestrial <- terrestrial %>%
@@ -871,9 +876,8 @@ get_experienced_mean_yearly_max <- function() {
 		mutate(experienced_mean_yearly_max_temp = experienced_mean_yearly_max_temp
 			   + 5.5*((raster_mean - elevation_of_collection)/1000)) %>%
 		mutate(mean_yearly_max_temp = mean_yearly_max_temp
-			   + 5.5*((raster_mean - elevation_of_collection)/1000)) %>%
-		select(-raster_mean)
-	
+			   + 5.5*((raster_mean - elevation_of_collection)/1000)) 
+
 	
 	##### Freshwater species: -----------------------------------------------------
 	fresh_temps <- read_csv("./data-processed/intratherm-freshwater-temp-data-daily.csv")
