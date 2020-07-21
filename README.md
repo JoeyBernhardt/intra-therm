@@ -10,4 +10,4 @@ There are multiple versions of the intratherm data.
 
 
 
-[this next version](https://github.com/JoeyBernhardt/intra-therm/blob/master/data-processed/intratherm-may-2020-squeaky-clean.csv) is the most recent version of the database
+[this](https://github.com/JoeyBernhardt/intra-therm/blob/master/data-processed/intratherm-with-elev.csv) is the most recent version of the database
