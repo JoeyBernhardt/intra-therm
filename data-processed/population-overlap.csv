@@ -15,6 +15,7 @@
 "Oreochromis mossambicus",-28.66056,32.25722,"Freshwater",NA,"-28.66056_32.25722","LPI",NA,NA,NA,NA
 "Mugil cephalus",-28.66056,32.25722,"Freshwater",NA,"-28.66056_32.25722","LPI",NA,NA,NA,NA
 "Terapon jarbua",-28.66056,32.25722,"Freshwater",NA,"-28.66056_32.25722","LPI",NA,NA,NA,NA
+"Ranoidea aurea",-29.68333,152.93333,"Terrestrial",NA,"-29.68333_152.93333","LPI",NA,NA,NA,NA
 "Mugil cephalus",-33.545,27.05139,"Marine",NA,"-33.545_27.05139","LPI",NA,NA,NA,NA
 "Oreochromis mossambicus",-33.545,27.05139,"Marine",NA,"-33.545_27.05139","LPI",NA,NA,NA,NA
 "Terapon jarbua",-33.545,27.05139,"Marine",NA,"-33.545_27.05139","LPI",NA,NA,NA,NA
@@ -160,6 +161,7 @@
 "Salmo trutta",43.02139,-76.1975,"Freshwater",NA,"43.02139_-76.1975","LPI",NA,NA,NA,NA
 "Acris crepitans",43.06917,-89.40861,"Terrestrial",NA,"43.06917_-89.40861","LPI",43.5,-89.5,277.981804981213,263
 "Anaxyrus americanus",43.06917,-89.40861,"Terrestrial",NA,"43.06917_-89.40861","LPI",43.5,-89.5,277.981804981213,263
+"Dryophytes versicolor",43.06917,-89.40861,"Terrestrial",NA,"43.06917_-89.40861","LPI",43.5,-89.5,277.981804981213,263
 "Lithobates pipiens",43.06917,-89.40861,"Terrestrial",NA,"43.06917_-89.40861","LPI",43.5,-89.5,277.981804981213,263
 "Pseudacris crucifer",43.06917,-89.40861,"Terrestrial",NA,"43.06917_-89.40861","LPI",43.5,-89.5,277.981804981213,263
 "Lithobates sylvaticus",43.06917,-89.40861,"Terrestrial",NA,"43.06917_-89.40861","LPI",43.5,-89.5,277.981804981213,263
@@ -229,6 +231,8 @@
 "Sander vitreus",44.29,-78.23,"Freshwater",NA,"44.29_-78.23","LPI",NA,NA,NA,NA
 "Desmognathus fuscus",44.35,-68.21667,"Terrestrial",NA,"44.35_-68.21667","LPI",44.5,-68.5,59.623238216527,228
 "Sander vitreus",44.35,-78.5,"Freshwater",NA,"44.35_-78.5","LPI",NA,NA,NA,NA
+"Dryophytes versicolor",44.3525,-78.29722,"Terrestrial",NA,"44.3525_-78.29722","LPI",NA,NA,NA,NA
+"Dryophytes versicolor",44.36667,-78.28333,"Terrestrial",NA,"44.36667_-78.28333","LPI",NA,NA,NA,NA
 "Lithobates clamitans",44.42389,-81.10944,"Terrestrial",NA,"44.42389_-81.10944","LPI",44.5,-81.5,207.228231478471,233
 "Anaxyrus boreas",44.43113,-121.90963,"Terrestrial",NA,"44.43113_-121.90963","LPI",44.5,-121.5,1108.961182525,1211
 "Osmerus mordax",44.43667,-79.33917,"Freshwater",NA,"44.43667_-79.33917","LPI",NA,NA,NA,NA
@@ -237,6 +241,7 @@
 "Coregonus clupeaformis",45,-82,"Freshwater",NA,"45_-82","LPI",NA,NA,NA,NA
 "Anaxyrus americanus",45,-85,"Terrestrial",NA,"45_-85","LPI",44.5,-85.5,304.631789200203,285
 "Lithobates clamitans",45,-85,"Terrestrial",NA,"45_-85","LPI",44.5,-85.5,304.631789200203,285
+"Dryophytes versicolor",45,-85,"Terrestrial",NA,"45_-85","LPI",44.5,-85.5,304.631789200203,285
 "Lithobates pipiens",45,-85,"Terrestrial",NA,"45_-85","LPI",44.5,-85.5,304.631789200203,285
 "Pseudacris crucifer",45,-85,"Terrestrial",NA,"45_-85","LPI",44.5,-85.5,304.631789200203,285
 "Lithobates sylvaticus",45,-85,"Terrestrial",NA,"45_-85","LPI",44.5,-85.5,304.631789200203,285
@@ -323,6 +328,7 @@
 "Oncorhynchus kisutch",49.216128,-123.52794,"Freshwater",NA,"49.216128_-123.52794","LPI",NA,NA,NA,NA
 "Lithobates clamitans",49.25,-84.499722,"Freshwater",NA,"49.25_-84.499722","LPI",49.5,-84.5,284.305632579498,308
 "Anaxyrus americanus",49.25,-84.499722,"Freshwater",NA,"49.25_-84.499722","LPI",49.5,-84.5,284.305632579498,308
+"Dryophytes versicolor",49.25,-84.499722,"Freshwater",NA,"49.25_-84.499722","LPI",49.5,-84.5,284.305632579498,308
 "Pseudacris crucifer",49.25,-84.499722,"Freshwater",NA,"49.25_-84.499722","LPI",49.5,-84.5,284.305632579498,308
 "Lithobates sylvaticus",49.25,-84.499722,"Freshwater",NA,"49.25_-84.499722","LPI",49.5,-84.5,284.305632579498,308
 "Lithobates pipiens",49.25,-84.499722,"Freshwater",NA,"49.25_-84.499722","LPI",49.5,-84.5,284.305632579498,308
@@ -489,8 +495,6 @@
 "Osmerus mordax",70.18083,-148.04556,"Freshwater",NA,"70.18083_-148.04556","LPI",NA,NA,NA,NA
 "Salvelinus alpinus",71.205,-116.625,"Freshwater",NA,"71.205_-116.625","LPI",NA,NA,NA,NA
 "Ischnura elegans",52.4333333333333,-0.183333333333333,"Freshwater",411,"52.4333333333333_-0.183333333333333","GPDD",NA,NA,NA,NA
-"Ischnura elegans",52.4333333333333,-0.183333333333333,"Freshwater",411,"52.4333333333333_-0.183333333333333","GPDD",NA,NA,NA,NA
-"Dicentrarchus labrax",51.25,-4.05,"Freshwater",83,"51.25_-4.05","GPDD",NA,NA,NA,NA
 "Dicentrarchus labrax",51.25,-4.05,"Freshwater",83,"51.25_-4.05","GPDD",NA,NA,NA,NA
 "Perca fluviatilis",54.3333333333333,-2.91666666666667,"Freshwater",1041,"54.3333333333333_-2.91666666666667","GPDD",NA,NA,NA,NA
 "Perca fluviatilis",54.3333333333333,-2.91666666666667,"Freshwater",1042,"54.3333333333333_-2.91666666666667","GPDD",NA,NA,NA,NA
@@ -528,7 +532,6 @@
 "Sardinops sagax",-21,-70.5,"Marine",10133,"-21_-70.5","GPDD",NA,NA,NA,NA
 "Oncorhynchus mykiss",-50.6,127.4,"Marine",10444,"-50.6_127.4","GPDD",NA,NA,NA,NA
 "Esox lucius",54.3333333333333,-2.95,"Freshwater",10110,"54.3333333333333_-2.95","GPDD",NA,NA,NA,NA
-"Gasterosteus aculeatus",51.25,-4.05,"Freshwater",83,"51.25_-4.05","GPDD",NA,NA,NA,NA
 "Gasterosteus aculeatus",51.25,-4.05,"Freshwater",83,"51.25_-4.05","GPDD",NA,NA,NA,NA
 "Notophthalmus viridescens",33.3,-81.485,"Terrestrial",10877,"33.3_-81.485","GPDD",33.5,-81.5,97.1778823462229,109
 "Plethodon jordani",35.55,-83.2,"Terrestrial",10878,"35.55_-83.2","GPDD",35.5,-83.5,780.733758088476,1141
