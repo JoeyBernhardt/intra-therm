@@ -79,6 +79,11 @@ ol <- left_join(overlap_gdata, overlap_main) %>%
 	left_join(., location, by = "LocationID") %>%
 	distinct()
 
+## 0_0 - from Klicava Reservoir, coordinates should be 50.08, 13.9
+ol$LatDD[which(ol$LocationID == 10323)]  <- 50.08
+ol$LongDD[which(ol$LocationID == 10323)]  <- 13.9
+
+
 ol %>% 
 	mutate(unique_population = paste(TaxonName, MainID, sep = "_")) %>% 
 	select(unique_population, everything()) %>% 
@@ -612,11 +617,6 @@ unique_pairs <- ol_locs_all %>%
 	rbind(., marine_missing) %>%
 	filter(!duplicated(temp_id))
 
-## 0_0 - from Klicava Reservoir, coordinates should be 50.08, 13.9
-unique_pairs$latitude[which(unique_pairs$temp_id == "0_0")]  <- 50.08
-unique_pairs$longitude[which(unique_pairs$temp_id == "0_0")]  <- 13.9
-unique_pairs$temp_id[which(unique_pairs$temp_id == "0_0")]  <- "50.08_13.9"
-
 ## open nc file and get lat lon and time vectors
 filename <- paste("watertemperature_wfd_historical_1958-2001.nc", sep = "")
 ncfile <- nc_open(filename)
@@ -806,7 +806,7 @@ library(rlist)
 population_overlap <- read.csv("data-processed/population-overlap.csv", stringsAsFactors = FALSE) %>%
 	filter(population_source == "LPI") %>%
 	select(genus_species, realm_of_population, temp_id)
-lpi_ol <- read.csv("data-processed/lpi-intratherm-overlap_nikki.csv") %>%
+lpi_ol <- read.csv("data-processed/lpi-intratherm-overlap_nikki.csv", stringsAsFactors = FALSE) %>%
 	arrange(Binomial, ID, Location, year) %>% ## each goes from 1950-2015 and has NA for missing years 
 	mutate(population_id = paste(genus_species, Latitude, Longitude, ID, sep = "_")) %>%
 	mutate(temp_id = paste(Latitude, Longitude, sep = "_")) %>%
@@ -870,13 +870,16 @@ while (i < length(pops_by_realm)+1) {
 		
 		pop$temperature <- unlist(temps[first:last,which(colnames(temps) ==
 															  	pop$temp_id[1])])
-		if(is.na(first(which(!is.na(pop$abundance))))) {
+		
+		## check if no abundance data within period we have temperature data for:
+		if(length(which(is.na(pop$abundance))) == nrow(pop)) {
 			x = x+1
 		}
-			
+		## check if no temperature data for that species:
 		else if(is.null(pop$temperature)) {
 			x = x+1
 		}
+		
 		else {
 			pop <- pop %>%
 				.[first(which(!is.na(.$abundance))):
@@ -890,7 +893,7 @@ while (i < length(pops_by_realm)+1) {
 			
 			z = z+1
 			x = x+1	
-		}
+		 }
 	}
 	
 	i = i+1
@@ -909,7 +912,8 @@ gpdd_ol <- read.csv("data-processed/intratherm-gpdd_nikki.csv", stringsAsFactors
 unique(gpdd_ol$SamplingUnits)
 
 pops_by_realm <- gpdd_ol %>%
-	select(population_id, temp_id, SampleYear, Population, realm_of_population, DecimalYearBegin, SamplingUnits) %>%
+	select(population_id, temp_id, SampleYear, Population, realm_of_population, 
+		   DecimalYearBegin, SamplingUnits) %>%
 	distinct() %>%
 	split(., gpdd_ol$realm_of_population) 
 
@@ -950,8 +954,14 @@ while(i < length(pops_by_realm)+1) {
 		start <- min(pop$year)
 		end <- max(pop$year)
 		
-		if (end < last) {
-			## move on to next one
+		## check if abundance time series ends before temp time series begins
+		if (end < first) {
+			## move on to next population
+			x = x+1
+		}
+		## check if temp time series ends before abundance time series begins
+		else if (last < start) {
+			## move on to next population
 			x = x+1
 		}
 		
@@ -993,8 +1003,12 @@ while(i < length(pops_by_realm)+1) {
 				pop$temperature <- unlist(temps[first_year:last_year,which(colnames(temps) ==
 																		   	pop$temp_id[1])])
 			}
-			
 			else {
+				## check if gaps between years of sampling:
+				if(length(start:end) != length(unique(pop$year))) {
+					years <- tibble(year = start:end)
+					pop <- left_join(years, pop, by = "year")
+				}
 				pop <- left_join(pop, temps[first_year:last_year,1:2], by = c("year")) %>%
 					group_by(year) %>%
 					mutate(abundance = replace(abundance, duplicated(abundance), NA)) %>%
@@ -1004,14 +1018,7 @@ while(i < length(pops_by_realm)+1) {
 																		   	pop$temp_id[1])])
 			}
 			
-			# if(is.na(first(which(!is.na(pop$abundance))))) {
-			# 	x = x+1
-			# }
-			# 
-			# else if(is.null(pop$temperature)) {
-			# 	x = x+1
-			# }
-			# else {
+			
 			pop <- pop %>%
 				.[first(which(!is.na(.$abundance))):
 				  	last(which(.$year == .$year[last(which(!is.na(.$abundance)))])),] %>%
@@ -1022,16 +1029,15 @@ while(i < length(pops_by_realm)+1) {
 			
 			z = z+1
 			x = x+1	
-		}
 	
-		# }
+		}
 	}
 	
 	i = i+1
 }
 
 ## try plotting one:
-data <- pops_new$`Heterandria formosa_27.68333_-80.73333_4993`
+data <- pops_new$`Pseudacris regilla_41_-123.53333_7662`
 ggplot(data = data, aes(x = date, y = temperature)) + geom_line() +
 	geom_line(data = na.omit(data), colour = "red")
 
