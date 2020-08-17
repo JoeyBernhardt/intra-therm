@@ -21,7 +21,7 @@ multi_acc <- intratherm %>%
 ## make predictions for each population based on groups of each species:
 arr_fits <- intratherm %>% 
 	filter(parameter_tmax_or_tmin == "tmax") %>% 
-	filter(!is.na(acclim_temp)) %>%
+	filter(!is.na(acclmultiim_temp)) %>%
 	filter(population_id %in% c(multi_acc$population_id)) %>% 
 	group_by(genus_species) %>% 
 	filter(length(unique(acclim_temp)) > 1) %>%
