@@ -8,7 +8,7 @@ theme_set(theme_cowplot())
 
 
 #######################################################
-## FIGURE OUT WHICH SPECIES  OVERLAP WITH INTRATHERM ##
+## FIGURE OUT WHICH SPECIES OVERLAP WITH INTRATHERM  ##
 #######################################################
 taxa <- gpdd_taxon
 gdata <- gpdd_data
@@ -83,6 +83,9 @@ ol <- left_join(overlap_gdata, overlap_main) %>%
 ol$LatDD[which(ol$LocationID == 10323)]  <- 50.08
 ol$LongDD[which(ol$LocationID == 10323)]  <- 13.9
 
+location$LatDD[which(location$LocationID == 10323)]  <- 50.08
+location$LongDD[which(location$LocationID == 10323)]   <- 13.9
+
 
 ol %>% 
 	mutate(unique_population = paste(TaxonName, MainID, sep = "_")) %>% 
@@ -151,6 +154,229 @@ lpi_over <- lpi %>%
 
 write_csv(lpi_over, "data-processed/lpi-intratherm-overlap_nikki.csv")
 
+## BioTIME
+## cleaning the BioTIME/intratherm species overlap data
+library(tidyverse)
+library(taxize)
+
+intratherm <- read.csv("data-processed/intratherm-with-elev.csv", stringsAsFactors = FALSE)
+biotime <- read.csv("data-raw/BioTIMEQuery02_04_2018.csv", stringsAsFactors = FALSE)
+
+over_species <- intersect(unique(biotime$SPECIES), unique(intratherm$species))
+
+ol_species <- biotime %>%
+	filter(SPECIES %in% over_species)
+
+names <- unique(ol_species$GENUS_SPECIES)
+tsn_search <- get_tsn(as.character(names), accepted = FALSE) ## find tsn for each unique taxa
+tsn_search <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/tsn_search_popdynam_biotime.rds")
+tsns <- data.frame(tsn_search) %>%
+	mutate(taxa = names)
+
+found <- tsns %>%
+	subset(match == "found") 
+
+report <- lapply(found$ids, itis_acceptname)
+report_df <- data.frame(matrix(unlist(report), nrow=914, byrow=T),stringsAsFactors=FALSE)
+report_df <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/report_df_popdynam_biotime.rds")
+
+found <- found %>%
+	mutate(genus_species_corrected = report_df$X2)
+
+merged_unique <- left_join(tsns, found) %>%
+	mutate(taxa = as.character(taxa)) %>%
+	mutate(genus_species = taxa) %>%
+	select(genus_species, taxa, genus_species_corrected)
+
+## if names found are not accepted names, then change to accepted name
+i = 1
+while (i < length(merged_unique$taxa)+1) {
+	if (!is.na(merged_unique$genus_species_corrected[i])) {
+		merged_unique$taxa[i] <- merged_unique$genus_species_corrected[i]
+	}
+	i = i+1
+}
+
+overlap <- intersect(unique(merged_unique$taxa), unique(intratherm$genus_species))
+
+merged_unique <- merged_unique %>%
+	filter(taxa %in% overlap) %>%
+	filter(!duplicated(taxa))
+
+over_biotime <- ol_species %>% 
+	left_join(., merged_unique, by = c("GENUS_SPECIES" = "genus_species")) %>%
+	rename(genus_species_intra = taxa) %>%
+	select(-genus_species_corrected) %>%
+	filter(GENUS_SPECIES %in% merged_unique$taxa) 
+
+meta <- read.csv("data-raw/BioTIMEMetadata_02_04_2018.csv", stringsAsFactors = FALSE)
+
+ol <- left_join(over_biotime, meta, by = "STUDY_ID") %>%
+	filter(!str_detect(DATA_SOURCE, "Global Population Dynamics Database")) %>%
+	arrange(STUDY_ID, SAMPLE_DESC, GENUS_SPECIES, YEAR) %>%
+	select(STUDY_ID, SAMPLE_DESC, GENUS_SPECIES, YEAR, sum.allrawdata.ABUNDANCE, 
+		   sum.allrawdata.BIOMASS, everything()) %>%
+	mutate(GENUS_SPECIES = genus_species_intra) %>%  
+	select(-X, -genus_species_intra) 
+
+
+## make data frame of all sampled dates for each location so can add 0 abundance for days sampled but not found
+sample_dates <- biotime %>%
+	filter(STUDY_ID %in% ol$STUDY_ID) %>% ## remove studies that we don't have populations from
+	group_by(STUDY_ID) %>%
+	arrange(STUDY_ID, YEAR, MONTH, DAY) %>%
+	select(YEAR, MONTH, DAY, STUDY_ID) %>%
+	distinct() %>%
+	mutate(decimal_date = (MONTH*30+DAY)/365 + YEAR) %>% ## create decimal_date column for each sampling time
+	mutate(decimal_date = ifelse(is.na(MONTH) & is.na(DAY), YEAR, decimal_date)) %>%
+	filter(!is.na(decimal_date)) %>% 
+	select(decimal_date, STUDY_ID) %>%
+	ungroup()
+
+## STUDY_ID = 57, change info for this study alone:
+fiftysev_dates <- filter(sample_dates, sample_dates$STUDY_ID == 57)
+
+fiftysev <- ol %>%
+	filter(STUDY_ID == 57) %>%
+	mutate(lake = str_split_fixed(SAMPLE_DESC, pattern = "_", n = 6)[,4]) %>%
+	mutate(decimal_date = (MONTH*30+DAY)/365 + YEAR) %>% ## create decimal_date column for each sampling time
+	mutate(decimal_date = ifelse(is.na(MONTH) & is.na(DAY), YEAR, decimal_date)) %>%
+	left_join(fiftysev_dates, ., by = c("STUDY_ID", "decimal_date")) %>%
+	droplevels() %>%
+	fill(-YEAR, -DAY, -MONTH, -sum.allrawdata.ABUNDANCE, 
+		 -sum.allrawdata.BIOMASS, .direction = "updown")%>% 
+	group_by(STUDY_ID) %>%
+	left_join(expand(., decimal_date, GENUS_SPECIES),.) %>%
+	arrange(STUDY_ID, GENUS_SPECIES, decimal_date) %>% ## merge so each study has each combination of sampling time x species
+	ungroup() %>%
+	mutate(sum.allrawdata.ABUNDANCE = 
+		   	ifelse(is.na(sum.allrawdata.ABUNDANCE), 0, sum.allrawdata.ABUNDANCE)) %>% ## replace missing abundance with 0
+	mutate(sum.allrawdata.BIOMASS = 
+		   	ifelse(is.na(sum.allrawdata.BIOMASS), 0, sum.allrawdata.BIOMASS)) %>%
+	fill(-DAY, -YEAR, -MONTH, -GENUS, -SPECIES, .direction = "updown") %>%
+	group_by(decimal_date, GENUS_SPECIES, STUDY_ID) %>%
+	mutate(GENUS = str_split_fixed(GENUS_SPECIES, n=2, " ")[,1]) %>%
+	mutate(SPECIES = str_split_fixed(GENUS_SPECIES, n=2, " ")[,2]) %>%
+	add_count() %>%
+	mutate(sum.allrawdata.ABUNDANCE = sum(sum.allrawdata.ABUNDANCE)/n) %>% ## get average abundance of samples taken in same time point + at same loc + same species 
+	mutate(sum.allrawdata.BIOMASS = sum(sum.allrawdata.BIOMASS)/n) %>%
+	ungroup() %>%
+	.[!duplicated(.[,c("decimal_date","sum.allrawdata.ABUNDANCE",
+					   "sum.allrawdata.BIOMASS","GENUS_SPECIES")]),] %>% ## get rid of duplicates 
+	arrange(STUDY_ID, GENUS_SPECIES, decimal_date, YEAR, MONTH, DAY) %>%
+	select(-n, -SAMPLE_DESC)
+
+
+new_info <- data.frame(matrix(byrow = TRUE, nrow = 10, ncol = 5, 
+							  c("AL", "Allequash", "46.038", "-89.621", "1981",
+							    "BM", "Big Muskellunge", "46.021", "-89.612", "1981", 
+							    "CR", "Crystal", "46.003", "-89.612", "1981", 
+							    "SP", "Sparkling", "46.008", "-89.701", "1981", 
+							    "TR", "Trout", "46.029", "-89.665", "1981", 
+							    "TB", "Trout Bog", "46.041", "-89.686", "1981", 
+							    "ME", "Mendota", "43.099", "-89.405", "1981", 
+							    "MO", "Monona", "43.063", "-89.361", "1995", 
+							    "WI", "Wingra", "43.053", "-89.425", "1995", 
+							    "FI", "Fish", "43.287", "-89.652", "1995")))
+
+colnames(new_info) <- c("lake", "lake_name", "lat", "lon", "start_year")
+
+fiftysev <- left_join(fiftysev, new_info, by = "lake") %>%
+	mutate(LATITUDE = lat, LONGITUDE = lon, START_YEAR = start_year) %>%
+	select(-lat, -lon, -start_year, -lake, -lake_name) 
+
+ol <- ol %>%
+	select(-SAMPLE_DESC) %>%
+	arrange(STUDY_ID)
+
+
+## marine studies: treating whole study as one sampling location
+## look into how to deal with grain size later
+
+studyIDs <- ol %>% 
+	mutate(LATITUDE = CENT_LAT) %>% ## change lat and lon to central lat and lon of study
+	mutate(LONGITUDE = CENT_LONG) %>%
+	mutate(decimal_date = (MONTH*30+DAY)/365 + YEAR) %>% ## create decimal_date column for each sampling time
+	mutate(decimal_date = ifelse(is.na(MONTH) & is.na(DAY), YEAR, decimal_date)) %>%
+	arrange(STUDY_ID, GENUS_SPECIES, decimal_date, YEAR, MONTH, DAY) %>%
+	unique() %>%
+	split(., .$STUDY_ID, .$GENUS_SPECIES) 
+
+new_ol <- c()
+
+## merge so each study has each combination of sampling time x species
+i = 1
+while(i < length(studyIDs) + 1) {
+	species <- split(studyIDs[[i]], studyIDs[[i]]$GENUS_SPECIES)
+	dates <- sample_dates %>%
+		filter(STUDY_ID == unique(species[[1]]$STUDY_ID))
+	
+	z = 1
+	while(z < length(species) + 1) {
+		current_species <- left_join(dates, species[[z]], by = c("decimal_date", "STUDY_ID")) %>%
+			fill(-DAY, -YEAR, -MONTH, -sum.allrawdata.ABUNDANCE, -sum.allrawdata.BIOMASS, .direction = "updown")
+		
+		new_ol <- rbind(new_ol, current_species)
+		
+		z = z + 1
+	}
+	i = i + 1
+}
+
+
+new_ol <- new_ol %>%
+	mutate(sum.allrawdata.ABUNDANCE = 
+		   	ifelse(is.na(sum.allrawdata.ABUNDANCE), 0, sum.allrawdata.ABUNDANCE)) %>% ## replace missing abundance with 0
+	mutate(sum.allrawdata.BIOMASS = 
+		   	ifelse(is.na(sum.allrawdata.BIOMASS), 0, sum.allrawdata.BIOMASS)) %>%
+	group_by(decimal_date, GENUS_SPECIES, STUDY_ID) %>%
+	add_count() %>%
+	mutate(sum.allrawdata.ABUNDANCE = sum(sum.allrawdata.ABUNDANCE)/n) %>% ## get average abundance of samples taken in same time point + at same loc + same species 
+	mutate(sum.allrawdata.BIOMASS = sum(sum.allrawdata.BIOMASS)/n) %>%
+	ungroup() %>%
+	.[!duplicated(.[,c("decimal_date","sum.allrawdata.ABUNDANCE",
+					   "sum.allrawdata.BIOMASS","GENUS_SPECIES", "STUDY_ID")]),] %>% ## get rid of duplicates 
+	arrange(STUDY_ID, GENUS_SPECIES, decimal_date, YEAR, MONTH, DAY) %>%
+	select(-n)
+
+## add back study 57
+ol <- new_ol %>%
+	filter(STUDY_ID != 57) %>%
+	rbind(., fiftysev) %>%
+	select(decimal_date, everything()) %>%
+	group_by(STUDY_ID) %>%
+	mutate(sample_type = case_when(
+		length(which(sum.allrawdata.ABUNDANCE == 0)) == length(sum.allrawdata.ABUNDANCE) ~ "biomass",
+		length(which(sum.allrawdata.BIOMASS == 0)) == length(sum.allrawdata.BIOMASS) ~ "abundance",
+		TRUE ~ "both"
+	)) %>% ## add column for type of abundance
+	ungroup() %>%
+	mutate(sum.allrawdata.ABUNDANCE = ifelse(sample_type == "biomass", 
+											 NA, sum.allrawdata.ABUNDANCE)) %>%
+	mutate(sum.allrawdata.BIOMASS = ifelse(sample_type == "abundance", 
+										   NA, sum.allrawdata.BIOMASS)) %>%
+	select(-YEAR, -DAY, -MONTH)
+
+
+write_csv(ol, "data-processed/intratherm-biotime_nikki.csv")
+
+
+## try plotting them 
+ol %>% 
+	mutate(unique_population = paste(GENUS_SPECIES, STUDY_ID, LATITUDE, LONGITUDE,sep = "_")) %>% 
+	select(unique_population, everything()) %>% 
+	ggplot(aes(x = decimal_date, y = sum.allrawdata.BIOMASS, group = unique_population, color = GENUS_SPECIES)) + 
+	geom_line() +
+	theme(legend.position = "none")
+
+ol %>% 
+	filter(sample_type == "abundance") %>%
+	mutate(unique_population = paste(GENUS_SPECIES, STUDY_ID, LATITUDE, LONGITUDE,sep = "_")) %>% 
+	ggplot(aes(x = decimal_date, y = sum.allrawdata.ABUNDANCE, group = unique_population, color = GENUS_SPECIES)) + 
+	geom_line() +
+	theme(legend.position = "none")
+
+
 
 
 
@@ -158,14 +384,16 @@ write_csv(lpi_over, "data-processed/lpi-intratherm-overlap_nikki.csv")
 ## getting temperature data for popultions with known population dynamics to predict CTmax
 ##########################################################################################
 intratherm <- read.csv("data-processed/intratherm-with-elev.csv", stringsAsFactors = FALSE) %>%
-	select(genus_species, realm_general2)
+	select(genus_species, realm_general2, class)
 lpi_ol <- read.csv("data-processed/lpi-intratherm-overlap_nikki.csv", stringsAsFactors = FALSE)
-gpdd_ol <- read.csv( "data-processed/intratherm-gpdd_nikki.csv", stringsAsFactors = FALSE)
-location <- gpdd_location
+gpdd_ol <- read.csv("data-processed/intratherm-gpdd_nikki.csv", stringsAsFactors = FALSE) 
+biotime_ol <- read.csv("data-processed/intratherm-biotime_nikki.csv",  stringsAsFactors = FALSE) %>%
+	inner_join(., select(intratherm, c("genus_species", "class")), 
+			  by = c("GENUS_SPECIES" = "genus_species")) 
 
 ## figure out realm of populations 
 ol_locs_gdpp <- gpdd_ol %>%
-	left_join(., intratherm) %>% 
+	left_join(., select(intratherm, c("genus_species", "realm_general2"))) %>% 
 	select(realm_general2, LocationID) %>%
 	unique() %>%
 	left_join(location[location$LocationID %in% unique(gpdd_ol$LocationID),], .) %>%
@@ -176,20 +404,29 @@ ol_locs_gdpp <- gpdd_ol %>%
 	) %>%
 	select(LocationID, realm_of_population, LatDD, LongDD, -realm_general2) %>%
 	mutate(temp_id = paste(LatDD, LongDD, sep = "_")) %>%
-	rename(latitude = LatDD, longitude = LongDD) %>%
+	rename(latitude = LatDD, longitude = LongDD, StudyID = LocationID) %>%
 	mutate(population_source = "GPDD") %>%
 	distinct()
 
 ol_locs_lpi <- lpi_ol %>%
-	mutate(temp_id = paste(Latitude, Longitude, sep = "_"), LocationID = NA) %>%
+	mutate(temp_id = paste(Latitude, Longitude, sep = "_"), StudyID = NA) %>%
 	rename(realm_of_population = System) %>%
 	mutate(realm_of_population = ifelse(str_detect(Class, "Amphibia"), "Terrestrial", as.character(realm_of_population))) %>%
-	select(LocationID, temp_id, realm_of_population, Latitude, Longitude) %>%
+	select(StudyID, temp_id, realm_of_population, Latitude, Longitude) %>%
 	rename(latitude = Latitude, longitude = Longitude) %>%
 	mutate(population_source = "LPI") %>%
 	unique()
 
-ol_locs_all <- rbind(ol_locs_lpi, ol_locs_gdpp)
+ol_locs_biotime <- biotime_ol %>%
+	mutate(temp_id = paste(LATITUDE, LONGITUDE, sep = "_")) %>%
+	rename(realm_of_population = REALM, StudyID = STUDY_ID, 
+		   latitude = LATITUDE, longitude = LONGITUDE) %>%
+	mutate(realm_of_population = ifelse(str_detect(class, "Amphibia"), "Terrestrial", as.character(realm_of_population))) %>%
+	select(StudyID, temp_id, realm_of_population, latitude, longitude) %>%
+	mutate(population_source = "BioTIME") %>%
+	unique()
+
+ol_locs_all <- rbind(ol_locs_lpi, ol_locs_gdpp, ol_locs_biotime)
 
 
 #########################################################
@@ -335,8 +572,11 @@ while (i < nrow(unique_locs)+1) {
 	i <- i + 1
 }
 
-unique_locs$raster_mean <- unlist(raster_means, use.names=FALSE)
+unique_locs$raster_mean = unlist(raster_means, use.names=FALSE)
+
+saveRDS(unique_locs, "~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_elevation_popdynam.rds")
 unique_pairs <- readRDS("~/Documents/SUNDAY LAB/Intratherm/Data sheets/precious_elevation_popdynam.rds")
+
 
 ########################################
 ##       GETTING POINT ELEVATION      ##
@@ -368,10 +608,24 @@ gpdd <- gpdd_ol %>%
 	unique() %>%
 	left_join(.,location[location$LocationID %in% unique(gpdd_ol$LocationID),]) %>%
 	select(TaxonName, LatDD, LongDD, LocationID) %>%
-	rename(latitude = LatDD, longitude = LongDD, genus_species = TaxonName) %>%
+	rename(latitude = LatDD, longitude = LongDD, genus_species = TaxonName, StudyID = LocationID) %>%
 	left_join(., ol_locs_all)
 
-population_overlap <- rbind(lpi, gpdd)
+biotime <- biotime_ol %>%
+	select(GENUS_SPECIES, LATITUDE, LONGITUDE, REALM, class, STUDY_ID) %>%
+	rename(latitude = LATITUDE, longitude = LONGITUDE, 
+		   realm_of_population = REALM, StudyID = STUDY_ID, genus_species = GENUS_SPECIES) %>%
+	mutate(realm_of_population = ifelse(str_detect(class, "Amphibia"), "Terrestrial", 
+										as.character(realm_of_population))) %>%
+	select(-class) %>%
+	left_join(., ol_locs_all) %>%
+	arrange(temp_id, latitude, longitude) %>%
+	distinct()
+	
+
+population_overlap <- rbind(lpi, gpdd, biotime) %>%
+	arrange(realm_of_population, population_source) %>%
+	select(-latitude_of_raster, -longitude_of_raster)
 
 
 
@@ -564,7 +818,7 @@ unique_pairs <- unique_pairs %>%
 
 ## create dataframe for temp data
 ## nValues for time attribute = 14096
-temperature_data <- data.frame(matrix(nrow = 14096))
+temperature_data <- data.frame(matrix(nrow = 14094))
 colnames(temperature_data) = c("date")
 
 ## loop through each population getting temp data for its grid cell and adding to temp data
@@ -666,7 +920,7 @@ population_overlap <- population_overlap %>%
 
 ## convert from degrees K to degrees C
 converted <- freshwater_temps
-converted[, 2:230] <- converted[, 2:230] - 273.15
+converted[, 2:256] <- converted[, 2:256] - 273.15
 
 ## convert date 
 ## starts at 1958-01-01
@@ -749,7 +1003,7 @@ unique_pairs <- unique_pairs %>%
 	filter(!duplicated(temp_id)) %>%
 	filter(!temp_id %in% colnames(marine_temps))
 
-temperature_data <- data.frame(matrix(nrow = 14096))
+temperature_data <- data.frame(matrix(nrow = 14094))
 colnames(temperature_data) = c("date")
 
 ## loop through each population getting temp data for its grid cell and adding to temp data
@@ -802,6 +1056,7 @@ write.csv(population_overlap, "data-processed/population-overlap.csv", row.names
 ## later add predicted CTmax time series to array
 #############################################################################################
 library(rlist)
+library(lubridate)
 
 population_overlap <- read.csv("data-processed/population-overlap.csv", stringsAsFactors = FALSE) %>%
 	filter(population_source == "LPI") %>%
@@ -836,8 +1091,13 @@ while (i < length(pops_by_realm)+1) {
 	}
 	else if (i == 2) {
 		temps <- read_csv("data-processed/intratherm-marine-temp-data_popdynam.csv") %>%
+			separate(date, sep = " ", into = c("nondec_date"), remove = FALSE) %>%
 			separate(date, sep = "-", into = c("year"), remove = FALSE) %>%
-			mutate(year = as.integer(year))
+			mutate(nondec_date = as_date(nondec_date)) %>%
+			mutate(date = decimal_date(nondec_date)) %>%
+			select(-nondec_date) %>%
+			mutate(year = as.integer(year)) %>%
+			mutate(date = as.numeric(as.character(date)))
 		first <- first(which(temps$year == 1981))
 		last <- first(which(temps$year == 2016)) - 1
 	}
@@ -886,7 +1146,8 @@ while (i < length(pops_by_realm)+1) {
 				  	last(which(.$year == .$year[last(which(!is.na(.$abundance)))])),] 
 			
 			pop <- pop %>%
-				select(population_id, date, abundance, units, temperature) 
+				select(population_id, date, abundance, units, temperature) %>%
+				mutate(date = as.numeric(as.character(date)))
 			
 			pops_new <- list.append(pops_new, pop)
 			names(pops_new)[z] <- pop$population_id[1]
@@ -902,12 +1163,12 @@ while (i < length(pops_by_realm)+1) {
 ## now add populations from gpdd
 population_overlap <- read.csv("data-processed/population-overlap.csv", stringsAsFactors = FALSE) %>%
 	filter(population_source == "GPDD") %>%
-	select(genus_species, realm_of_population, temp_id, LocationID)
+	select(genus_species, realm_of_population, temp_id, StudyID)
 gpdd_ol <- read.csv("data-processed/intratherm-gpdd_nikki.csv", stringsAsFactors = FALSE) %>%
 	mutate(temp_id = paste(LatDD, LongDD, sep = "_")) %>%
 	arrange(TaxonName, MainID, LocationID, SampleYear) %>%
 	mutate(population_id = paste(TaxonName, LatDD, LongDD, MainID, sep = "_")) %>%
-	left_join(., population_overlap, by = c("TaxonName" = "genus_species", "temp_id", "LocationID"))
+	left_join(., population_overlap, by = c("TaxonName" = "genus_species", "temp_id", "LocationID" = "StudyID"))
 
 unique(gpdd_ol$SamplingUnits)
 
@@ -925,21 +1186,28 @@ while(i < length(pops_by_realm)+1) {
 	if(i == 1) {
 		temps <- read_csv("data-processed/intratherm-freshwater-temp-data-daily_popdynam.csv") %>%
 			separate(date, sep = 4, into = c("year"), remove = FALSE)  %>%
-			mutate(year = as.integer(year))
+			mutate(year = as.integer(year)) %>%
+			mutate(date = as.numeric(as.character(date)))
 		first = 1958
 		last = 2001
 	}
 	else if (i == 2) {
 		temps <- read_csv("data-processed/intratherm-marine-temp-data_popdynam.csv") %>%
+			separate(date, sep = " ", into = c("nondec_date"), remove = FALSE) %>%
 			separate(date, sep = "-", into = c("year"), remove = FALSE) %>%
-			mutate(year = as.integer(year))
+			mutate(nondec_date = as_date(nondec_date)) %>%
+			mutate(date = decimal_date(nondec_date)) %>%
+			select(-nondec_date) %>%
+			mutate(year = as.integer(year)) %>%
+			mutate(date = as.numeric(as.character(date)))
 		first = 1981
 		last = 2015
 	}
 	else if (i == 3) {
 		temps <- read_csv("data-processed/intratherm-terrestrial-temps-tavg_popdynam.csv") %>%
 			separate(date, sep = 4, into = c("year"), remove = FALSE) %>%
-			mutate(year = as.integer(year))
+			mutate(year = as.integer(year)) %>%
+			mutate(date = as.numeric(as.character(date)))
 		first = 1950
 		last = 2015
 	}
@@ -1022,7 +1290,8 @@ while(i < length(pops_by_realm)+1) {
 			pop <- pop %>%
 				.[first(which(!is.na(.$abundance))):
 				  	last(which(.$year == .$year[last(which(!is.na(.$abundance)))])),] %>%
-				select(population_id, date, abundance, units, temperature) 
+				select(population_id, date, abundance, units, temperature) %>%
+				mutate(date = as.numeric(as.character(date)))
 			
 			pops_new <- list.append(pops_new, pop)
 			names(pops_new)[z] <- pop$population_id[1]
@@ -1037,12 +1306,25 @@ while(i < length(pops_by_realm)+1) {
 }
 
 ## try plotting one:
-data <- pops_new$`Pseudacris regilla_41_-123.53333_7662`
+data <- pops_new$`Salmo trutta_60.82056_6.30028_2467`
 ggplot(data = data, aes(x = date, y = temperature)) + geom_line() +
 	geom_line(data = na.omit(data), colour = "red")
 
 ## save it as an rds
 saveRDS(pops_new, "data-processed/population-dynamics-with-temp-ts.rds")
+pops_new <- readRDS("data-processed/population-dynamics-with-temp-ts.rds")
+x <- bind_rows(pops_new)
+
+g <- x %>% 
+	filter(abundance < 1) 
+	
+ggplot(data = g, aes(x = date, y = abundance)) + 
+	geom_path(data = na.omit(g), aes(colour = population_id)) + 
+	labs(y = "Year", x = "Abundance")  +
+	theme(legend.position = "none")
+
+
+
 
 
 ####################################################################################
