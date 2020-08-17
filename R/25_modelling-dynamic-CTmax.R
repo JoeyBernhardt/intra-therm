@@ -15,7 +15,7 @@ multi_acc <- intratherm %>%
 	filter(parameter_tmax_or_tmin=="tmax") %>%
 	filter(!is.na(acclim_temp)) %>%
 	group_by(genus_species, population_id) %>% 
-	tally() %>% 
+	tally() %>%   
 	filter(n > 1)
 
 ## make predictions for each population based on groups of each species:
@@ -32,6 +32,7 @@ pops <- bind_rows(pops) %>%
 	mutate(acclim_temp = temperature) %>%
 	## mutate(acclim_temp = lag(temperature, n = 14)) %>%
 	filter(!is.na(acclim_temp))
+
 
 
 predictions <- pops %>%

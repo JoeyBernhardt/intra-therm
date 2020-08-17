@@ -6,6 +6,7 @@ library(tidyverse)
 library(cowplot)
 theme_set(theme_cowplot())
 library(geosphere)
+library(broom)
 
 
 intratherm <- read_csv("data-processed/intratherm-may-2020-squeaky-clean.csv") %>% 
@@ -290,7 +291,19 @@ distances %>%
 # Pop difs analysis -------------------------------------------------------
 library(broom)
 
-pop_difs <- read_csv("data-processed/pop_difs.csv")
+pop_difs1 <- read_csv("data-processed/pop_difs.csv")
+realms <- read_csv("data-processed/pop_difs.csv") %>% 
+	select(genus_species, realm_general2) %>% 
+	distinct()
+pop_difs <- read_csv("data-processed/initialize_pairwise_differences_experienced_and_topt.csv")
+View(pop_difs)
+
+pd2 <- pop_difs %>% 
+	mutate(exp_temp_diff = ifelse(!is.na(temp_difference_topt), temp_difference_topt, experienced_temp_difference)) %>% 
+	mutate(pop1 = paste(genus_species, lat_lon_1, sep = "_")) %>% 
+	mutate(pop2 = paste(genus_species, lat_lon_2, sep = "_")) %>% 
+	left_join(., realms, by = "genus_species")
+
 
 ## this is model we want to fit: 
 ### tmax.diffspecies_i ~ ARRspecies_i + tenvmax.diff + dispersal_distance + spatial_distance + dispersal_distance:spatial_distance + ARR:tenvmax.dif, random=species.
@@ -298,7 +311,15 @@ library(broom)
 
 ### get ARR for each species
 intratherm <- read_csv("./data-processed/intratherm-may-2020-squeaky-clean.csv") %>% 
-	mutate(population_id = paste(population_id, longitude, sep = "_"))
+	mutate(population_id = paste(population_id, longitude, sep = "_")) %>% 
+	filter(!is.na(latitude)) %>% 
+	filter(!is.na(longitude)) 
+
+intratherm_elev <- read_csv("data-processed/intratherm-with-elev.csv") %>% 
+	filter(!is.na(latitude)) %>% 
+	filter(!is.na(longitude)) %>% 
+	mutate(lat_long = paste(latitude, longitude, sep = "_")) %>% 
+	mutate(population_id2 = paste(genus_species, latitude, longitude, sep = "_"))
 
 multi_acc <- intratherm %>% 
 	filter(parameter_tmax_or_tmin=="tmax") %>%
@@ -413,9 +434,9 @@ resids %>%
 
 View(pop_difs)
 
-pd2 <- pop_difs %>% 
-	mutate(pop1 = paste(genus_species, lat_lon_1, sep = "_")) %>% 
-	mutate(pop2 = paste(genus_species, lat_lon_2, sep = "_")) 
+# pd2 <- pop_difs %>% 
+# 	mutate(pop1 = paste(genus_species, lat_lon_1, sep = "_")) %>% 
+# 	mutate(pop2 = paste(genus_species, lat_lon_2, sep = "_")) 
 
 pop1_ctmax <- ctmax_20 %>% 
 	mutate(pop1 = paste(genus_species, lat_long, sep = "_")) %>% 
@@ -451,20 +472,35 @@ pd5 <- left_join(pd4, arr_slopes2) %>%
 	left_join(., dispersals) 
 # ctmax.diffspecies_i ~ ARRspecies_i + tenvmax.diff + dispersal_distance + spatial_distance + dispersal_distance:spatial_distance + ARR:tenvmax.dif, random=species.
 
-mod <- lm(diff_ctmax ~ mean_arr + temp_difference + dispersal_distance_category +
-		  	distance + dispersal_distance_category:distance + mean_arr:temp_difference + realm_general2, data = pd5)
+mod <- lm(diff_ctmax ~ mean_arr + temp_difference + dispersal_distance_category  + mean_arr:temp_difference + realm_general2, data = pd5)
 summary(mod)
 
 library(visreg)
 
+pd5 %>% View
+	ggplot(aes(x = temp_difference, y = exp_temp_diff, color = realm_general2)) + geom_point() +
+	ylab("Experienced temperature difference") + xlab("Environmental temperature difference")
+
+pd5 %>% 
+	ggplot(aes(x = distance, y = exp_temp_diff)) + geom_point() +
+	scale_x_log10() +
+	ylab("Experienced temperature difference") + xlab("Geographical distance")
+
+pd5 %>% 
+	ggplot(aes(x = distance, y = temp_difference)) + geom_point() +
+	scale_x_log10() +
+	ylab("Environmental temperature difference") + xlab("Geographical distance")
+
 
 pd6 <- pd5 %>% 
+	mutate(temp_difference = exp_temp_diff) %>% 
 	select(diff_ctmax, mean_arr, temp_difference, dispersal_distance_category, distance, realm_general2) %>% 
 	filter(dispersal_distance_category != "unk") %>% 
 	mutate(dispersal_distance_category = as.numeric(factor(dispersal_distance_category, levels = c("0-1", "10-100", "100+")))) %>% 
 	mutate(realm_general2 = as.numeric(as.factor(realm_general2)))
 
 pd7 <- pd5 %>% 
+	mutate(distance_km = distance / 1000) %>% 
 	mutate(distance_km = ifelse(distance_km == 0, 1, distance_km)) %>% ## trying to avoid the issue of 0 distance, when elevations are different
 	select(diff_ctmax, mean_arr, temp_difference, dispersal_distance_category, distance_km, realm_general2) %>% 
 	filter(dispersal_distance_category != "unk") %>%
@@ -483,9 +519,21 @@ mod <- lm(diff_ctmax ~ mean_arr + temp_difference + dispersal_distance_category 
 		  	distance_km + dispersal_distance_category:distance_km + mean_arr:temp_difference, data = pd7)
 
 mod <- lm(diff_ctmax ~ mean_arr + temp_difference + dispersal_cat_numeric +
-		  	distance_km + dispersal_cat_numeric:distance_km + mean_arr:temp_difference, data = pd7)
+		  	distance_km + log(dispersal_cat_numeric):distance_km + mean_arr:temp_difference, data = pd7)
+
+
+mod <- lm(diff_ctmax ~ mean_arr + temp_difference + log(dispersal_cat_numeric) + mean_arr:temp_difference +
+		  	log(dispersal_cat_numeric):distance_km:temp_difference, data = pd7)
+
 
 summary(mod)
+
+
+pd7 %>% 
+	ggplot(aes(x = temp_difference)) + geom_histogram() +
+	facet_wrap( ~ realm_general2) + xlab("Experienced temperature difference between populations") +
+	ylab("Count")
+ggsave("figures/experienced_temp_diffs_realm.png", width = 8, height = 6)
 
 
 library(visreg)
@@ -499,14 +547,14 @@ plot1 <- visreg(mod, "mean_arr", gg = TRUE, size = 4) +
 plot2 <- visreg(mod, "temp_difference", gg = TRUE, size = 4, by = "mean_arr") +
 	ylab("CTmax difference") + xlab("Temperature difference") 
 
-plot3 <- visreg(mod, "dispersal_distance_category", gg = TRUE, size = 4) +
+plot3 <- visreg(mod, "dispersal_cat_numeric", gg = TRUE, size = 4) +
 	ylab("CTmax difference") + xlab("Dispersal distance") 
 
-plot4 <- visreg(mod, "distance_km", gg = TRUE, size = 4, by = "dispersal_distance_category") +
+plot4 <- visreg(mod, "distance_km", gg = TRUE, size = 4, by = "dispersal_cat_numeric") +
 	ylab("CTmax difference") + xlab("Geographical distance") 
 
-# plot5 <- visreg(mod, "realm_general2", gg = TRUE, size = 4) +
-	ylab("CTmax difference") + xlab("Realm") 
+# # plot5 <- visreg(mod, "realm_general2", gg = TRUE, size = 4) +
+# 	ylab("CTmax difference") + xlab("Realm") 
 plot6 <- visreg(mod, "distance_km", gg = TRUE, size = 4) +
 	ylab("CTmax difference") + xlab("Geographical distance") 
 plot7 <- visreg(mod, "temp_difference", gg = TRUE, size = 4) +
@@ -515,11 +563,11 @@ plot7 <- visreg(mod, "temp_difference", gg = TRUE, size = 4) +
 
 
 library(patchwork)
-plot_all <- plot1 + plot2 + plot3 + plot4+ plot6 + plot7 +
+plot_all <- plot1 + plot2 + plot3 + plot6 + plot7 +
 	plot_annotation(tag_levels = 'A') 
 
 
-ggsave("figures/ctmax-partial-regressions.png", plot = plot_all, width = 14, height = 10)
+ggsave("figures/ctmax-partial-regressions-new_temps.png", plot = plot_all, width = 14, height = 10)
 
 
 
@@ -552,4 +600,6 @@ pd5 %>%
 ggsave("figures/env-temp-diff-ctmax-diff.png", width = 8, height = 6)
 
 
-pd5 
+### ok try again now with new temperature data
+
+temperatures <- read_csv("data-processed/initialize_pairwise_differences_experienced_and_topt.csv")
