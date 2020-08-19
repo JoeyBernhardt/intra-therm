@@ -764,6 +764,16 @@ isNA <- terrestrial_temps %>%
 
 ## 19.5_-154.93333 - all are on Hawaii
 
+
+## add elevational correction
+i = 2
+while (i < length(colnames(terrestrial_temps)) + 1) {
+	temp_id <- colnames(terrestrial_temps)[i]
+	pop <- unique_pairs[which(unique_pairs$temp_id == temp_id),]
+	terrestrial_temps[i] <- terrestrial_temps[i] + 5.5*(pop$raster_mean - pop$elevation_of_collection)/1000
+	i = i+1
+}
+
 write.csv(terrestrial_temps, "data-processed/intratherm-terrestrial-temps-tavg_popdynam.csv", row.names = FALSE)
 
 

@@ -173,7 +173,7 @@ count4 <- count4 %>%
 ## check out those graphs:
 i = 1
 while (i < length(unique(count4$population_id))+1) {
-	pop <- count %>%
+	pop <- count4 %>%
 		filter(population_id == unique(count4$population_id)[i])
 	
 	avg <- (mean(pop$temperature, na.rm=TRUE) +  mean(pop$predictedCTmax, na.rm=TRUE)) /2
