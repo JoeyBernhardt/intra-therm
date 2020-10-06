@@ -6,6 +6,7 @@ library(cowplot)
 theme_set(theme_cowplot())
 library(geosphere)
 library(broom)
+library(janitor)
 
 
 intratherm <- read_csv("data-processed/intratherm-with-elev.csv") %>% 
@@ -117,12 +118,46 @@ temps <- read_csv("data-processed/initialize_pairwise_differences_experienced_an
 terr_temps <- read_csv("data-processed/intratherm-terrestrial-temps-tavg.csv")
 fw <- read_csv("data-processed/intratherm-freshwater-temp-data-daily.csv") 
 marine_temps <- read_csv("data-processed/intratherm-marine-temp-data.csv")
-operative_temps <- read.csv("data-processed/OperativeTemperatures_shade.csv", sep = "\t")
-topt <- read.delim("data-processed/OperativeTemperatures_shade.csv", sep = " ") %>%
-	rename(intratherm_id = ID)
+# operative_temps <- read.csv("data-processed/OperativeTemperatures_shade.csv", sep = "\t")
+
+terr_temps
+
+operative_temps <- read.delim("data-processed/OperativeTemperatures_shade.csv", sep = " ") %>%
+	rename(intratherm_id = ID) %>% 
+	clean_names()
+
+operative_temps %>% 
+	# gather(2:5, key = temperature_type, value = temperature) %>% 
+	ggplot(aes(x = airtq75, y = te_sun_q75)) + geom_point() + geom_abline(intercept = 0, slope = 1)
+
+operative_temps %>% 
+	# gather(2:5, key = temperature_type, value = temperature) %>% 
+	ggplot(aes(x = airtq75, y = te_burr_q75)) + geom_point() + geom_abline(intercept = 0, slope = 1)
+
+operative_temps %>% 
+	# gather(2:5, key = temperature_type, value = temperature) %>% 
+	ggplot(aes(x = te_sun_q75, y = te_burr_q75)) + geom_point() + geom_abline(intercept = 0, slope = 1)
 
 
 View(marine_temps)
+library(lubridate)
+m2 <- marine_temps %>% 
+	gather(key = population_id, value = daily_temp, 2:72) %>% 
+	mutate(date = ymd(date)) %>% 
+	mutate(year = year(date)) %>% 
+	mutate(month = month(date)) %>% 
+	group_by(population_id, year) %>% 
+	summarise(max_yearly_temp = max(daily_temp)) %>% 
+	group_by(population_id) %>% 
+	summarise(mean_yearly_max_temp = mean(max_yearly_temp))
+
+fw2 <- fw %>% 
+	gather(key = population_id, value = monthly_temp, 2:386) %>%
+	separate(date, into = c("year", "fraction")) %>% 
+	group_by(population_id, year) %>% 
+	summarise(max_yearly_temp = max(monthly_temp)) %>% 
+	group_by(population_id) %>% 
+	summarise(mean_yearly_max_temp = mean(max_yearly_temp))
 
 ### now the ctmax data
 intratherm <- read_csv("data-processed/intratherm-with-elev.csv") %>% 
@@ -138,6 +173,186 @@ multi_acc <- intratherm %>%
 	tally() %>% 
 	filter(n > 1)
 
+
+terr_ct <- intratherm  %>% 
+	filter(genus_species %in% multi_acc$genus_species) %>% 
+	filter(realm_general2 == "Terrestrial") %>% 
+	left_join(., operative_temps, by = "intratherm_id")
+
+
+terr_ct %>% 
+	filter(genus_species == "Ambystoma macrodactylum") %>% 
+	ggplot(aes(x = acclim_temp, y = parameter_value)) + geom_point() +
+	geom_smooth(method = "lm") +ylab("CTmax (°C)") + xlab("Acclimation temperature (°C)")
+ggsave("figures/ambystoma-macrodactylum-arr.png", width = 6, height = 4)
+
+
+
+terr_ct %>% 
+	group_by(population_id) %>% 
+	distinct(acclim_temp) %>% 
+	tally() %>% View
+	
+	
+	terr_ct %>% 
+		filter(population_id == "Drosophila melanogaster_-17.525_NA_146.031845") %>% 
+		ggplot(aes(x = acclim_temp, y = parameter_value)) + geom_point() +
+		geom_smooth(method = "lm") +ylab("CTmax (°C)") + xlab("Acclimation temperature (°C)")
+	ggsave("figures/drosophila-arr.png", width = 6, height = 4)
+
+arrs <- intratherm %>% 
+	filter(parameter_tmax_or_tmin=="tmax") %>% 
+	filter(!is.na(acclim_temp)) %>%
+	filter(population_id %in% c(multi_acc$population_id)) %>% 
+	mutate(lat_long = paste(latitude, longitude, sep = "_")) %>% 
+	group_by(realm_general2, genus_species, population_id, lat_long) %>% 
+	do(tidy(lm(parameter_value~acclim_temp, data=.))) 
+
+arr_slopes <- arrs %>% 
+	filter(term != "(Intercept)") %>% ## ok fewer than half of the data have more than 2 acclimation temperatures
+	select(genus_species, population_id, estimate) %>% 
+	rename(slope = estimate) %>% 
+	filter(population_id != "Retropinna retropinna_-37.595991_NA_175.104216") %>% ## this is the super high ARR, it's only got two data points
+	filter(population_id != "Perca flavescens_42.08_NA_-81.34") ### this is the super low ARR
+
+intercepts <- arrs %>% 
+	filter(term == "(Intercept)")  %>% 
+	select(genus_species, population_id, estimate) %>% 
+	rename(intercept = estimate) %>% 
+	filter(population_id != "Perca flavescens_42.08_NA_-81.34") %>%  ### this is the super low ARR
+	filter(population_id != "Retropinna retropinna_-37.595991_NA_175.104216") ## this is the super high ARR, it's only got two data points
+
+
+slopes_int <- left_join(intercepts, arr_slopes)
+
+ctmax_20 <- arrs %>% 
+	select(genus_species, population_id, term, estimate) %>% 
+	spread(key = term, value = estimate) %>% 
+	rename(intercept = `(Intercept)`) %>% 
+	mutate(ctmax_20 = acclim_temp*20 + intercept) %>% 
+	filter(!is.na(ctmax_20)) %>% 
+	rename(arr = acclim_temp)
+
+
+terr_ct_max %>% 
+	ggplot(aes(x = latitude, y = airtq75)) + geom_point()
+
+all_ctmax <- multi_acc %>% 
+	left_join(., ctmax_20)
+
+terr_ct_max <- ctmax_20 %>% 
+	left_join(., terr_ct) %>% 
+	ungroup() %>% 
+	filter(realm_general2 == "Terrestrial") %>% 
+	select(contains("75"), everything()) %>% 
+	mutate(age_maturity_days_female = as.numeric(age_maturity_days_female)) %>% 
+	mutate(lifespan_days = as.numeric(lifespan_days)) %>% 
+	mutate(average_body_size_female = as.numeric(average_body_size_female)) %>% 
+	mutate(age_maturity_days = ifelse(is.na(age_maturity_days_female), age_maturity_days_male, age_maturity_days_female)) %>% 
+	mutate(age_maturity_days = as.numeric(age_maturity_days))
+
+
+### ok now fit some models for the terrestrial data
+
+str(terr_ct_max)
+
+terr_ct_max %>% 
+	ggplot(aes(x = age_maturity_days, y = lifespan_days)) + geom_point()
+
+terr2 <- terr_ct_max %>% 
+	filter(!is.na(age_maturity_days)) %>% 
+	filter(!is.na(lifespan_days))
+cor(terr2$age_maturity_days, terr2$lifespan_days)
+
+library(lme4)
+library(nlme)
+
+mod1 <- lm(ctmax_20 ~ age_maturity_days*airtq75 + dispersal_distance_category*airtq75 + 
+   	arr*airtq75 + maximum_body_size_svl_hbl_cm*airtq75, data = terr2)
+mod1a <- lm(ctmax_20 ~ lifespan_days*airtq75 + dispersal_distance_category*airtq75 + 
+		   	arr*airtq75 + maximum_body_size_svl_hbl_cm*airtq75, data = terr2)
+mod1b <- lm(ctmax_20 ~ age_maturity_days*airtq75 + dispersal_distance_category*airtq75 + 
+		   	arr*airtq75 + lifespan_days*airtq75 + maximum_body_size_svl_hbl_cm, data = terr2) ### this one looks like it's the best
+mod1c <- lm(ctmax_20 ~ age_maturity_days*airtq75 + dispersal_distance_category*airtq75 + 
+				 lifespan_days*airtq75 + maximum_body_size_svl_hbl_cm, data = terr2)
+
+AIC(mod1, mod1a, mod1b, mod1c)
+summary(mod1b)
+
+library(piecewiseSEM)
+library(MuMIn)
+mod1 <- lme(ctmax_20 ~ age_maturity_days*airtq75 + dispersal_distance_category*airtq75 + 
+		   	arr*airtq75 + maximum_body_size_svl_hbl_cm*airtq75, random = ~1|genus_species, data = terr2)
+
+mod1a <- lme(ctmax_20 ~ lifespan_days*airtq75 + dispersal_distance_category*airtq75 + 
+				arr*airtq75 + maximum_body_size_svl_hbl_cm*airtq75, random = ~1|genus_species, data = terr2)
+
+mod1b <- lme(ctmax_20 ~ age_maturity_days*airtq75 + dispersal_distance_category*airtq75 + 
+				arr*airtq75 + lifespan_days*airtq75 + maximum_body_size_svl_hbl_cm, random = ~1|genus_species, data = terr2)
+
+mod1c <- lme(ctmax_20 ~ age_maturity_days*airtq75 + dispersal_distance_category*airtq75 + 
+				lifespan_days*airtq75 + maximum_body_size_svl_hbl_cm, random = ~1|genus_species, data = terr2)
+
+model.sel(mod1, mod1a, mod1b, mod1c) %>% View
+
+summary(mod1b)
+rsquared(mod1b)
+anova(mod1b)
+ranef(mod1b) # random
+fixef(mod1b) # fixed
+
+library(stargazer)
+
+stargazer(mod1b, type = "html", out = "tables/terr-ctmax.html")
+
+mod1b <- lme(ctmax_20 ~ age_maturity_days*airtq75 + dispersal_distance_category*airtq75 + 
+			 	arr*airtq75 + lifespan_days*airtq75 + maximum_body_size_svl_hbl_cm, random = ~1|genus_species, data = terr2)
+
+summary(mod1b)
+
+mod2 <- lme(ctmax_20 ~ age_maturity_days*burrtq75 + dispersal_distance_category*burrtq75 + 
+		   	arr*burrtq75 + lifespan_days*burrtq75 + maximum_body_size_svl_hbl_cm, data = terr2, random = ~1|genus_species)
+
+mod3 <- lme(ctmax_20 ~ age_maturity_days*te_sun_q75 + dispersal_distance_category*te_sun_q75 + 
+		   	arr*te_sun_q75 + lifespan_days*te_sun_q75 + maximum_body_size_svl_hbl_cm, data = terr2, random = ~1|genus_species)
+
+mod4 <- lme(ctmax_20 ~ age_maturity_days*te_burr_q75 + dispersal_distance_category*te_burr_q75 + 
+		   	arr*te_burr_q75 + lifespan_days*te_burr_q75 + maximum_body_size_svl_hbl_cm, data = terr2, random = ~1|genus_species)
+
+(AIC(mod1b, mod2, mod3, mod4))
+
+model.sel(mod1b, mod2, mod3, mod4, rank = "AICc", extra = "rsquared") %>% View
+
+summary(mod1)
+library(visreg)
+
+terr2 %>% 
+	ggplot(aes(x = ctmax_20, y = te_sun_q75)) + geom_point() +
+	geom_abline(intercept = -3, slope = 1) + ylab("Max operative temp (75% quantile)\n in exposed areas") +
+	xlab("CTmax at 20C")
+ggsave("figures/sun-operative-temp-ctmax.png", width = 6, height = 4)
+
+terr2 %>% 
+	ggplot(aes(x = ctmax_20, y = airtq75)) + geom_point() +
+	geom_abline(intercept = -3, slope = 1) + ylab("Max air temperature from NicheMapR \n (75% quantile during the middle day of the warmest month)") +
+	xlab("CTmax at 20C")
+ggsave("figures/air-temp-ctmax.png", width = 8, height = 6)
+
+visreg(mod1)
+
+terr_ct_max %>% 
+	filter(is.na(maximum_body_size_svl_hbl_cm)) %>% View
+
+summary(mod1)
+
+terr_ct_max %>% 
+	ggplot(aes(x = maximum_body_size_svl_hbl_cm, y = average_body_size_male)) + geom_point()
+
+
+
+
+anova(mod1)
+
 # View(multi_acc)
 
 ### ok we are aiming for something like this: 
@@ -147,3 +362,4 @@ multi_acc <- intratherm %>%
 
 
 
+mod1 <- lm(ctmax_20 ~ age_maturity_days_female*temperature + dispersal_distance_category*temperature + ARR*temperature + lifespan_days*temperature + average_body_size_female , data = intra_fw2)
