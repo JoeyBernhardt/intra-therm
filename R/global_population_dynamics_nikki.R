@@ -217,7 +217,13 @@ ol <- left_join(over_biotime, meta, by = "STUDY_ID") %>%
 	select(STUDY_ID, SAMPLE_DESC, GENUS_SPECIES, YEAR, sum.allrawdata.ABUNDANCE, 
 		   sum.allrawdata.BIOMASS, everything()) %>%
 	mutate(GENUS_SPECIES = genus_species_intra) %>%  
-	select(-X, -genus_species_intra) 
+	select(-X, -genus_species_intra) %>%
+	mutate(decimal_date = ifelse(is.na(MONTH), 
+								 YEAR, 
+								 ifelse(is.na(DAY), 
+								 	   (MONTH*30)/365 + YEAR, 
+								 	   (MONTH*30+DAY)/365 + YEAR))
+	)## create decimal_date column for each sampling time
 
 ## write out unaltered and without absence data added
 write_csv(ol, "data-processed/intratherm-biotime_nikki.csv")
@@ -289,7 +295,7 @@ sample_dates <- biotime %>%
 # 	select(-lat, -lon, -start_year, -lake, -lake_name) 
 
 ol <- ol %>%
-	select(-SAMPLE_DESC) %>%
+	select(-SAMPLE_DESC, -decimal_date) %>%
 	arrange(STUDY_ID)
 
 ## investigate grain size
