@@ -169,6 +169,10 @@ length(unique(count4$population_id[which(count4$temp_dif < 0)])) ## 44
 count4 <- count4 %>% 
 	filter(population_id %in% unique(count4$population_id[which(count4$temp_dif < 0)]))
 
+## what are their realms?
+population_overlap <- read_csv("data-processed/population-overlap.csv") %>%
+	mutate(population_id = paste(genus_species, latitude, longitude, StudyID, sep = "_")) %>%
+	filter(population_id %in% count4$population_id) 
 
 ## check out those graphs:
 i = 1

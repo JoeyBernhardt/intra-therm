@@ -4,3 +4,5 @@ intratherm-terrestrial-temps-tavg.csv filter=lfs diff=lfs merge=lfs -text
 data-processed/intratherm-terrestrial-temps-tavg.csv filter=lfs diff=lfs merge=lfs -text
 data-processed/intratherm-freshwater-temp-data-daily.csv filter=lfs diff=lfs merge=lfs -text
 data-processed/intratherm-biotime_nikki.csv filter=lfs diff=lfs merge=lfs -text
+data-raw/BioTIMEQuery02_04_2018.csv filter=lfs diff=lfs merge=lfs -text
+data-processed/intratherm-biotime-with-absence_nikki.csv filter=lfs diff=lfs merge=lfs -text

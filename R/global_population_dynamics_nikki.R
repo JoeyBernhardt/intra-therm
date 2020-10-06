@@ -219,6 +219,9 @@ ol <- left_join(over_biotime, meta, by = "STUDY_ID") %>%
 	mutate(GENUS_SPECIES = genus_species_intra) %>%  
 	select(-X, -genus_species_intra) 
 
+## write out unaltered and without absence data added
+write_csv(ol, "data-processed/intratherm-biotime_nikki.csv")
+
 
 ## make data frame of all sampled dates for each location so can add 0 abundance for days sampled but not found
 sample_dates <- biotime %>%
@@ -233,61 +236,67 @@ sample_dates <- biotime %>%
 	select(decimal_date, STUDY_ID) %>%
 	ungroup()
 
-## STUDY_ID = 57, change info for this study alone:
-fiftysev_dates <- filter(sample_dates, sample_dates$STUDY_ID == 57)
-
-fiftysev <- ol %>%
-	filter(STUDY_ID == 57) %>%
-	mutate(lake = str_split_fixed(SAMPLE_DESC, pattern = "_", n = 6)[,4]) %>%
-	mutate(decimal_date = (MONTH*30+DAY)/365 + YEAR) %>% ## create decimal_date column for each sampling time
-	mutate(decimal_date = ifelse(is.na(MONTH) & is.na(DAY), YEAR, decimal_date)) %>%
-	left_join(fiftysev_dates, ., by = c("STUDY_ID", "decimal_date")) %>%
-	droplevels() %>%
-	fill(-YEAR, -DAY, -MONTH, -sum.allrawdata.ABUNDANCE, 
-		 -sum.allrawdata.BIOMASS, .direction = "updown")%>% 
-	group_by(STUDY_ID) %>%
-	left_join(expand(., decimal_date, GENUS_SPECIES),.) %>%
-	arrange(STUDY_ID, GENUS_SPECIES, decimal_date) %>% ## merge so each study has each combination of sampling time x species
-	ungroup() %>%
-	mutate(sum.allrawdata.ABUNDANCE = 
-		   	ifelse(is.na(sum.allrawdata.ABUNDANCE), 0, sum.allrawdata.ABUNDANCE)) %>% ## replace missing abundance with 0
-	mutate(sum.allrawdata.BIOMASS = 
-		   	ifelse(is.na(sum.allrawdata.BIOMASS), 0, sum.allrawdata.BIOMASS)) %>%
-	fill(-DAY, -YEAR, -MONTH, -GENUS, -SPECIES, .direction = "updown") %>%
-	group_by(decimal_date, GENUS_SPECIES, STUDY_ID) %>%
-	mutate(GENUS = str_split_fixed(GENUS_SPECIES, n=2, " ")[,1]) %>%
-	mutate(SPECIES = str_split_fixed(GENUS_SPECIES, n=2, " ")[,2]) %>%
-	add_count() %>%
-	mutate(sum.allrawdata.ABUNDANCE = sum(sum.allrawdata.ABUNDANCE)/n) %>% ## get average abundance of samples taken in same time point + at same loc + same species 
-	mutate(sum.allrawdata.BIOMASS = sum(sum.allrawdata.BIOMASS)/n) %>%
-	ungroup() %>%
-	.[!duplicated(.[,c("decimal_date","sum.allrawdata.ABUNDANCE",
-					   "sum.allrawdata.BIOMASS","GENUS_SPECIES")]),] %>% ## get rid of duplicates 
-	arrange(STUDY_ID, GENUS_SPECIES, decimal_date, YEAR, MONTH, DAY) %>%
-	select(-n, -SAMPLE_DESC)
-
-
-new_info <- data.frame(matrix(byrow = TRUE, nrow = 10, ncol = 5, 
-							  c("AL", "Allequash", "46.038", "-89.621", "1981",
-							    "BM", "Big Muskellunge", "46.021", "-89.612", "1981", 
-							    "CR", "Crystal", "46.003", "-89.612", "1981", 
-							    "SP", "Sparkling", "46.008", "-89.701", "1981", 
-							    "TR", "Trout", "46.029", "-89.665", "1981", 
-							    "TB", "Trout Bog", "46.041", "-89.686", "1981", 
-							    "ME", "Mendota", "43.099", "-89.405", "1981", 
-							    "MO", "Monona", "43.063", "-89.361", "1995", 
-							    "WI", "Wingra", "43.053", "-89.425", "1995", 
-							    "FI", "Fish", "43.287", "-89.652", "1995")))
-
-colnames(new_info) <- c("lake", "lake_name", "lat", "lon", "start_year")
-
-fiftysev <- left_join(fiftysev, new_info, by = "lake") %>%
-	mutate(LATITUDE = lat, LONGITUDE = lon, START_YEAR = start_year) %>%
-	select(-lat, -lon, -start_year, -lake, -lake_name) 
+# ## STUDY_ID = 57, change info for this study alone:
+# fiftysev_dates <- filter(sample_dates, sample_dates$STUDY_ID == 57)
+# 
+# fiftysev <- ol %>%
+# 	filter(STUDY_ID == 57) %>%
+# 	mutate(lake = str_split_fixed(SAMPLE_DESC, pattern = "_", n = 6)[,4]) %>%
+# 	mutate(decimal_date = (MONTH*30+DAY)/365 + YEAR) %>% ## create decimal_date column for each sampling time
+# 	mutate(decimal_date = ifelse(is.na(MONTH) & is.na(DAY), YEAR, decimal_date)) %>%
+# 	left_join(fiftysev_dates, ., by = c("STUDY_ID", "decimal_date")) %>%
+# 	droplevels() %>%
+# 	fill(-YEAR, -DAY, -MONTH, -sum.allrawdata.ABUNDANCE, 
+# 		 -sum.allrawdata.BIOMASS, .direction = "updown")%>% 
+# 	group_by(STUDY_ID) %>%
+# 	left_join(expand(., decimal_date, GENUS_SPECIES),.) %>%
+# 	arrange(STUDY_ID, GENUS_SPECIES, decimal_date) %>% ## merge so each study has each combination of sampling time x species
+# 	ungroup() %>%
+# 	mutate(sum.allrawdata.ABUNDANCE = 
+# 		   	ifelse(is.na(sum.allrawdata.ABUNDANCE), 0, sum.allrawdata.ABUNDANCE)) %>% ## replace missing abundance with 0
+# 	mutate(sum.allrawdata.BIOMASS = 
+# 		   	ifelse(is.na(sum.allrawdata.BIOMASS), 0, sum.allrawdata.BIOMASS)) %>%
+# 	fill(-DAY, -YEAR, -MONTH, -GENUS, -SPECIES, .direction = "updown") %>%
+# 	group_by(decimal_date, GENUS_SPECIES, STUDY_ID) %>%
+# 	mutate(GENUS = str_split_fixed(GENUS_SPECIES, n=2, " ")[,1]) %>%
+# 	mutate(SPECIES = str_split_fixed(GENUS_SPECIES, n=2, " ")[,2]) %>%
+# 	add_count() %>%
+# 	mutate(sum.allrawdata.ABUNDANCE = sum(sum.allrawdata.ABUNDANCE)/n) %>% ## get average abundance of samples taken in same time point + at same loc + same species 
+# 	mutate(sum.allrawdata.BIOMASS = sum(sum.allrawdata.BIOMASS)/n) %>%
+# 	ungroup() %>%
+# 	.[!duplicated(.[,c("decimal_date","sum.allrawdata.ABUNDANCE",
+# 					   "sum.allrawdata.BIOMASS","GENUS_SPECIES")]),] %>% ## get rid of duplicates 
+# 	arrange(STUDY_ID, GENUS_SPECIES, decimal_date, YEAR, MONTH, DAY) %>%
+# 	select(-n, -SAMPLE_DESC)
+# 
+# 
+# new_info <- data.frame(matrix(byrow = TRUE, nrow = 10, ncol = 5, 
+# 							  c("AL", "Allequash", "46.038", "-89.621", "1981",
+# 							    "BM", "Big Muskellunge", "46.021", "-89.612", "1981", 
+# 							    "CR", "Crystal", "46.003", "-89.612", "1981", 
+# 							    "SP", "Sparkling", "46.008", "-89.701", "1981", 
+# 							    "TR", "Trout", "46.029", "-89.665", "1981", 
+# 							    "TB", "Trout Bog", "46.041", "-89.686", "1981", 
+# 							    "ME", "Mendota", "43.099", "-89.405", "1981", 
+# 							    "MO", "Monona", "43.063", "-89.361", "1995", 
+# 							    "WI", "Wingra", "43.053", "-89.425", "1995", 
+# 							    "FI", "Fish", "43.287", "-89.652", "1995")))
+# 
+# colnames(new_info) <- c("lake", "lake_name", "lat", "lon", "start_year")
+# 
+# fiftysev <- left_join(fiftysev, new_info, by = "lake") %>%
+# 	mutate(LATITUDE = lat, LONGITUDE = lon, START_YEAR = start_year) %>%
+# 	select(-lat, -lon, -start_year, -lake, -lake_name) 
 
 ol <- ol %>%
 	select(-SAMPLE_DESC) %>%
 	arrange(STUDY_ID)
+
+## investigate grain size
+ggplot(data = meta, aes(x = AREA_SQ_KM)) + geom_histogram()
+ggplot(data = ol, aes(x = AREA_SQ_KM)) + geom_histogram()
+
+length(which(ol$AREA_SQ_KM < 96)) ## 4719 studies are less than 96km^2
 
 
 ## marine studies: treating whole study as one sampling location
@@ -339,10 +348,12 @@ new_ol <- new_ol %>%
 	arrange(STUDY_ID, GENUS_SPECIES, decimal_date, YEAR, MONTH, DAY) %>%
 	select(-n)
 
-## add back study 57
+# ## add back study 57
+# ol <- new_ol %>%
+# 	filter(STUDY_ID != 57) %>%
+# 	rbind(., fiftysev) 
+
 ol <- new_ol %>%
-	filter(STUDY_ID != 57) %>%
-	rbind(., fiftysev) %>%
 	select(decimal_date, everything()) %>%
 	group_by(STUDY_ID) %>%
 	mutate(sample_type = case_when(
@@ -358,7 +369,7 @@ ol <- new_ol %>%
 	select(-YEAR, -DAY, -MONTH)
 
 
-write_csv(ol, "data-processed/intratherm-biotime_nikki.csv")
+write_csv(ol, "data-processed/intratherm-biotime-with-absence_nikki.csv")
 
 
 ## try plotting them 
@@ -389,7 +400,8 @@ lpi_ol <- read.csv("data-processed/lpi-intratherm-overlap_nikki.csv", stringsAsF
 gpdd_ol <- read.csv("data-processed/intratherm-gpdd_nikki.csv", stringsAsFactors = FALSE) 
 biotime_ol <- read.csv("data-processed/intratherm-biotime_nikki.csv",  stringsAsFactors = FALSE) %>%
 	inner_join(., select(intratherm, c("genus_species", "class")), 
-			  by = c("GENUS_SPECIES" = "genus_species")) 
+			  by = c("GENUS_SPECIES" = "genus_species")) %>%
+	distinct()
 
 ## figure out realm of populations 
 ol_locs_gdpp <- gpdd_ol %>%
@@ -1345,39 +1357,7 @@ library(rnaturalearth)
 library(rnaturalearthdata)
 library(RColorBrewer)
 
-lpi_ol <- read.csv("data-processed/lpi-intratherm-overlap_nikki.csv", stringsAsFactors = FALSE)
-gdpp_ol <- read.csv( "data-processed/intratherm-gpdd_nikki.csv", stringsAsFactors = FALSE)
-intratherm <- read.csv( "data-processed/intratherm-with-elev.csv", stringsAsFactors = FALSE)
 
-ol_locs_intra_gdpp <- gdpp_ol %>% 
-	select(TaxonName, latitude, longitude, location_description) %>% 
-	rename(genus_species = TaxonName) %>%
-	unique() %>%
-	mutate(population_source = "Intratherm")
-
-ol_locs_gdpp <- gdpp_ol %>% 
-	select(-LatDD, -LongDD, -ExactName, -Country) %>%
-	left_join(., location, by = "LocationID") %>%
-	mutate(location_description = paste(ExactName, Country, sep = " ")) %>%
-	select(TaxonName, LatDD, LongDD, location_description) %>% 
-	rename(genus_species = TaxonName, longitude = LongDD, latitude = LatDD) %>%
-	unique() %>%
-	mutate(population_source = "GDPP")
-
-ol_locs_intra_lpi <- intratherm %>% 
-	filter(genus_species %in% lpi_ol$genus_species) %>%
-	select(genus_species, latitude, longitude, location_description) %>% 
-	unique() %>%
-	mutate(population_source = "Intratherm")
-
-ol_locs_lpi <- lpi_ol %>% 
-	select(genus_species, Latitude, Longitude, Location) %>% 
-	rename(latitude = Latitude, longitude = Longitude, location_description = Location) %>% 
-	unique() %>%
-	mutate(population_source = "LPI")
-
-ol_locs <- rbind(ol_locs_intra_gdpp, ol_locs_gdpp, ol_locs_intra_lpi, ol_locs_lpi) %>%
-	arrange(genus_species, population_source)
 
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
@@ -1395,6 +1375,3 @@ map = ggplot(data = world) +
 	geom_point(data = ol_locs, aes(y = latitude, x = longitude, 
 								   col = genus_species), size = 0.5) 
 
-
-## figure out how many CTmax we could potentially predict:
-nrow(ol_locs[which(ol_locs$population_source != "Intratherm"),])
