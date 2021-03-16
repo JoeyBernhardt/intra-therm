@@ -160,11 +160,13 @@ fw2 <- fw %>%
 	summarise(mean_yearly_max_temp = mean(max_yearly_temp))
 
 ### now the ctmax data
-intratherm <- read_csv("data-processed/intratherm-with-elev.csv") %>% 
+intratherm <- read.csv("data-processed/intratherm-with-elev.csv") %>% 
 	filter(!is.na(latitude)) %>% 
 	filter(!is.na(longitude)) %>% 
 	mutate(lat_long = paste(latitude, longitude, sep = "_")) %>% 
 	mutate(population_id = paste(genus_species, latitude, elevation_of_collection, longitude, sep = "_"))
+
+
 
 multi_acc <- intratherm %>% 
 	filter(parameter_tmax_or_tmin =="tmax") %>%
@@ -259,6 +261,8 @@ str(terr_ct_max)
 terr_ct_max %>% 
 	ggplot(aes(x = age_maturity_days, y = lifespan_days)) + geom_point()
 
+length(unique(ctmax_20$genus_species)) 
+
 terr2 <- terr_ct_max %>% 
 	filter(!is.na(age_maturity_days)) %>% 
 	filter(!is.na(lifespan_days))
@@ -305,8 +309,57 @@ library(stargazer)
 
 stargazer(mod1b, type = "html", out = "tables/terr-ctmax.html")
 
+op_temps <- read.delim("data-processed/OpTemperatures_version_JAN_2021.csv", sep = " ") %>%
+	rename(intratherm_id = ID) %>% 
+	clean_names()
+
+table(terr2$is.nocturnal)
+
+names(op_temps)
+terr3 <- terr2 %>% 
+	left_join(op_temps) %>% 
+	filter(is.nocturnal != "unk") %>% 
+	mutate(thermo_cap = ifelse(is.nocturnal == "N", te_sun_q75_nobehav - te_shade_q75, te_sun_q75_nobehav - te_shade_q75))
+
+terr2 %>% 
+	distinct(genus_species) %>% View
+
+terr3 %>% 
+	distinct(genus_species) %>% View
+
+
+missing <- op_temps %>% 
+	filter(is.na(te_shade_q75))
+
+
+length(unique(missing$genus_species))
+
+length(unique(terr3$genus_species))
+
+terr3 %>% 
+	ggplot(aes(x = thermo_cap)) + geom_histogram()
+
+View(terr2)
+
+View(intratherm)
+terr3 %>% 
+	filter(!is.na(thermo_cap)) %>% View
+		
+
+
 mod1b <- lme(ctmax_20 ~ age_maturity_days*airtq75 + dispersal_distance_category*airtq75 + 
-			 	arr*airtq75 + lifespan_days*airtq75 + maximum_body_size_svl_hbl_cm, random = ~1|genus_species, data = terr2)
+			 	arr*airtq75 + lifespan_days*airtq75 + maximum_body_size_svl_hbl_cm, random = ~1|genus_species, data = terr3)
+
+library(stargazer)
+stargazer(mod1b, type = "html", out = "tables/terr-ctmax-feb.html")
+
+
+mod1b <- lme(ctmax_20 ~ thermo_cap + age_maturity_days*airtq75 + dispersal_distance_category*airtq75 + 
+			 	arr*airtq75 + lifespan_days*airtq75, random = ~1|genus_species, data = terr3)
+
+unique(terr3$thermo_cap)
+
+mod1b <- lme(ctmax_20 ~  thermo_cap, random = ~1|genus_species, data = terr3)
 
 summary(mod1b)
 
@@ -319,6 +372,9 @@ mod3 <- lme(ctmax_20 ~ age_maturity_days*te_sun_q75 + dispersal_distance_categor
 mod4 <- lme(ctmax_20 ~ age_maturity_days*te_burr_q75 + dispersal_distance_category*te_burr_q75 + 
 		   	arr*te_burr_q75 + lifespan_days*te_burr_q75 + maximum_body_size_svl_hbl_cm, data = terr2, random = ~1|genus_species)
 
+
+
+### burrow only for nocturnal species and sun temperature for dirunal species
 (AIC(mod1b, mod2, mod3, mod4))
 
 model.sel(mod1b, mod2, mod3, mod4, rank = "AICc", extra = "rsquared") %>% View
@@ -363,3 +419,23 @@ anova(mod1)
 
 
 mod1 <- lm(ctmax_20 ~ age_maturity_days_female*temperature + dispersal_distance_category*temperature + ARR*temperature + lifespan_days*temperature + average_body_size_female , data = intra_fw2)
+
+
+
+
+# read in population dynamics data ----------------------------------------
+
+pops <- read_rds("data-processed/population-dynamics-with-temp-ts.rds")
+x <- bind_rows(pops)
+
+g <- x %>% 
+	filter(abundance < 1) 
+
+ggplot(data = g, aes(x = date, y = abundance)) + 
+	geom_path(data = na.omit(g), aes(colour = population_id)) + 
+	labs(y = "Year", x = "Abundance")  +
+	theme(legend.position = "none")
+
+
+
+
