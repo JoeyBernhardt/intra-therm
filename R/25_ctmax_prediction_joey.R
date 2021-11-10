@@ -116,7 +116,13 @@ temps <- read_csv("data-processed/initialize_pairwise_differences_experienced_an
 
 ## raw daily temperature data
 terr_temps <- read_csv("data-processed/intratherm-terrestrial-temps-tavg.csv")
-fw <- read_csv("data-processed/intratherm-freshwater-temp-data-daily.csv") 
+terr_temps <- read_csv("data-processed/intratherm-temp-data-yearly-maxes-daily-avg.csv")
+terr_temps2 <- read_csv("data-processed/intratherm-temp-data-yearly-maxes.csv")
+
+
+
+
+fw <- read_csv("data-processed/intratherm-freshwater-temp-data.csv") 
 marine_temps <- read_csv("data-processed/intratherm-marine-temp-data.csv")
 # operative_temps <- read.csv("data-processed/OperativeTemperatures_shade.csv", sep = "\t")
 
@@ -254,7 +260,11 @@ terr_ct_max <- ctmax_20 %>%
 	mutate(age_maturity_days = as.numeric(age_maturity_days))
 
 
-### ok now fit some models for the terrestrial data
+terr_ct_max %>% 
+	group_by(genus_species) %>% 
+	tally() %>% View
+
+	### ok now fit some models for the terrestrial data
 
 str(terr_ct_max)
 
