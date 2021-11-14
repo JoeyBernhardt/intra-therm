@@ -15,6 +15,10 @@ intratherm <- read_csv("data-processed/intratherm-with-elev.csv") %>%
 	mutate(lat_long = paste(latitude, longitude, sep = "_")) %>% 
 	mutate(population_id = paste(genus_species, latitude, elevation_of_collection, longitude, sep = "_"))
 
+### how many different geographic locations?
+
+	
+
 multi_acc <- intratherm %>% 
 	filter(parameter_tmax_or_tmin =="tmax") %>%
 	filter(!is.na(acclim_temp)) %>%
@@ -55,6 +59,8 @@ intercepts <- arrs %>%
 
 slopes_int <- left_join(intercepts, arr_slopes)
 
+View(slopes_int) ### JB come back here! (November 14 to figure out why we are only getting back one line per species)
+
 ctmax_20 <- arrs %>% 
 	select(genus_species, population_id, term, estimate) %>% 
 	spread(key = term, value = estimate) %>% 
@@ -63,17 +69,22 @@ ctmax_20 <- arrs %>%
 	filter(!is.na(ctmax_20)) 
 
 all_ctmax <- multi_acc %>% 
-	left_join(., ctmax_20)
+	left_join(., ctmax_20) ### I think this is where the problem is
+
+
 
 
 fw <- read_csv("data-processed/intratherm-freshwater-temp-data-daily.csv") 
+fw <- read_delim("~/Documents/too-big-for-github/intratherm-freshwater-temp-data-daily.txt", delim = ",") 
+
+dim(fw)
 
 fw_ctmax <- all_ctmax %>% 
 	filter(realm_general2 == "Freshwater")
 
 
 fw2 <- fw %>% 
-	gather(key = population_id, value = monthly_temp, 2:386) %>%
+	gather(key = population_id, value = monthly_temp, 2:383) %>%
 	separate(date, into = c("year", "fraction")) %>% 
 	group_by(population_id, year) %>% 
 	summarise(max_yearly_temp = max(monthly_temp)) %>% 
@@ -92,7 +103,7 @@ intra_fw2 <- fw_ctmax %>%
 	distinct(., .keep_all = TRUE) %>% 
 	filter(!is.na(ctmax_20))
 
-
+### this doesn't seem right... because there is only one line per species... look back to why
 
 
 library(nlme)
@@ -278,11 +289,15 @@ terr2 <- terr_ct_max %>%
 	filter(!is.na(lifespan_days))
 cor(terr2$age_maturity_days, terr2$lifespan_days)
 
+unique(terr2)
+
 library(lme4)
 library(nlme)
 
 mod1 <- lm(ctmax_20 ~ age_maturity_days*airtq75 + dispersal_distance_category*airtq75 + 
    	arr*airtq75 + maximum_body_size_svl_hbl_cm*airtq75, data = terr2)
+summary(mod1)
+
 mod1a <- lm(ctmax_20 ~ lifespan_days*airtq75 + dispersal_distance_category*airtq75 + 
 		   	arr*airtq75 + maximum_body_size_svl_hbl_cm*airtq75, data = terr2)
 mod1b <- lm(ctmax_20 ~ age_maturity_days*airtq75 + dispersal_distance_category*airtq75 + 
