@@ -15,6 +15,10 @@ intratherm <- read_csv("data-processed/intratherm-with-elev.csv") %>%
 	mutate(lat_long = paste(latitude, longitude, sep = "_")) %>% 
 	mutate(population_id = paste(genus_species, latitude, elevation_of_collection, longitude, sep = "_"))
 
+
+intratherm %>% 
+	filter(genus_species == "Zoarces viviparus") %>% View
+
 ### how many different geographic locations?
 
 	
@@ -60,16 +64,79 @@ intercepts <- arrs %>%
 slopes_int <- left_join(intercepts, arr_slopes)
 
 View(slopes_int) ### JB come back here! (November 14 to figure out why we are only getting back one line per species)
+### ok actually, that is not true, we do have some cases where we have more than one line per species. Phew.
 
 ctmax_20 <- arrs %>% 
 	select(genus_species, population_id, term, estimate) %>% 
 	spread(key = term, value = estimate) %>% 
-	rename(intercept = `(Intercept)`) %>% 
+	rename(intercept = `(Intercept)`) %>%
 	mutate(ctmax_20 = acclim_temp*20 + intercept) %>% 
 	filter(!is.na(ctmax_20)) 
 
+
+
+# trying now grouping by species, not population for the ARRs -------------
+
+### ok this doesn't seem to help anything
+multi_acc_s <- intratherm %>% 
+	filter(parameter_tmax_or_tmin =="tmax") %>%
+	filter(!is.na(acclim_temp)) %>%
+	group_by(genus_species) %>% 
+	tally() %>% 
+	filter(n > 1)
+
+arrs_s <- intratherm %>% 
+	filter(parameter_tmax_or_tmin=="tmax") %>% 
+	filter(!is.na(acclim_temp)) %>%
+	filter(population_id %in% c(multi_acc$population_id)) %>% 
+	mutate(lat_long = paste(latitude, longitude, sep = "_")) %>% 
+	group_by(realm_general2, genus_species) %>% 
+	do(tidy(lm(parameter_value~acclim_temp, data=.))) 
+
+intratherm %>% 
+	filter(parameter_tmax_or_tmin=="tmax") %>% 
+	filter(!is.na(acclim_temp)) %>%
+	# filter(population_id == "Lithobates sylvaticus_37.56_NA_-84.3") %>% 
+	ggplot(aes(x = acclim_temp, y = parameter_value, group = population_id)) + 
+	geom_smooth(method = "lm", se = FALSE, alpha = 0.5) + geom_point() +
+	ylab("CTmax") + xlab("Acclimation temperature")
+
+arr_slopes_s <- arrs_s %>% 
+	filter(term != "(Intercept)") %>% ## ok fewer than half of the data have more than 2 acclimation temperatures
+	select(genus_species, estimate) %>% 
+	rename(slope = estimate) %>% 
+	filter(population_id != "Retropinna retropinna_-37.595991_NA_175.104216") %>% ## this is the super high ARR, it's only got two data points
+	filter(population_id != "Perca flavescens_42.08_NA_-81.34") ### this is the super low ARR
+
+intercepts_s <- arrs_s %>% 
+	filter(term == "(Intercept)")  %>% 
+	select(genus_species, population_id, estimate) %>% 
+	rename(intercept = estimate) %>% 
+	filter(population_id != "Perca flavescens_42.08_NA_-81.34") %>%  ### this is the super low ARR
+	filter(population_id != "Retropinna retropinna_-37.595991_NA_175.104216") ## this is the super high ARR, it's only got two data points
+
+
+slopes_int <- left_join(intercepts, arr_slopes)
+
+View(slopes_int) ### JB come back here! (November 14 to figure out why we are only getting back one line per species)
+### ok actually, that is not true, we do have some cases where we have more than one line per species. Phew.
+
+ctmax_20_s <- arrs_s %>% 
+	select(genus_species, term, estimate) %>% 
+	spread(key = term, value = estimate) %>% 
+	rename(intercept = `(Intercept)`) %>%
+	mutate(ctmax_20 = acclim_temp*20 + intercept) %>% 
+	filter(!is.na(ctmax_20)) 
+
+
+View(ctmax_20)
+
 all_ctmax <- multi_acc %>% 
 	left_join(., ctmax_20) ### I think this is where the problem is
+
+
+# end that section --------------------------------------------------------
+
 
 
 
