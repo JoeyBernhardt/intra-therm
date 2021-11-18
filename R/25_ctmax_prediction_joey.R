@@ -22,7 +22,7 @@ intratherm %>%
 ### how many different geographic locations?
 
 	
-
+### Which populations have multiple acclimation  temperatures?
 multi_acc <- intratherm %>% 
 	filter(parameter_tmax_or_tmin =="tmax") %>%
 	filter(!is.na(acclim_temp)) %>%
@@ -33,10 +33,12 @@ multi_acc <- intratherm %>%
 arrs <- intratherm %>% 
 	filter(parameter_tmax_or_tmin=="tmax") %>% 
 	filter(!is.na(acclim_temp)) %>%
-	filter(population_id %in% c(multi_acc$population_id)) %>% 
+	filter(population_id %in% c(multi_acc$population_id)) %>% ## gets us the populations which have multiple acclimation temps
 	mutate(lat_long = paste(latitude, longitude, sep = "_")) %>% 
 	group_by(realm_general2, genus_species, population_id, lat_long) %>% 
-	do(tidy(lm(parameter_value~acclim_temp, data=.))) 
+	do(tidy(lm(parameter_value ~ acclim_temp, data=.))) 
+
+
 
 intratherm %>% 
 	filter(parameter_tmax_or_tmin=="tmax") %>% 
@@ -46,22 +48,22 @@ intratherm %>%
 	geom_smooth(method = "lm", se = FALSE, alpha = 0.5) + geom_point() +
 	ylab("CTmax") + xlab("Acclimation temperature")
 
-arr_slopes <- arrs %>% 
-	filter(term != "(Intercept)") %>% ## ok fewer than half of the data have more than 2 acclimation temperatures
-	select(genus_species, population_id, estimate) %>% 
-	rename(slope = estimate) %>% 
-	filter(population_id != "Retropinna retropinna_-37.595991_NA_175.104216") %>% ## this is the super high ARR, it's only got two data points
-	filter(population_id != "Perca flavescens_42.08_NA_-81.34") ### this is the super low ARR
-
-intercepts <- arrs %>% 
-	filter(term == "(Intercept)")  %>% 
-	select(genus_species, population_id, estimate) %>% 
-	rename(intercept = estimate) %>% 
-	filter(population_id != "Perca flavescens_42.08_NA_-81.34") %>%  ### this is the super low ARR
-	filter(population_id != "Retropinna retropinna_-37.595991_NA_175.104216") ## this is the super high ARR, it's only got two data points
-
-
-slopes_int <- left_join(intercepts, arr_slopes)
+# arr_slopes <- arrs %>% 
+# 	filter(term != "(Intercept)") %>% ## ok fewer than half of the data have more than 2 acclimation temperatures
+# 	select(genus_species, population_id, estimate) %>% 
+# 	rename(slope = estimate) %>% 
+# 	filter(population_id != "Retropinna retropinna_-37.595991_NA_175.104216") %>% ## this is the super high ARR, it's only got two data points
+# 	filter(population_id != "Perca flavescens_42.08_NA_-81.34") ### this is the super low ARR
+# 
+# intercepts <- arrs %>% 
+# 	filter(term == "(Intercept)")  %>% 
+# 	select(genus_species, population_id, estimate) %>% 
+# 	rename(intercept = estimate) %>% 
+# 	filter(population_id != "Perca flavescens_42.08_NA_-81.34") %>%  ### this is the super low ARR
+# 	filter(population_id != "Retropinna retropinna_-37.595991_NA_175.104216") ## this is the super high ARR, it's only got two data points
+# 
+# 
+# slopes_int <- left_join(intercepts, arr_slopes)
 
 View(slopes_int) ### JB come back here! (November 14 to figure out why we are only getting back one line per species)
 ### ok actually, that is not true, we do have some cases where we have more than one line per species. Phew.
@@ -73,7 +75,11 @@ ctmax_20 <- arrs %>%
 	mutate(ctmax_20 = acclim_temp*20 + intercept) %>% 
 	filter(!is.na(ctmax_20)) 
 
+View(ctmax_20)
 
+ctmax_20 %>% 
+	group_by(genus_species) %>% 
+	tally() %>% View
 
 # trying now grouping by species, not population for the ARRs -------------
 
@@ -149,18 +155,20 @@ dim(fw)
 fw_ctmax <- all_ctmax %>% 
 	filter(realm_general2 == "Freshwater")
 
-
+### ok need to come back here to get the sd of temps
 fw2 <- fw %>% 
 	gather(key = population_id, value = monthly_temp, 2:383) %>%
 	separate(date, into = c("year", "fraction")) %>% 
 	group_by(population_id, year) %>% 
 	summarise(max_yearly_temp = max(monthly_temp)) %>% 
-	group_by(population_id) %>% 
+	group_by(population_id) %>% View
 	summarise(mean_yearly_max_temp = mean(max_yearly_temp))
 
 intratherm_traits <- intratherm %>% 
 	select(population_id, age_maturity_days_female, dispersal_distance_category, lifespan_days, average_body_size_female)
 
+
+### this is the dataset that contains all the FW species, their traits and the temp data
 intra_fw2 <- fw_ctmax %>% 
 	left_join(., fw2) %>% 
 	left_join(., intratherm_traits) %>% 
@@ -170,7 +178,7 @@ intra_fw2 <- fw_ctmax %>%
 	distinct(., .keep_all = TRUE) %>% 
 	filter(!is.na(ctmax_20))
 
-### this doesn't seem right... because there is only one line per species... look back to why
+
 
 
 library(nlme)
@@ -178,12 +186,43 @@ library(nlme)
 intra_fw2 %>% 
 	ggplot(aes(x = age_maturity_days_female, y = lifespan_days)) + geom_point()
 
+
+intra_fw3 <- intra_fw2 %>% 
+	ungroup() %>% 
+	filter(complete.cases(.))
+
 str(intra_fw2)
+
+### run models!
+
+#sd_ctmax ~ sd_env_temperature + sd_temp*Mean_dispersal_distance + sd_temp*ARR + body_size, random = phylum/class/order/genus
+
+
+View(intra_fw3)
+
+intra4 <- intra_fw3 %>% 
+	group_by(genus_species, dispersal_distance_category, average_body_size_female) %>% 
+	summarise(sd_ctmax = sd(ctmax_20),
+			  sd_temperature = sd(mean_yearly_max_temp),
+			  mean_arr = mean(acclim_temp))
+
+
+mod1 <- lm(sd_ctmax ~ sd_temperature + sd_temperature*dispersal_distance_category + sd_temperature*mean_arr + average_body_size_female, data = intra4)
+mod2 <- lm(sd_ctmax ~ sd_temperature + sd_temperature*dispersal_distance_category + sd_temperature*mean_arr, data = intra4)
+
+AIC(mod1, mod2)
+summary(mod2)
+
+library(visreg)
+
+visreg(mod2)
+
+
 mod1 <- lme(ctmax_20 ~ age_maturity_days_female + dispersal_distance_category +
-				lifespan_days + average_body_size_female, data = intra_fw2, random = ~ 1 | genus_species)
+				lifespan_days + average_body_size_female, data = intra_fw3, random = ~ 1 | genus_species)
 
 mod1 <- lm(ctmax_20 ~ age_maturity_days_female + dispersal_distance_category +
-		lifespan_days + average_body_size_female, data = intra_fw2)
+		lifespan_days + average_body_size_female, data = intra_fw3)
 
 summary(mod1)
 
