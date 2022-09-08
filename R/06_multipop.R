@@ -52,7 +52,7 @@ all_mult <- bind_rows(so, ab, fl, intra, fv)
 all_mult <- bind_rows(so, ab, fl, intra, fv, jb) ### update September 2022 to include the jb extracted data
 
 write_csv(all_mult, "data-processed/team-intratherm-extracted.csv")
-write_csv(all_mult, "data-processed/team-intratherm-extracted-2022.csv") ### ### update September 2022 to include the jb extracted data
+
 
 all_mult2 <- all_mult %>% 
 	mutate(parameter_value = str_replace(parameter_value, "<", "")) %>% 
@@ -74,6 +74,16 @@ all_mult2 <- all_mult %>%
 	mutate(n_cat = ifelse(grepl("-", sample_size), sample_size, n_cat)) %>% 
 	mutate(sample_size = ifelse(!grepl("[^0-9]", sample_size), sample_size, NA)) %>% 
 	mutate(sample_size = as.numeric(sample_size))
+
+
+
+### Update september 2022. We need to pull in all the reference info and DOIs for the globetherm data that are in intratherm
+
+globe_refs <- read_excel("data-raw/globtherm-download-from-dryad/References_1_09_2017.xlsx")
+
+all_mult3 <- left_join(all_mult2, globe_refs, by = c("ref" = "Data citation"))
+write_csv(all_mult3, "data-processed/team-intratherm-extracted-2022.csv") ### ### update September 2022 to include the jb extracted data
+
 
 unique(all_mult2$n_cat)
 
