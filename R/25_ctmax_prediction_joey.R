@@ -161,8 +161,9 @@ fw2 <- fw %>%
 	separate(date, into = c("year", "fraction")) %>% 
 	group_by(population_id, year) %>% 
 	summarise(max_yearly_temp = max(monthly_temp)) %>% 
-	group_by(population_id) %>% View
+	group_by(population_id) %>% 
 	summarise(mean_yearly_max_temp = mean(max_yearly_temp))
+
 
 intratherm_traits <- intratherm %>% 
 	select(population_id, age_maturity_days_female, dispersal_distance_category, lifespan_days, average_body_size_female)
@@ -183,7 +184,7 @@ intra_fw2 <- fw_ctmax %>%
 
 library(nlme)
 
-intra_fw2 %>% 
+	intra_fw2 %>% 
 	ggplot(aes(x = age_maturity_days_female, y = lifespan_days)) + geom_point()
 
 
@@ -196,10 +197,26 @@ str(intra_fw2)
 ### run models!
 
 #sd_ctmax ~ sd_env_temperature + sd_temp*Mean_dispersal_distance + sd_temp*ARR + body_size, random = phylum/class/order/genus
+## add dispersal_distance*collection_distance
 
+### ok so somewhere here I need to add the distance between populations.
 
 View(intra_fw3)
 
+### bring in some of the distance data
+
+distances <- read_csv("data-processed/initialize_pairwise_differences_experienced_output.csv")
+
+d2 <- distances %>% 
+	select(genus_species, lat_lon_1, lat_lon_2, distance) %>% 
+	rename(lat_long = lat_lon_1)
+
+i4 <- intra_fw3 %>% 
+	select(genus_species, lat_long)
+
+
+d2 %>% 
+	left_join(i4) %>% View
 intra4 <- intra_fw3 %>% 
 	group_by(genus_species, dispersal_distance_category, average_body_size_female) %>% 
 	summarise(sd_ctmax = sd(ctmax_20),

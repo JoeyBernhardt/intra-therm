@@ -206,7 +206,7 @@ comb_tmax2 <- combined_tmax %>%
 
 unique(comb_tmax2$acclim_time)
 
-write_csv(comb_tmax2, "data-processed/combined-thermal-limits.csv")
+write_csv(comb_tmax2, "data-processed/combined-thermal-limits.csv") ### update September 8 2022. I think this is the most complete raw intratherm data
 
 comb_tmax2 <- read_csv("data-processed/combined-thermal-limits.csv")
 

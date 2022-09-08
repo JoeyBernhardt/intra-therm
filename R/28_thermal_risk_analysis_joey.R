@@ -7,6 +7,8 @@ ctmax_data <- read_csv("data-processed/intratherm-with-elev.csv")
 ctmax_data <- subset(ctmax_data, ctmax_data$parameter_tmax_or_tmin == "tmax")
 
 
+
+### in 2021 we had 137 species in the population abundances set
 dtb <- data_temp %>% 
 	mutate(genus_species = str_replace(population_id, "\\_.*", ""))
 
@@ -23,7 +25,7 @@ dt3 <- dt2 %>%
 	mutate(time_interval = date - lag(date)) %>%
 	mutate(time_interval_sd = sd(time_interval, na.rm = TRUE)) %>% 
 	filter(time_interval_sd == 0) %>% 
-	filter(time_interval == 1) %>% 
+	filter(time_interval == 1) %>% ### I think this is getting us the time series that are sampled every year
 	group_by(population_id) %>% 
 	tally() %>% 
 	filter(n > 10)
@@ -33,7 +35,7 @@ length(unique(dt3$population_id))
 
 long_series <- data_temp %>%  
 	filter(abundance > 0) %>% 
-	filter(population_id %in% c(dt3$population_id)) %>% 
+	filter(population_id %in% c(dt3$population_id)) %>% ### this is pulling out the populations which have time series > 10 years
 	mutate(genus_species = str_replace(population_id, "\\_.*", "")) %>% 
 	group_by(population_id) %>% 
 	mutate(time_interval = date - lag(date)) %>% 
@@ -56,11 +58,12 @@ p +
 	stat_function(fun = trisk, args = list(CTmax = 35, alpha = 1), color = "orange", size = 2) +
 	xlim(0, 40) + ylim(0, 6) + theme_bw() + xlab("Temperature (°C)") + ylab("Thermal risk") +
 	annotate("text", label = "alpha = 0.5", x = 10, y = 2, size = 8, colour = "pink") +
-	annotate("text", label = "alpha = 0.2", x = 10, y = 3, size = 8, colour = "purple") +
-	annotate("text", label = "alpha = 0.1", x = 10, y = 5, size = 8, colour = "blue") +
-	annotate("text", label = "alpha = 1", x = 10, y = 4, size = 8, colour = "orange") +
-	annotate("text", label = "CTmax = 35", x = 10, y = 6, size = 8, colour = "black") +
+	annotate("text", label = "alpha = 0.2", x = 10, y = 10000, size = 8, colour = "purple") +
+	annotate("text", label = "alpha = 0.1", x = 10, y = 20000, size = 8, colour = "blue") +
+	annotate("text", label = "alpha = 1", x = 10, y = 400000, size = 8, colour = "orange") +
+	annotate("text", label = "CTmax = 35", x = 10, y = 10000000, size = 8, colour = "black") +
 	geom_vline(xintercept = 35) + scale_y_log10()
+ggsave("figures/thermal-risk-sample.png", width = 8, height = 6)
 
 
 
