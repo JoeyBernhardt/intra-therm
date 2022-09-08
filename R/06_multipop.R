@@ -24,7 +24,7 @@ so <- read_excel("data-raw/Globtherm2_within_species_SO.xlsx") %>%
 	mutate_all(funs(as.character)) %>% 
 	mutate(extractor = "SO")
 
-jb <- read_excel("data-raw/Globtherm2_within_species_JB.xlsx") %>% 
+jb <- read_excel("data-raw/Globtherm2_within_species_JB.xlsx") %>% ### update Sept 2022 -- why isn't this file in the combined data below?
 	clean_names() %>% 
 	mutate(genus_species = paste(genus, species, sep = "_")) %>% 
 	mutate_all(funs(as.character)) %>% 
@@ -49,8 +49,10 @@ fv <- read_excel("data-raw/Globtherm2_FV_Test.xlsx") %>%
 	mutate(extractor = "FV")
 
 all_mult <- bind_rows(so, ab, fl, intra, fv)
+all_mult <- bind_rows(so, ab, fl, intra, fv, jb) ### update September 2022 to include the jb extracted data
 
 write_csv(all_mult, "data-processed/team-intratherm-extracted.csv")
+write_csv(all_mult, "data-processed/team-intratherm-extracted-2022.csv") ### ### update September 2022 to include the jb extracted data
 
 all_mult2 <- all_mult %>% 
 	mutate(parameter_value = str_replace(parameter_value, "<", "")) %>% 
